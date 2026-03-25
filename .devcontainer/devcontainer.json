@@ -1,0 +1,25 @@
+{
+  "name": "counterline",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "features": {},
+  "hostRequirements": {
+    "cpus": 8,
+    "memory": "16gb",
+    "storage": "64gb"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-python.python",
+        "charliermarsh.ruff",
+        "timonwong.shellcheck"
+      ]
+    }
+  },
+  "postCreateCommand": "make setup"
+}
+
