@@ -1,0 +1,8 @@
+name: black_petroff
+family: petroff_mainline
+color: black
+seed_file: opening_suites/black/petroff_mainline/seed.pgn
+exits_file: opening_suites/black/petroff_mainline/exits.epd
+exit_fen: "r1bq1rk1/pp2bppp/2p5/3p4/2PP4/2PB4/P4PPP/R1BQ1RK1 b - - 0 10"
+allowed_first_actor: black
+

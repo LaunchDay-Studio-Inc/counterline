@@ -1,0 +1,10 @@
+default:
+  movetime_ms: 200
+  base_probe_ms: 80
+  candidate_probe_ms: 60
+  fortify_probe_ms: 100
+match:
+  tc: "10+0.1"
+  games: 20
+  concurrency: 2
+

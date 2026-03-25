@@ -1,0 +1,10 @@
+override:
+  min_plan_gain_cp: 10
+  min_engine_gain_cp: 8
+  max_fortify_regression_cp: 12
+  require_family_match: true
+rollout:
+  candidate_cap: 4
+  depth_limit: 10
+  per_candidate_movetime_ms: 60
+

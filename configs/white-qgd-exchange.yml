@@ -1,0 +1,8 @@
+name: white_qgd_exchange
+family: qgd_exchange_carlsbad
+color: white
+seed_file: opening_suites/white/qgd_exchange_carlsbad/seed.pgn
+exits_file: opening_suites/white/qgd_exchange_carlsbad/exits.epd
+exit_fen: "r1bqr1k1/pp2bppp/2p2n2/3p2B1/3P4/3BPN2/PPQ2PPP/R4RK1 w - - 0 11"
+allowed_first_actor: white
+

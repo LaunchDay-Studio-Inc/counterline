@@ -1,0 +1,20 @@
+engine:
+  base_path: bin/stockfish-master
+  fallback_path: bin/stockfish-sf_18
+  threads: 1
+  hash_mb: 64
+  movetime_ms: 200
+  nodes: null
+wrapper:
+  db_path: data/repertoire/counterline.sqlite
+  telemetry_path: results/telemetry.jsonl
+  openings:
+    white_qgd_exchange:
+      seed_file: opening_suites/white/qgd_exchange_carlsbad/seed.pgn
+      exit_fen: "r1bqr1k1/pp2bppp/2p2n2/3p2B1/3P4/3BPN2/PPQ2PPP/R4RK1 w - - 0 11"
+      lock_color: white
+    black_petroff:
+      seed_file: opening_suites/black/petroff_mainline/seed.pgn
+      exit_fen: "r1bq1rk1/pp2bppp/2p5/3p4/2PP4/2PB4/P4PPP/R1BQ1RK1 b - - 0 10"
+      lock_color: black
+
