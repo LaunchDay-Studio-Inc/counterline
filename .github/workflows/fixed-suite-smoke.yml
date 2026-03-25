@@ -1,0 +1,24 @@
+name: fixed-suite-smoke
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fixed-suite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build all
+        run: ./scripts/build_all.sh
+      - name: Fetch Fastchess
+        run: ./scripts/fetch_fastchess.sh
+      - name: Generate suite
+        run: python3 opening_suites/generate_suite.py
+      - name: Tiny fixed-suite smoke
+        run: ./scripts/run_fixed_suite.sh --games 2
+

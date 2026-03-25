@@ -1,0 +1,26 @@
+name: build
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  linux-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install wrapper
+        run: ./scripts/build_wrapper.sh
+      - name: Build Stockfish
+        run: ./scripts/build_stockfish.sh
+      - name: Run tests
+        run: . .venv/bin/activate && pytest -n auto tests/test_*.py
+      - name: Run wrapper smoke
+        run: ./scripts/smoke_uci.sh
+

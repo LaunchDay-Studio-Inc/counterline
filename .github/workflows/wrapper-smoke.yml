@@ -1,0 +1,22 @@
+name: wrapper-smoke
+
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build wrapper
+        run: ./scripts/build_wrapper.sh
+      - name: Build master and sf_18
+        run: ./scripts/build_stockfish.sh
+      - name: Smoke wrapper UCI
+        run: ./scripts/smoke_uci.sh
+
