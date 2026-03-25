@@ -185,10 +185,13 @@ class UciApp:
 
 
 @cli.command()
-def main(config: Path | None = typer.Option(None, "--config", exists=False, dir_okay=False)) -> None:
+def main(
+    config: str = typer.Option("", "--config", help="Path to YAML config file"),
+) -> None:
     """Run the CounterLine UCI application."""
 
-    app = UciApp(load_config(config), stdin=typer.get_text_stream("stdin"), stdout=typer.get_text_stream("stdout"))
+    config_path = Path(config) if config else None
+    app = UciApp(load_config(config_path), stdin=typer.get_text_stream("stdin"), stdout=typer.get_text_stream("stdout"))
     raise typer.Exit(app.loop())
 
 
