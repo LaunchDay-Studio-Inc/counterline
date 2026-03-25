@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import chess
 
-WHITE_EXIT_FEN = "r1bqr1k1/pp2bppp/2p2n2/3p2B1/3P4/3BPN2/PPQ2PPP/R4RK1 w - - 0 11"
-BLACK_EXIT_FEN = "r1bq1rk1/pp2bppp/2p5/3p4/2PP4/2PB4/P4PPP/R1BQ1RK1 b - - 0 10"
+WHITE_EXIT_FEN = "r1bqrnk1/pp2bppp/2p2n2/3p2B1/3P4/2NBP3/PPQ1NPPP/R4RK1 w - - 9 11"
+BLACK_EXIT_FEN = "rnbq1rk1/pp2bppp/2p5/3p4/2PP4/2PB1N2/P4PPP/R1BQ1RK1 b - - 0 10"
 
 WHITE_SEED_UCIS = [
     "d2d4",
@@ -27,7 +27,7 @@ WHITE_SEED_UCIS = [
     "g1e2",
     "f8e8",
     "e1g1",
-    "f6f8",
+    "d7f8",
 ]
 
 BLACK_SEED_UCIS = [

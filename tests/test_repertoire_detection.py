@@ -9,7 +9,7 @@ from wrapper.repertoire_db import RepertoireDB
 
 
 def test_repertoire_db_roundtrip(tmp_path: Path) -> None:
-    board = chess.Board("r1bqr1k1/pp2bppp/2p2n2/3p2B1/3P4/3BPN2/PPQ2PPP/R4RK1 w - - 0 11")
+    board = chess.Board("r1bqrnk1/pp2bppp/2p2n2/3p2B1/3P4/2NBP3/PPQ1NPPP/R4RK1 w - - 9 11")
     db = RepertoireDB(tmp_path / "counterline.sqlite")
     db.initialize()
     repertoire = Repertoire(db)

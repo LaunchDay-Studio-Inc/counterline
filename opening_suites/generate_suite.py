@@ -10,8 +10,8 @@ import chess.pgn
 
 ROOT = Path(__file__).resolve().parent
 
-WHITE_EXPECTED = "r1bqr1k1/pp2bppp/2p2n2/3p2B1/3P4/3BPN2/PPQ2PPP/R4RK1 w - - 0 11"
-BLACK_EXPECTED = "r1bq1rk1/pp2bppp/2p5/3p4/2PP4/2PB4/P4PPP/R1BQ1RK1 b - - 0 10"
+WHITE_EXPECTED = "r1bqrnk1/pp2bppp/2p2n2/3p2B1/3P4/2NBP3/PPQ1NPPP/R4RK1 w - - 9 11"
+BLACK_EXPECTED = "rnbq1rk1/pp2bppp/2p5/3p4/2PP4/2PB1N2/P4PPP/R1BQ1RK1 b - - 0 10"
 
 
 def load_final_board(pgn_path: Path) -> chess.Board:
