@@ -12,6 +12,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/official-stockfish/Stockfish.git || true
+          git fetch upstream tag sf_18 --no-tags || echo "Warning: could not fetch sf_18 tag"
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"

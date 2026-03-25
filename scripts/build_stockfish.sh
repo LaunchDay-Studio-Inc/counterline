@@ -29,6 +29,25 @@ cleanup() {
 trap cleanup EXIT
 
 echo "[counterline] building tag sf_18 -> $SF18_OUT"
+# Ensure we have the upstream sf_18 tag (our fork may not have fetched it)
+if ! git -C "$ROOT_DIR" rev-parse sf_18 >/dev/null 2>&1; then
+  echo "[counterline] fetching sf_18 tag from upstream..."
+  if git -C "$ROOT_DIR" remote | grep -q upstream; then
+    git -C "$ROOT_DIR" fetch upstream tag sf_18 --no-tags >/dev/null 2>&1 || true
+  fi
+  # Also try fetching from origin in case upstream isn't configured
+  if ! git -C "$ROOT_DIR" rev-parse sf_18 >/dev/null 2>&1; then
+    git -C "$ROOT_DIR" fetch origin tag sf_18 --no-tags >/dev/null 2>&1 || true
+  fi
+  if ! git -C "$ROOT_DIR" rev-parse sf_18 >/dev/null 2>&1; then
+    echo "[counterline] WARNING: sf_18 tag not found — skipping sf_18 build"
+    echo "[counterline] Add upstream remote: git remote add upstream https://github.com/official-stockfish/Stockfish.git"
+    echo "[counterline] Then run: git fetch upstream tag sf_18"
+    echo "[counterline] built:"
+    echo "  $MASTER_OUT"
+    exit 0
+  fi
+fi
 git -C "$ROOT_DIR" worktree add --detach "$tmpdir" sf_18 >/dev/null
 build_tree "$tmpdir" "$SF18_OUT"
 
