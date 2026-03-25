@@ -195,5 +195,10 @@ def main(
     raise typer.Exit(app.loop())
 
 
+def entrypoint() -> None:
+    """Console script entry point — must go through Typer's CLI runner."""
+    cli()
+
+
 if __name__ == "__main__":
-    main()
+    cli()

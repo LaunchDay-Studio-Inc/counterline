@@ -29,7 +29,7 @@ dev = [
 ]
 
 [project.scripts]
-counterline-uci = "wrapper.uci_app:main"
+counterline-uci = "wrapper.uci_app:entrypoint"
 
 [tool.setuptools]
 packages = ["wrapper"]
