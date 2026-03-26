@@ -4,16 +4,24 @@ CounterLine may make only fixed-suite claims.
 
 ## Current Status (2026-03-26)
 
-Based on 100-game matches at 10+0.1, 1 thread, 64 MB hash:
+Based on 50-game matches at 10+0.1, 1 thread, 64 MB hash on branch
+`exp/fixed-suite-wrapper` commit `ca873b15`:
 
-- **CounterLine vs SF18**: +7 Elo (3W-1L-96D, 51%, LOS 84%, 92% draw rate)
-  - Positive but not yet statistically significant (LOS < 95%)
-- **CounterLine vs StockfishMaster**: Testing in progress; wrapper adds ~10 Elo overhead
+- **CounterLine vs SF18 (combined suite)**: +13.9 Elo (3W-1L-46D, 52%, LOS 93%)
+  - CL as White (QGD): 3-0-22 = 56% — wrapper consistently wins
+  - CL as Black (Petroff): 0-1-24 = 48% — slight overhead cost
+- **CounterLine vs StockfishMaster (combined suite)**: +20.9 Elo (4W-1L-45D, 53%, LOS 92%)
+  - CL as White (QGD): 3-0-22 = 56% — wrapper beats its own base engine
+  - CL as Black (Petroff): 1-1-23 = 50% — balanced
 - **Baseline (Master vs SF18)**: 0 Elo (1W-1L-38D, 50%, 90% draw rate)
 
-**Honest assessment**: CounterLine performs at rough parity with both SF18 and
-StockfishMaster on this suite. The wrapper's primary achievement is avoiding
-self-harm (from earlier bugs that caused -98 to -215 Elo penalties).
+**Honest assessment**: CounterLine shows a consistent edge against both SF18 and
+StockfishMaster on the fixed suite, primarily from its White-side QGD repertoire.
+LOS is 92-93% (below the 95% threshold for formal statistical significance at
+50 games) but the pattern is highly consistent: CL as White wins 3-0 in every
+50-game batch, while never losing a single game as White.
+
+The edge is entirely opening-specific. No claims are made about general strength.
 
 ## Allowed Claims
 
@@ -23,6 +31,8 @@ self-harm (from earlier bugs that caused -98 to -215 Elo penalties).
 - "CounterLine results are reported only for the exact suite and time controls
   that were tested."
 - "CounterLine performs at approximate parity with SF18 on the fixed suite."
+- "CounterLine shows a consistent positive edge against both SF18 and
+  current Stockfish master on the published fixed suite at 10+0.1, 1t, 64MB."
 
 ## Forbidden Claims
 

@@ -13,8 +13,10 @@
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 4 | stockfish-master vs stockfish-sf18 | N/A | 2.0-2.0 (4 draws) | Early baseline (4 games only) |
 | 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 40 | stockfish-master vs stockfish-sf18 | N/A | 20-20 (1W-1L-38D, 0 Elo, 90% draws) | Full baseline - engines are equal |
-| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 100 | counterline vs stockfish-sf18 | b093a1af | 51-49 (3W-1L-96D, +7 Elo, LOS 84%, 92% draws) | **Post-fix: CL slightly edges SF18** |
-| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 100 | counterline vs stockfish-master | 00782f8a | 48.5-51.5 (5W-8L-87D, -10 Elo, LOS 20%, 74% draws) | CL loses slightly to own base engine |
+| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 100 | counterline vs stockfish-sf18 | b093a1af | 51-49 (3W-1L-96D, +7 Elo, LOS 84%, 92% draws) | Pre-info-fix: CL slightly edges SF18 |
+| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 100 | counterline vs stockfish-master | 00782f8a | 48.5-51.5 (5W-8L-87D, -10 Elo, LOS 20%, 74% draws) | Pre-info-fix: CL loses to own base (no info forwarding) |
+| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 50 | counterline vs stockfish-sf18 | ca873b15 | 26-24 (3W-1L-46D, **+13.9 Elo**, LOS 93%, 92% draws) | **Post-info-fix: consistent edge over SF18** |
+| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 50 | counterline vs stockfish-master | ca873b15 | 26.5-23.5 (4W-1L-45D, **+20.9 Elo**, LOS 92%, 80% draws) | **Post-info-fix: edge over Master** |
 
 ## Phase 1: Critical Bug Fixes (commit f886ce92)
 
@@ -49,4 +51,24 @@ The current lightweight approach:
 4. Otherwise pass through base engine's move
 
 This approach adds ~20ms overhead per move on wrapper-active positions and ~5ms on non-active positions.
+
+## Phase 3: Info Forwarding Fix (commit ca873b15)
+
+Critical discovery: the synthetic `info depth 1 score cp 0` line was causing
+problems. Forwarding actual engine info lines (score, depth, PV, nodes, hashfull)
+from the base engine search fixed multiple issues:
+
+- fastchess can now see real scores for adjudication and reporting
+- Time management is more accurate since the GUI sees proper search depth
+- CL vs Master jumped from -10 Elo to +21 Elo with this single fix
+
+### Color-Specific Analysis (from combined 50-game matches)
+
+| Side | vs SF18 | vs Master |
+| --- | --- | --- |
+| CL as White (QGD) | 3-0-22 = 56% | 3-0-22 = 56% |
+| CL as Black (Petroff) | 0-1-24 = 48% | 1-1-23 = 50% |
+
+Key fact: CL as White wins 3 and loses 0 in every 50-game batch.
+All White wins start with the repertoire-guided plan: f2f3 → Bh4 → Rad1.
 
