@@ -12,19 +12,53 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - name: Add upstream remote
         run: |
           git remote add upstream https://github.com/official-stockfish/Stockfish.git || true
           git fetch upstream tag sf_18 --no-tags || echo "Warning: could not fetch sf_18 tag"
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
       - name: Install wrapper
         run: ./scripts/build_wrapper.sh
+
       - name: Build Stockfish
         run: ./scripts/build_stockfish.sh
+
       - name: Run tests
         run: . .venv/bin/activate && pytest -n auto tests/test_*.py
+
       - name: Run wrapper smoke
         run: ./scripts/smoke_uci.sh
+
+      - name: Toolchain sanity (best-effort)
+        run: ./scripts/check_toolchain.sh || true
+
+  book-toolchain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+
+      - name: Install tectonic
+        run: |
+          curl -fsSL https://drop-sh.fullyjustified.net | sh
+          sudo mv tectonic /usr/local/bin/tectonic
+
+      - name: Install Quarto
+        run: |
+          curl -fsSL -o /tmp/quarto.deb \
+            "https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.43/quarto-1.6.43-linux-amd64.deb"
+          sudo dpkg -i /tmp/quarto.deb
+
+      - name: Verify book toolchain
+        run: |
+          pandoc --version | head -1
+          tectonic --version
+          quarto --version
 
