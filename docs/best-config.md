@@ -3,7 +3,7 @@
 ## Current Best
 
 - **Branch**: `exp/fixed-suite-wrapper`
-- **Commit**: `ca873b15` (perf: forward engine info lines)
+- **Commit**: `ab00ecd3` (fix: restrict wrapper overrides to critical positions only)
 - **Date**: 2026-03-26
 - **Tag**: `best/before-tuning` (baseline at `c4c1b078`)
 
@@ -33,10 +33,11 @@
 
 ## Repertoire DB
 
-- 64 entries across 19 positions (L0-L2 tree)
-- White QGD priors: f2f3 (prior=5), a1d1 (prior=2)
-- Black Petroff priors: c8g4 (prior=5), d5c4 (prior=3)
-- Stored in SQLite at `data/repertoire/repertoire.db`
+- 63 entries across 18 positions (L0-L2 tree)
+- White QGD priors: f2f3 (score_cp=18), a2a3 (12), a1c1 (10), h2h3 (6)
+- Black Petroff priors: c8g4 (score_cp=18), d5c4 (12), b8d7 (10)
+- Stored in SQLite at `data/repertoire/counterline.sqlite`
+- Wrapper only activates at `is_critical` positions (L0 exit FENs)
 
 ## Fortification Thresholds
 
@@ -48,15 +49,15 @@
 
 | Match | Games | W-L-D | Score% | Elo | LOS |
 | --- | --- | --- | --- | --- | --- |
-| CL vs SF18 (combined) | 50 | 3-1-46 | 52% | +13.9 | 93% |
-| CL vs Master (combined) | 50 | 4-1-45 | 53% | +20.9 | 92% |
+| CL vs Master (combined) | 50 | 5-0-45 | 55% | **+34.9** | **97%** |
+| CL vs SF18 (combined) | 50 | 2-2-46 | 50% | 0 | 50% |
 
-### By Color
+### By Color (vs Master)
 
-| Side | vs SF18 | vs Master |
+| Side | W-L-D | Score |
 | --- | --- | --- |
-| CL as White (QGD) | 3-0-22 = 56% | 3-0-22 = 56% |
-| CL as Black (Petroff) | 0-1-24 = 48% | 1-1-23 = 50% |
+| CL as White (QGD) | 4-0-21 | 58% |
+| CL as Black (Petroff) | 1-0-24 | 52% |
 
 ## Rerun Commands
 

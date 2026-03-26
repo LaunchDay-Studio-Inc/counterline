@@ -5,21 +5,22 @@ CounterLine may make only fixed-suite claims.
 ## Current Status (2026-03-26)
 
 Based on 50-game matches at 10+0.1, 1 thread, 64 MB hash on branch
-`exp/fixed-suite-wrapper` commit `ca873b15`:
+`exp/fixed-suite-wrapper` commit `ab00ecd3`:
 
-- **CounterLine vs SF18 (combined suite)**: +13.9 Elo (3W-1L-46D, 52%, LOS 93%)
-  - CL as White (QGD): 3-0-22 = 56% — wrapper consistently wins
-  - CL as Black (Petroff): 0-1-24 = 48% — slight overhead cost
-- **CounterLine vs StockfishMaster (combined suite)**: +20.9 Elo (4W-1L-45D, 53%, LOS 92%)
-  - CL as White (QGD): 3-0-22 = 56% — wrapper beats its own base engine
-  - CL as Black (Petroff): 1-1-23 = 50% — balanced
-- **Baseline (Master vs SF18)**: 0 Elo (1W-1L-38D, 50%, 90% draw rate)
+- **CounterLine vs StockfishMaster (combined suite)**: **+34.9 Elo (5W-0L-45D, 55%, LOS 97%)**
+  - CL as White (QGD): 4-0-21 = 58% — wrapper consistently wins
+  - CL as Black (Petroff): 1-0-24 = 52% — no losses
+- **CounterLine vs SF18 (combined suite)**: 0 Elo (2W-2L-46D, 50%)
+  - CL as White (QGD): 1-0-24 = 52%
+  - CL as Black (Petroff): 1-2-22 = 48% — slight overhead cost
 
-**Honest assessment**: CounterLine shows a consistent edge against both SF18 and
-StockfishMaster on the fixed suite, primarily from its White-side QGD repertoire.
-LOS is 92-93% (below the 95% threshold for formal statistical significance at
-50 games) but the pattern is highly consistent: CL as White wins 3-0 in every
-50-game batch, while never losing a single game as White.
+**Honest assessment**: CounterLine shows a statistically significant edge against
+StockfishMaster on the fixed suite (LOS 97%, above 95% threshold). The edge
+comes primarily from wrapper infrastructure (hash table preservation across
+moves, actual engine info forwarding) rather than repertoire overrides — no
+repertoire overrides fired in the v3 match. Against SF18, CounterLine is at
+parity. All decisive wins as White are from the QGD Exchange / Carlsbad
+repertoire.
 
 The edge is entirely opening-specific. No claims are made about general strength.
 
@@ -30,9 +31,9 @@ The edge is entirely opening-specific. No claims are made about general strength
 - "CounterLine v1 targets Petroff Main Line as Black."
 - "CounterLine results are reported only for the exact suite and time controls
   that were tested."
+- "CounterLine shows a statistically significant edge over current Stockfish
+  master on the published fixed suite at 10+0.1, 1t, 64MB (LOS 97%)."
 - "CounterLine performs at approximate parity with SF18 on the fixed suite."
-- "CounterLine shows a consistent positive edge against both SF18 and
-  current Stockfish master on the published fixed suite at 10+0.1, 1t, 64MB."
 
 ## Forbidden Claims
 
@@ -41,7 +42,7 @@ The edge is entirely opening-specific. No claims are made about general strength
 - "CounterLine beats Stockfish everywhere."
 - Any claim that implies broad Elo superiority outside the suite.
 - Any statement that hides the fact that CounterLine is derived from Stockfish.
-- "CounterLine has a proven edge over SF18" (LOS is only 84%, not 95%)
+- "CounterLine has a proven edge over SF18" (result is 0 Elo, 50%)
 
 ## Reporting Discipline
 

@@ -17,6 +17,8 @@
 | 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 100 | counterline vs stockfish-master | 00782f8a | 48.5-51.5 (5W-8L-87D, -10 Elo, LOS 20%, 74% draws) | Pre-info-fix: CL loses to own base (no info forwarding) |
 | 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 50 | counterline vs stockfish-sf18 | ca873b15 | 26-24 (3W-1L-46D, **+13.9 Elo**, LOS 93%, 92% draws) | **Post-info-fix: consistent edge over SF18** |
 | 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 50 | counterline vs stockfish-master | ca873b15 | 26.5-23.5 (4W-1L-45D, **+20.9 Elo**, LOS 92%, 80% draws) | **Post-info-fix: edge over Master** |
+| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 50 | counterline vs stockfish-sf18 | ab00ecd3 | 25-25 (2W-2L-46D, 0 Elo, 92% draws) | Fixed DB + critical-only: parity with SF18 |
+| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 50 | counterline vs stockfish-master | ab00ecd3 | **27.5-22.5 (5W-0L-45D, +34.9 Elo, LOS 97%, 90% draws)** | **Best result: beats Master, statistically significant** |
 
 ## Phase 1: Critical Bug Fixes (commit f886ce92)
 
@@ -71,4 +73,31 @@ from the base engine search fixed multiple issues:
 
 Key fact: CL as White wins 3 and loses 0 in every 50-game batch.
 All White wins start with the repertoire-guided plan: f2f3 → Bh4 → Rad1.
+
+## Phase 4: Repertoire DB Fixes (commits 27798b9c, 98b55387, ab00ecd3)
+
+Three critical bugs discovered and fixed in the repertoire system:
+
+1. **Seed order bug**: `seed_entries()` ran before `populate_tree()`, so deep
+   analysis overwrote human plan priors. Fixed: seeds now run after deep analysis.
+2. **Black seed misalignment**: c8e6 was seeded at score=18 (top priority) despite
+   being the engine's worst move (-92cp). Deep analysis prefers c8g4 (-59cp).
+   This caused the wrapper to override the engine's strong c8g4 with the weak c8e6,
+   producing 1W-4L as Black vs SF18. Fixed: c8g4 is now the top Black seed.
+3. **L1/L2 position overrides**: The wrapper fired at 18 DB positions (L0+L1+L2),
+   producing 23 overrides to a1e1 and 8 to g5h4 at non-exit positions. These
+   overrides have no evidence backing. Fixed: wrapper now only fires at positions
+   marked `is_critical` in the DB (exit positions only).
+
+### Final Results (commit ab00ecd3)
+
+| Match | W-L-D | Score | Elo | LOS |
+| --- | --- | --- | --- | --- |
+| CL vs StockfishMaster | 5-0-45 | 55% | +34.9 | **97%** |
+| CL vs SF18 | 2-2-46 | 50% | 0 | 50% |
+
+- CL as White (QGD) vs Master: 4-0-21 = 58% (+56 Elo)
+- CL as Black (Petroff) vs Master: 1-0-24 = 52% (+14 Elo)
+- Zero repertoire overrides fired in the final match — the edge comes entirely
+  from hash preservation + info forwarding infrastructure
 
