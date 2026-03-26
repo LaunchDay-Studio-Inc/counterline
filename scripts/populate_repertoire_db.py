@@ -199,10 +199,9 @@ def seed_entries(db: RepertoireDB, repo: Repertoire) -> None:
     repo.remember(white, "qgd_exchange_carlsbad", "a1c1", 10, note="c_file_pressure")
     repo.remember(white, "qgd_exchange_carlsbad", "h2h3", 6, note="luft")
 
-    repo.remember(black, "petroff_mainline", "c8e6", 18, note="bishop_development")
+    repo.remember(black, "petroff_mainline", "c8g4", 18, note="bishop_pin_engine_best")
     repo.remember(black, "petroff_mainline", "d5c4", 12, note="c_pawn_exchange")
     repo.remember(black, "petroff_mainline", "b8d7", 10, note="knight_development")
-    repo.remember(black, "petroff_mainline", "f8e8", 8, note="e_file_pressure")
 
 
 def dump_db(db: RepertoireDB) -> None:
