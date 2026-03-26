@@ -216,22 +216,39 @@ class UciApp:
         )
 
         if should_use_wrapper:
-            decision = determine_countermove(
-                self.board,
-                self.engine_pool,
-                self.repertoire,
-                self.repertoire_db,
-                max_candidates=self.config.wrapper.max_candidates,
-            )
-            if decision.used_wrapper and decision.challenger_move:
-                self.repertoire.remember(
-                    self.board,
-                    family,
-                    decision.challenger_move,
-                    decision.scores.get("challenger_combined", 0),
-                    note="accepted_by_wrapper",
+            # Lightweight approach: get base move with time control, then check
+            # if we should override with a repertoire-backed move.
+            try:
+                base_move, base_ponder = self.engine_pool.bestmove(
+                    self.board, movetime_ms, go_params=go_params
                 )
-            return decision.bestmove, decision.ponder, decision.reason, decision.used_wrapper
+            except Exception:
+                base_move, base_ponder = self._fallback_move()
+
+            # Check if repertoire strongly recommends a different move
+            rep_candidates = self.repertoire.candidate_moves(self.board, family)
+            if rep_candidates:
+                top_rep = rep_candidates[0]
+                if top_rep.move_uci != base_move and top_rep.plan_score_cp >= 3:
+                    # Quick verification: evaluate both moves with a small probe
+                    try:
+                        scores = self.engine_pool.analyse_searchmoves(
+                            self.board,
+                            [top_rep.move_uci, base_move],
+                            nodes=10000,
+                        )
+                        rep_score = scores.get(top_rep.move_uci)
+                        base_score = scores.get(base_move)
+                        if (
+                            rep_score is not None
+                            and base_score is not None
+                            and rep_score.score_cp >= base_score.score_cp - 5
+                        ):
+                            return top_rep.move_uci, None, "repertoire_override", True
+                    except Exception:
+                        pass
+
+            return base_move, base_ponder, "base_with_rep_check", False
 
         # Outside suite: just use base engine
         try:
@@ -269,6 +286,14 @@ class UciApp:
                 self.send("readyok")
             elif command == "ucinewgame":
                 self.board.reset()
+                # Forward ucinewgame to the evaluator so it clears its hash
+                # between games (but NOT between moves within a game)
+                if self._pool_started and self._pool is not None:
+                    try:
+                        self._pool.evaluator.command("ucinewgame")
+                        self._pool.evaluator.command("isready", wait_for="readyok")
+                    except Exception:
+                        pass
             elif command.startswith("position"):
                 self.apply_position(command)
             elif command.startswith("setoption"):

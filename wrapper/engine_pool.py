@@ -130,7 +130,7 @@ class UciSubprocessEngine:
         movetime_ms: int | None = None,
         nodes: int | None = None,
     ) -> NodeScore:
-        self.command("ucinewgame")
+        # Use isready only - preserves hash table for better performance
         self.command("isready", wait_for="readyok")
         self._write(self._position_cmd(board))
         go = "go"
@@ -179,7 +179,6 @@ class UciSubprocessEngine:
         movetime_ms: int | None = None,
         nodes: int | None = None,
     ) -> tuple[str, NodeScore]:
-        self.command("ucinewgame")
         self.command("isready", wait_for="readyok")
         self._write(self._position_cmd(board))
         go = "go"
@@ -219,7 +218,7 @@ class UciSubprocessEngine:
         nodes: int | None = None,
         go_params: dict[str, int | None] | None = None,
     ) -> tuple[str, str | None]:
-        self.command("ucinewgame")
+        # Do NOT call ucinewgame here - preserve hash table across moves
         self.command("isready", wait_for="readyok")
         self._write(self._position_cmd(board))
         # If full go_params provided (wtime/btime), forward them for proper TC
