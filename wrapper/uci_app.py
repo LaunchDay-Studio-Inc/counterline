@@ -202,6 +202,7 @@ class UciApp:
         # Only run wrapper when: in suite, book complete, our color, sufficient time,
         # AND we have repertoire data for this position (or it's the exact exit FEN)
         has_rep_data = bool(self.repertoire.candidate_moves(self.board, family)) if family != "unknown" else False
+        is_critical = self.repertoire_db.is_critical(self.board) if has_rep_data else False
         at_exit = self.board.fen(en_passant="fen") in (
             "r1bqrnk1/pp2bppp/2p2n2/3p2B1/3P4/2NBP3/PPQ1NPPP/R4RK1 w - - 9 11",
             "rnbq1rk1/pp2bppp/2p5/3p4/2PP4/2PB1N2/P4PPP/R1BQ1RK1 b - - 0 10",
@@ -212,7 +213,7 @@ class UciApp:
             and has_time
             and (
                 (is_book_complete(self.board) and at_exit)
-                or has_rep_data
+                or (has_rep_data and is_critical)
             )
         )
 
