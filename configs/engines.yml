@@ -1,13 +1,20 @@
 engine:
   base_path: bin/stockfish-master
-  fallback_path: bin/stockfish-sf_18
+  nominal_path: bin/stockfish-master
+  verify_path: bin/stockfish-master
   threads: 1
   hash_mb: 64
   movetime_ms: 200
-  nodes: null
+  nodes_main: null
+  nodes_child: null
+  nodes_verify: null
+  show_wdl: false
 wrapper:
   db_path: data/repertoire/counterline.sqlite
   telemetry_path: results/telemetry.jsonl
+  max_candidates: 4
+  opening_lock: true
+  wrapper_mode: selective
   openings:
     white_qgd_exchange:
       seed_file: opening_suites/white/qgd_exchange_carlsbad/seed.pgn

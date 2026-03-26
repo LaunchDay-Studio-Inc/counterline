@@ -10,8 +10,26 @@ class FakeEnginePool:
     def __init__(self, bestmove: str) -> None:
         self._bestmove = bestmove
 
-    def bestmove(self, board, movetime_ms=None):  # noqa: ANN001, ARG002
+    def bestmove(self, board, movetime_ms=None, go_params=None):  # noqa: ANN001, ARG002
         return self._bestmove, None
+
+    def analyse_root(self, board, **kwargs):  # noqa: ANN001, ARG002
+        from wrapper.types import NodeScore
+        return NodeScore(score_cp=0)
+
+    def analyse_searchmoves(self, board, moves, **kwargs):  # noqa: ANN001, ARG002
+        from wrapper.types import NodeScore
+        return {m: NodeScore(score_cp=0) for m in moves}
+
+    def predict_reply(self, board, **kwargs):  # noqa: ANN001, ARG002
+        import chess
+        from wrapper.types import NodeScore
+        move = next(iter(board.legal_moves), chess.Move.null())
+        return move.uci(), NodeScore(score_cp=0)
+
+    def verify_duel(self, board, challenger, base, **kwargs):  # noqa: ANN001, ARG002
+        from wrapper.types import NodeScore
+        return NodeScore(score_cp=0), NodeScore(score_cp=0)
 
     def close(self) -> None:
         return None
@@ -53,3 +71,45 @@ def test_uci_wrapper_override_on_white_exit(tmp_path: Path) -> None:
     app.loop()
 
     assert "bestmove f2f3" in stdout.getvalue()
+
+
+def test_uci_options_listed(tmp_path: Path) -> None:
+    config = load_config(None)
+    config.wrapper.db_path = tmp_path / "counterline.sqlite"
+    config.wrapper.telemetry_path = tmp_path / "telemetry.jsonl"
+    stdin = StringIO("uci\nquit\n")
+    stdout = StringIO()
+
+    app = UciApp(config, stdin=stdin, stdout=stdout, engine_pool=FakeEnginePool("e2e4"))
+    app.loop()
+    output = stdout.getvalue()
+
+    assert "CounterLine" in output
+    assert "BaseEnginePath" in output
+    assert "NominalEnginePath" in output
+    assert "VerifyEnginePath" in output
+    assert "Threads" in output
+    assert "Hash" in output
+    assert "OpeningLock" in output
+    assert "WrapperMode" in output
+    assert "MaxCandidates" in output
+    assert "NodesMain" in output
+    assert "NodesChild" in output
+    assert "NodesVerify" in output
+    assert "LogPath" in output
+
+
+def test_uci_seed_line_plays_immediately(tmp_path: Path) -> None:
+    """When inside seed line prefix, wrapper should play the seed move immediately."""
+    config = load_config(None)
+    config.wrapper.db_path = tmp_path / "counterline.sqlite"
+    config.wrapper.telemetry_path = tmp_path / "telemetry.jsonl"
+    # Position after 1.d4 d5 - should play c2c4 immediately
+    stdin = StringIO("position startpos moves d2d4 d7d5\ngo movetime 1\nquit\n")
+    stdout = StringIO()
+
+    app = UciApp(config, stdin=stdin, stdout=stdout, engine_pool=FakeEnginePool("e2e4"))
+    app.loop()
+    output = stdout.getvalue()
+
+    assert "bestmove c2c4" in output

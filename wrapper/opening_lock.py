@@ -59,6 +59,8 @@ def _normalize_fen(board: chess.Board) -> str:
 
 def _moves_match_prefix(board: chess.Board, prefix: list[str]) -> bool:
     moves = [move.uci() for move in board.move_stack]
+    if not moves:
+        return False
     return len(moves) <= len(prefix) and moves == prefix[: len(moves)]
 
 
@@ -74,10 +76,40 @@ def detect_opening_family(board: chess.Board) -> str:
 
 
 def is_book_complete(board: chess.Board) -> bool:
-    """True once the exact post-book exit position has been reached."""
+    """True once the exact post-book exit position has been reached or surpassed."""
 
     fen = _normalize_fen(board)
-    return fen in {WHITE_EXIT_FEN, BLACK_EXIT_FEN}
+    if fen in {WHITE_EXIT_FEN, BLACK_EXIT_FEN}:
+        return True
+    n_moves = len(board.move_stack)
+    if _moves_match_prefix(board, WHITE_SEED_UCIS) and n_moves >= len(WHITE_SEED_UCIS):
+        return True
+    if _moves_match_prefix(board, BLACK_SEED_UCIS) and n_moves >= len(BLACK_SEED_UCIS):
+        return True
+    return False
+
+
+def get_seed_move(board: chess.Board) -> str | None:
+    """If the position is exactly on a seed line prefix with one forced move, return it."""
+
+    moves = [move.uci() for move in board.move_stack]
+    n = len(moves)
+
+    if _moves_match_prefix(board, WHITE_SEED_UCIS) and n < len(WHITE_SEED_UCIS):
+        next_uci = WHITE_SEED_UCIS[n]
+        move = chess.Move.from_uci(next_uci)
+        if move in board.legal_moves:
+            return next_uci
+        return None
+
+    if _moves_match_prefix(board, BLACK_SEED_UCIS) and n < len(BLACK_SEED_UCIS):
+        next_uci = BLACK_SEED_UCIS[n]
+        move = chess.Move.from_uci(next_uci)
+        if move in board.legal_moves:
+            return next_uci
+        return None
+
+    return None
 
 
 def opening_lock(board: chess.Board) -> tuple[bool, str]:

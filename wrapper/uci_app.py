@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import sys
 from contextlib import suppress
 from pathlib import Path
 from typing import TextIO
@@ -11,16 +12,18 @@ import chess
 import typer
 import yaml
 
-from wrapper.determine import determine_bestmove
+from wrapper.determine import determine_bestmove, determine_countermove
 from wrapper.engine_pool import EnginePool
-from wrapper.opening_lock import detect_opening_family, is_book_complete, lock_color_for_family, opening_lock
+from wrapper.opening_lock import detect_opening_family, get_seed_move, is_book_complete, lock_color_for_family, opening_lock
 from wrapper.repertoire import Repertoire
 from wrapper.repertoire_db import RepertoireDB
 from wrapper.rollout import annotate_with_engine_scores, generate_candidates
 from wrapper.telemetry import TelemetryLogger
-from wrapper.types import AppConfig, CandidateMove
+from wrapper.types import AppConfig, CandidateMove, EngineConfig, MoveDecision, WrapperConfig
 
 cli = typer.Typer(add_completion=False)
+
+_VERSION = "0.1.0"
 
 
 def load_config(path: Path | None) -> AppConfig:
@@ -34,8 +37,10 @@ def load_config(path: Path | None) -> AppConfig:
         config = AppConfig.model_validate(payload)
     if engine_path := os.getenv("COUNTERLINE_ENGINE_PATH"):
         config.engine.base_path = Path(engine_path)
-    if fallback_path := os.getenv("COUNTERLINE_FALLBACK_PATH"):
-        config.engine.fallback_path = Path(fallback_path)
+    if nominal_path := os.getenv("COUNTERLINE_NOMINAL_PATH"):
+        config.engine.nominal_path = Path(nominal_path)
+    if verify_path := os.getenv("COUNTERLINE_VERIFY_PATH"):
+        config.engine.verify_path = Path(verify_path)
     if db_path := os.getenv("COUNTERLINE_DB_PATH"):
         config.wrapper.db_path = Path(db_path)
     if telemetry_path := os.getenv("COUNTERLINE_TELEMETRY_PATH"):
@@ -44,7 +49,7 @@ def load_config(path: Path | None) -> AppConfig:
 
 
 class UciApp:
-    """Minimal UCI protocol implementation for CounterLine."""
+    """Full UCI protocol implementation for CounterLine."""
 
     def __init__(
         self,
@@ -62,7 +67,15 @@ class UciApp:
         self.repertoire_db.initialize()
         self.repertoire = Repertoire(self.repertoire_db)
         self.telemetry = TelemetryLogger(config.wrapper.telemetry_path)
-        self.engine_pool = engine_pool or EnginePool(config.engine)
+        self._pool: EnginePool | None = engine_pool
+        self._pool_started = engine_pool is not None
+
+    @property
+    def engine_pool(self) -> EnginePool:
+        if self._pool is None:
+            self._pool = EnginePool(self.config.engine)
+            self._pool_started = True
+        return self._pool
 
     def send(self, line: str) -> None:
         self.stdout.write(f"{line}\n")
@@ -92,21 +105,89 @@ class UciApp:
         return move.uci(), None
 
     @staticmethod
-    def parse_movetime(command: str) -> int | None:
+    def parse_go_params(command: str) -> dict[str, int | None]:
         tokens = command.split()
-        if "movetime" in tokens:
-            index = tokens.index("movetime")
-            if index + 1 < len(tokens):
-                return int(tokens[index + 1])
-        return None
+        params: dict[str, int | None] = {"movetime": None, "nodes": None, "depth": None}
+        for key in params:
+            if key in tokens:
+                idx = tokens.index(key)
+                if idx + 1 < len(tokens):
+                    try:
+                        params[key] = int(tokens[idx + 1])
+                    except ValueError:
+                        pass
+        # Parse wtime/btime/winc/binc for time management
+        for key in ["wtime", "btime", "winc", "binc"]:
+            if key in tokens:
+                idx = tokens.index(key)
+                if idx + 1 < len(tokens):
+                    try:
+                        params[key] = int(tokens[idx + 1])
+                    except ValueError:
+                        pass
+        return params
 
-    def choose_move(self, movetime_ms: int | None = None) -> tuple[str, str | None, str, bool]:
+    def _apply_setoption(self, command: str) -> None:
+        # Parse "setoption name X value Y"
+        parts = command.split()
+        if "name" not in parts:
+            return
+        name_idx = parts.index("name") + 1
+        if "value" in parts:
+            val_idx = parts.index("value")
+            name = " ".join(parts[name_idx:val_idx])
+            value = " ".join(parts[val_idx + 1:])
+        else:
+            name = " ".join(parts[name_idx:])
+            value = ""
+
+        name_lower = name.lower()
+        if name_lower == "baseenginepath":
+            self.config.engine.base_path = Path(value)
+        elif name_lower == "nominalenginepath":
+            self.config.engine.nominal_path = Path(value)
+        elif name_lower == "verifyenginepath":
+            self.config.engine.verify_path = Path(value)
+        elif name_lower == "threads":
+            self.config.engine.threads = max(1, int(value))
+        elif name_lower == "hash":
+            self.config.engine.hash_mb = max(1, int(value))
+        elif name_lower == "openinglock":
+            self.config.wrapper.opening_lock = value.lower() in ("true", "1", "yes")
+        elif name_lower == "wrappermode":
+            self.config.wrapper.wrapper_mode = value
+        elif name_lower == "opponentprofile":
+            self.config.wrapper.opponent_profile.name = value
+        elif name_lower == "enablewdl":
+            self.config.engine.show_wdl = value.lower() in ("true", "1", "yes")
+        elif name_lower == "maxcandidates":
+            self.config.wrapper.max_candidates = max(1, int(value))
+        elif name_lower == "nodesmain":
+            self.config.engine.nodes_main = int(value) if value else None
+        elif name_lower == "nodeschild":
+            self.config.engine.nodes_child = int(value) if value else None
+        elif name_lower == "nodesverify":
+            self.config.engine.nodes_verify = int(value) if value else None
+        elif name_lower == "logpath":
+            self.config.wrapper.telemetry_path = Path(value)
+            self.telemetry = TelemetryLogger(Path(value))
+
+    def choose_move(self, go_params: dict[str, int | None] | None = None) -> tuple[str, str | None, str, bool]:
+        go_params = go_params or {}
+        movetime_ms = go_params.get("movetime")
+
+        # Check seed move first (opening lock)
+        if self.config.wrapper.opening_lock:
+            seed = get_seed_move(self.board)
+            if seed is not None:
+                return seed, None, "seed_line", True
+
         in_suite, family = opening_lock(self.board)
         lock_color = lock_color_for_family(family)
         side_name = "white" if self.board.turn == chess.WHITE else "black"
 
         try:
-            base_move, base_ponder = self.engine_pool.bestmove(self.board, movetime_ms)
+            base_move, base_ponder = self.engine_pool.bestmove(self.board, movetime_ms, go_params=go_params)
         except Exception:
             base_move, base_ponder = self._fallback_move()
 
@@ -116,7 +197,7 @@ class UciApp:
 
         if in_suite and is_book_complete(self.board) and lock_color == side_name:
             repertoire_moves = self.repertoire.candidate_moves(self.board, family)
-            rollout_moves = generate_candidates(self.board, family, limit=4)
+            rollout_moves = generate_candidates(self.board, family, limit=self.config.wrapper.max_candidates)
             engine_scores = {candidate.move_uci: candidate.plan_score_cp for candidate in rollout_moves}
             merged = annotate_with_engine_scores(repertoire_moves or rollout_moves, engine_scores)
             challenger = merged[0] if merged else None
@@ -143,9 +224,23 @@ class UciApp:
             if not command:
                 continue
             if command == "uci":
-                self.send("id name CounterLine")
-                self.send("id author LaunchDay Studio Inc.")
-                self.send("option name CounterLineConfig type string default configs/engines.yml")
+                self.send(f"id name CounterLine {_VERSION}")
+                self.send("id author Stockfish developers + LaunchDay Studio Inc.")
+                self.send("")
+                self.send("option name BaseEnginePath type string default bin/stockfish-master")
+                self.send("option name NominalEnginePath type string default bin/stockfish-master")
+                self.send("option name VerifyEnginePath type string default bin/stockfish-master")
+                self.send("option name Threads type spin default 1 min 1 max 512")
+                self.send("option name Hash type spin default 64 min 1 max 131072")
+                self.send("option name OpeningLock type check default true")
+                self.send("option name WrapperMode type combo default selective var selective var always var off")
+                self.send("option name OpponentProfile type string default stockfish-master")
+                self.send("option name EnableWDL type check default false")
+                self.send("option name MaxCandidates type spin default 4 min 1 max 16")
+                self.send("option name NodesMain type spin default 0 min 0 max 100000000")
+                self.send("option name NodesChild type spin default 0 min 0 max 100000000")
+                self.send("option name NodesVerify type spin default 0 min 0 max 100000000")
+                self.send("option name LogPath type string default results/telemetry.jsonl")
                 self.send("uciok")
             elif command == "isready":
                 self.send("readyok")
@@ -153,35 +248,49 @@ class UciApp:
                 self.board.reset()
             elif command.startswith("position"):
                 self.apply_position(command)
+            elif command.startswith("setoption"):
+                self._apply_setoption(command)
             elif command.startswith("go"):
-                bestmove, ponder, reason, used_wrapper = self.choose_move(self.parse_movetime(command))
-                self.telemetry.log(
-                    {
-                        "fen": self.board.fen(en_passant="fen"),
-                        "family": detect_opening_family(self.board),
-                        "bestmove": bestmove,
-                        "reason": reason,
-                        "used_wrapper": used_wrapper,
-                    }
+                go_params = self.parse_go_params(command)
+                bestmove, ponder, reason, used_wrapper = self.choose_move(go_params)
+
+                family = detect_opening_family(self.board)
+                decision = MoveDecision(
+                    bestmove=bestmove,
+                    ponder=ponder,
+                    family=family,
+                    reason=reason,
+                    used_wrapper=used_wrapper,
+                    base_move=bestmove if not used_wrapper else None,
                 )
+
+                self.telemetry.log_decision(
+                    fen=self.board.fen(en_passant="fen"),
+                    family=family,
+                    decision=decision,
+                    thread_budget=self.config.engine.threads,
+                    source_of_priors="repertoire" if used_wrapper else "base",
+                )
+
+                if used_wrapper:
+                    self.send(f"info string CounterLine override: {reason}")
                 if ponder:
                     self.send(f"bestmove {bestmove} ponder {ponder}")
                 else:
                     self.send(f"bestmove {bestmove}")
             elif command == "stop":
-                self.send("bestmove 0000")
+                pass
             elif command == "quit":
                 break
-            elif command.startswith("setoption"):
-                continue
             elif command == "d":
                 self.send(self.board.unicode())
         self.close()
         return 0
 
     def close(self) -> None:
-        with suppress(Exception):
-            self.engine_pool.close()
+        if self._pool_started:
+            with suppress(Exception):
+                self.engine_pool.close()
 
 
 @cli.command()
@@ -191,7 +300,11 @@ def main(
     """Run the CounterLine UCI application."""
 
     config_path = Path(config) if config else None
-    app = UciApp(load_config(config_path), stdin=typer.get_text_stream("stdin"), stdout=typer.get_text_stream("stdout"))
+    app = UciApp(
+        load_config(config_path),
+        stdin=sys.stdin,
+        stdout=sys.stdout,
+    )
     raise typer.Exit(app.loop())
 
 

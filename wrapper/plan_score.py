@@ -5,25 +5,56 @@ from __future__ import annotations
 import chess
 
 
+def _piece_on(board: chess.Board, piece_type: chess.PieceType, color: chess.Color, square: chess.Square) -> bool:
+    piece = board.piece_at(square)
+    return piece is not None and piece.piece_type == piece_type and piece.color == color
+
+
 def _piece_bonus(board: chess.Board, piece_type: chess.PieceType, color: chess.Color, squares: list[chess.Square]) -> int:
     score = 0
     for square in squares:
-        piece = board.piece_at(square)
-        if piece and piece.piece_type == piece_type and piece.color == color:
+        if _piece_on(board, piece_type, color, square):
             score += 6
     return score
+
+
+def _count_pieces(board: chess.Board, piece_type: chess.PieceType, color: chess.Color) -> int:
+    return len(board.pieces(piece_type, color))
 
 
 def score_qgd_exchange(board: chess.Board, move: chess.Move) -> int:
     """Reward typical Carlsbad plans and active white piece play."""
 
     score = 0
-    if move.uci() in {"f2f3", "a2a3", "b2b4", "f1e1"}:
+
+    # Minority attack readiness: pawn pushes a3, b4
+    if move.uci() in {"a2a3", "b2b4", "a3a4", "b4b5"}:
+        score += 12
+    # C-file pressure: Rac1, Rfc1
+    if move.uci() in {"a1c1", "f1c1"}:
         score += 10
-    if move.to_square in {chess.E1, chess.C5, chess.H4}:
-        score += 4
-    score += _piece_bonus(board, chess.BISHOP, chess.WHITE, [chess.G5, chess.D3])
+    # e4 break readiness
+    if move.uci() == "f2f3":
+        score += 10
+    if move.uci() == "e3e4":
+        score += 8
+    # Knight outpost potential on e5/c5
+    if move.to_square in {chess.E5, chess.C5} and board.piece_at(move.from_square) and board.piece_at(move.from_square).piece_type == chess.KNIGHT:
+        score += 10
+    # Knight development to f4 (targeting d5)
+    if move.to_square == chess.F4 and board.piece_at(move.from_square) and board.piece_at(move.from_square).piece_type == chess.KNIGHT:
+        score += 8
+    # Dark-square bishop trade context: keeping Bg5 is good in many lines
+    score += _piece_bonus(board, chess.BISHOP, chess.WHITE, [chess.G5])
+    score += _piece_bonus(board, chess.BISHOP, chess.WHITE, [chess.D3])
     score += _piece_bonus(board, chess.KNIGHT, chess.WHITE, [chess.E2, chess.F4])
+    # King safety / back-rank slack: penalize moves that weaken king
+    if move.uci() in {"g2g3", "h2h3"}:
+        score += 2  # Small bonus for luft
+    # Rook lift
+    if move.uci() in {"f1e1", "a1e1"}:
+        score += 6
+
     return score
 
 
@@ -31,12 +62,38 @@ def score_petroff(board: chess.Board, move: chess.Move) -> int:
     """Reward solid Petroff structures and simplifying black play."""
 
     score = 0
-    if move.uci() in {"c8e6", "d5c4", "e7f6", "b8d7"}:
+
+    # Central tension and e-file pressure
+    if move.uci() in {"f8e8", "a8e8"}:
+        score += 10  # Rook to e-file
+    # Bishop pair / light-square control
+    if move.uci() in {"c8e6", "c8f5", "c8g4"}:
         score += 10
+    # Development completion
+    if move.uci() in {"b8d7", "b8a6"}:
+        score += 8
+    # c-pawn majority handling
+    if move.uci() in {"d5c4", "c6c5"}:
+        score += 8
+    # King safety: castle is already done, h6/g6 provide luft
+    if move.uci() in {"h7h6", "g7g6"}:
+        score += 3
+    # Simplification safety: trading when ahead or equal
     if move.to_square in {chess.E6, chess.F6, chess.G4}:
         score += 4
-    score += _piece_bonus(board, chess.BISHOP, chess.BLACK, [chess.E7, chess.D6])
+    # Bishop activity
+    if move.uci() in {"e7f6", "e7d6"}:
+        score += 6
+    # Knight moves to active squares
+    if move.to_square in {chess.F6, chess.D7, chess.E5} and board.piece_at(move.from_square) and board.piece_at(move.from_square).piece_type == chess.KNIGHT:
+        score += 6
+    # Piece bonuses for good placement
+    score += _piece_bonus(board, chess.BISHOP, chess.BLACK, [chess.E7, chess.D6, chess.E6])
     score += _piece_bonus(board, chess.KNIGHT, chess.BLACK, [chess.F6, chess.D7])
+    # Queenside expansion
+    if move.uci() in {"a7a5", "b7b5"}:
+        score += 4
+
     return score
 
 

@@ -15,11 +15,15 @@ class EngineConfig(BaseModel):
     """Runtime configuration for a Stockfish subprocess."""
 
     base_path: Path = Path("bin/stockfish-master")
-    fallback_path: Path | None = Path("bin/stockfish-sf_18")
+    nominal_path: Path | None = None
+    verify_path: Path | None = None
     threads: int = 1
     hash_mb: int = 64
     movetime_ms: int = 200
-    nodes: int | None = None
+    nodes_main: int | None = None
+    nodes_child: int | None = None
+    nodes_verify: int | None = None
+    show_wdl: bool = False
 
 
 class OpeningSpec(BaseModel):
@@ -30,12 +34,23 @@ class OpeningSpec(BaseModel):
     lock_color: ColorName
 
 
+class OpponentProfile(BaseModel):
+    """Nominal opponent description for rollout simulation."""
+
+    name: str = "stockfish-master"
+    strength: str = "default"
+
+
 class WrapperConfig(BaseModel):
     """High-level configuration for CounterLine."""
 
     db_path: Path = Path("data/repertoire/counterline.sqlite")
     telemetry_path: Path = Path("results/telemetry.jsonl")
     openings: dict[str, OpeningSpec] = Field(default_factory=dict)
+    max_candidates: int = 4
+    opening_lock: bool = True
+    wrapper_mode: str = "selective"
+    opponent_profile: OpponentProfile = Field(default_factory=OpponentProfile)
 
 
 class AppConfig(BaseModel):
@@ -43,6 +58,16 @@ class AppConfig(BaseModel):
 
     engine: EngineConfig = Field(default_factory=EngineConfig)
     wrapper: WrapperConfig = Field(default_factory=WrapperConfig)
+
+
+class NodeScore(BaseModel):
+    """Score from a single engine analysis."""
+
+    score_cp: int = 0
+    wdl: tuple[int, int, int] | None = None
+    depth: int = 0
+    pv: list[str] = Field(default_factory=list)
+    nodes: int = 0
 
 
 class PositionContext(BaseModel):
@@ -63,9 +88,13 @@ class CandidateMove(BaseModel):
     move_uci: str
     plan_score_cp: int = 0
     engine_score_cp: int = 0
+    rollout_score_cp: int = 0
+    empirical_prior_cp: int = 0
+    risk_penalty_cp: int = 0
     combined_score_cp: int = 0
     pv: list[str] = Field(default_factory=list)
     source: str = "base"
+    instability: float = 0.0
 
 
 class MoveDecision(BaseModel):
@@ -78,6 +107,8 @@ class MoveDecision(BaseModel):
     used_wrapper: bool = False
     base_move: str | None = None
     challenger_move: str | None = None
+    scores: dict[str, int] = Field(default_factory=dict)
+    time_ms: int = 0
 
 
 class RepertoireEntry(BaseModel):
@@ -89,4 +120,5 @@ class RepertoireEntry(BaseModel):
     score_cp: int = 0
     visits: int = 1
     note: str = ""
+    is_critical: bool = False
 

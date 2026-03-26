@@ -3,43 +3,134 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 FASTCHESS_BIN="${FASTCHESS_PATH:-$ROOT_DIR/tools/fastchess/fastchess}"
-WRAPPER_BIN="${WRAPPER_BIN:-$ROOT_DIR/.venv/bin/counterline-uci}"
-WRAPPER_CONFIG="${WRAPPER_CONFIG:-$ROOT_DIR/configs/engines.yml}"
-OPPONENT_CMD="${OPPONENT_CMD:-$ROOT_DIR/bin/stockfish-master}"
 SUITE_FILE="${SUITE_FILE:-$ROOT_DIR/opening_suites/combined/suite_fixed.epd}"
-RESULT_PGN="${RESULT_PGN:-$ROOT_DIR/results/fixed-suite.pgn}"
 TC="${TC:-10+0.1}"
 GAMES="${GAMES:-20}"
 THREADS="${THREADS:-1}"
 HASH="${HASH:-64}"
+RESULTS_DIR="${RESULTS_DIR:-$ROOT_DIR/results/matches}"
+TIMESTAMP="$(date -u +%Y%m%d_%H%M%S)"
+
+# Engine 1 and 2 — configurable
+ENGINE1_CMD="${ENGINE1_CMD:-$ROOT_DIR/.venv/bin/counterline-uci}"
+ENGINE1_NAME="${ENGINE1_NAME:-CounterLine}"
+ENGINE1_ARGS="${ENGINE1_ARGS:-}"
+ENGINE2_CMD="${ENGINE2_CMD:-$ROOT_DIR/bin/stockfish-master}"
+ENGINE2_NAME="${ENGINE2_NAME:-StockfishMaster}"
+ENGINE2_ARGS="${ENGINE2_ARGS:-}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --games)
-      GAMES="$2"
-      shift 2
-      ;;
-    *)
-      echo "unknown argument: $1" >&2
-      exit 2
-      ;;
+    --games) GAMES="$2"; shift 2 ;;
+    --tc) TC="$2"; shift 2 ;;
+    --threads) THREADS="$2"; shift 2 ;;
+    --hash) HASH="$2"; shift 2 ;;
+    --engine1-cmd) ENGINE1_CMD="$2"; shift 2 ;;
+    --engine1-name) ENGINE1_NAME="$2"; shift 2 ;;
+    --engine2-cmd) ENGINE2_CMD="$2"; shift 2 ;;
+    --engine2-name) ENGINE2_NAME="$2"; shift 2 ;;
+    --suite) SUITE_FILE="$2"; shift 2 ;;
+    --results-dir) RESULTS_DIR="$2"; shift 2 ;;
+    *) echo "unknown argument: $1" >&2; exit 2 ;;
   esac
 done
 
-[[ -x "$FASTCHESS_BIN" ]] || { echo "missing fastchess: $FASTCHESS_BIN" >&2; exit 1; }
-[[ -x "$ROOT_DIR/.venv/bin/counterline-uci" ]] || { echo "build wrapper first" >&2; exit 1; }
-[[ -x "$OPPONENT_CMD" ]] || { echo "missing opponent engine: $OPPONENT_CMD" >&2; exit 1; }
+# Auto-fetch fastchess if missing
+if [[ ! -x "$FASTCHESS_BIN" ]]; then
+  echo "[counterline] fastchess not found, fetching..."
+  bash "$ROOT_DIR/scripts/fetch_fastchess.sh"
+fi
 
-mkdir -p "$ROOT_DIR/results"
-python3 "$ROOT_DIR/opening_suites/generate_suite.py"
+[[ -x "$FASTCHESS_BIN" ]] || { echo "missing fastchess: $FASTCHESS_BIN" >&2; exit 1; }
+[[ -f "$SUITE_FILE" ]] || { echo "missing suite file: $SUITE_FILE" >&2; exit 1; }
+
+MATCH_NAME="${ENGINE1_NAME}_vs_${ENGINE2_NAME}_${TIMESTAMP}"
+MATCH_DIR="$RESULTS_DIR/$MATCH_NAME"
+mkdir -p "$MATCH_DIR"
+
+PGN_FILE="$MATCH_DIR/games.pgn"
+LOG_FILE="$MATCH_DIR/console.log"
+SUMMARY_FILE="$MATCH_DIR/summary.md"
+JSON_FILE="$MATCH_DIR/results.json"
+
+echo "[counterline] match: $ENGINE1_NAME vs $ENGINE2_NAME"
+echo "[counterline] suite: $SUITE_FILE"
+echo "[counterline] tc=$TC games=$GAMES threads=$THREADS hash=$HASH"
+echo "[counterline] output: $MATCH_DIR"
 
 "$FASTCHESS_BIN" \
-  -engine cmd="$WRAPPER_BIN" name=CounterLine arg=--config arg="$WRAPPER_CONFIG" \
-  -engine cmd="$OPPONENT_CMD" name=StockfishMaster \
+  -engine cmd="$ENGINE1_CMD" name="$ENGINE1_NAME" \
+  -engine cmd="$ENGINE2_CMD" name="$ENGINE2_NAME" \
   -each tc="$TC" proto=uci option.Threads="$THREADS" option.Hash="$HASH" \
   -games "$GAMES" \
   -rounds 1 \
+  -repeat \
   -openings file="$SUITE_FILE" format=epd order=sequential \
-  -pgnout "$RESULT_PGN"
+  -pgnout file="$PGN_FILE" \
+  2>&1 | tee "$LOG_FILE"
 
-echo "[counterline] wrote $RESULT_PGN"
+# Generate summary
+if [[ -f "$PGN_FILE" ]]; then
+  source "$ROOT_DIR/.venv/bin/activate" 2>/dev/null || true
+
+  python3 -c "
+import json
+from collections import Counter
+from pathlib import Path
+import chess.pgn
+
+pgn_path = Path('$PGN_FILE')
+counts = Counter()
+with pgn_path.open() as f:
+    while True:
+        g = chess.pgn.read_game(f)
+        if g is None:
+            break
+        counts[g.headers.get('Result', '*')] += 1
+total = sum(counts.values())
+w = counts.get('1-0', 0)
+b = counts.get('0-1', 0)
+d = counts.get('1/2-1/2', 0)
+u = counts.get('*', 0)
+
+# Write JSON
+data = {
+    'engine1': '$ENGINE1_NAME',
+    'engine2': '$ENGINE2_NAME',
+    'tc': '$TC',
+    'games': total,
+    'threads': $THREADS,
+    'hash': $HASH,
+    'suite': '$SUITE_FILE',
+    'white_wins': w,
+    'black_wins': b,
+    'draws': d,
+    'unfinished': u,
+}
+Path('$JSON_FILE').write_text(json.dumps(data, indent=2))
+
+# Write markdown summary
+md = f'''# Match Summary
+
+| Field | Value |
+| --- | --- |
+| Engine 1 (White first) | $ENGINE1_NAME |
+| Engine 2 (Black first) | $ENGINE2_NAME |
+| TC | $TC |
+| Games | {total} |
+| Thread | $THREADS |
+| Hash | $HASH MB |
+| Suite | $SUITE_FILE |
+| White wins (1-0) | {w} |
+| Black wins (0-1) | {b} |
+| Draws | {d} |
+| Unfinished | {u} |
+| E1 Score | {w + d * 0.5:.1f}/{total} |
+| E2 Score | {b + d * 0.5:.1f}/{total} |
+'''
+Path('$SUMMARY_FILE').write_text(md)
+print(md)
+"
+fi
+
+echo "[counterline] match complete: $MATCH_DIR"
