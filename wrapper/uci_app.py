@@ -172,6 +172,14 @@ class UciApp:
             self.config.wrapper.telemetry_path = Path(value)
             self.telemetry = TelemetryLogger(Path(value))
 
+    def _available_time_ms(self, go_params: dict[str, int | None]) -> int | None:
+        """Estimate available time from UCI go params."""
+        if self.board.turn == chess.WHITE:
+            t = go_params.get("wtime")
+        else:
+            t = go_params.get("btime")
+        return t
+
     def choose_move(self, go_params: dict[str, int | None] | None = None) -> tuple[str, str | None, str, bool]:
         go_params = go_params or {}
         movetime_ms = go_params.get("movetime")
@@ -186,8 +194,28 @@ class UciApp:
         lock_color = lock_color_for_family(family)
         side_name = "white" if self.board.turn == chess.WHITE else "black"
 
-        # If we're in the suite and it's our turn, use the full determination pipeline
-        if in_suite and is_book_complete(self.board) and lock_color == side_name:
+        # Time budget guard: don't run wrapper if clock is too low
+        avail = self._available_time_ms(go_params)
+        has_time = avail is None or avail > 5000  # need >5s to justify wrapper overhead
+
+        # Only run wrapper when: in suite, book complete, our color, sufficient time,
+        # AND we have repertoire data for this position (or it's the exact exit FEN)
+        has_rep_data = bool(self.repertoire.candidate_moves(self.board, family)) if family != "unknown" else False
+        at_exit = self.board.fen(en_passant="fen") in (
+            "r1bqrnk1/pp2bppp/2p2n2/3p2B1/3P4/2NBP3/PPQ1NPPP/R4RK1 w - - 9 11",
+            "rnbq1rk1/pp2bppp/2p5/3p4/2PP4/2PB1N2/P4PPP/R1BQ1RK1 b - - 0 10",
+        )
+        should_use_wrapper = (
+            in_suite
+            and lock_color == side_name
+            and has_time
+            and (
+                (is_book_complete(self.board) and at_exit)
+                or has_rep_data
+            )
+        )
+
+        if should_use_wrapper:
             decision = determine_countermove(
                 self.board,
                 self.engine_pool,

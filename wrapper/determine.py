@@ -77,8 +77,12 @@ def determine_countermove(
     min_gain_cp: int = 5,
     max_regression_cp: int = 8,
     use_duel: bool = True,
+    probe_nodes: int = 20000,
 ) -> MoveDecision:
-    """Master decision function implementing the full wrapper logic."""
+    """Master decision function implementing the full wrapper logic.
+
+    Uses node-limited searches (probe_nodes) to stay within time budget.
+    """
 
     t0 = time.monotonic()
 
@@ -102,7 +106,7 @@ def determine_countermove(
     # 3. Get base move and base eval from evaluator engine
     try:
         base_move, base_ponder = pool.bestmove(board)
-        base_score = pool.analyse_root(board)
+        base_score = pool.analyse_root(board, nodes=probe_nodes)
         base_cp = base_score.score_cp
     except Exception:
         fallback = next(iter(board.legal_moves), None)
@@ -187,13 +191,13 @@ def determine_countermove(
         )
 
     # 9. Run half-step rollout on candidate set
-    rollout_results = half_step_rollout(board, candidate_set, pool)
+    rollout_results = half_step_rollout(board, candidate_set, pool, nodes=probe_nodes)
 
     # 10. If highly unstable, run reply_bundle_rollout on top challengers
     if instability > 0.7 or is_critical:
         top_challengers = [c for c in rollout_results if c.move_uci != base_move][:2]
         if top_challengers:
-            rollout_results_bundle = reply_bundle_rollout(board, top_challengers, pool)
+            rollout_results_bundle = reply_bundle_rollout(board, top_challengers, pool, nodes=probe_nodes)
             # Merge bundle results back
             bundle_map = {c.move_uci: c for c in rollout_results_bundle}
             rollout_results = [
@@ -239,6 +243,7 @@ def determine_countermove(
                 pool,
                 min_gain_cp=min_gain_cp,
                 max_regression_cp=max_regression_cp,
+                nodes=probe_nodes,
             )
         except Exception:
             accepted = should_accept_challenger(

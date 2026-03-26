@@ -128,11 +128,6 @@ def is_book_complete(board: chess.Board) -> bool:
         return True
     if _moves_match_prefix(board, BLACK_SEED_UCIS) and n_moves >= len(BLACK_SEED_UCIS):
         return True
-    # If structural detection finds a family and we're past enough material development,
-    # assume we're in post-book play
-    family = _detect_by_structure(board)
-    if family != "unknown":
-        return True
     return False
 
 
