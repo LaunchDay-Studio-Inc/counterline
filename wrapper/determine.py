@@ -73,9 +73,9 @@ def determine_countermove(
     repertoire: "Repertoire",
     repertoire_db: "RepertoireDB",
     *,
-    max_candidates: int = 4,
-    min_gain_cp: int = 8,
-    max_regression_cp: int = 12,
+    max_candidates: int = 3,
+    min_gain_cp: int = 5,
+    max_regression_cp: int = 8,
     use_duel: bool = True,
 ) -> MoveDecision:
     """Master decision function implementing the full wrapper logic."""

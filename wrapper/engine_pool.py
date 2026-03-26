@@ -151,20 +151,25 @@ class UciSubprocessEngine:
         movetime_ms: int | None = None,
         nodes: int | None = None,
     ) -> dict[str, NodeScore]:
+        """Evaluate specific moves by analysing the position after each one."""
         results: dict[str, NodeScore] = {}
         for move_uci in moves:
-            self.command("ucinewgame")
-            self.command("isready", wait_for="readyok")
-            self._write(self._position_cmd(board))
-            go = f"go searchmoves {move_uci}"
-            if nodes:
-                go += f" nodes {nodes}"
-            elif movetime_ms:
-                go += f" movetime {movetime_ms}"
-            else:
-                go += " movetime 100"
-            lines = self.command(go, wait_for="bestmove")
-            results[move_uci] = self._parse_score_from_info(lines)
+            move = chess.Move.from_uci(move_uci)
+            if move not in board.legal_moves:
+                results[move_uci] = NodeScore()
+                continue
+            child = board.copy()
+            child.push(move)
+            # Evaluate from opponent's perspective
+            score = self.analyse_root(child, movetime_ms=movetime_ms, nodes=nodes)
+            # Negate to get score from our perspective
+            results[move_uci] = NodeScore(
+                score_cp=-score.score_cp,
+                wdl=score.wdl,
+                depth=score.depth,
+                pv=[move_uci] + score.pv,
+                nodes=score.nodes,
+            )
         return results
 
     def predict_reply(

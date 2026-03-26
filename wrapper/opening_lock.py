@@ -72,6 +72,48 @@ def detect_opening_family(board: chess.Board) -> str:
         return "qgd_exchange_carlsbad"
     if fen == BLACK_EXIT_FEN or _moves_match_prefix(board, BLACK_SEED_UCIS):
         return "petroff_mainline"
+    # Structural detection for positions that evolved from the exit FEN
+    family = _detect_by_structure(board)
+    if family != "unknown":
+        return family
+    return "unknown"
+
+
+def _detect_by_structure(board: chess.Board) -> str:
+    """Detect opening family by pawn structure and piece configuration."""
+
+    # QGD Exchange / Carlsbad detection:
+    # Key features: d4/d5 pawns, c6 pawn, e3 pawn, symmetric pawn structure
+    # White has pawns on d4,e3; Black has pawns on c6,d5
+    white_pawns = board.pieces(chess.PAWN, chess.WHITE)
+    black_pawns = board.pieces(chess.PAWN, chess.BLACK)
+
+    d4_pawn = chess.D4 in white_pawns
+    e3_pawn = chess.E3 in white_pawns
+    c6_pawn = chess.C6 in black_pawns
+    d5_pawn = chess.D5 in black_pawns
+
+    # Carlsbad structure: d4 vs d5, c-file half-open for white, e3 pawn
+    if d4_pawn and d5_pawn and e3_pawn and c6_pawn:
+        # Additional check: no c-file pawns for white (exchange happened)
+        c_file_white_pawns = white_pawns & chess.BB_FILE_C
+        if not c_file_white_pawns:
+            return "qgd_exchange_carlsbad"
+
+    # Petroff detection:
+    # Key features: d5 pawn for black, c4/d4 pawns for white, c3 pawn for white
+    # Open e-file, black kingside castled
+    c4_pawn = chess.C4 in white_pawns
+    c3_pawn = chess.C3 in white_pawns
+    d4_pawn_w = chess.D4 in white_pawns
+
+    if d5_pawn and c3_pawn and c6_pawn and (c4_pawn or d4_pawn_w):
+        # Check for Petroff-specific: no e-file pawns
+        e_file_white = white_pawns & chess.BB_FILE_E
+        e_file_black = black_pawns & chess.BB_FILE_E
+        if not e_file_white and not e_file_black:
+            return "petroff_mainline"
+
     return "unknown"
 
 
@@ -85,6 +127,11 @@ def is_book_complete(board: chess.Board) -> bool:
     if _moves_match_prefix(board, WHITE_SEED_UCIS) and n_moves >= len(WHITE_SEED_UCIS):
         return True
     if _moves_match_prefix(board, BLACK_SEED_UCIS) and n_moves >= len(BLACK_SEED_UCIS):
+        return True
+    # If structural detection finds a family and we're past enough material development,
+    # assume we're in post-book play
+    family = _detect_by_structure(board)
+    if family != "unknown":
         return True
     return False
 

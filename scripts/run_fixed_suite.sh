@@ -5,7 +5,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 FASTCHESS_BIN="${FASTCHESS_PATH:-$ROOT_DIR/tools/fastchess/fastchess}"
 SUITE_FILE="${SUITE_FILE:-$ROOT_DIR/opening_suites/combined/suite_fixed.epd}"
 TC="${TC:-10+0.1}"
-GAMES="${GAMES:-20}"
+ROUNDS="${ROUNDS:-20}"
 THREADS="${THREADS:-1}"
 HASH="${HASH:-64}"
 RESULTS_DIR="${RESULTS_DIR:-$ROOT_DIR/results/matches}"
@@ -21,7 +21,7 @@ ENGINE2_ARGS="${ENGINE2_ARGS:-}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --games) GAMES="$2"; shift 2 ;;
+    --rounds) ROUNDS="$2"; shift 2 ;;
     --tc) TC="$2"; shift 2 ;;
     --threads) THREADS="$2"; shift 2 ;;
     --hash) HASH="$2"; shift 2 ;;
@@ -55,15 +55,15 @@ JSON_FILE="$MATCH_DIR/results.json"
 
 echo "[counterline] match: $ENGINE1_NAME vs $ENGINE2_NAME"
 echo "[counterline] suite: $SUITE_FILE"
-echo "[counterline] tc=$TC games=$GAMES threads=$THREADS hash=$HASH"
+echo "[counterline] tc=$TC rounds=$ROUNDS threads=$THREADS hash=$HASH"
 echo "[counterline] output: $MATCH_DIR"
 
 "$FASTCHESS_BIN" \
   -engine cmd="$ENGINE1_CMD" name="$ENGINE1_NAME" \
   -engine cmd="$ENGINE2_CMD" name="$ENGINE2_NAME" \
   -each tc="$TC" proto=uci option.Threads="$THREADS" option.Hash="$HASH" \
-  -games "$GAMES" \
-  -rounds 1 \
+  -rounds "$ROUNDS" \
+  -games 2 \
   -repeat \
   -openings file="$SUITE_FILE" format=epd order=sequential \
   -pgnout file="$PGN_FILE" \
@@ -99,6 +99,7 @@ data = {
     'engine2': '$ENGINE2_NAME',
     'tc': '$TC',
     'games': total,
+    'rounds': $ROUNDS,
     'threads': $THREADS,
     'hash': $HASH,
     'suite': '$SUITE_FILE',
@@ -118,6 +119,7 @@ md = f'''# Match Summary
 | Engine 2 (Black first) | $ENGINE2_NAME |
 | TC | $TC |
 | Games | {total} |
+| Rounds | $ROUNDS |
 | Thread | $THREADS |
 | Hash | $HASH MB |
 | Suite | $SUITE_FILE |

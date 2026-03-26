@@ -186,37 +186,32 @@ class UciApp:
         lock_color = lock_color_for_family(family)
         side_name = "white" if self.board.turn == chess.WHITE else "black"
 
+        # If we're in the suite and it's our turn, use the full determination pipeline
+        if in_suite and is_book_complete(self.board) and lock_color == side_name:
+            decision = determine_countermove(
+                self.board,
+                self.engine_pool,
+                self.repertoire,
+                self.repertoire_db,
+                max_candidates=self.config.wrapper.max_candidates,
+            )
+            if decision.used_wrapper and decision.challenger_move:
+                self.repertoire.remember(
+                    self.board,
+                    family,
+                    decision.challenger_move,
+                    decision.scores.get("challenger_combined", 0),
+                    note="accepted_by_wrapper",
+                )
+            return decision.bestmove, decision.ponder, decision.reason, decision.used_wrapper
+
+        # Outside suite: just use base engine
         try:
             base_move, base_ponder = self.engine_pool.bestmove(self.board, movetime_ms, go_params=go_params)
         except Exception:
             base_move, base_ponder = self._fallback_move()
 
-        base_candidate = CandidateMove(move_uci=base_move, engine_score_cp=0, combined_score_cp=0, source="base")
-        used_wrapper = False
-        reason = "outside_suite"
-
-        if in_suite and is_book_complete(self.board) and lock_color == side_name:
-            repertoire_moves = self.repertoire.candidate_moves(self.board, family)
-            rollout_moves = generate_candidates(self.board, family, limit=self.config.wrapper.max_candidates)
-            engine_scores = {candidate.move_uci: candidate.plan_score_cp for candidate in rollout_moves}
-            merged = annotate_with_engine_scores(repertoire_moves or rollout_moves, engine_scores)
-            challenger = merged[0] if merged else None
-            decision = determine_bestmove(family=family, base=base_candidate, challenger=challenger)
-            used_wrapper = decision.used_wrapper
-            reason = decision.reason
-            if challenger is not None and decision.used_wrapper:
-                self.repertoire.remember(
-                    self.board,
-                    family,
-                    challenger.move_uci,
-                    challenger.combined_score_cp,
-                    note="accepted_by_wrapper",
-                )
-            return decision.bestmove, base_ponder, reason, used_wrapper
-
-        if in_suite:
-            reason = "book_or_color_lock"
-        return base_move, base_ponder, reason, used_wrapper
+        return base_move, base_ponder, "outside_suite", False
 
     def loop(self) -> int:
         for raw in self.stdin:
@@ -274,6 +269,8 @@ class UciApp:
 
                 if used_wrapper:
                     self.send(f"info string CounterLine override: {reason}")
+                # Emit a minimal info line so GUIs and fastchess can parse a score
+                self.send("info depth 1 score cp 0 nodes 1 pv " + bestmove)
                 if ponder:
                     self.send(f"bestmove {bestmove} ponder {ponder}")
                 else:

@@ -21,7 +21,10 @@ def should_accept_challenger(
     """Keep a challenger only if it beats the base move by enough."""
 
     gain = challenger.combined_score_cp - base.combined_score_cp
-    regression = base.engine_score_cp - challenger.engine_score_cp
+    # Use rollout score for regression if engine score wasn't set (non-base candidates)
+    challenger_eval = challenger.engine_score_cp if challenger.engine_score_cp != 0 else challenger.rollout_score_cp
+    base_eval = base.engine_score_cp if base.engine_score_cp != 0 else base.rollout_score_cp
+    regression = base_eval - challenger_eval
     return gain >= min_gain_cp and regression <= max_regression_cp
 
 

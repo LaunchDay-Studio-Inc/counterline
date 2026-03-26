@@ -5,6 +5,6 @@ default:
   fortify_probe_ms: 100
 match:
   tc: "10+0.1"
-  games: 20
-  concurrency: 2
+  rounds: 20
+  concurrency: 1
 

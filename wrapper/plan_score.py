@@ -29,31 +29,31 @@ def score_qgd_exchange(board: chess.Board, move: chess.Move) -> int:
 
     # Minority attack readiness: pawn pushes a3, b4
     if move.uci() in {"a2a3", "b2b4", "a3a4", "b4b5"}:
-        score += 12
+        score += 5
     # C-file pressure: Rac1, Rfc1
     if move.uci() in {"a1c1", "f1c1"}:
-        score += 10
+        score += 4
     # e4 break readiness
     if move.uci() == "f2f3":
-        score += 10
+        score += 4
     if move.uci() == "e3e4":
-        score += 8
+        score += 4
     # Knight outpost potential on e5/c5
     if move.to_square in {chess.E5, chess.C5} and board.piece_at(move.from_square) and board.piece_at(move.from_square).piece_type == chess.KNIGHT:
-        score += 10
+        score += 5
     # Knight development to f4 (targeting d5)
     if move.to_square == chess.F4 and board.piece_at(move.from_square) and board.piece_at(move.from_square).piece_type == chess.KNIGHT:
-        score += 8
+        score += 4
     # Dark-square bishop trade context: keeping Bg5 is good in many lines
     score += _piece_bonus(board, chess.BISHOP, chess.WHITE, [chess.G5])
     score += _piece_bonus(board, chess.BISHOP, chess.WHITE, [chess.D3])
     score += _piece_bonus(board, chess.KNIGHT, chess.WHITE, [chess.E2, chess.F4])
-    # King safety / back-rank slack: penalize moves that weaken king
+    # King safety / back-rank slack
     if move.uci() in {"g2g3", "h2h3"}:
-        score += 2  # Small bonus for luft
+        score += 2
     # Rook lift
     if move.uci() in {"f1e1", "a1e1"}:
-        score += 6
+        score += 3
 
     return score
 
@@ -65,34 +65,34 @@ def score_petroff(board: chess.Board, move: chess.Move) -> int:
 
     # Central tension and e-file pressure
     if move.uci() in {"f8e8", "a8e8"}:
-        score += 10  # Rook to e-file
+        score += 4
     # Bishop pair / light-square control
     if move.uci() in {"c8e6", "c8f5", "c8g4"}:
-        score += 10
+        score += 5
     # Development completion
     if move.uci() in {"b8d7", "b8a6"}:
-        score += 8
+        score += 4
     # c-pawn majority handling
     if move.uci() in {"d5c4", "c6c5"}:
-        score += 8
-    # King safety: castle is already done, h6/g6 provide luft
-    if move.uci() in {"h7h6", "g7g6"}:
-        score += 3
-    # Simplification safety: trading when ahead or equal
-    if move.to_square in {chess.E6, chess.F6, chess.G4}:
         score += 4
+    # King safety
+    if move.uci() in {"h7h6", "g7g6"}:
+        score += 2
+    # Simplification safety
+    if move.to_square in {chess.E6, chess.F6, chess.G4}:
+        score += 2
     # Bishop activity
     if move.uci() in {"e7f6", "e7d6"}:
-        score += 6
+        score += 3
     # Knight moves to active squares
     if move.to_square in {chess.F6, chess.D7, chess.E5} and board.piece_at(move.from_square) and board.piece_at(move.from_square).piece_type == chess.KNIGHT:
-        score += 6
+        score += 3
     # Piece bonuses for good placement
     score += _piece_bonus(board, chess.BISHOP, chess.BLACK, [chess.E7, chess.D6, chess.E6])
     score += _piece_bonus(board, chess.KNIGHT, chess.BLACK, [chess.F6, chess.D7])
     # Queenside expansion
     if move.uci() in {"a7a5", "b7b5"}:
-        score += 4
+        score += 2
 
     return score
 
