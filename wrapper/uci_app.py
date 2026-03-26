@@ -283,6 +283,9 @@ class UciApp:
                 self.send("option name LogPath type string default results/telemetry.jsonl")
                 self.send("uciok")
             elif command == "isready":
+                # Pre-start the evaluator engine so first go has no startup delay
+                if not self._pool_started:
+                    _ = self.engine_pool  # triggers lazy init + start
                 self.send("readyok")
             elif command == "ucinewgame":
                 self.board.reset()
