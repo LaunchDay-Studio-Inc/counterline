@@ -11,7 +11,7 @@ class FakeEnginePool:
         self._bestmove = bestmove
 
     def bestmove(self, board, movetime_ms=None, go_params=None):  # noqa: ANN001, ARG002
-        return self._bestmove, None
+        return self._bestmove, None, []
 
     def analyse_root(self, board, **kwargs):  # noqa: ANN001, ARG002
         from wrapper.types import NodeScore

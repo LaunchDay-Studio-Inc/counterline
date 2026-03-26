@@ -105,7 +105,7 @@ def determine_countermove(
 
     # 3. Get base move and base eval from evaluator engine
     try:
-        base_move, base_ponder = pool.bestmove(board)
+        base_move, base_ponder, _info = pool.bestmove(board)
         base_score = pool.analyse_root(board, nodes=probe_nodes)
         base_cp = base_score.score_cp
     except Exception:

@@ -180,7 +180,8 @@ class UciApp:
             t = go_params.get("btime")
         return t
 
-    def choose_move(self, go_params: dict[str, int | None] | None = None) -> tuple[str, str | None, str, bool]:
+    def choose_move(self, go_params: dict[str, int | None] | None = None) -> tuple[str, str | None, str, bool, list[str]]:
+        """Return (bestmove, ponder, reason, used_wrapper, info_lines)."""
         go_params = go_params or {}
         movetime_ms = go_params.get("movetime")
 
@@ -188,7 +189,7 @@ class UciApp:
         if self.config.wrapper.opening_lock:
             seed = get_seed_move(self.board)
             if seed is not None:
-                return seed, None, "seed_line", True
+                return seed, None, "seed_line", True, []
 
         in_suite, family = opening_lock(self.board)
         lock_color = lock_color_for_family(family)
@@ -219,11 +220,12 @@ class UciApp:
             # Lightweight approach: get base move with time control, then check
             # if we should override with a repertoire-backed move.
             try:
-                base_move, base_ponder = self.engine_pool.bestmove(
+                base_move, base_ponder, info_lines = self.engine_pool.bestmove(
                     self.board, movetime_ms, go_params=go_params
                 )
             except Exception:
                 base_move, base_ponder = self._fallback_move()
+                info_lines = []
 
             # Check if repertoire strongly recommends a different move
             rep_candidates = self.repertoire.candidate_moves(self.board, family)
@@ -244,19 +246,20 @@ class UciApp:
                             and base_score is not None
                             and rep_score.score_cp >= base_score.score_cp - 5
                         ):
-                            return top_rep.move_uci, None, "repertoire_override", True
+                            return top_rep.move_uci, None, "repertoire_override", True, info_lines
                     except Exception:
                         pass
 
-            return base_move, base_ponder, "base_with_rep_check", False
+            return base_move, base_ponder, "base_with_rep_check", False, info_lines
 
-        # Outside suite: just use base engine
+        # Outside suite: just use base engine (forward info lines directly)
         try:
-            base_move, base_ponder = self.engine_pool.bestmove(self.board, movetime_ms, go_params=go_params)
+            base_move, base_ponder, info_lines = self.engine_pool.bestmove(self.board, movetime_ms, go_params=go_params)
         except Exception:
             base_move, base_ponder = self._fallback_move()
+            info_lines = []
 
-        return base_move, base_ponder, "outside_suite", False
+        return base_move, base_ponder, "outside_suite", False, info_lines
 
     def loop(self) -> int:
         for raw in self.stdin:
@@ -303,7 +306,7 @@ class UciApp:
                 self._apply_setoption(command)
             elif command.startswith("go"):
                 go_params = self.parse_go_params(command)
-                bestmove, ponder, reason, used_wrapper = self.choose_move(go_params)
+                bestmove, ponder, reason, used_wrapper, info_lines = self.choose_move(go_params)
 
                 family = detect_opening_family(self.board)
                 decision = MoveDecision(
@@ -325,8 +328,12 @@ class UciApp:
 
                 if used_wrapper:
                     self.send(f"info string CounterLine override: {reason}")
-                # Emit a minimal info line so GUIs and fastchess can parse a score
-                self.send("info depth 1 score cp 0 nodes 1 pv " + bestmove)
+                # Forward engine info lines (search depth, score, PV, etc.)
+                for info_line in info_lines:
+                    self.send(info_line)
+                # If no info lines captured, emit a minimal one
+                if not info_lines:
+                    self.send("info depth 1 score cp 0 nodes 1 pv " + bestmove)
                 if ponder:
                     self.send(f"bestmove {bestmove} ponder {ponder}")
                 else:

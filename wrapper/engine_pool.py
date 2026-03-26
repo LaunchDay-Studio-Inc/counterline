@@ -217,7 +217,8 @@ class UciSubprocessEngine:
         movetime_ms: int = 200,
         nodes: int | None = None,
         go_params: dict[str, int | None] | None = None,
-    ) -> tuple[str, str | None]:
+    ) -> tuple[str, str | None, list[str]]:
+        """Return (bestmove_uci, ponder_uci, info_lines)."""
         # Do NOT call ucinewgame here - preserve hash table across moves
         self.command("isready", wait_for="readyok")
         self._write(self._position_cmd(board))
@@ -238,7 +239,9 @@ class UciSubprocessEngine:
         parts = best_line.split()
         bestmove = parts[1]
         ponder = parts[3] if len(parts) >= 4 and parts[2] == "ponder" else None
-        return bestmove, ponder
+        # Collect info lines for forwarding to GUI
+        info_lines = [l for l in lines if l.startswith("info") and "score" in l]
+        return bestmove, ponder, info_lines
 
     def quit(self) -> None:
         if self.process is None:
@@ -320,7 +323,7 @@ class EnginePool:
     def bestmove(
         self, board: chess.Board, movetime_ms: int | None = None,
         go_params: dict[str, int | None] | None = None,
-    ) -> tuple[str, str | None]:
+    ) -> tuple[str, str | None, list[str]]:
         return self.evaluator.bestmove(
             board,
             movetime_ms or self.config.movetime_ms,

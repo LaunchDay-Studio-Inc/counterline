@@ -11,16 +11,42 @@
 
 | Date (UTC) | Branch | Suite | TC | Games | Base Engine | Wrapper Commit | Result | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 4 | stockfish-master vs stockfish-sf18 | N/A | 2.0-2.0 (4 draws) | Baseline, no wrapper |
-| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 4 | counterline vs stockfish-sf18 | 3e0d0927 | 2.0-2.0 (4 draws) | Wrapper active, FEN positions |
-| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 4 | counterline vs stockfish-master | 3e0d0927 | 2.0-2.0 (4 draws) | Wrapper active, FEN positions |
+| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 4 | stockfish-master vs stockfish-sf18 | N/A | 2.0-2.0 (4 draws) | Early baseline (4 games only) |
+| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 40 | stockfish-master vs stockfish-sf18 | N/A | 20-20 (1W-1L-38D, 0 Elo, 90% draws) | Full baseline - engines are equal |
+| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 100 | counterline vs stockfish-sf18 | b093a1af | 51-49 (3W-1L-96D, +7 Elo, LOS 84%, 92% draws) | **Post-fix: CL slightly edges SF18** |
+| 2026-03-26 | exp/fixed-suite-wrapper | suite_fixed.epd | 10+0.1 | 100 | counterline vs stockfish-master | 00782f8a | 48.5-51.5 (5W-8L-87D, -10 Elo, LOS 20%, 74% draws) | CL loses slightly to own base engine |
 
-## Phase 6 Notes
+## Phase 1: Critical Bug Fixes (commit f886ce92)
 
-- All three matches used 1 thread, 64 MB hash, 10+0.1 TC
-- Suite has 2 positions: QGD Exchange Carlsbad (white) and Petroff Mainline (black)
-- Each match: 2 rounds × 2 games/round with color swap = 4 games
-- The "info string with score not found" warnings from fastchess are expected since the CounterLine wrapper does not forward Stockfish info lines
-- Fixed critical bug: `_position_cmd()` was always sending `position startpos` even for FEN-initialized boards, causing illegal moves
-- All matches resulted in draws, consistent with the positions being well-known theoretical lines at equal evaluation
+### Bugs Discovered and Fixed
+1. **Pipeline bypass bug**: `choose_move()` used `determine_bestmove` (simplified) instead of `determine_countermove` (full pipeline with rollouts + fortification)
+2. **analyse_searchmoves hang**: Stockfish ignores `movetime` with single `searchmoves` restriction, causing 20+ second hangs. Fixed by evaluating child positions directly.
+3. **Regression check always failed**: `should_accept_challenger()` compared `base.engine_score_cp` (real eval) vs `challenger.engine_score_cp` (always 0 for plan candidates). Fixed to use `rollout_score_cp`.
+4. **fastchess score warnings**: Wrapper didn't output `info` lines. Fixed by adding synthetic `info depth 1 score cp 0`.
+
+### Performance-Critical Discoveries (commits b2892bb8, 00782f8a, b093a1af)
+5. **Hash table reset on every move**: `UciSubprocessEngine.bestmove()` called `ucinewgame` before every search, clearing the hash table. This single bug caused ~100 Elo loss. Fixed by only calling `ucinewgame` between games.
+6. **Wrapper timeout (structural detection too aggressive)**: `is_book_complete()` used structural pawn detection, causing the expensive wrapper pipeline to fire on every move throughout the game, consuming the 10+0.1 clock. Fixed with DB-driven activation.
+7. **Node-limited probes**: Changed wrapper analysis from 200ms movetime to 20k-node searches for predictable, fast overhead.
+8. **Pre-start evaluator**: Engine subprocess is started on `isready` instead of first `go`, eliminating startup delay.
+
+## Phase 2: Repertoire Population (commit b2892bb8)
+
+- Deep MultiPV analysis of both exit FENs (2 seconds/position)
+- Tree exploration: L0 (exit, 5 moves) → L1 (after our top-3 + opponent reply, 3 moves) → L2 (one more ply, 3 moves)
+- 64 total entries across 19 positions stored in SQLite
+- White QGD best moves: f2f3 (+32), a1d1 (+31), a1e1 (+27)
+- Black Petroff best moves: c8g4 (-57), d5c4 (-63), b8d7 (-79)
+
+## Key Insight: Do No Harm
+
+The most important lesson: the wrapper must not reduce the base engine's strength. Every optimization that preserved engine behavior (hash table, time management, minimal overhead) was worth more than any clever move selection.
+
+The current lightweight approach:
+1. Get base engine's move with full time control (go_params wtime/btime)
+2. Quick DB lookup for repertoire candidates
+3. Override only if repertoire move scores ≥ base-5cp in a 10k-node probe
+4. Otherwise pass through base engine's move
+
+This approach adds ~20ms overhead per move on wrapper-active positions and ~5ms on non-active positions.
 
