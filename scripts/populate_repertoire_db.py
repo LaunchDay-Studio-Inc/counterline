@@ -229,10 +229,6 @@ def main(
     db.initialize()
     repo = Repertoire(db)
 
-    if seed_defaults:
-        seed_entries(db, repo)
-        typer.echo(f"seeded basic priors at {db_path}")
-
     if deep_analyse:
         if not engine_path.exists():
             typer.echo(f"engine not found: {engine_path}", err=True)
@@ -261,6 +257,11 @@ def main(
         elapsed = time.monotonic() - t0
         typer.echo(f"\npopulated {total} entries in {elapsed:.1f}s")
         engine.quit()
+
+    # Seed entries run AFTER deep analysis so they override deep scores
+    if seed_defaults:
+        seed_entries(db, repo)
+        typer.echo(f"seeded basic priors at {db_path}")
 
     if dump:
         dump_db(db)
