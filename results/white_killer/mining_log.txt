@@ -1,0 +1,940 @@
+=== White Killer Line Book Mining ===
+Selected line: Vienna Gambit Accepted
+Exit FEN: rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq -
+Max candidates: 4
+Reply bundle: 2
+Max depth: 8
+Nodes analysis: 50000
+Nodes playout: 20000
+
+Starting master engine...
+Starting SF18 engine...
+
+Exit position: rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq - 0 10
+Side to move: Black
+
+Predicting SF18's reply at exit position...
+SF18 plays: b8c6
+Master's prediction for Black: b8c6
+Black replies to explore: ['b8c6']
+
+--- Mining after Black plays b8c6 ---
+  [depth=1] Mining: r1b1k1nr/ppp1qppp/2n5/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R w KQkq - 1 11
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6
+  Candidates: [('e5e7', 171), ('f1b5', 155), ('e5e2', 104), ('e5e3', 86)]
+    Candidate: e5e7 (eval=171cp)
+    SF18 replies: [('g8e7', -152), ('c6e7', -168)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f1b5 (eval=155cp)
+    SF18 replies: [('c8d7', -106), ('a7a6', -134)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: e5e2 (eval=104cp)
+    SF18 replies: [('c8g4', -74), ('g8f6', -102)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: e5e3 (eval=86cp)
+    SF18 replies: [('c8g4', -63), ('e7e3', -66)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=3] Mining: r1b1k2r/ppp1nppp/2n5/8/3P1B2/2P2N2/P1P3PP/R3KB1R w KQkq - 0 12
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7
+  Candidates: [('e1c1', 215), ('f4c7', 162), ('e1d2', 150), ('c3c4', 137)]
+    Candidate: e1c1 (eval=215cp)
+    SF18 replies: [('e7d5', -100), ('c8g4', -124)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f4c7 (eval=162cp)
+    SF18 replies: [('e7d5', -152), ('c8e6', -171)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: e1d2 (eval=150cp)
+    SF18 replies: [('e7d5', -119), ('c8e6', -153)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: c3c4 (eval=137cp)
+    SF18 replies: [('c8f5', -141), ('c8g4', -151)]
+    Result: 2W-0D-0L = 100.0%
+  [depth=5] Mining: r1b1k2r/ppp2ppp/2n5/3n4/3P1B2/2P2N2/P1P3PP/2KR1B1R w kq - 2 13
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5
+  Candidates: [('d1e1', 187), ('f4d2', 151), ('f4g5', 76), ('f4g3', 70)]
+    Candidate: d1e1 (eval=187cp)
+    SF18 replies: [('c8e6', -138), ('e8d7', -180)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f4d2 (eval=151cp)
+    SF18 replies: [('c8g4', -125), ('e8g8', -128)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f4g5 (eval=76cp)
+    SF18 replies: [('d5c3', -18), ('e8g8', -67)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f4g3 (eval=70cp)
+    SF18 replies: [('e8g8', -86), ('d5c3', -101)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r3k2r/ppp2ppp/2n1b3/3n4/3P1B2/2P2N2/P1P3PP/2K1RB1R w kq - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5 d1e1 c8e6
+  Candidates: [('f4d2', 270), ('f4g5', 58), ('f4e3', 55), ('g2g3', 40)]
+    Candidate: f4d2 (eval=270cp)
+    SF18 replies: [('e8c8', -161), ('e8d7', -175)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f4g5 (eval=58cp)
+    SF18 replies: [('d5c3', -31), ('e8d7', -129)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f4e3 (eval=55cp)
+    SF18 replies: [('d5b6', -29), ('d5c3', -32)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: g2g3 (eval=40cp)
+    SF18 replies: [('e8c8', 10), ('d5f4', -56)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r1b4r/pppk1ppp/2n5/3n4/3P1B2/2P2N2/P1P3PP/2K1RB1R w - - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5 d1e1 e8d7
+  Candidates: [('f4d2', 274), ('f1b5', 206), ('f4g3', 186), ('f4g5', 169)]
+    Candidate: f4d2 (eval=274cp)
+    SF18 replies: [('h8e8', -197), ('f7f6', -203)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f1b5 (eval=206cp)
+    SF18 replies: [('a7a6', 8), ('d5f4', -60)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f4g3 (eval=186cp)
+    SF18 replies: [('d5c3', -171), ('f7f6', -188)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f4g5 (eval=169cp)
+    SF18 replies: [('f7f6', -138), ('d5c3', -148)]
+    Result: 2W-0D-0L = 100.0%
+  [depth=7] Mining: r3k2r/ppp2ppp/2n5/3n4/3P2b1/2P2N2/P1PB2PP/2KR1B1R w kq - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5 f4d2 c8g4
+  Candidates: [('c3c4', 198), ('d1e1', 162), ('f1d3', 138), ('h2h3', 119)]
+    Candidate: c3c4 (eval=198cp)
+    SF18 replies: [('d5b6', -139), ('d5f6', -152)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: d1e1 (eval=162cp)
+    SF18 replies: [('e8d7', -163), ('c6e7', -180)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f1d3 (eval=138cp)
+    SF18 replies: [('e8c8', -72), ('e8g8', -85)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: h2h3 (eval=119cp)
+    SF18 replies: [('g4f3', -108), ('g4h5', -142)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: r1b2rk1/ppp2ppp/2n5/3n4/3P4/2P2N2/P1PB2PP/2KR1B1R w - - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5 f4d2 e8g8
+  Candidates: [('c3c4', 131), ('d1e1', 100), ('f1d3', 96), ('f3g5', 92)]
+    Candidate: c3c4 (eval=131cp)
+    SF18 replies: [('d5f6', -119), ('d5b6', -141)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: d1e1 (eval=100cp)
+    SF18 replies: [('d5b6', -106), ('d5f6', -111)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f1d3 (eval=96cp)
+    SF18 replies: [('d5b6', -79), ('d5f6', -84)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f3g5 (eval=92cp)
+    SF18 replies: [('h7h6', -49), ('d5b6', -50)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=5] Mining: r3k2r/ppp1nppp/2n5/8/3P1Bb1/2P2N2/P1P3PP/2KR1B1R w kq - 2 13
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4
+  Candidates: [('d4d5', 169), ('d1e1', 166), ('f4c7', 153), ('c3c4', 132)]
+    Candidate: d4d5 (eval=169cp)
+    SF18 replies: [('c6b8', -277), ('e7g6', -277)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: d1e1 (eval=166cp)
+    SF18 replies: [('g4f3', -90), ('e8g8', -130)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f4c7 (eval=153cp)
+    SF18 replies: [('g4f3', -130), ('a8c8', -131)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: c3c4 (eval=132cp)
+    SF18 replies: [('e8c8', -54), ('g4f3', -113)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: rn2k2r/ppp1nppp/8/3P4/5Bb1/2P2N2/P1P3PP/2KR1B1R w kq - 1 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4 d4d5 c6b8
+  Candidates: [('f4c7', 315), ('d1e1', 227), ('f1c4', 218), ('c3c4', 213)]
+    Candidate: f4c7 (eval=315cp)
+    SF18 replies: [('e8g8', -266), ('e8d7', -297)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: d1e1 (eval=227cp)
+    SF18 replies: [('e8d8', -259), ('b8a6', -283)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f1c4 (eval=218cp)
+    SF18 replies: [('e8g8', -226), ('b8a6', -239)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: c3c4 (eval=213cp)
+    SF18 replies: [('b8a6', -181), ('g4f3', -199)]
+    Result: 2W-0D-0L = 100.0%
+  [depth=7] Mining: r3k2r/ppp2ppp/2n3n1/3P4/5Bb1/2P2N2/P1P3PP/2KR1B1R w kq - 1 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4 d4d5 e7g6
+  Candidates: [('d5c6', 289), ('d1e1', 285), ('f4c7', 266), ('f4g3', 221)]
+    Candidate: d5c6 (eval=289cp)
+    SF18 replies: [('g6f4', -304), ('g4f3', -304)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: d1e1 (eval=285cp)
+    SF18 replies: [('c6e7', -242), ('e8d8', -253)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f4c7 (eval=266cp)
+    SF18 replies: [('e8d7', -264), ('a8c8', -273)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f4g3 (eval=221cp)
+    SF18 replies: [('c6e7', -197), ('c6a5', -244)]
+    Result: 2W-0D-0L = 100.0%
+  [depth=7] Mining: r3k2r/ppB1nppp/2n5/8/3P4/2P2b2/P1P3PP/2KR1B1R w kq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4 f4c7 g4f3
+  Candidates: [('g2f3', 229), ('d1e1', -162), ('d1d3', -235), ('d1d2', -257)]
+    Candidate: g2f3 (eval=229cp)
+    SF18 replies: [('a8c8', -214), ('e7d5', -233)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: d1e1 (eval=-162cp)
+    SF18 replies: [('e8d7', 281), ('f3d5', 180)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: d1d3 (eval=-235cp)
+    SF18 replies: [('f3e4', 276), ('f3d5', 237)]
+    Result: 0W-0D-2L = 0.0%
+    Candidate: d1d2 (eval=-257cp)
+    SF18 replies: [('f3e4', 262), ('f3d5', 256)]
+    Result: 0W-1D-1L = 25.0%
+  [depth=7] Mining: 2r1k2r/ppB1nppp/2n5/8/3P2b1/2P2N2/P1P3PP/2KR1B1R w k - 1 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4 f4c7 a8c8
+  Candidates: [('c7d6', 212), ('c7g3', 185), ('c7f4', 151), ('d4d5', 47)]
+    Candidate: c7d6 (eval=212cp)
+    SF18 replies: [('e7d5', -150), ('e7f5', -182)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: c7g3 (eval=185cp)
+    SF18 replies: [('e8g8', -157), ('c8d8', -181)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: c7f4 (eval=151cp)
+    SF18 replies: [('e8g8', -158), ('e7d5', -160)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: d4d5 (eval=47cp)
+    SF18 replies: [('g4f3', -22), ('e7d5', -47)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=5] Mining: r1b1k2r/ppB2ppp/2n5/3n4/3P4/2P2N2/P1P3PP/R3KB1R w KQkq - 1 13
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5
+  Candidates: [('c7e5', 86), ('c7d6', 79), ('c7g3', 78), ('e1c1', -163)]
+    Candidate: c7e5 (eval=86cp)
+    SF18 replies: [('f7f6', -56), ('c6e5', -59)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: c7d6 (eval=79cp)
+    SF18 replies: [('d5c3', -80), ('c8f5', -117)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: c7g3 (eval=78cp)
+    SF18 replies: [('d5c3', -50), ('f7f5', -76)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: e1c1 (eval=-163cp)
+    SF18 replies: [('d5c7', 246), ('c8e6', -7)]
+    Result: 0W-1D-1L = 25.0%
+  [depth=7] Mining: r1b1k2r/pp3ppp/2nB4/8/3P4/2n2N2/P1P3PP/R3KB1R w KQkq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5 c7d6 d5c3
+  Candidates: [('f1d3', 117), ('d6a3', 86), ('a2a4', 73), ('h2h4', 63)]
+    Candidate: f1d3 (eval=117cp)
+    SF18 replies: [('c8e6', -70), ('c8g4', -94)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: d6a3 (eval=86cp)
+    SF18 replies: [('c8g4', -18), ('c8f5', -40)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: a2a4 (eval=73cp)
+    SF18 replies: [('c8f5', -7), ('c8g4', -17)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: h2h4 (eval=63cp)
+    SF18 replies: [('c8g4', 27), ('c8f5', 21)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r3k2r/pp3ppp/2nB4/3n1b2/3P4/2P2N2/P1P3PP/R3KB1R w KQkq - 3 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5 c7d6 c8f5
+  Candidates: [('e1d2', 171), ('c3c4', 91), ('f3h4', 75), ('f1c4', 39)]
+    Candidate: e1d2 (eval=171cp)
+    SF18 replies: [('e8c8', -103), ('e8d7', -174)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: c3c4 (eval=91cp)
+    SF18 replies: [('d5e3', -65), ('d5f6', -90)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f3h4 (eval=75cp)
+    SF18 replies: [('f5c2', -39), ('f5e4', -93)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f1c4 (eval=39cp)
+    SF18 replies: [('d5c3', -42), ('d5e3', -93)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r1b1k2r/pp3ppp/2n5/8/3P4/2n2NB1/P1P3PP/R3KB1R w KQkq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5 c7g3 d5c3
+  Candidates: [('f1c4', 69), ('f1d3', 61), ('e1d2', 55), ('a2a4', 43)]
+    Candidate: f1c4 (eval=69cp)
+    SF18 replies: [('c6a5', 23), ('c8e6', -2)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f1d3 (eval=61cp)
+    SF18 replies: [('c8e6', -81), ('e8g8', -87)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: e1d2 (eval=55cp)
+    SF18 replies: [('c3e4', -31), ('c3d5', -167)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: a2a4 (eval=43cp)
+    SF18 replies: [('e8g8', 2), ('c8f5', -13)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r1b1k2r/pp4pp/2n5/3n1p2/3P4/2P2NB1/P1P3PP/R3KB1R w KQkq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5 c7g3 f7f5
+  Candidates: [('c3c4', 283), ('e1d2', 264), ('f1c4', 230), ('e1c1', 200)]
+    Candidate: c3c4 (eval=283cp)
+    SF18 replies: [('d5e3', -177), ('d5f6', -177)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: e1d2 (eval=264cp)
+    SF18 replies: [('f5f4', -255), ('e8g8', -263)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f1c4 (eval=230cp)
+    SF18 replies: [('d5c3', -172), ('d5e3', -208)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: e1c1 (eval=200cp)
+    SF18 replies: [('f5f4', -147), ('e8g8', -220)]
+    Result: 2W-0D-0L = 100.0%
+  [depth=5] Mining: r3k2r/ppB1nppp/2n1b3/8/3P4/2P2N2/P1P3PP/R3KB1R w KQkq - 1 13
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6
+  Candidates: [('c3c4', 183), ('f3g5', 171), ('a1b1', 170), ('c7g3', 167)]
+    Candidate: c3c4 (eval=183cp)
+    SF18 replies: [('a8c8', -160), ('e6f5', -186)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f3g5 (eval=171cp)
+    SF18 replies: [('e6f5', -56), ('e7d5', -125)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: a1b1 (eval=170cp)
+    SF18 replies: [('e7d5', -153), ('b7b6', -154)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: c7g3 (eval=167cp)
+    SF18 replies: [('e7d5', -165), ('a8c8', -177)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: 2r1k2r/ppB1nppp/2n1b3/8/2PP4/5N2/P1P3PP/R3KB1R w KQk - 1 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 c3c4 a8c8
+  Candidates: [('c7g3', 175), ('c7d6', 153), ('c7f4', 142), ('d4d5', 88)]
+    Candidate: c7g3 (eval=175cp)
+    SF18 replies: [('c6b4', -184), ('c6a5', -192)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: c7d6 (eval=153cp)
+    SF18 replies: [('e7f5', -154), ('c6a5', -181)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: c7f4 (eval=142cp)
+    SF18 replies: [('c6b4', -147), ('c6a5', -156)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: d4d5 (eval=88cp)
+    SF18 replies: [('c8c7', -63), ('c6b4', -91)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: r3k2r/ppB1nppp/2n5/5b2/2PP4/5N2/P1P3PP/R3KB1R w KQkq - 1 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 c3c4 e6f5
+  Candidates: [('e1c1', 277), ('d4d5', 255), ('a1b1', 236), ('e1d2', 235)]
+    Candidate: e1c1 (eval=277cp)
+    SF18 replies: [('c6b4', -262), ('f5g4', -264)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: d4d5 (eval=255cp)
+    SF18 replies: [('c6b4', -208), ('e8d7', -233)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: a1b1 (eval=236cp)
+    SF18 replies: [('b7b6', -208), ('f5c2', -232)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: e1d2 (eval=235cp)
+    SF18 replies: [('a8c8', -207), ('f5g4', -230)]
+    Result: 2W-0D-0L = 100.0%
+  [depth=7] Mining: r3k2r/ppB2ppp/2n1b3/3n4/3P4/2P2N2/P1P3PP/1R2KB1R w Kkq - 3 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 a1b1 e7d5
+  Candidates: [('b1b7', 202), ('c7g3', 134), ('c7d6', 116), ('c7e5', 30)]
+    Candidate: b1b7 (eval=202cp)
+    SF18 replies: [('e6c8', -135), ('e8g8', -211)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: c7g3 (eval=134cp)
+    SF18 replies: [('d5c3', -123), ('e8c8', -147)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: c7d6 (eval=116cp)
+    SF18 replies: [('e8c8', -76), ('a8d8', -109)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: c7e5 (eval=30cp)
+    SF18 replies: [('f7f6', -39), ('e8c8', -59)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r3k2r/p1B1nppp/1pn1b3/8/3P4/2P2N2/P1P3PP/1R2KB1R w Kkq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 a1b1 b7b6
+  Candidates: [('c3c4', 183), ('e1d2', 167), ('f1d3', 150), ('c7f4', 149)]
+    Candidate: c3c4 (eval=183cp)
+    SF18 replies: [('a8c8', -154), ('c6a5', -175)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: e1d2 (eval=167cp)
+    SF18 replies: [('f7f6', -142), ('e8g8', -156)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f1d3 (eval=150cp)
+    SF18 replies: [('e6a2', -142), ('f7f6', -144)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: c7f4 (eval=149cp)
+    SF18 replies: [('a8d8', -122), ('e6a2', -131)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r3k2r/pp3ppp/2n1b3/3n4/3P4/2P2NB1/P1P3PP/R3KB1R w KQkq - 3 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 c7g3 e7d5
+  Candidates: [('e1d2', 219), ('c3c4', 196), ('f3g5', 167), ('f1d3', 117)]
+    Candidate: e1d2 (eval=219cp)
+    SF18 replies: [('d5b6', -167), ('c6a5', -197)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: c3c4 (eval=196cp)
+    SF18 replies: [('d5e3', -122), ('d5b4', -239)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f3g5 (eval=167cp)
+    SF18 replies: [('d5c3', -89), ('e8g8', -155)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f1d3 (eval=117cp)
+    SF18 replies: [('d5c3', -95), ('a7a6', -144)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: 2r1k2r/pp2nppp/2n1b3/8/3P4/2P2NB1/P1P3PP/R3KB1R w KQk - 3 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 c7g3 a8c8
+  Candidates: [('e1c1', 235), ('c3c4', 222), ('f1d3', 210), ('f3g5', 201)]
+    Candidate: e1c1 (eval=235cp)
+    SF18 replies: [('e6a2', -119), ('e7d5', -158)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: c3c4 (eval=222cp)
+    SF18 replies: [('b7b5', -193), ('e7f5', -197)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f1d3 (eval=210cp)
+    SF18 replies: [('e7f5', -182), ('e6f5', -198)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f3g5 (eval=201cp)
+    SF18 replies: [('e6f5', -161), ('e7f5', -174)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=5] Mining: r3k2r/ppp1nppp/2n5/5b2/2PP1B2/5N2/P1P3PP/R3KB1R w KQkq - 1 13
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5
+  Candidates: [('f4g3', 132), ('f4c7', 118), ('f1e2', 108), ('d4d5', 106)]
+    Candidate: f4g3 (eval=132cp)
+    SF18 replies: [('e8c8', -48), ('f5c2', -90)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f4c7 (eval=118cp)
+    SF18 replies: [('c6b4', -148), ('f5c2', -151)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f1e2 (eval=108cp)
+    SF18 replies: [('e8c8', -57), ('f5c2', -80)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: d4d5 (eval=106cp)
+    SF18 replies: [('c6b4', -79), ('e7g6', -205)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: r3k2r/ppB1nppp/8/5b2/1nPP4/5N2/P1P3PP/R3KB1R w KQkq - 1 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5 f4c7 c6b4
+  Candidates: [('e1d2', 219), ('a1b1', 194), ('a1d1', 168), ('e1f2', 165)]
+    Candidate: e1d2 (eval=219cp)
+    SF18 replies: [('b4c2', -208), ('a8c8', -237)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: a1b1 (eval=194cp)
+    SF18 replies: [('b4c2', -168), ('e7c6', -210)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: a1d1 (eval=168cp)
+    SF18 replies: [('f5c2', -75), ('b4c2', -111)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: e1f2 (eval=165cp)
+    SF18 replies: [('b4c2', -58), ('a8c8', -127)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: r3k2r/ppB1nppp/2n5/8/2PP4/5N2/P1b3PP/R3KB1R w KQkq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5 f4c7 f5c2
+  Candidates: [('d4d5', 234), ('e1d2', 202), ('a1c1', 154), ('e1f2', 149)]
+    Candidate: d4d5 (eval=234cp)
+    SF18 replies: [('a8c8', -200), ('c6b4', -206)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: e1d2 (eval=202cp)
+    SF18 replies: [('c2e4', -149), ('a8c8', -156)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: a1c1 (eval=154cp)
+    SF18 replies: [('c2e4', -92), ('a8c8', -113)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: e1f2 (eval=149cp)
+    SF18 replies: [('a8c8', -58), ('f7f6', -103)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r3k2r/ppp1nppp/8/3P1b2/1nP2B2/5N2/P1P3PP/R3KB1R w KQkq - 1 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5 d4d5 c6b4
+  Candidates: [('e1c1', 175), ('e1d2', 117), ('f3d4', 117), ('a1b1', 115)]
+    Candidate: e1c1 (eval=175cp)
+    SF18 replies: [('e8c8', -101), ('c7c6', -111)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: e1d2 (eval=117cp)
+    SF18 replies: [('b4c2', -73), ('e8c8', -95)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f3d4 (eval=117cp)
+    SF18 replies: [('e8c8', -99), ('c7c5', -109)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: a1b1 (eval=115cp)
+    SF18 replies: [('b4c2', -111), ('c7c5', -122)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r3k2r/ppp2ppp/2n3n1/3P1b2/2P2B2/5N2/P1P3PP/R3KB1R w KQkq - 1 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5 d4d5 e7g6
+  Candidates: [('f4c7', 268), ('d5c6', 136), ('f4g3', 135), ('e1c1', 95)]
+    Candidate: f4c7 (eval=268cp)
+    SF18 replies: [('c6b4', -247), ('e8d7', -248)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: d5c6 (eval=136cp)
+    SF18 replies: [('g6f4', -103), ('e8c8', -391)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f4g3 (eval=135cp)
+    SF18 replies: [('c6b4', -127), ('c6e7', -206)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: e1c1 (eval=95cp)
+    SF18 replies: [('g6f4', -14), ('e8c8', -149)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=5] Mining: r3k2r/ppp1nppp/2n5/8/2PP1Bb1/5N2/P1P3PP/R3KB1R w KQkq - 1 13
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4
+  Candidates: [('d4d5', 137), ('e1c1', 101), ('c2c3', 99), ('a1b1', 71)]
+    Candidate: d4d5 (eval=137cp)
+    SF18 replies: [('g4f3', -143), ('c6b4', -178)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: e1c1 (eval=101cp)
+    SF18 replies: [('e8c8', -77), ('a8d8', -163)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: c2c3 (eval=99cp)
+    SF18 replies: [('e8c8', -86), ('e8d7', -114)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: a1b1 (eval=71cp)
+    SF18 replies: [('e8c8', -34), ('g4f3', -61)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r3k2r/ppp1nppp/2n5/3P4/2P2B2/5b2/P1P3PP/R3KB1R w KQkq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4 d4d5 g4f3
+  Candidates: [('g2f3', 222), ('e1d2', 17), ('e1f2', 9), ('d5c6', 8)]
+    Candidate: g2f3 (eval=222cp)
+    SF18 replies: [('c6d4', -221), ('e7g6', -221)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: e1d2 (eval=17cp)
+    SF18 replies: [('f3e4', 110), ('f3h5', 84)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: e1f2 (eval=9cp)
+    SF18 replies: [('f3d5', 135), ('f3e4', 62)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: d5c6 (eval=8cp)
+    SF18 replies: [('f3c6', -29), ('f3e4', -101)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r3k2r/ppp1nppp/8/3P4/1nP2Bb1/5N2/P1P3PP/R3KB1R w KQkq - 1 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4 d4d5 c6b4
+  Candidates: [('a1b1', 224), ('e1c1', 187), ('e1f2', 156), ('f3e5', 148)]
+    Candidate: a1b1 (eval=224cp)
+    SF18 replies: [('c7c5', -201), ('b4c2', -230)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: e1c1 (eval=187cp)
+    SF18 replies: [('e8c8', -147), ('b4a6', -150)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: e1f2 (eval=156cp)
+    SF18 replies: [('e8c8', -103), ('f7f6', -143)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f3e5 (eval=148cp)
+    SF18 replies: [('g4f5', -61), ('g4h5', -69)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: 2kr3r/ppp1nppp/2n5/8/2PP1Bb1/5N2/P1P3PP/2KR1B1R w - - 3 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4 e1c1 e8c8
+  Candidates: [('d4d5', 89), ('c2c3', 58), ('f4e3', 35), ('h1g1', 23)]
+    Candidate: d4d5 (eval=89cp)
+    SF18 replies: [('e7g6', -101), ('c6b8', -117)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: c2c3 (eval=58cp)
+    SF18 replies: [('h8e8', -49), ('d8e8', -50)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f4e3 (eval=35cp)
+    SF18 replies: [('e7f5', 17), ('h8e8', -15)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: h1g1 (eval=23cp)
+    SF18 replies: [('e7f5', 3), ('h8e8', 2)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: 3rk2r/ppp1nppp/2n5/8/2PP1Bb1/5N2/P1P3PP/2KR1B1R w k - 3 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4 e1c1 a8d8
+  Candidates: [('d4d5', 191), ('c2c3', 127), ('f4c7', 112), ('f1e2', 81)]
+    Candidate: d4d5 (eval=191cp)
+    SF18 replies: [('c6b4', -267), ('g4f3', -277)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: c2c3 (eval=127cp)
+    SF18 replies: [('e8g8', -124), ('e8d7', -143)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f4c7 (eval=112cp)
+    SF18 replies: [('g4f3', -64), ('d8d7', -164)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f1e2 (eval=81cp)
+    SF18 replies: [('g4f3', -77), ('d8d7', -138)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=3] Mining: r1b1k1nr/ppp1nppp/8/8/3P1B2/2P2N2/P1P3PP/R3KB1R w KQkq - 0 12
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7
+  Candidates: [('e1d2', 168), ('a1b1', 146), ('a2a4', 139), ('f1d3', 119)]
+    Candidate: e1d2 (eval=168cp)
+    SF18 replies: [('g8f6', -134), ('e7d5', -142)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: a1b1 (eval=146cp)
+    SF18 replies: [('e7d5', -118), ('c7c6', -133)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: a2a4 (eval=139cp)
+    SF18 replies: [('e7d5', -123), ('g8f6', -145)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f1d3 (eval=119cp)
+    SF18 replies: [('e7d5', -127), ('c8f5', -164)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=5] Mining: r1b1k2r/ppp1nppp/5n2/8/3P1B2/2P2N2/P1PK2PP/R4B1R w kq - 2 13
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6
+  Candidates: [('f4c7', 158), ('f1d3', 140), ('a1e1', 126), ('a2a4', 126)]
+    Candidate: f4c7 (eval=158cp)
+    SF18 replies: [('f6e4', -128), ('e8g8', -174)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f1d3 (eval=140cp)
+    SF18 replies: [('f6d5', -180), ('c8f5', -183)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: a1e1 (eval=126cp)
+    SF18 replies: [('c7c6', -192), ('c8f5', -196)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: a2a4 (eval=126cp)
+    SF18 replies: [('f6e4', -107), ('e8g8', -119)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r1b1k2r/ppB1nppp/8/8/3Pn3/2P2N2/P1PK2PP/R4B1R w kq - 1 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6 f4c7 f6e4
+  Candidates: [('d2c1', 118), ('d2e1', 76), ('d2e3', 65), ('d2d1', 31)]
+    Candidate: d2c1 (eval=118cp)
+    SF18 replies: [('e8g8', -102), ('e7d5', -123)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: d2e1 (eval=76cp)
+    SF18 replies: [('e4c3', -34), ('e7d5', -101)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: d2e3 (eval=65cp)
+    SF18 replies: [('e4c3', -59), ('c8f5', -86)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: d2d1 (eval=31cp)
+    SF18 replies: [('e4f2', 15), ('e4c3', 0)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r1b2rk1/ppB1nppp/5n2/8/3P4/2P2N2/P1PK2PP/R4B1R w - - 1 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6 f4c7 e8g8
+  Candidates: [('f1d3', 262), ('a1e1', 153), ('c3c4', 128), ('f3g5', 116)]
+    Candidate: f1d3 (eval=262cp)
+    SF18 replies: [('c8e6', -209), ('c8f5', -209)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: a1e1 (eval=153cp)
+    SF18 replies: [('e7d5', -206), ('e7c6', -211)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: c3c4 (eval=128cp)
+    SF18 replies: [('f6e4', -153), ('b7b5', -187)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f3g5 (eval=116cp)
+    SF18 replies: [('e7d5', -98), ('h7h6', -116)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r1b1k2r/ppp1nppp/8/3n4/3P1B2/2PB1N2/P1PK2PP/R6R w kq - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6 f1d3 f6d5
+  Candidates: [('f4e5', 146), ('f4g3', 128), ('f4g5', 120), ('g2g3', 22)]
+    Candidate: f4e5 (eval=146cp)
+    SF18 replies: [('f7f6', -106), ('e8g8', -130)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f4g3 (eval=128cp)
+    SF18 replies: [('e8g8', -194), ('h7h6', -223)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f4g5 (eval=120cp)
+    SF18 replies: [('f7f6', -145), ('h7h6', -149)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: g2g3 (eval=22cp)
+    SF18 replies: [('f7f6', -71), ('d5f4', -72)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r3k2r/ppp1nppp/5n2/5b2/3P1B2/2PB1N2/P1PK2PP/R6R w kq - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6 f1d3 c8f5
+  Candidates: [('h1e1', 219), ('f4c7', 202), ('a1e1', 177), ('c3c4', 150)]
+    Candidate: h1e1 (eval=219cp)
+    SF18 replies: [('f6d5', -141), ('f5d3', -209)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f4c7 (eval=202cp)
+    SF18 replies: [('f6e4', -175), ('a8c8', -195)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: a1e1 (eval=177cp)
+    SF18 replies: [('f6d5', -188), ('e8d7', -207)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: c3c4 (eval=150cp)
+    SF18 replies: [('e8c8', -120), ('f5d3', -138)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=5] Mining: r1b1k1nr/ppp2ppp/8/3n4/3P1B2/2P2N2/P1PK2PP/R4B1R w kq - 2 13
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5
+  Candidates: [('f4g3', 189), ('f4e5', 180), ('a1e1', 164), ('f1b5', 158)]
+    Candidate: f4g3 (eval=189cp)
+    SF18 replies: [('c8f5', -170), ('g8e7', -201)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f4e5 (eval=180cp)
+    SF18 replies: [('f7f6', -138), ('g8e7', -179)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: a1e1 (eval=164cp)
+    SF18 replies: [('e8d8', -191), ('c8e6', -205)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f1b5 (eval=158cp)
+    SF18 replies: [('c7c6', 269), ('e8d8', -89)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: r3k1nr/ppp2ppp/8/3n1b2/3P4/2P2NB1/P1PK2PP/R4B1R w kq - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f4g3 c8f5
+  Candidates: [('a1e1', 212), ('f1d3', 206), ('a2a4', 194), ('c3c4', 192)]
+    Candidate: a1e1 (eval=212cp)
+    SF18 replies: [('g8e7', -235), ('e8d8', -240)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f1d3 (eval=206cp)
+    SF18 replies: [('f5d3', -174), ('f5g6', -222)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: a2a4 (eval=194cp)
+    SF18 replies: [('e8c8', -100), ('g8f6', -151)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: c3c4 (eval=192cp)
+    SF18 replies: [('d5f6', -194), ('d5e7', -264)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: r1b1k2r/ppp1nppp/8/3n4/3P4/2P2NB1/P1PK2PP/R4B1R w kq - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f4g3 g8e7
+  Candidates: [('c3c4', 263), ('f1d3', 252), ('a1e1', 207), ('a1b1', 195)]
+    Candidate: c3c4 (eval=263cp)
+    SF18 replies: [('d5f6', -277), ('d5b6', -280)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f1d3 (eval=252cp)
+    SF18 replies: [('e7f5', -221), ('c8e6', -248)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: a1e1 (eval=207cp)
+    SF18 replies: [('h7h5', -220), ('c7c6', -227)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: a1b1 (eval=195cp)
+    SF18 replies: [('e7f5', -181), ('c7c6', -193)]
+    Result: 2W-0D-0L = 100.0%
+  [depth=7] Mining: r1b1k1nr/ppp3pp/5p2/3nB3/3P4/2P2N2/P1PK2PP/R4B1R w kq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f4e5 f7f6
+  Candidates: [('c3c4', 153), ('e5g3', 101), ('f1c4', 91), ('a1e1', 42)]
+    Candidate: c3c4 (eval=153cp)
+    SF18 replies: [('f6e5', -161), ('g8e7', -225)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: e5g3 (eval=101cp)
+    SF18 replies: [('e8d8', -171), ('h7h5', -187)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f1c4 (eval=91cp)
+    SF18 replies: [('d5b6', -74), ('c8e6', -105)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: a1e1 (eval=42cp)
+    SF18 replies: [('f6e5', -57), ('g8e7', -146)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: r1b1k2r/ppp1nppp/8/3nB3/3P4/2P2N2/P1PK2PP/R4B1R w kq - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f4e5 g8e7
+  Candidates: [('c3c4', 275), ('e5g7', 245), ('a1b1', 195), ('a2a3', 194)]
+    Candidate: c3c4 (eval=275cp)
+    SF18 replies: [('f7f6', -217), ('d5f6', -227)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: e5g7 (eval=245cp)
+    SF18 replies: [('h8g8', -178), ('h8f8', -333)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: a1b1 (eval=195cp)
+    SF18 replies: [('f7f6', -136), ('e8g8', -160)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: a2a3 (eval=194cp)
+    SF18 replies: [('f7f6', -79), ('e8g8', -112)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r1bk2nr/ppp2ppp/8/3n4/3P1B2/2P2N2/P1PK2PP/4RB1R w - - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 a1e1 e8d8
+  Candidates: [('f3e5', 223), ('f4e5', 222), ('f4g3', 217), ('f3g5', 210)]
+    Candidate: f3e5 (eval=223cp)
+    SF18 replies: [('c8e6', -197), ('f7f6', -250)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f4e5 (eval=222cp)
+    SF18 replies: [('f7f6', -161), ('g8f6', -224)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f4g3 (eval=217cp)
+    SF18 replies: [('g8h6', -184), ('c8d7', -203)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f3g5 (eval=210cp)
+    SF18 replies: [('g8h6', -184), ('c8e6', -241)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: r3k1nr/ppp2ppp/4b3/3n4/3P1B2/2P2N2/P1PK2PP/4RB1R w kq - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 a1e1 c8e6
+  Candidates: [('f4e5', 246), ('f4g3', 211), ('f4g5', 137), ('f1b5', 108)]
+    Candidate: f4e5 (eval=246cp)
+    SF18 replies: [('f7f6', -215), ('g8e7', -224)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f4g3 (eval=211cp)
+    SF18 replies: [('e8c8', -192), ('d5b6', -204)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f4g5 (eval=137cp)
+    SF18 replies: [('h7h6', -140), ('d5e7', -152)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f1b5 (eval=108cp)
+    SF18 replies: [('c7c6', 287), ('e8d8', -129)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: r1b1k1nr/pp3ppp/2p5/1B1n4/3P1B2/2P2N2/P1PK2PP/R6R w kq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f1b5 c7c6
+  Candidates: [('a1e1', 195), ('f4e5', -39), ('h1e1', -193), ('b5c4', -213)]
+    Candidate: a1e1 (eval=195cp)
+    SF18 replies: [('g8e7', 200), ('e8d8', -98)]
+    Result: 0W-1D-1L = 25.0%
+    Candidate: f4e5 (eval=-39cp)
+    SF18 replies: [('f7f6', 164), ('g8e7', -37)]
+    Result: 0W-1D-1L = 25.0%
+    Candidate: h1e1 (eval=-193cp)
+    SF18 replies: [('c8e6', -45), ('g8e7', -47)]
+    Result: 0W-1D-1L = 25.0%
+    Candidate: b5c4 (eval=-213cp)
+    SF18 replies: [('d5f4', 225), ('g8f6', -46)]
+    Result: 0W-1D-1L = 25.0%
+  [depth=7] Mining: r1bk2nr/ppp2ppp/8/1B1n4/3P1B2/2P2N2/P1PK2PP/R6R w - - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f1b5 e8d8
+  Candidates: [('f4g5', 182), ('f4g3', 174), ('a1e1', 161), ('f4e5', 120)]
+    Candidate: f4g5 (eval=182cp)
+    SF18 replies: [('f7f6', -17), ('d5e7', -120)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f4g3 (eval=174cp)
+    SF18 replies: [('f7f6', -148), ('c8e6', -168)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: a1e1 (eval=161cp)
+    SF18 replies: [('d5f4', 122), ('c7c6', -82)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f4e5 (eval=120cp)
+    SF18 replies: [('f7f6', -77), ('g8f6', -158)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=5] Mining: r1b1k1nr/ppp2ppp/8/3n4/3P1B2/2PB1N2/P1P3PP/R3K2R w KQkq - 2 13
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5
+  Candidates: [('f4g3', 215), ('f4c1', 121), ('f4d2', 111), ('f4e5', 93)]
+    Candidate: f4g3 (eval=215cp)
+    SF18 replies: [('d5c3', -141), ('g8h6', -163)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f4c1 (eval=121cp)
+    SF18 replies: [('g8e7', -111), ('d5c3', -115)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f4d2 (eval=111cp)
+    SF18 replies: [('g8e7', -197), ('d5e7', -205)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: f4e5 (eval=93cp)
+    SF18 replies: [('f7f6', -107), ('g8e7', -135)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: r1b1k1nr/ppp2ppp/8/8/3P4/2nB1NB1/P1P3PP/R3K2R w KQkq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4g3 d5c3
+  Candidates: [('e1d2', 213), ('a2a4', 155), ('e1g1', 154), ('f3g5', 154)]
+    Candidate: e1d2 (eval=213cp)
+    SF18 replies: [('c3d5', -208), ('c3a4', -258)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: a2a4 (eval=155cp)
+    SF18 replies: [('g8f6', -124), ('c3d5', -131)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: e1g1 (eval=154cp)
+    SF18 replies: [('g8f6', -143), ('c8e6', -168)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f3g5 (eval=154cp)
+    SF18 replies: [('g8f6', -44), ('h7h6', -47)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r1b1k2r/ppp2ppp/7n/3n4/3P4/2PB1NB1/P1P3PP/R3K2R w KQkq - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4g3 g8h6
+  Candidates: [('c3c4', 263), ('e1d2', 199), ('e1c1', 165), ('e1d1', 157)]
+    Candidate: c3c4 (eval=263cp)
+    SF18 replies: [('d5b4', -258), ('d5e3', -279)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: e1d2 (eval=199cp)
+    SF18 replies: [('h6f5', -217), ('c8f5', -225)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: e1c1 (eval=165cp)
+    SF18 replies: [('e8g8', -151), ('d5c3', -158)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: e1d1 (eval=157cp)
+    SF18 replies: [('d5c3', -39), ('e8d8', -120)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r1b1k2r/ppp1nppp/8/3n4/3P4/2PB1N2/P1P3PP/R1B1K2R w KQkq - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4c1 g8e7
+  Candidates: [('e1g1', 145), ('c3c4', 131), ('a1b1', 127), ('c1a3', 123)]
+    Candidate: e1g1 (eval=145cp)
+    SF18 replies: [('c8f5', -140), ('e8g8', -146)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: c3c4 (eval=131cp)
+    SF18 replies: [('d5b4', -134), ('d5f6', -219)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: a1b1 (eval=127cp)
+    SF18 replies: [('d5c3', -46), ('e8g8', -124)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: c1a3 (eval=123cp)
+    SF18 replies: [('f7f6', -123), ('e7f5', -129)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: r1b1k1nr/ppp2ppp/8/8/3P4/2nB1N2/P1P3PP/R1B1K2R w KQkq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4c1 d5c3
+  Candidates: [('e1f2', 103), ('e1d2', 96), ('e1g1', 89), ('c1b2', 88)]
+    Candidate: e1f2 (eval=103cp)
+    SF18 replies: [('g8f6', -42), ('h7h6', -89)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: e1d2 (eval=96cp)
+    SF18 replies: [('c3d5', -131), ('c3a4', -132)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: e1g1 (eval=89cp)
+    SF18 replies: [('c8e6', -125), ('g8f6', -131)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: c1b2 (eval=88cp)
+    SF18 replies: [('c3a4', -98), ('c3d5', -102)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r1b1k2r/ppp1nppp/8/3n4/3P4/2PB1N2/P1PB2PP/R3K2R w KQkq - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4d2 g8e7
+  Candidates: [('c3c4', 244), ('e1g1', 232), ('a2a4', 170), ('e1c1', 168)]
+    Candidate: c3c4 (eval=244cp)
+    SF18 replies: [('d5f6', -179), ('d5b6', -256)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: e1g1 (eval=232cp)
+    SF18 replies: [('c8f5', -169), ('d5f6', -182)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: a2a4 (eval=170cp)
+    SF18 replies: [('c8f5', -120), ('e8g8', -142)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: e1c1 (eval=168cp)
+    SF18 replies: [('e8g8', -134), ('c8f5', -141)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r1b1k1nr/ppp1nppp/8/8/3P4/2PB1N2/P1PB2PP/R3K2R w KQkq - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4d2 d5e7
+  Candidates: [('e1g1', 198), ('c3c4', 198), ('a1b1', 192), ('e1c1', 191)]
+    Candidate: e1g1 (eval=198cp)
+    SF18 replies: [('c8f5', -200), ('g8f6', -206)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: c3c4 (eval=198cp)
+    SF18 replies: [('g8f6', -179), ('c8d7', -182)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: a1b1 (eval=192cp)
+    SF18 replies: [('b7b6', -148), ('g8f6', -158)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: e1c1 (eval=191cp)
+    SF18 replies: [('c8f5', -174), ('g8f6', -188)]
+    Result: 1W-1D-0L = 75.0%
+  [depth=7] Mining: r1b1k1nr/ppp3pp/5p2/3nB3/3P4/2PB1N2/P1P3PP/R3K2R w KQkq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4e5 f7f6
+  Candidates: [('c3c4', 154), ('e5g3', 69), ('e1d2', -28), ('d3c4', -39)]
+    Candidate: c3c4 (eval=154cp)
+    SF18 replies: [('f6e5', -129), ('g8e7', -188)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: e5g3 (eval=69cp)
+    SF18 replies: [('d5c3', -112), ('c8d7', -139)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: e1d2 (eval=-28cp)
+    SF18 replies: [('f6e5', 49), ('g8e7', -129)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: d3c4 (eval=-39cp)
+    SF18 replies: [('d5b6', 36), ('c8e6', 8)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r1b1k2r/ppp1nppp/8/3nB3/3P4/2PB1N2/P1P3PP/R3K2R w KQkq - 4 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4e5 g8e7
+  Candidates: [('e5g7', 164), ('c3c4', 159), ('e1d2', 154), ('e5g3', 144)]
+    Candidate: e5g7 (eval=164cp)
+    SF18 replies: [('h8g8', -83), ('h8f8', -360)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: c3c4 (eval=159cp)
+    SF18 replies: [('d5b4', -194), ('f7f6', -199)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: e1d2 (eval=154cp)
+    SF18 replies: [('f7f6', -76), ('e8g8', -117)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: e5g3 (eval=144cp)
+    SF18 replies: [('d5c3', -48), ('e7f5', -103)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=5] Mining: r3k1nr/ppp1nppp/8/5b2/3P1B2/2PB1N2/P1P3PP/R3K2R w KQkq - 2 13
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 c8f5
+  Candidates: [('f4c7', 167), ('e1d2', 129), ('d3f5', 125), ('e1g1', 108)]
+    Candidate: f4c7 (eval=167cp)
+    SF18 replies: [('f5d3', -170), ('a8c8', -175)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: e1d2 (eval=129cp)
+    SF18 replies: [('e8c8', -121), ('f5d3', -130)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: d3f5 (eval=125cp)
+    SF18 replies: [('e7f5', -90), ('c7c5', -203)]
+    Result: 1W-1D-0L = 75.0%
+    Candidate: e1g1 (eval=108cp)
+    SF18 replies: [('f7f6', -98), ('e8c8', -114)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r3k1nr/ppp2ppp/8/5n2/3P1B2/2P2N2/P1P3PP/R3K2R w KQkq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 c8f5 d3f5 e7f5
+  Candidates: [('e1g1', 85), ('f4c7', 58), ('e1c1', 53), ('g2g4', 44)]
+    Candidate: e1g1 (eval=85cp)
+    SF18 replies: [('e8c8', -53), ('g8e7', -53)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: f4c7 (eval=58cp)
+    SF18 replies: [('a8c8', -40), ('g8f6', -77)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: e1c1 (eval=53cp)
+    SF18 replies: [('e8c8', -47), ('f7f6', -65)]
+    Result: 0W-2D-0L = 50.0%
+    Candidate: g2g4 (eval=44cp)
+    SF18 replies: [('f5e7', -31), ('f5d6', -40)]
+    Result: 0W-2D-0L = 50.0%
+  [depth=7] Mining: r3k1nr/pp2nppp/8/2p2B2/3P1B2/2P2N2/P1P3PP/R3K2R w KQkq - 0 14
+  History: e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 c8f5 d3f5 c7c5
+  Candidates: [('f5d3', 588), ('f3h4', 474), ('f5h3', 437), ('g2g4', 278)]
+    Candidate: f5d3 (eval=588cp)
+    SF18 replies: [('e7d5', -537), ('g8f6', -544)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f3h4 (eval=474cp)
+    SF18 replies: [('e7d5', -163), ('c5c4', -333)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: f5h3 (eval=437cp)
+    SF18 replies: [('e7d5', -500), ('c5c4', -501)]
+    Result: 2W-0D-0L = 100.0%
+    Candidate: g2g4 (eval=278cp)
+    SF18 replies: [('h7h5', -339), ('c5c4', -378)]
+    Result: 2W-0D-0L = 100.0%
+
+=== Mining complete ===
+Book saved to: /workspaces/counterline/data/white_killer/book/vienna.json
+PolicyTree: 61 nodes, 244 candidates, 488 total visits

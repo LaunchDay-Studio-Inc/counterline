@@ -26,6 +26,7 @@ tools/fastchess/*
 results/*
 !results/.gitkeep
 !results/README.md
+!results/white_killer/
 data/cache/*
 !data/cache/.gitkeep
 data/repertoire/*.sqlite*
