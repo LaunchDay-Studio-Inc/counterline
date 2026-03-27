@@ -1,0 +1,10 @@
+{
+  "id": "B13_benko_gambit",
+  "name": "Benko Gambit Accepted",
+  "moves": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. bxa6 g6 6. Nc3 Bxa6 7. Nf3 d6 8. e4 Bxf1 9. Kxf1 Bg7 10. g3 O-O",
+  "exit_fen": "rn1q1rk1/4ppbp/3p1np1/2pP4/4P3/2N2NP1/PP3P1P/R1BQ1K1R w - - 1 11",
+  "exit_epd": "rn1q1rk1/4ppbp/3p1np1/2pP4/4P3/2N2NP1/PP3P1P/R1BQ1K1R w - - id \"B13_benko_gambit_exit\";",
+  "provenance": "Benko Gambit accepted mainline. Black sacrifices a pawn for long-term queenside pressure on the a and b files. ECO A57-A59. Source: standard Benko theory.",
+  "why": "Permanent positional compensation for the pawn. Black's pressure on a/b files and the fianchettoed bishop create lasting initiative.",
+  "color": "black"
+}

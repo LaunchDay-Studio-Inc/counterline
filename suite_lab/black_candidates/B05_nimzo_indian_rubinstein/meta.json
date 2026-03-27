@@ -1,0 +1,10 @@
+{
+  "id": "B05_nimzo_indian_rubinstein",
+  "name": "Nimzo-Indian Rubinstein 4.e3",
+  "moves": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e3 O-O 5. Bd3 d5 6. Nf3 c5 7. O-O dxc4 8. Bxc4 cxd4 9. exd4 b6 10. Bg5 Bb7",
+  "exit_fen": "rn1q1rk1/pb3ppp/1p2pn2/6B1/1bBP4/2N2N2/PP3PPP/R2Q1RK1 w - - 2 11",
+  "exit_epd": "rn1q1rk1/pb3ppp/1p2pn2/6B1/1bBP4/2N2N2/PP3PPP/R2Q1RK1 w - - id \"B05_nimzo_indian_rubinstein_exit\";",
+  "provenance": "Nimzo-Indian Rubinstein variation. Black targets the IQP on d4. ECO E48-E49. Source: Karpov, Kramnik practice.",
+  "why": "Black gets clear targets (isolated d4 pawn) and active piece play. A proven winning method for Black at the highest level.",
+  "color": "black"
+}

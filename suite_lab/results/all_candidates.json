@@ -1,0 +1,282 @@
+[
+  {
+    "id": "W01_sicilian_najdorf_english_attack",
+    "name": "Sicilian Najdorf English Attack 6.Be3",
+    "moves": "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be3 e5 7. Nb3 Be7 8. f3 Be6 9. Qd2 O-O 10. O-O-O Nbd7",
+    "exit_fen": "r2q1rk1/1p1nbppp/p2pbn2/4p3/4P3/1NN1BP2/PPPQ2PP/2KR1B1R w - - 5 11",
+    "exit_epd": "r2q1rk1/1p1nbppp/p2pbn2/4p3/4P3/1NN1BP2/PPPQ2PP/2KR1B1R w - - id \"W01_sicilian_najdorf_english_attack_exit\";",
+    "provenance": "Najdorf English Attack mainline. One of the sharpest and most theoretically important lines in chess. Opposite-side castling creates natural attacking chances. Source: standard ECO B90 theory.",
+    "why": "High-imbalance, opposite-side castling, rich tactical play. White has clear attacking plans against the Black king.",
+    "color": "white"
+  },
+  {
+    "id": "W02_sicilian_dragon_yugoslav",
+    "name": "Sicilian Dragon Yugoslav Attack",
+    "moves": "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 g6 6. Be3 Bg7 7. f3 O-O 8. Qd2 Nc6 9. Bc4 Bd7 10. O-O-O",
+    "exit_fen": "r2q1rk1/pp1bppbp/2np1np1/8/2BNP3/2N1BP2/PPPQ2PP/2KR3R b - - 6 10",
+    "exit_epd": "r2q1rk1/pp1bppbp/2np1np1/8/2BNP3/2N1BP2/PPPQ2PP/2KR3R b - - id \"W02_sicilian_dragon_yugoslav_exit\";",
+    "provenance": "Yugoslav Attack vs Dragon Sicilian. Arguably the most violent mainline in chess theory. ECO B78. Source: standard Dragon theory.",
+    "why": "Maximum violence. Opposite-side castling, mutual attacks. White launches h4-h5 pawn storm.",
+    "color": "white"
+  },
+  {
+    "id": "W03_ruy_lopez_marshall_anti",
+    "name": "Ruy Lopez Anti-Marshall 8.a4",
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 O-O 8. a4 b4 9. d3 d6 10. a5",
+    "exit_fen": "r1bq1rk1/2p1bppp/p1np1n2/P3p3/1p2P3/1B1P1N2/1PP2PPP/RNBQR1K1 b - - 0 10",
+    "exit_epd": "r1bq1rk1/2p1bppp/p1np1n2/P3p3/1p2P3/1B1P1N2/1PP2PPP/RNBQR1K1 b - - id \"W03_ruy_lopez_marshall_anti_exit\";",
+    "provenance": "Anti-Marshall with 8.a4. Avoids the sharp Marshall Gambit while maintaining pressure. ECO C88. Source: modern GM practice, widely used by Caruana.",
+    "why": "Solid pressure line. Avoids Marshall complications while keeping positional tension. Less drawish than main Marshall due to asymmetric pawn structure.",
+    "color": "white"
+  },
+  {
+    "id": "W04_italian_giuoco_piano_slow",
+    "name": "Italian Giuoco Piano with d3 and c3",
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. c3 Nf6 5. d3 d6 6. O-O a6 7. a4 Ba7 8. Nbd2 O-O 9. Re1 Be6 10. Bb3",
+    "exit_fen": "r2q1rk1/bpp2ppp/p1npbn2/4p3/P3P3/1BPP1N2/1P1N1PPP/R1BQR1K1 b - - 6 10",
+    "exit_epd": "r2q1rk1/bpp2ppp/p1npbn2/4p3/P3P3/1BPP1N2/1P1N1PPP/R1BQR1K1 b - - id \"W04_italian_giuoco_piano_slow_exit\";",
+    "provenance": "Slow Italian / Giuoco Piano. Currently the most popular top-level opening. ECO C54. Source: Carlsen, Firouzja practice 2022-2024.",
+    "why": "Rich strategic play with long-term pressure. Central tension maintained. Less likely to lead to sterile draws than symmetrical lines.",
+    "color": "white"
+  },
+  {
+    "id": "W05_catalan_open",
+    "name": "Catalan Open Variation",
+    "moves": "1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 dxc4 5. Nf3 Be7 6. O-O O-O 7. Qc2 a6 8. a4 Bd7 9. Qxc4 Bc6 10. Bf4",
+    "exit_fen": "rn1q1rk1/1pp1bppp/p1b1pn2/8/P1QP1B2/5NP1/1P2PPBP/RN3RK1 b - - 2 10",
+    "exit_epd": "rn1q1rk1/1pp1bppp/p1b1pn2/8/P1QP1B2/5NP1/1P2PPBP/RN3RK1 b - - id \"W05_catalan_open_exit\";",
+    "provenance": "Open Catalan mainline. White recovers the pawn and maintains long-diagonal pressure. ECO E05. Source: Ding Liren's repertoire.",
+    "why": "Dynamic pressure with fianchettoed bishop. White has long-term structural advantage and initiative.",
+    "color": "white"
+  },
+  {
+    "id": "W06_vienna_gambit",
+    "name": "Vienna Gambit Accepted",
+    "moves": "1. e4 e5 2. Nc3 Nf6 3. f4 exf4 4. e5 Ng8 5. Nf3 d6 6. d4 dxe5 7. Qe2 Bb4 8. Qxe5+ Qe7 9. Bxf4 Bxc3+ 10. bxc3",
+    "exit_fen": "rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq - 0 10",
+    "exit_epd": "rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq - id \"W06_vienna_gambit_exit\";",
+    "provenance": "Vienna Gambit with 3.f4. Aggressive gambit leading to sharp play. ECO C29. Source: historical gambit theory, Spielmann.",
+    "why": "Gambit play creating immediate tactical complications. Structural imbalance with open lines for White.",
+    "color": "white"
+  },
+  {
+    "id": "W07_scotch_four_knights",
+    "name": "Scotch Game Main Line",
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6 5. Nxc6 bxc6 6. e5 Qe7 7. Qe2 Nd5 8. c4 Ba6 9. b3 g6 10. Ba3",
+    "exit_fen": "r3kb1r/p1ppqp1p/b1p3p1/3nP3/2P5/BP6/P3QPPP/RN2KB1R b KQkq - 1 10",
+    "exit_epd": "r3kb1r/p1ppqp1p/b1p3p1/3nP3/2P5/BP6/P3QPPP/RN2KB1R b KQkq - id \"W07_scotch_four_knights_exit\";",
+    "provenance": "Scotch Game mainline with 6.e5. Used extensively by Kasparov. ECO C45. Source: Kasparov's practice.",
+    "why": "Asymmetric pawn structure, White has space advantage. Black's doubled c-pawns create long-term targets.",
+    "color": "white"
+  },
+  {
+    "id": "W08_kings_indian_attack",
+    "name": "King's Indian Attack vs French Setup",
+    "moves": "1. e4 e6 2. d3 d5 3. Nd2 Nf6 4. Ngf3 Nc6 5. g3 Be7 6. Bg2 O-O 7. O-O e5 8. Re1 Re8 9. c3 a5 10. a4",
+    "exit_fen": "r1bqr1k1/1pp1bppp/2n2n2/p2pp3/P3P3/2PP1NP1/1P1N1PBP/R1BQR1K1 b - - 0 10",
+    "exit_epd": "r1bqr1k1/1pp1bppp/2n2n2/p2pp3/P3P3/2PP1NP1/1P1N1PBP/R1BQR1K1 b - - id \"W08_kings_indian_attack_exit\";",
+    "provenance": "King's Indian Attack vs French structure. Fischer's weapon. ECO C00. Source: Fischer's practice 1960s-70s.",
+    "why": "Flexible setup with kingside attacking potential. Central tension maintained with e4-d3 vs d5-e5.",
+    "color": "white"
+  },
+  {
+    "id": "W09_slav_exchange_with_bf4",
+    "name": "Slav with Bf4 Pressure System",
+    "moves": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 dxc4 5. a4 Bf5 6. e3 e6 7. Bxc4 Bb4 8. O-O O-O 9. Qe2 Nbd7 10. e4 Bg6",
+    "exit_fen": "r2q1rk1/pp1n1ppp/2p1pnb1/8/PbBPP3/2N2N2/1P2QPPP/R1B2RK1 w - - 1 11",
+    "exit_epd": "r2q1rk1/pp1n1ppp/2p1pnb1/8/PbBPP3/2N2N2/1P2QPPP/R1B2RK1 w - - id \"W09_slav_exchange_with_bf4_exit\";",
+    "provenance": "Slav Defense main line with 5.a4 Bf5. White pushes e4 gaining central space. ECO D15. Source: standard Slav theory.",
+    "why": "Central space advantage for White after e4. Dynamic play with piece activity vs Black's solid but passive setup.",
+    "color": "white"
+  },
+  {
+    "id": "W10_english_attack_sveshnikov",
+    "name": "Sicilian Sveshnikov English Attack",
+    "moves": "1. e4 c5 2. Nf3 Nc6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 e5 6. Ndb5 d6 7. Bg5 a6 8. Na3 b5 9. Nd5 Be7 10. Bxf6 Bxf6 11. c3",
+    "exit_fen": "r1bqk2r/5ppp/p1np1b2/1p1Np3/4P3/N1P5/PP3PPP/R2QKB1R b KQkq - 0 11",
+    "exit_epd": "r1bqk2r/5ppp/p1np1b2/1p1Np3/4P3/N1P5/PP3PPP/R2QKB1R b KQkq - id \"W10_english_attack_sveshnikov_exit\";",
+    "provenance": "Sveshnikov Sicilian mainline. One of the most complex theoretical battlegrounds. ECO B33. Source: Carlsen, Caruana modern practice.",
+    "why": "Extreme complexity and imbalance. White has the d5 outpost, Black has the bishop pair. Highly dynamic.",
+    "color": "white"
+  },
+  {
+    "id": "W11_queens_gambit_ragozin",
+    "name": "Queen's Gambit Ragozin with cxd5",
+    "moves": "1. d4 Nf6 2. c4 e6 3. Nf3 d5 4. Nc3 Bb4 5. cxd5 exd5 6. Bg5 h6 7. Bh4 c5 8. e3 Nc6 9. Bd3 cxd4 10. exd4 O-O",
+    "exit_fen": "r1bq1rk1/pp3pp1/2n2n1p/3p4/1b1P3B/2NB1N2/PP3PPP/R2QK2R w KQ - 1 11",
+    "exit_epd": "r1bq1rk1/pp3pp1/2n2n1p/3p4/1b1P3B/2NB1N2/PP3PPP/R2QK2R w KQ - id \"W11_queens_gambit_ragozin_exit\";",
+    "provenance": "Ragozin Defense with exchange on d5, IQP positions. ECO D38. Source: standard QGD theory.",
+    "why": "IQP positions offer real winning chances for both sides. White's piece activity compensates for the isolated d-pawn.",
+    "color": "white"
+  },
+  {
+    "id": "W12_sicilian_rossolimo",
+    "name": "Sicilian Rossolimo 3.Bb5",
+    "moves": "1. e4 c5 2. Nf3 Nc6 3. Bb5 g6 4. Bxc6 dxc6 5. d3 Bg7 6. h3 Nf6 7. Nc3 O-O 8. Be3 b6 9. Qd2 e5 10. O-O-O",
+    "exit_fen": "r1bq1rk1/p4pbp/1pp2np1/2p1p3/4P3/2NPBN1P/PPPQ1PP1/2KR3R b - - 1 10",
+    "exit_epd": "r1bq1rk1/p4pbp/1pp2np1/2p1p3/4P3/2NPBN1P/PPPQ1PP1/2KR3R b - - id \"W12_sicilian_rossolimo_exit\";",
+    "provenance": "Rossolimo Sicilian with Bxc6 doubling pawns. Modern Anti-Sicilian weapon. ECO B31. Source: Caruana's repertoire.",
+    "why": "Long-term structural advantage from doubled c-pawns. Opposite-side castling adds dynamic play. Less theoretical than Open Sicilian.",
+    "color": "white"
+  },
+  {
+    "id": "W13_french_advance_milner_barry",
+    "name": "French Advance Milner-Barry Gambit",
+    "moves": "1. e4 e6 2. d4 d5 3. e5 c5 4. c3 Nc6 5. Nf3 Qb6 6. Bd3 cxd4 7. cxd4 Bd7 8. O-O Nxd4 9. Nxd4 Qxd4 10. Nc3",
+    "exit_fen": "r3kbnr/pp1b1ppp/4p3/3pP3/3q4/2NB4/PP3PPP/R1BQ1RK1 b kq - 1 10",
+    "exit_epd": "r3kbnr/pp1b1ppp/4p3/3pP3/3q4/2NB4/PP3PPP/R1BQ1RK1 b kq - id \"W13_french_advance_milner_barry_exit\";",
+    "provenance": "Milner-Barry Gambit in French Advance. White sacrifices d4 pawn for rapid development and attack. ECO C02. Source: classical gambit theory.",
+    "why": "Gambit creating immediate attacking chances. White's development lead and open lines compensate for the pawn.",
+    "color": "white"
+  },
+  {
+    "id": "W14_caro_kann_advance",
+    "name": "Caro-Kann Advance with Short Castling Attack",
+    "moves": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Be2 Nd7 6. O-O Ne7 7. Nbd2 h6 8. Nb3 Bg6 9. a4 Nf5 10. a5",
+    "exit_fen": "r2qkb1r/pp1n1pp1/2p1p1bp/P2pPn2/3P4/1N3N2/1PP1BPPP/R1BQ1RK1 b kq - 0 10",
+    "exit_epd": "r2qkb1r/pp1n1pp1/2p1p1bp/P2pPn2/3P4/1N3N2/1PP1BPPP/R1BQ1RK1 b kq - id \"W14_caro_kann_advance_exit\";",
+    "provenance": "Caro-Kann Advance Variation. White restricts queenside expansion. ECO B12. Source: Short, Shirov practice.",
+    "why": "Space advantage and queenside restriction. Black must find active counterplay or suffer long-term pressure.",
+    "color": "white"
+  },
+  {
+    "id": "B01_sicilian_najdorf_6bg5",
+    "name": "Sicilian Najdorf 6.Bg5 Main Line",
+    "moves": "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Bg5 e6 7. f4 Be7 8. Qf3 Qc7 9. O-O-O Nbd7 10. g4",
+    "exit_fen": "r1b1k2r/1pqnbppp/p2ppn2/6B1/3NPPP1/2N2Q2/PPP4P/2KR1B1R b kq - 0 10",
+    "exit_epd": "r1b1k2r/1pqnbppp/p2ppn2/6B1/3NPPP1/2N2Q2/PPP4P/2KR1B1R b kq - id \"B01_sicilian_najdorf_6bg5_exit\";",
+    "provenance": "Najdorf Poisoned Pawn / English Attack complex. The sharpest Sicilian for Black. ECO B96-B99. Source: Kasparov, Nakamura practice.",
+    "why": "Maximum dynamism for Black. Opposite-side castling ensures decisive games. Black's counterplay is real and well-understood.",
+    "color": "black"
+  },
+  {
+    "id": "B02_sicilian_sveshnikov",
+    "name": "Sicilian Sveshnikov Main Line",
+    "moves": "1. e4 c5 2. Nf3 Nc6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 e5 6. Ndb5 d6 7. Bg5 a6 8. Na3 b5 9. Bxf6 gxf6 10. Nd5 f5",
+    "exit_fen": "r1bqkb1r/5p1p/p1np4/1p1Npp2/4P3/N7/PPP2PPP/R2QKB1R w KQkq - 0 11",
+    "exit_epd": "r1bqkb1r/5p1p/p1np4/1p1Npp2/4P3/N7/PPP2PPP/R2QKB1R w KQkq - id \"B02_sicilian_sveshnikov_exit\";",
+    "provenance": "Sveshnikov Sicilian with ...f5. Extremely dynamic for Black despite structural weaknesses. ECO B33. Source: Liren, Caruana practice.",
+    "why": "Black accepts structural damage for dynamic compensation. Bishop pair and central activity. Can lead to sharp middlegames.",
+    "color": "black"
+  },
+  {
+    "id": "B03_french_winawer",
+    "name": "French Winawer Poisoned Pawn",
+    "moves": "1. e4 e6 2. d4 d5 3. Nc3 Bb4 4. e5 c5 5. a3 Bxc3+ 6. bxc3 Ne7 7. Qg4 Qc7 8. Qxg7 Rg8 9. Qxh7 cxd4 10. Ne2",
+    "exit_fen": "rnb1k1r1/ppq1np1Q/4p3/3pP3/3p4/P1P5/2P1NPPP/R1B1KB1R b KQq - 1 10",
+    "exit_epd": "rnb1k1r1/ppq1np1Q/4p3/3pP3/3p4/P1P5/2P1NPPP/R1B1KB1R b KQq - id \"B03_french_winawer_exit\";",
+    "provenance": "French Winawer Poisoned Pawn variation. Black sacrifices kingside pawns for queenside initiative and attack on White's weak c3/d4 pawns. ECO C18. Source: Botvinnik, Short, modern French theory.",
+    "why": "Extreme imbalance. Material vs structure/initiative trade. Black's dark-square dominance and queenside attack create winning chances.",
+    "color": "black"
+  },
+  {
+    "id": "B04_grunfeld_exchange",
+    "name": "Gr\u00fcnfeld Exchange Variation",
+    "moves": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. e4 Nxc3 6. bxc3 Bg7 7. Nf3 c5 8. Be3 Qa5 9. Qd2 O-O 10. Rc1 cxd4 11. cxd4 Qxd2+ 12. Kxd2",
+    "exit_fen": "rnb2rk1/pp2ppbp/6p1/8/3PP3/4BN2/P2K1PPP/2R2B1R b - - 0 12",
+    "exit_epd": "rnb2rk1/pp2ppbp/6p1/8/3PP3/4BN2/P2K1PPP/2R2B1R b - - id \"B04_grunfeld_exchange_exit\";",
+    "provenance": "Gr\u00fcnfeld Exchange with endgame variation. Black pressures d4 pawn in the endgame. ECO D85. Source: Kasparov's main weapon as Black.",
+    "why": "Black's pressure on the d4 pawn in the endgame is a proven winning method. The fianchettoed bishop is extremely powerful.",
+    "color": "black"
+  },
+  {
+    "id": "B05_nimzo_indian_rubinstein",
+    "name": "Nimzo-Indian Rubinstein 4.e3",
+    "moves": "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e3 O-O 5. Bd3 d5 6. Nf3 c5 7. O-O dxc4 8. Bxc4 cxd4 9. exd4 b6 10. Bg5 Bb7",
+    "exit_fen": "rn1q1rk1/pb3ppp/1p2pn2/6B1/1bBP4/2N2N2/PP3PPP/R2Q1RK1 w - - 2 11",
+    "exit_epd": "rn1q1rk1/pb3ppp/1p2pn2/6B1/1bBP4/2N2N2/PP3PPP/R2Q1RK1 w - - id \"B05_nimzo_indian_rubinstein_exit\";",
+    "provenance": "Nimzo-Indian Rubinstein variation. Black targets the IQP on d4. ECO E48-E49. Source: Karpov, Kramnik practice.",
+    "why": "Black gets clear targets (isolated d4 pawn) and active piece play. A proven winning method for Black at the highest level.",
+    "color": "black"
+  },
+  {
+    "id": "B06_kings_indian_mar_del_plata",
+    "name": "King's Indian Mar del Plata Attack",
+    "moves": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5 7. O-O Nc6 8. d5 Ne7 9. Ne1 Nd7 10. f3 f5",
+    "exit_fen": "r1bq1rk1/pppnn1bp/3p2p1/3Ppp2/2P1P3/2N2P2/PP2B1PP/R1BQNRK1 w - - 0 11",
+    "exit_epd": "r1bq1rk1/pppnn1bp/3p2p1/3Ppp2/2P1P3/2N2P2/PP2B1PP/R1BQNRK1 w - - id \"B06_kings_indian_mar_del_plata_exit\";",
+    "provenance": "King's Indian Mar del Plata variation. Black's kingside attack with ...f5 is one of the most dynamic plans in chess. ECO E97. Source: Fischer, Kasparov, Radjabov practice.",
+    "why": "Maximum dynamism. Black's kingside attack is extremely dangerous. Engines historically underestimate the long-term attacking potential.",
+    "color": "black"
+  },
+  {
+    "id": "B07_benoni_modern",
+    "name": "Modern Benoni Main Line",
+    "moves": "1. d4 Nf6 2. c4 c5 3. d5 e6 4. Nc3 exd5 5. cxd5 d6 6. e4 g6 7. Nf3 Bg7 8. Be2 O-O 9. O-O Re8 10. Nd2 Na6",
+    "exit_fen": "r1bqr1k1/pp3pbp/n2p1np1/2pP4/4P3/2N5/PP1NBPPP/R1BQ1RK1 w - - 8 11",
+    "exit_epd": "r1bqr1k1/pp3pbp/n2p1np1/2pP4/4P3/2N5/PP1NBPPP/R1BQ1RK1 w - - id \"B07_benoni_modern_exit\";",
+    "provenance": "Modern Benoni. Black accepts structural inferiority for dynamic counterplay. ECO A60-A79. Source: Tal, Kasparov practice.",
+    "why": "Extreme strategic imbalance. White has space, Black has piece activity and the e5/b5 breaks. Decisive results very likely.",
+    "color": "black"
+  },
+  {
+    "id": "B08_dutch_stonewall",
+    "name": "Dutch Stonewall",
+    "moves": "1. d4 f5 2. c4 Nf6 3. g3 e6 4. Bg2 Be7 5. Nf3 O-O 6. O-O d5 7. b3 c6 8. Bb2 Ne4 9. Nbd2 Nd7 10. Ne5 Nxe5 11. dxe5",
+    "exit_fen": "r1bq1rk1/pp2b1pp/2p1p3/3pPp2/2P1n3/1P4P1/PB1NPPBP/R2Q1RK1 b - - 0 11",
+    "exit_epd": "r1bq1rk1/pp2b1pp/2p1p3/3pPp2/2P1n3/1P4P1/PB1NPPBP/R2Q1RK1 b - - id \"B08_dutch_stonewall_exit\";",
+    "provenance": "Dutch Stonewall. Black gets a strong e4 outpost and kingside attacking chances. ECO A90-A99. Source: Kramnik, Carlsen practice in blitz.",
+    "why": "Fixed central structure ensures long, strategically rich games. Black's e4 outpost is a permanent advantage.",
+    "color": "black"
+  },
+  {
+    "id": "B09_caro_kann_classical",
+    "name": "Caro-Kann Classical 4...Bf5",
+    "moves": "1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. Nf3 Nd7 8. h5 Bh7 9. Bd3 Bxd3 10. Qxd3 e6",
+    "exit_fen": "r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq - 0 11",
+    "exit_epd": "r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq - id \"B09_caro_kann_classical_exit\";",
+    "provenance": "Caro-Kann Classical with 4...Bf5. Solid but with dynamic potential. ECO B18-B19. Source: Anand, Karpov main weapon.",
+    "why": "Solid structure but with clear plans for Black. The h4-h5 push commits White, and Black can exploit the weakened kingside later.",
+    "color": "black"
+  },
+  {
+    "id": "B10_sicilian_taimanov",
+    "name": "Sicilian Taimanov 5...a6",
+    "moves": "1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 Nc6 5. Nc3 a6 6. Be3 Nf6 7. f4 Bb4 8. Bd3 Qa5 9. Qf3 d5 10. e5 Nd7",
+    "exit_fen": "r1b1k2r/1p1n1ppp/p1n1p3/q2pP3/1b1N1P2/2NBBQ2/PPP3PP/R3K2R w KQkq - 1 11",
+    "exit_epd": "r1b1k2r/1p1n1ppp/p1n1p3/q2pP3/1b1N1P2/2NBBQ2/PPP3PP/R3K2R w KQkq - id \"B10_sicilian_taimanov_exit\";",
+    "provenance": "Taimanov Sicilian with ...a6 and ...Bb4 pin. Dynamic play with central tension. ECO B46. Source: Anand, Adams practice.",
+    "why": "Active piece play for Black with pressure on e5 and the pin on Nc3. Central tension creates tactical opportunities.",
+    "color": "black"
+  },
+  {
+    "id": "B11_petroff_steinitz",
+    "name": "Petroff Steinitz Attack 5.Nc3",
+    "moves": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. Nc3 Nxc3 6. dxc3 Be7 7. Be3 Nc6 8. Qd2 Be6 9. O-O-O Qd7 10. Kb1 O-O-O",
+    "exit_fen": "2kr3r/pppqbppp/2npb3/8/8/2P1BN2/PPPQ1PPP/1K1R1B1R w - - 9 11",
+    "exit_epd": "2kr3r/pppqbppp/2npb3/8/8/2P1BN2/PPPQ1PPP/1K1R1B1R w - - id \"B11_petroff_steinitz_exit\";",
+    "provenance": "Petroff with Steinitz Attack (5.Nc3). Opposite-side castling creates sharp play. ECO C42. Source: Kramnik, Aronian practice.",
+    "why": "Unlike the drawish main Petroff, this variation with opposite-side castling creates real attacking chances for both sides.",
+    "color": "black"
+  },
+  {
+    "id": "B12_semi_slav_meran",
+    "name": "Semi-Slav Meran Variation",
+    "moves": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 e6 5. e3 Nbd7 6. Bd3 dxc4 7. Bxc4 b5 8. Bd3 Bb7 9. O-O a6 10. e4 c5",
+    "exit_fen": "r2qkb1r/1b1n1ppp/p3pn2/1pp5/3PP3/2NB1N2/PP3PPP/R1BQ1RK1 w kq - 0 11",
+    "exit_epd": "r2qkb1r/1b1n1ppp/p3pn2/1pp5/3PP3/2NB1N2/PP3PPP/R1BQ1RK1 w kq - id \"B12_semi_slav_meran_exit\";",
+    "provenance": "Semi-Slav Meran variation. One of the sharpest lines in 1.d4 chess. ECO D47-D49. Source: Kramnik, Anand match 2008.",
+    "why": "Extreme tactical complexity. Queenside pawn storm with ...b5-c5 creates sharp play. Black's counterplay is potent and well-tested.",
+    "color": "black"
+  },
+  {
+    "id": "B13_benko_gambit",
+    "name": "Benko Gambit Accepted",
+    "moves": "1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. bxa6 g6 6. Nc3 Bxa6 7. Nf3 d6 8. e4 Bxf1 9. Kxf1 Bg7 10. g3 O-O",
+    "exit_fen": "rn1q1rk1/4ppbp/3p1np1/2pP4/4P3/2N2NP1/PP3P1P/R1BQ1K1R w - - 1 11",
+    "exit_epd": "rn1q1rk1/4ppbp/3p1np1/2pP4/4P3/2N2NP1/PP3P1P/R1BQ1K1R w - - id \"B13_benko_gambit_exit\";",
+    "provenance": "Benko Gambit accepted mainline. Black sacrifices a pawn for long-term queenside pressure on the a and b files. ECO A57-A59. Source: standard Benko theory.",
+    "why": "Permanent positional compensation for the pawn. Black's pressure on a/b files and the fianchettoed bishop create lasting initiative.",
+    "color": "black"
+  },
+  {
+    "id": "B14_scandinavian_3qd6",
+    "name": "Scandinavian 3...Qd6 Gubinsky-Melts",
+    "moves": "1. e4 d5 2. exd5 Qxd5 3. Nc3 Qd6 4. d4 Nf6 5. Nf3 a6 6. Be2 Bg4 7. O-O e6 8. h3 Bh5 9. Be3 Nc6 10. a3 Be7",
+    "exit_fen": "r3k2r/1pp1bppp/p1nqpn2/7b/3P4/P1N1BN1P/1PP1BPP1/R2Q1RK1 w kq - 1 11",
+    "exit_epd": "r3k2r/1pp1bppp/p1nqpn2/7b/3P4/P1N1BN1P/1PP1BPP1/R2Q1RK1 w kq - id \"B14_scandinavian_3qd6_exit\";",
+    "provenance": "Scandinavian Defense with 3...Qd6 (Gubinsky-Melts). Flexible setup avoiding the drawish ...Qa5 lines. ECO B01. Source: Tiviakov's practice.",
+    "why": "Unusual but sound. Black gets solid development with ...Bg4, ...Nc6, ...e6 setup. Less theoretical, may catch engine preparation off guard.",
+    "color": "black"
+  }
+]

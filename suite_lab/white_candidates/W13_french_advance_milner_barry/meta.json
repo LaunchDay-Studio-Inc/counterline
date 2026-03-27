@@ -1,0 +1,10 @@
+{
+  "id": "W13_french_advance_milner_barry",
+  "name": "French Advance Milner-Barry Gambit",
+  "moves": "1. e4 e6 2. d4 d5 3. e5 c5 4. c3 Nc6 5. Nf3 Qb6 6. Bd3 cxd4 7. cxd4 Bd7 8. O-O Nxd4 9. Nxd4 Qxd4 10. Nc3",
+  "exit_fen": "r3kbnr/pp1b1ppp/4p3/3pP3/3q4/2NB4/PP3PPP/R1BQ1RK1 b kq - 1 10",
+  "exit_epd": "r3kbnr/pp1b1ppp/4p3/3pP3/3q4/2NB4/PP3PPP/R1BQ1RK1 b kq - id \"W13_french_advance_milner_barry_exit\";",
+  "provenance": "Milner-Barry Gambit in French Advance. White sacrifices d4 pawn for rapid development and attack. ECO C02. Source: classical gambit theory.",
+  "why": "Gambit creating immediate attacking chances. White's development lead and open lines compensate for the pawn.",
+  "color": "white"
+}

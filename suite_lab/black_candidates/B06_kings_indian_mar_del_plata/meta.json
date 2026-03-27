@@ -1,0 +1,10 @@
+{
+  "id": "B06_kings_indian_mar_del_plata",
+  "name": "King's Indian Mar del Plata Attack",
+  "moves": "1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5 7. O-O Nc6 8. d5 Ne7 9. Ne1 Nd7 10. f3 f5",
+  "exit_fen": "r1bq1rk1/pppnn1bp/3p2p1/3Ppp2/2P1P3/2N2P2/PP2B1PP/R1BQNRK1 w - - 0 11",
+  "exit_epd": "r1bq1rk1/pppnn1bp/3p2p1/3Ppp2/2P1P3/2N2P2/PP2B1PP/R1BQNRK1 w - - id \"B06_kings_indian_mar_del_plata_exit\";",
+  "provenance": "King's Indian Mar del Plata variation. Black's kingside attack with ...f5 is one of the most dynamic plans in chess. ECO E97. Source: Fischer, Kasparov, Radjabov practice.",
+  "why": "Maximum dynamism. Black's kingside attack is extremely dangerous. Engines historically underestimate the long-term attacking potential.",
+  "color": "black"
+}

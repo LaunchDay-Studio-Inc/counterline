@@ -1,0 +1,10 @@
+{
+  "id": "B11_petroff_steinitz",
+  "name": "Petroff Steinitz Attack 5.Nc3",
+  "moves": "1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. Nc3 Nxc3 6. dxc3 Be7 7. Be3 Nc6 8. Qd2 Be6 9. O-O-O Qd7 10. Kb1 O-O-O",
+  "exit_fen": "2kr3r/pppqbppp/2npb3/8/8/2P1BN2/PPPQ1PPP/1K1R1B1R w - - 9 11",
+  "exit_epd": "2kr3r/pppqbppp/2npb3/8/8/2P1BN2/PPPQ1PPP/1K1R1B1R w - - id \"B11_petroff_steinitz_exit\";",
+  "provenance": "Petroff with Steinitz Attack (5.Nc3). Opposite-side castling creates sharp play. ECO C42. Source: Kramnik, Aronian practice.",
+  "why": "Unlike the drawish main Petroff, this variation with opposite-side castling creates real attacking chances for both sides.",
+  "color": "black"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "W14_caro_kann_advance",
+  "name": "Caro-Kann Advance with Short Castling Attack",
+  "moves": "1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Be2 Nd7 6. O-O Ne7 7. Nbd2 h6 8. Nb3 Bg6 9. a4 Nf5 10. a5",
+  "exit_fen": "r2qkb1r/pp1n1pp1/2p1p1bp/P2pPn2/3P4/1N3N2/1PP1BPPP/R1BQ1RK1 b kq - 0 10",
+  "exit_epd": "r2qkb1r/pp1n1pp1/2p1p1bp/P2pPn2/3P4/1N3N2/1PP1BPPP/R1BQ1RK1 b kq - id \"W14_caro_kann_advance_exit\";",
+  "provenance": "Caro-Kann Advance Variation. White restricts queenside expansion. ECO B12. Source: Short, Shirov practice.",
+  "why": "Space advantage and queenside restriction. Black must find active counterplay or suffer long-term pressure.",
+  "color": "white"
+}

@@ -1,0 +1,14 @@
+r1b1k2r/1pqnbppp/p2ppn2/6B1/3NPPP1/2N2Q2/PPP4P/2KR1B1R b kq - id "B01_sicilian_najdorf_6bg5_exit";
+r1bqkb1r/5p1p/p1np4/1p1Npp2/4P3/N7/PPP2PPP/R2QKB1R w KQkq - id "B02_sicilian_sveshnikov_exit";
+rnb1k1r1/ppq1np1Q/4p3/3pP3/3p4/P1P5/2P1NPPP/R1B1KB1R b KQq - id "B03_french_winawer_exit";
+rnb2rk1/pp2ppbp/6p1/8/3PP3/4BN2/P2K1PPP/2R2B1R b - - id "B04_grunfeld_exchange_exit";
+rn1q1rk1/pb3ppp/1p2pn2/6B1/1bBP4/2N2N2/PP3PPP/R2Q1RK1 w - - id "B05_nimzo_indian_rubinstein_exit";
+r1bq1rk1/pppnn1bp/3p2p1/3Ppp2/2P1P3/2N2P2/PP2B1PP/R1BQNRK1 w - - id "B06_kings_indian_mar_del_plata_exit";
+r1bqr1k1/pp3pbp/n2p1np1/2pP4/4P3/2N5/PP1NBPPP/R1BQ1RK1 w - - id "B07_benoni_modern_exit";
+r1bq1rk1/pp2b1pp/2p1p3/3pPp2/2P1n3/1P4P1/PB1NPPBP/R2Q1RK1 b - - id "B08_dutch_stonewall_exit";
+r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq - id "B09_caro_kann_classical_exit";
+r1b1k2r/1p1n1ppp/p1n1p3/q2pP3/1b1N1P2/2NBBQ2/PPP3PP/R3K2R w KQkq - id "B10_sicilian_taimanov_exit";
+2kr3r/pppqbppp/2npb3/8/8/2P1BN2/PPPQ1PPP/1K1R1B1R w - - id "B11_petroff_steinitz_exit";
+r2qkb1r/1b1n1ppp/p3pn2/1pp5/3PP3/2NB1N2/PP3PPP/R1BQ1RK1 w kq - id "B12_semi_slav_meran_exit";
+rn1q1rk1/4ppbp/3p1np1/2pP4/4P3/2N2NP1/PP3P1P/R1BQ1K1R w - - id "B13_benko_gambit_exit";
+r3k2r/1pp1bppp/p1nqpn2/7b/3P4/P1N1BN1P/1PP1BPP1/R2Q1RK1 w kq - id "B14_scandinavian_3qd6_exit";

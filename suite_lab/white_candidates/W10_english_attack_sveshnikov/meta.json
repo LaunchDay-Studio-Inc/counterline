@@ -1,0 +1,10 @@
+{
+  "id": "W10_english_attack_sveshnikov",
+  "name": "Sicilian Sveshnikov English Attack",
+  "moves": "1. e4 c5 2. Nf3 Nc6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 e5 6. Ndb5 d6 7. Bg5 a6 8. Na3 b5 9. Nd5 Be7 10. Bxf6 Bxf6 11. c3",
+  "exit_fen": "r1bqk2r/5ppp/p1np1b2/1p1Np3/4P3/N1P5/PP3PPP/R2QKB1R b KQkq - 0 11",
+  "exit_epd": "r1bqk2r/5ppp/p1np1b2/1p1Np3/4P3/N1P5/PP3PPP/R2QKB1R b KQkq - id \"W10_english_attack_sveshnikov_exit\";",
+  "provenance": "Sveshnikov Sicilian mainline. One of the most complex theoretical battlegrounds. ECO B33. Source: Carlsen, Caruana modern practice.",
+  "why": "Extreme complexity and imbalance. White has the d5 outpost, Black has the bishop pair. Highly dynamic.",
+  "color": "white"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "W03_ruy_lopez_marshall_anti",
+  "name": "Ruy Lopez Anti-Marshall 8.a4",
+  "moves": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 O-O 8. a4 b4 9. d3 d6 10. a5",
+  "exit_fen": "r1bq1rk1/2p1bppp/p1np1n2/P3p3/1p2P3/1B1P1N2/1PP2PPP/RNBQR1K1 b - - 0 10",
+  "exit_epd": "r1bq1rk1/2p1bppp/p1np1n2/P3p3/1p2P3/1B1P1N2/1PP2PPP/RNBQR1K1 b - - id \"W03_ruy_lopez_marshall_anti_exit\";",
+  "provenance": "Anti-Marshall with 8.a4. Avoids the sharp Marshall Gambit while maintaining pressure. ECO C88. Source: modern GM practice, widely used by Caruana.",
+  "why": "Solid pressure line. Avoids Marshall complications while keeping positional tension. Less drawish than main Marshall due to asymmetric pawn structure.",
+  "color": "white"
+}

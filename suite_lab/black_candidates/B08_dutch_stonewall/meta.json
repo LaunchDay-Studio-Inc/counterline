@@ -1,0 +1,10 @@
+{
+  "id": "B08_dutch_stonewall",
+  "name": "Dutch Stonewall",
+  "moves": "1. d4 f5 2. c4 Nf6 3. g3 e6 4. Bg2 Be7 5. Nf3 O-O 6. O-O d5 7. b3 c6 8. Bb2 Ne4 9. Nbd2 Nd7 10. Ne5 Nxe5 11. dxe5",
+  "exit_fen": "r1bq1rk1/pp2b1pp/2p1p3/3pPp2/2P1n3/1P4P1/PB1NPPBP/R2Q1RK1 b - - 0 11",
+  "exit_epd": "r1bq1rk1/pp2b1pp/2p1p3/3pPp2/2P1n3/1P4P1/PB1NPPBP/R2Q1RK1 b - - id \"B08_dutch_stonewall_exit\";",
+  "provenance": "Dutch Stonewall. Black gets a strong e4 outpost and kingside attacking chances. ECO A90-A99. Source: Kramnik, Carlsen practice in blitz.",
+  "why": "Fixed central structure ensures long, strategically rich games. Black's e4 outpost is a permanent advantage.",
+  "color": "black"
+}

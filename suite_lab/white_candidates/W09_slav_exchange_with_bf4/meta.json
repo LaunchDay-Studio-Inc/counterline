@@ -1,0 +1,10 @@
+{
+  "id": "W09_slav_exchange_with_bf4",
+  "name": "Slav with Bf4 Pressure System",
+  "moves": "1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 dxc4 5. a4 Bf5 6. e3 e6 7. Bxc4 Bb4 8. O-O O-O 9. Qe2 Nbd7 10. e4 Bg6",
+  "exit_fen": "r2q1rk1/pp1n1ppp/2p1pnb1/8/PbBPP3/2N2N2/1P2QPPP/R1B2RK1 w - - 1 11",
+  "exit_epd": "r2q1rk1/pp1n1ppp/2p1pnb1/8/PbBPP3/2N2N2/1P2QPPP/R1B2RK1 w - - id \"W09_slav_exchange_with_bf4_exit\";",
+  "provenance": "Slav Defense main line with 5.a4 Bf5. White pushes e4 gaining central space. ECO D15. Source: standard Slav theory.",
+  "why": "Central space advantage for White after e4. Dynamic play with piece activity vs Black's solid but passive setup.",
+  "color": "white"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "B07_benoni_modern",
+  "name": "Modern Benoni Main Line",
+  "moves": "1. d4 Nf6 2. c4 c5 3. d5 e6 4. Nc3 exd5 5. cxd5 d6 6. e4 g6 7. Nf3 Bg7 8. Be2 O-O 9. O-O Re8 10. Nd2 Na6",
+  "exit_fen": "r1bqr1k1/pp3pbp/n2p1np1/2pP4/4P3/2N5/PP1NBPPP/R1BQ1RK1 w - - 8 11",
+  "exit_epd": "r1bqr1k1/pp3pbp/n2p1np1/2pP4/4P3/2N5/PP1NBPPP/R1BQ1RK1 w - - id \"B07_benoni_modern_exit\";",
+  "provenance": "Modern Benoni. Black accepts structural inferiority for dynamic counterplay. ECO A60-A79. Source: Tal, Kasparov practice.",
+  "why": "Extreme strategic imbalance. White has space, Black has piece activity and the e5/b5 breaks. Decisive results very likely.",
+  "color": "black"
+}

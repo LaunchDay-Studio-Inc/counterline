@@ -1,0 +1,10 @@
+{
+  "id": "W01_sicilian_najdorf_english_attack",
+  "name": "Sicilian Najdorf English Attack 6.Be3",
+  "moves": "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be3 e5 7. Nb3 Be7 8. f3 Be6 9. Qd2 O-O 10. O-O-O Nbd7",
+  "exit_fen": "r2q1rk1/1p1nbppp/p2pbn2/4p3/4P3/1NN1BP2/PPPQ2PP/2KR1B1R w - - 5 11",
+  "exit_epd": "r2q1rk1/1p1nbppp/p2pbn2/4p3/4P3/1NN1BP2/PPPQ2PP/2KR1B1R w - - id \"W01_sicilian_najdorf_english_attack_exit\";",
+  "provenance": "Najdorf English Attack mainline. One of the sharpest and most theoretically important lines in chess. Opposite-side castling creates natural attacking chances. Source: standard ECO B90 theory.",
+  "why": "High-imbalance, opposite-side castling, rich tactical play. White has clear attacking plans against the Black king.",
+  "color": "white"
+}

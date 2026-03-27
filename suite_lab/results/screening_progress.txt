@@ -1,0 +1,38 @@
+=== Full Candidate Screening ===
+Started: Thu Mar 26 08:34:05 PM UTC 2026
+Rounds per position: 20, TC: 1+0.1
+
+--- WHITE CANDIDATES ---
+  SKIP W01_sicilian_najdorf_english_attack: already has 40 games
+  SKIP W02_sicilian_dragon_yugoslav: already has 38 games
+  W03_ruy_lopez_marshall_anti: Games: 40, Wins: 0, Losses: 3, Draws: 37, Points: 18.5 (46.25 %)
+  W04_italian_giuoco_piano_slow: Games: 40, Wins: 0, Losses: 1, Draws: 39, Points: 19.5 (48.75 %)
+  W05_catalan_open: Games: 40, Wins: 2, Losses: 2, Draws: 36, Points: 20.0 (50.00 %)
+  W06_vienna_gambit: Games: 40, Wins: 20, Losses: 20, Draws: 0, Points: 20.0 (50.00 %)
+  W07_scotch_four_knights: Games: 40, Wins: 2, Losses: 1, Draws: 37, Points: 20.5 (51.25 %)
+  W08_kings_indian_attack: Games: 40, Wins: 3, Losses: 0, Draws: 37, Points: 21.5 (53.75 %)
+  W09_slav_exchange_with_bf4: Games: 40, Wins: 2, Losses: 4, Draws: 34, Points: 19.0 (47.50 %)
+  W10_english_attack_sveshnikov: Games: 40, Wins: 10, Losses: 1, Draws: 29, Points: 24.5 (61.25 %)
+  W11_queens_gambit_ragozin: Games: 40, Wins: 0, Losses: 4, Draws: 36, Points: 18.0 (45.00 %)
+  W12_sicilian_rossolimo: Games: 40, Wins: 0, Losses: 5, Draws: 35, Points: 17.5 (43.75 %)
+  W13_french_advance_milner_barry: Games: 40, Wins: 8, Losses: 10, Draws: 22, Points: 19.0 (47.50 %)
+  W14_caro_kann_advance: Games: 40, Wins: 5, Losses: 0, Draws: 35, Points: 22.5 (56.25 %)
+
+--- BLACK CANDIDATES ---
+  B01_sicilian_najdorf_6bg5: Games: 40, Wins: 3, Losses: 1, Draws: 36, Points: 21.0 (52.50 %)
+  B02_sicilian_sveshnikov: Games: 40, Wins: 13, Losses: 4, Draws: 23, Points: 24.5 (61.25 %)
+  B03_french_winawer: Games: 40, Wins: 2, Losses: 13, Draws: 25, Points: 14.5 (36.25 %)
+  B04_grunfeld_exchange: Games: 40, Wins: 0, Losses: 0, Draws: 40, Points: 20.0 (50.00 %)
+  B05_nimzo_indian_rubinstein: Games: 40, Wins: 0, Losses: 1, Draws: 39, Points: 19.5 (48.75 %)
+  B06_kings_indian_mar_del_plata: Games: 40, Wins: 4, Losses: 5, Draws: 31, Points: 19.5 (48.75 %)
+  B07_benoni_modern: Games: 40, Wins: 3, Losses: 5, Draws: 32, Points: 19.0 (47.50 %)
+  B08_dutch_stonewall: Games: 40, Wins: 3, Losses: 2, Draws: 35, Points: 20.5 (51.25 %)
+  B09_caro_kann_classical: Games: 40, Wins: 0, Losses: 3, Draws: 37, Points: 18.5 (46.25 %)
+  B10_sicilian_taimanov: Games: 40, Wins: 12, Losses: 10, Draws: 18, Points: 21.0 (52.50 %)
+  B11_petroff_steinitz: Games: 40, Wins: 2, Losses: 5, Draws: 33, Points: 18.5 (46.25 %)
+  B12_semi_slav_meran: Games: 40, Wins: 1, Losses: 3, Draws: 36, Points: 19.0 (47.50 %)
+  B13_benko_gambit: Games: 40, Wins: 5, Losses: 4, Draws: 31, Points: 20.5 (51.25 %)
+  B14_scandinavian_3qd6: Games: 40, Wins: 5, Losses: 11, Draws: 24, Points: 17.0 (42.50 %)
+
+=== DONE: Fri Mar 27 12:13:59 AM UTC 2026 ===
+Run: .venv/bin/python suite_lab/scripts/summarize_candidate_screen.py

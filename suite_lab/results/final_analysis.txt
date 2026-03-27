@@ -1,0 +1,45 @@
+==========================================================================================
+  SIDE-SPECIFIC SCREENING ANALYSIS
+  (Score = master's win rate when playing the candidate's target side)
+==========================================================================================
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  WHITE CANDIDATES — master as White
+──────────────────────────────────────────────────────────────────────────────────────────
+ # Candidate                                     Games SideW SideD SideL   Score    Elo
+──────────────────────────────────────────────────────────────────────────────────────────
+ 1 W06_vienna_gambit                                60    27     3     0  95.0%   +512
+ 2 W10_english_attack_sveshnikov                    60    13    16     1  70.0%   +147
+ 3 W14_caro_kann_advance                            40     5    15     0  62.5%    +89
+ 4 W02_sicilian_dragon_yugoslav                     58     8    20     1  62.1%    +86
+ 5 W01_sicilian_najdorf_english_attack              60     8    21     1  61.7%    +83
+ 6 W05_catalan_open                                 60     4    26     0  56.7%    +47
+ 7 W09_slav_exchange_with_bf4                       60     5    24     1  56.7%    +47
+ 8 W08_kings_indian_attack                          60     3    26     1  53.3%    +23
+ 9 W03_ruy_lopez_marshall_anti                      60     2    27     1  51.7%    +12
+10 W07_scotch_four_knights                          61     2    28     1  51.6%    +11
+11 W04_italian_giuoco_piano_slow                    60     1    28     1  50.0%     -0
+12 W12_sicilian_rossolimo                           40     0    20     0  50.0%     -0
+13 W11_queens_gambit_ragozin                        42     0    19     2  45.2%    -33
+14 W13_french_advance_milner_barry                  40     1     9    10  27.5%   -168
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  BLACK CANDIDATES — master as Black
+──────────────────────────────────────────────────────────────────────────────────────────
+ # Candidate                                     Games SideW SideD SideL   Score    Elo
+──────────────────────────────────────────────────────────────────────────────────────────
+ 1 B09_caro_kann_classical                          43     1    21     0  52.3%    +16
+ 2 B04_grunfeld_exchange                            41     0    21     0  50.0%     -0
+ 3 B05_nimzo_indian_rubinstein                      40     0    20     0  50.0%     -0
+ 4 B12_semi_slav_meran                              40     0    20     0  50.0%     -0
+ 5 B03_french_winawer                               41     0    20     1  47.6%    -17
+ 6 B08_dutch_stonewall                              40     0    19     1  47.5%    -17
+ 7 B11_petroff_steinitz                             40     0    18     2  45.0%    -35
+ 8 B01_sicilian_najdorf_6bg5                        40     0    17     3  42.5%    -53
+ 9 B07_benoni_modern                                40     0    17     3  42.5%    -53
+10 B02_sicilian_sveshnikov                          40     1    14     5  40.0%    -70
+11 B06_kings_indian_mar_del_plata                   40     0    16     4  40.0%    -70
+12 B13_benko_gambit                                 40     1    14     5  40.0%    -70
+13 B14_scandinavian_3qd6                            40     1    14     5  40.0%    -70
+14 B10_sicilian_taimanov                            40     1     8    11  25.0%   -191
+

@@ -1,0 +1,10 @@
+{
+  "id": "B04_grunfeld_exchange",
+  "name": "Gr\u00fcnfeld Exchange Variation",
+  "moves": "1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. e4 Nxc3 6. bxc3 Bg7 7. Nf3 c5 8. Be3 Qa5 9. Qd2 O-O 10. Rc1 cxd4 11. cxd4 Qxd2+ 12. Kxd2",
+  "exit_fen": "rnb2rk1/pp2ppbp/6p1/8/3PP3/4BN2/P2K1PPP/2R2B1R b - - 0 12",
+  "exit_epd": "rnb2rk1/pp2ppbp/6p1/8/3PP3/4BN2/P2K1PPP/2R2B1R b - - id \"B04_grunfeld_exchange_exit\";",
+  "provenance": "Gr\u00fcnfeld Exchange with endgame variation. Black pressures d4 pawn in the endgame. ECO D85. Source: Kasparov's main weapon as Black.",
+  "why": "Black's pressure on the d4 pawn in the endgame is a proven winning method. The fianchettoed bishop is extremely powerful.",
+  "color": "black"
+}

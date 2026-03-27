@@ -1,0 +1,10 @@
+{
+  "id": "W04_italian_giuoco_piano_slow",
+  "name": "Italian Giuoco Piano with d3 and c3",
+  "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. c3 Nf6 5. d3 d6 6. O-O a6 7. a4 Ba7 8. Nbd2 O-O 9. Re1 Be6 10. Bb3",
+  "exit_fen": "r2q1rk1/bpp2ppp/p1npbn2/4p3/P3P3/1BPP1N2/1P1N1PPP/R1BQR1K1 b - - 6 10",
+  "exit_epd": "r2q1rk1/bpp2ppp/p1npbn2/4p3/P3P3/1BPP1N2/1P1N1PPP/R1BQR1K1 b - - id \"W04_italian_giuoco_piano_slow_exit\";",
+  "provenance": "Slow Italian / Giuoco Piano. Currently the most popular top-level opening. ECO C54. Source: Carlsen, Firouzja practice 2022-2024.",
+  "why": "Rich strategic play with long-term pressure. Central tension maintained. Less likely to lead to sterile draws than symmetrical lines.",
+  "color": "white"
+}

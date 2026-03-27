@@ -1,0 +1,10 @@
+{
+  "id": "W07_scotch_four_knights",
+  "name": "Scotch Game Main Line",
+  "moves": "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6 5. Nxc6 bxc6 6. e5 Qe7 7. Qe2 Nd5 8. c4 Ba6 9. b3 g6 10. Ba3",
+  "exit_fen": "r3kb1r/p1ppqp1p/b1p3p1/3nP3/2P5/BP6/P3QPPP/RN2KB1R b KQkq - 1 10",
+  "exit_epd": "r3kb1r/p1ppqp1p/b1p3p1/3nP3/2P5/BP6/P3QPPP/RN2KB1R b KQkq - id \"W07_scotch_four_knights_exit\";",
+  "provenance": "Scotch Game mainline with 6.e5. Used extensively by Kasparov. ECO C45. Source: Kasparov's practice.",
+  "why": "Asymmetric pawn structure, White has space advantage. Black's doubled c-pawns create long-term targets.",
+  "color": "white"
+}

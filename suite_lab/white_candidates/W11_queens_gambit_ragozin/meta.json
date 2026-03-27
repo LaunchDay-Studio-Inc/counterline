@@ -1,0 +1,10 @@
+{
+  "id": "W11_queens_gambit_ragozin",
+  "name": "Queen's Gambit Ragozin with cxd5",
+  "moves": "1. d4 Nf6 2. c4 e6 3. Nf3 d5 4. Nc3 Bb4 5. cxd5 exd5 6. Bg5 h6 7. Bh4 c5 8. e3 Nc6 9. Bd3 cxd4 10. exd4 O-O",
+  "exit_fen": "r1bq1rk1/pp3pp1/2n2n1p/3p4/1b1P3B/2NB1N2/PP3PPP/R2QK2R w KQ - 1 11",
+  "exit_epd": "r1bq1rk1/pp3pp1/2n2n1p/3p4/1b1P3B/2NB1N2/PP3PPP/R2QK2R w KQ - id \"W11_queens_gambit_ragozin_exit\";",
+  "provenance": "Ragozin Defense with exchange on d5, IQP positions. ECO D38. Source: standard QGD theory.",
+  "why": "IQP positions offer real winning chances for both sides. White's piece activity compensates for the isolated d-pawn.",
+  "color": "white"
+}

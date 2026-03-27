@@ -1,0 +1,10 @@
+{
+  "id": "W06_vienna_gambit",
+  "name": "Vienna Gambit Accepted",
+  "moves": "1. e4 e5 2. Nc3 Nf6 3. f4 exf4 4. e5 Ng8 5. Nf3 d6 6. d4 dxe5 7. Qe2 Bb4 8. Qxe5+ Qe7 9. Bxf4 Bxc3+ 10. bxc3",
+  "exit_fen": "rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq - 0 10",
+  "exit_epd": "rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq - id \"W06_vienna_gambit_exit\";",
+  "provenance": "Vienna Gambit with 3.f4. Aggressive gambit leading to sharp play. ECO C29. Source: historical gambit theory, Spielmann.",
+  "why": "Gambit play creating immediate tactical complications. Structural imbalance with open lines for White.",
+  "color": "white"
+}

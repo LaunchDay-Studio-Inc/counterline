@@ -1,0 +1,10 @@
+{
+  "id": "W08_kings_indian_attack",
+  "name": "King's Indian Attack vs French Setup",
+  "moves": "1. e4 e6 2. d3 d5 3. Nd2 Nf6 4. Ngf3 Nc6 5. g3 Be7 6. Bg2 O-O 7. O-O e5 8. Re1 Re8 9. c3 a5 10. a4",
+  "exit_fen": "r1bqr1k1/1pp1bppp/2n2n2/p2pp3/P3P3/2PP1NP1/1P1N1PBP/R1BQR1K1 b - - 0 10",
+  "exit_epd": "r1bqr1k1/1pp1bppp/2n2n2/p2pp3/P3P3/2PP1NP1/1P1N1PBP/R1BQR1K1 b - - id \"W08_kings_indian_attack_exit\";",
+  "provenance": "King's Indian Attack vs French structure. Fischer's weapon. ECO C00. Source: Fischer's practice 1960s-70s.",
+  "why": "Flexible setup with kingside attacking potential. Central tension maintained with e4-d3 vs d5-e5.",
+  "color": "white"
+}

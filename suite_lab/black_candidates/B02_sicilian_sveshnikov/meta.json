@@ -1,0 +1,10 @@
+{
+  "id": "B02_sicilian_sveshnikov",
+  "name": "Sicilian Sveshnikov Main Line",
+  "moves": "1. e4 c5 2. Nf3 Nc6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 e5 6. Ndb5 d6 7. Bg5 a6 8. Na3 b5 9. Bxf6 gxf6 10. Nd5 f5",
+  "exit_fen": "r1bqkb1r/5p1p/p1np4/1p1Npp2/4P3/N7/PPP2PPP/R2QKB1R w KQkq - 0 11",
+  "exit_epd": "r1bqkb1r/5p1p/p1np4/1p1Npp2/4P3/N7/PPP2PPP/R2QKB1R w KQkq - id \"B02_sicilian_sveshnikov_exit\";",
+  "provenance": "Sveshnikov Sicilian with ...f5. Extremely dynamic for Black despite structural weaknesses. ECO B33. Source: Liren, Caruana practice.",
+  "why": "Black accepts structural damage for dynamic compensation. Bishop pair and central activity. Can lead to sharp middlegames.",
+  "color": "black"
+}

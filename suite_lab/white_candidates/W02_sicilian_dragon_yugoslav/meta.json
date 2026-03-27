@@ -1,0 +1,10 @@
+{
+  "id": "W02_sicilian_dragon_yugoslav",
+  "name": "Sicilian Dragon Yugoslav Attack",
+  "moves": "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 g6 6. Be3 Bg7 7. f3 O-O 8. Qd2 Nc6 9. Bc4 Bd7 10. O-O-O",
+  "exit_fen": "r2q1rk1/pp1bppbp/2np1np1/8/2BNP3/2N1BP2/PPPQ2PP/2KR3R b - - 6 10",
+  "exit_epd": "r2q1rk1/pp1bppbp/2np1np1/8/2BNP3/2N1BP2/PPPQ2PP/2KR3R b - - id \"W02_sicilian_dragon_yugoslav_exit\";",
+  "provenance": "Yugoslav Attack vs Dragon Sicilian. Arguably the most violent mainline in chess theory. ECO B78. Source: standard Dragon theory.",
+  "why": "Maximum violence. Opposite-side castling, mutual attacks. White launches h4-h5 pawn storm.",
+  "color": "white"
+}
