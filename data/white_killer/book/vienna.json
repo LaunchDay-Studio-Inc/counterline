@@ -1,0 +1,4094 @@
+{
+  "exit_fen": "rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq -",
+  "exit_moves": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3",
+  "metadata": {},
+  "nodes": {
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6": {
+      "fen": "r1b1k1nr/ppp1qppp/2n5/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R w KQkq - 1 11",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6",
+      "depth_from_exit": 1,
+      "candidate_moves": {
+        "e5e7": {
+          "master_eval_cp": 171,
+          "predicted_replies": [
+            "g8e7",
+            "c6e7"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582390.518661
+        },
+        "f1b5": {
+          "master_eval_cp": 155,
+          "predicted_replies": [
+            "c8d7",
+            "a7a6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582390.943871
+        },
+        "e5e2": {
+          "master_eval_cp": 104,
+          "predicted_replies": [
+            "c8g4",
+            "g8f6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582391.4086535
+        },
+        "e5e3": {
+          "master_eval_cp": 86,
+          "predicted_replies": [
+            "c8g4",
+            "e7e3"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582391.8502126
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7": {
+      "fen": "r1b1k2r/ppp1nppp/2n5/8/3P1B2/2P2N2/P1P3PP/R3KB1R w KQkq - 0 12",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7",
+      "depth_from_exit": 3,
+      "candidate_moves": {
+        "e1c1": {
+          "master_eval_cp": 215,
+          "predicted_replies": [
+            "e7d5",
+            "c8g4"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582392.3418272
+        },
+        "f4c7": {
+          "master_eval_cp": 162,
+          "predicted_replies": [
+            "e7d5",
+            "c8e6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582392.8086436
+        },
+        "e1d2": {
+          "master_eval_cp": 150,
+          "predicted_replies": [
+            "e7d5",
+            "c8e6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582393.2493293
+        },
+        "c3c4": {
+          "master_eval_cp": 137,
+          "predicted_replies": [
+            "c8f5",
+            "c8g4"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582393.7344792
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5": {
+      "fen": "r1b1k2r/ppp2ppp/2n5/3n4/3P1B2/2P2N2/P1P3PP/2KR1B1R w kq - 2 13",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5",
+      "depth_from_exit": 5,
+      "candidate_moves": {
+        "d1e1": {
+          "master_eval_cp": 187,
+          "predicted_replies": [
+            "c8e6",
+            "e8d7"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582394.2746437
+        },
+        "f4d2": {
+          "master_eval_cp": 151,
+          "predicted_replies": [
+            "c8g4",
+            "e8g8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582394.6881735
+        },
+        "f4g5": {
+          "master_eval_cp": 76,
+          "predicted_replies": [
+            "d5c3",
+            "e8g8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582395.120046
+        },
+        "f4g3": {
+          "master_eval_cp": 70,
+          "predicted_replies": [
+            "e8g8",
+            "d5c3"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582395.5381832
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5 d1e1 c8e6": {
+      "fen": "r3k2r/ppp2ppp/2n1b3/3n4/3P1B2/2P2N2/P1P3PP/2K1RB1R w kq - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5 d1e1 c8e6",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "f4d2": {
+          "master_eval_cp": 270,
+          "predicted_replies": [
+            "e8c8",
+            "e8d7"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582396.040482
+        },
+        "f4g5": {
+          "master_eval_cp": 58,
+          "predicted_replies": [
+            "d5c3",
+            "e8d7"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582396.458021
+        },
+        "f4e3": {
+          "master_eval_cp": 55,
+          "predicted_replies": [
+            "d5b6",
+            "d5c3"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582396.9074798
+        },
+        "g2g3": {
+          "master_eval_cp": 40,
+          "predicted_replies": [
+            "e8c8",
+            "d5f4"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582397.32343
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5 d1e1 e8d7": {
+      "fen": "r1b4r/pppk1ppp/2n5/3n4/3P1B2/2P2N2/P1P3PP/2K1RB1R w - - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5 d1e1 e8d7",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "f4d2": {
+          "master_eval_cp": 274,
+          "predicted_replies": [
+            "h8e8",
+            "f7f6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582397.8425374
+        },
+        "f1b5": {
+          "master_eval_cp": 206,
+          "predicted_replies": [
+            "a7a6",
+            "d5f4"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582398.2740183
+        },
+        "f4g3": {
+          "master_eval_cp": 186,
+          "predicted_replies": [
+            "d5c3",
+            "f7f6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582398.7121987
+        },
+        "f4g5": {
+          "master_eval_cp": 169,
+          "predicted_replies": [
+            "f7f6",
+            "d5c3"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582399.1595604
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5 f4d2 c8g4": {
+      "fen": "r3k2r/ppp2ppp/2n5/3n4/3P2b1/2P2N2/P1PB2PP/2KR1B1R w kq - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5 f4d2 c8g4",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "c3c4": {
+          "master_eval_cp": 198,
+          "predicted_replies": [
+            "d5b6",
+            "d5f6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582399.646161
+        },
+        "d1e1": {
+          "master_eval_cp": 162,
+          "predicted_replies": [
+            "e8d7",
+            "c6e7"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582400.0804124
+        },
+        "f1d3": {
+          "master_eval_cp": 138,
+          "predicted_replies": [
+            "e8c8",
+            "e8g8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582400.4975357
+        },
+        "h2h3": {
+          "master_eval_cp": 119,
+          "predicted_replies": [
+            "g4f3",
+            "g4h5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582400.9313538
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5 f4d2 e8g8": {
+      "fen": "r1b2rk1/ppp2ppp/2n5/3n4/3P4/2P2N2/P1PB2PP/2KR1B1R w - - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 e7d5 f4d2 e8g8",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "c3c4": {
+          "master_eval_cp": 131,
+          "predicted_replies": [
+            "d5f6",
+            "d5b6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582401.434121
+        },
+        "d1e1": {
+          "master_eval_cp": 100,
+          "predicted_replies": [
+            "d5b6",
+            "d5f6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582401.854805
+        },
+        "f1d3": {
+          "master_eval_cp": 96,
+          "predicted_replies": [
+            "d5b6",
+            "d5f6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582402.3017619
+        },
+        "f3g5": {
+          "master_eval_cp": 92,
+          "predicted_replies": [
+            "h7h6",
+            "d5b6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582402.7139099
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4": {
+      "fen": "r3k2r/ppp1nppp/2n5/8/3P1Bb1/2P2N2/P1P3PP/2KR1B1R w kq - 2 13",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4",
+      "depth_from_exit": 5,
+      "candidate_moves": {
+        "d4d5": {
+          "master_eval_cp": 169,
+          "predicted_replies": [
+            "c6b8",
+            "e7g6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582403.2106338
+        },
+        "d1e1": {
+          "master_eval_cp": 166,
+          "predicted_replies": [
+            "g4f3",
+            "e8g8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582403.6450298
+        },
+        "f4c7": {
+          "master_eval_cp": 153,
+          "predicted_replies": [
+            "g4f3",
+            "a8c8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582404.1154873
+        },
+        "c3c4": {
+          "master_eval_cp": 132,
+          "predicted_replies": [
+            "e8c8",
+            "g4f3"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582404.566772
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4 d4d5 c6b8": {
+      "fen": "rn2k2r/ppp1nppp/8/3P4/5Bb1/2P2N2/P1P3PP/2KR1B1R w kq - 1 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4 d4d5 c6b8",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "f4c7": {
+          "master_eval_cp": 315,
+          "predicted_replies": [
+            "e8g8",
+            "e8d7"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582405.0158892
+        },
+        "d1e1": {
+          "master_eval_cp": 227,
+          "predicted_replies": [
+            "e8d8",
+            "b8a6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582405.4279032
+        },
+        "f1c4": {
+          "master_eval_cp": 218,
+          "predicted_replies": [
+            "e8g8",
+            "b8a6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582405.8397825
+        },
+        "c3c4": {
+          "master_eval_cp": 213,
+          "predicted_replies": [
+            "b8a6",
+            "g4f3"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582406.4175532
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4 d4d5 e7g6": {
+      "fen": "r3k2r/ppp2ppp/2n3n1/3P4/5Bb1/2P2N2/P1P3PP/2KR1B1R w kq - 1 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4 d4d5 e7g6",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "d5c6": {
+          "master_eval_cp": 289,
+          "predicted_replies": [
+            "g6f4",
+            "g4f3"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582407.0324016
+        },
+        "d1e1": {
+          "master_eval_cp": 285,
+          "predicted_replies": [
+            "c6e7",
+            "e8d8"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582407.6229165
+        },
+        "f4c7": {
+          "master_eval_cp": 266,
+          "predicted_replies": [
+            "e8d7",
+            "a8c8"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582408.0357249
+        },
+        "f4g3": {
+          "master_eval_cp": 221,
+          "predicted_replies": [
+            "c6e7",
+            "c6a5"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582408.474487
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4 f4c7 g4f3": {
+      "fen": "r3k2r/ppB1nppp/2n5/8/3P4/2P2b2/P1P3PP/2KR1B1R w kq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4 f4c7 g4f3",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "g2f3": {
+          "master_eval_cp": 229,
+          "predicted_replies": [
+            "a8c8",
+            "e7d5"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582408.9822705
+        },
+        "d1e1": {
+          "master_eval_cp": -162,
+          "predicted_replies": [
+            "e8d7",
+            "f3d5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 40.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582409.3903985
+        },
+        "d1d3": {
+          "master_eval_cp": -235,
+          "predicted_replies": [
+            "f3e4",
+            "f3d5"
+          ],
+          "empirical_score": 0.0,
+          "wdl_score": 40.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 0,
+          "losses": 2,
+          "last_verified_ts": 1774582409.8245113
+        },
+        "d1d2": {
+          "master_eval_cp": -257,
+          "predicted_replies": [
+            "f3e4",
+            "f3d5"
+          ],
+          "empirical_score": 25.0,
+          "wdl_score": 40.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 0,
+          "draws": 1,
+          "losses": 1,
+          "last_verified_ts": 1774582410.2722936
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4 f4c7 a8c8": {
+      "fen": "2r1k2r/ppB1nppp/2n5/8/3P2b1/2P2N2/P1P3PP/2KR1B1R w k - 1 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 e1c1 c8g4 f4c7 a8c8",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "c7d6": {
+          "master_eval_cp": 212,
+          "predicted_replies": [
+            "e7d5",
+            "e7f5"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582410.7859917
+        },
+        "c7g3": {
+          "master_eval_cp": 185,
+          "predicted_replies": [
+            "e8g8",
+            "c8d8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582411.228059
+        },
+        "c7f4": {
+          "master_eval_cp": 151,
+          "predicted_replies": [
+            "e8g8",
+            "e7d5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582411.671694
+        },
+        "d4d5": {
+          "master_eval_cp": 47,
+          "predicted_replies": [
+            "g4f3",
+            "e7d5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582412.072196
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5": {
+      "fen": "r1b1k2r/ppB2ppp/2n5/3n4/3P4/2P2N2/P1P3PP/R3KB1R w KQkq - 1 13",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5",
+      "depth_from_exit": 5,
+      "candidate_moves": {
+        "c7e5": {
+          "master_eval_cp": 86,
+          "predicted_replies": [
+            "f7f6",
+            "c6e5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582412.568757
+        },
+        "c7d6": {
+          "master_eval_cp": 79,
+          "predicted_replies": [
+            "d5c3",
+            "c8f5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582413.039874
+        },
+        "c7g3": {
+          "master_eval_cp": 78,
+          "predicted_replies": [
+            "d5c3",
+            "f7f5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582413.4790156
+        },
+        "e1c1": {
+          "master_eval_cp": -163,
+          "predicted_replies": [
+            "d5c7",
+            "c8e6"
+          ],
+          "empirical_score": 25.0,
+          "wdl_score": 40.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 0,
+          "draws": 1,
+          "losses": 1,
+          "last_verified_ts": 1774582413.9241621
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5 c7d6 d5c3": {
+      "fen": "r1b1k2r/pp3ppp/2nB4/8/3P4/2n2N2/P1P3PP/R3KB1R w KQkq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5 c7d6 d5c3",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "f1d3": {
+          "master_eval_cp": 117,
+          "predicted_replies": [
+            "c8e6",
+            "c8g4"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582414.3866644
+        },
+        "d6a3": {
+          "master_eval_cp": 86,
+          "predicted_replies": [
+            "c8g4",
+            "c8f5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582414.8484352
+        },
+        "a2a4": {
+          "master_eval_cp": 73,
+          "predicted_replies": [
+            "c8f5",
+            "c8g4"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582415.270437
+        },
+        "h2h4": {
+          "master_eval_cp": 63,
+          "predicted_replies": [
+            "c8g4",
+            "c8f5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582415.6914268
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5 c7d6 c8f5": {
+      "fen": "r3k2r/pp3ppp/2nB4/3n1b2/3P4/2P2N2/P1P3PP/R3KB1R w KQkq - 3 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5 c7d6 c8f5",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "e1d2": {
+          "master_eval_cp": 171,
+          "predicted_replies": [
+            "e8c8",
+            "e8d7"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582416.170377
+        },
+        "c3c4": {
+          "master_eval_cp": 91,
+          "predicted_replies": [
+            "d5e3",
+            "d5f6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582416.6018941
+        },
+        "f3h4": {
+          "master_eval_cp": 75,
+          "predicted_replies": [
+            "f5c2",
+            "f5e4"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582417.0516922
+        },
+        "f1c4": {
+          "master_eval_cp": 39,
+          "predicted_replies": [
+            "d5c3",
+            "d5e3"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582417.4523203
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5 c7g3 d5c3": {
+      "fen": "r1b1k2r/pp3ppp/2n5/8/3P4/2n2NB1/P1P3PP/R3KB1R w KQkq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5 c7g3 d5c3",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "f1c4": {
+          "master_eval_cp": 69,
+          "predicted_replies": [
+            "c6a5",
+            "c8e6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582417.9148498
+        },
+        "f1d3": {
+          "master_eval_cp": 61,
+          "predicted_replies": [
+            "c8e6",
+            "e8g8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582418.3522053
+        },
+        "e1d2": {
+          "master_eval_cp": 55,
+          "predicted_replies": [
+            "c3e4",
+            "c3d5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582418.7883825
+        },
+        "a2a4": {
+          "master_eval_cp": 43,
+          "predicted_replies": [
+            "e8g8",
+            "c8f5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582419.180068
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5 c7g3 f7f5": {
+      "fen": "r1b1k2r/pp4pp/2n5/3n1p2/3P4/2P2NB1/P1P3PP/R3KB1R w KQkq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 e7d5 c7g3 f7f5",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "c3c4": {
+          "master_eval_cp": 283,
+          "predicted_replies": [
+            "d5e3",
+            "d5f6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582419.7010217
+        },
+        "e1d2": {
+          "master_eval_cp": 264,
+          "predicted_replies": [
+            "f5f4",
+            "e8g8"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582420.113734
+        },
+        "f1c4": {
+          "master_eval_cp": 230,
+          "predicted_replies": [
+            "d5c3",
+            "d5e3"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582420.5636313
+        },
+        "e1c1": {
+          "master_eval_cp": 200,
+          "predicted_replies": [
+            "f5f4",
+            "e8g8"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582421.0069628
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6": {
+      "fen": "r3k2r/ppB1nppp/2n1b3/8/3P4/2P2N2/P1P3PP/R3KB1R w KQkq - 1 13",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6",
+      "depth_from_exit": 5,
+      "candidate_moves": {
+        "c3c4": {
+          "master_eval_cp": 183,
+          "predicted_replies": [
+            "a8c8",
+            "e6f5"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582421.528554
+        },
+        "f3g5": {
+          "master_eval_cp": 171,
+          "predicted_replies": [
+            "e6f5",
+            "e7d5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582421.955068
+        },
+        "a1b1": {
+          "master_eval_cp": 170,
+          "predicted_replies": [
+            "e7d5",
+            "b7b6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582422.3955963
+        },
+        "c7g3": {
+          "master_eval_cp": 167,
+          "predicted_replies": [
+            "e7d5",
+            "a8c8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582422.8240256
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 c3c4 a8c8": {
+      "fen": "2r1k2r/ppB1nppp/2n1b3/8/2PP4/5N2/P1P3PP/R3KB1R w KQk - 1 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 c3c4 a8c8",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "c7g3": {
+          "master_eval_cp": 175,
+          "predicted_replies": [
+            "c6b4",
+            "c6a5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582423.3134751
+        },
+        "c7d6": {
+          "master_eval_cp": 153,
+          "predicted_replies": [
+            "e7f5",
+            "c6a5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582423.7454748
+        },
+        "c7f4": {
+          "master_eval_cp": 142,
+          "predicted_replies": [
+            "c6b4",
+            "c6a5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582424.1827404
+        },
+        "d4d5": {
+          "master_eval_cp": 88,
+          "predicted_replies": [
+            "c8c7",
+            "c6b4"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582424.5970228
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 c3c4 e6f5": {
+      "fen": "r3k2r/ppB1nppp/2n5/5b2/2PP4/5N2/P1P3PP/R3KB1R w KQkq - 1 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 c3c4 e6f5",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "e1c1": {
+          "master_eval_cp": 277,
+          "predicted_replies": [
+            "c6b4",
+            "f5g4"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582425.1440334
+        },
+        "d4d5": {
+          "master_eval_cp": 255,
+          "predicted_replies": [
+            "c6b4",
+            "e8d7"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582425.5824244
+        },
+        "a1b1": {
+          "master_eval_cp": 236,
+          "predicted_replies": [
+            "b7b6",
+            "f5c2"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582426.022948
+        },
+        "e1d2": {
+          "master_eval_cp": 235,
+          "predicted_replies": [
+            "a8c8",
+            "f5g4"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582426.467058
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 a1b1 e7d5": {
+      "fen": "r3k2r/ppB2ppp/2n1b3/3n4/3P4/2P2N2/P1P3PP/1R2KB1R w Kkq - 3 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 a1b1 e7d5",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "b1b7": {
+          "master_eval_cp": 202,
+          "predicted_replies": [
+            "e6c8",
+            "e8g8"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582426.900593
+        },
+        "c7g3": {
+          "master_eval_cp": 134,
+          "predicted_replies": [
+            "d5c3",
+            "e8c8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582427.3202627
+        },
+        "c7d6": {
+          "master_eval_cp": 116,
+          "predicted_replies": [
+            "e8c8",
+            "a8d8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582427.7402384
+        },
+        "c7e5": {
+          "master_eval_cp": 30,
+          "predicted_replies": [
+            "f7f6",
+            "e8c8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582428.1663182
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 a1b1 b7b6": {
+      "fen": "r3k2r/p1B1nppp/1pn1b3/8/3P4/2P2N2/P1P3PP/1R2KB1R w Kkq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 a1b1 b7b6",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "c3c4": {
+          "master_eval_cp": 183,
+          "predicted_replies": [
+            "a8c8",
+            "c6a5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582428.6791184
+        },
+        "e1d2": {
+          "master_eval_cp": 167,
+          "predicted_replies": [
+            "f7f6",
+            "e8g8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582429.1305788
+        },
+        "f1d3": {
+          "master_eval_cp": 150,
+          "predicted_replies": [
+            "e6a2",
+            "f7f6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582429.5995579
+        },
+        "c7f4": {
+          "master_eval_cp": 149,
+          "predicted_replies": [
+            "a8d8",
+            "e6a2"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582430.0650263
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 c7g3 e7d5": {
+      "fen": "r3k2r/pp3ppp/2n1b3/3n4/3P4/2P2NB1/P1P3PP/R3KB1R w KQkq - 3 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 c7g3 e7d5",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "e1d2": {
+          "master_eval_cp": 219,
+          "predicted_replies": [
+            "d5b6",
+            "c6a5"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582430.5736177
+        },
+        "c3c4": {
+          "master_eval_cp": 196,
+          "predicted_replies": [
+            "d5e3",
+            "d5b4"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582430.9983113
+        },
+        "f3g5": {
+          "master_eval_cp": 167,
+          "predicted_replies": [
+            "d5c3",
+            "e8g8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582431.4004817
+        },
+        "f1d3": {
+          "master_eval_cp": 117,
+          "predicted_replies": [
+            "d5c3",
+            "a7a6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582431.824492
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 c7g3 a8c8": {
+      "fen": "2r1k2r/pp2nppp/2n1b3/8/3P4/2P2NB1/P1P3PP/R3KB1R w KQk - 3 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 f4c7 c8e6 c7g3 a8c8",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "e1c1": {
+          "master_eval_cp": 235,
+          "predicted_replies": [
+            "e6a2",
+            "e7d5"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582432.2850132
+        },
+        "c3c4": {
+          "master_eval_cp": 222,
+          "predicted_replies": [
+            "b7b5",
+            "e7f5"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582432.6727126
+        },
+        "f1d3": {
+          "master_eval_cp": 210,
+          "predicted_replies": [
+            "e7f5",
+            "e6f5"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582433.1235068
+        },
+        "f3g5": {
+          "master_eval_cp": 201,
+          "predicted_replies": [
+            "e6f5",
+            "e7f5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582433.6060534
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5": {
+      "fen": "r3k2r/ppp1nppp/2n5/5b2/2PP1B2/5N2/P1P3PP/R3KB1R w KQkq - 1 13",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5",
+      "depth_from_exit": 5,
+      "candidate_moves": {
+        "f4g3": {
+          "master_eval_cp": 132,
+          "predicted_replies": [
+            "e8c8",
+            "f5c2"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582434.1142395
+        },
+        "f4c7": {
+          "master_eval_cp": 118,
+          "predicted_replies": [
+            "c6b4",
+            "f5c2"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582434.574049
+        },
+        "f1e2": {
+          "master_eval_cp": 108,
+          "predicted_replies": [
+            "e8c8",
+            "f5c2"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582435.0158894
+        },
+        "d4d5": {
+          "master_eval_cp": 106,
+          "predicted_replies": [
+            "c6b4",
+            "e7g6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582435.478651
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5 f4c7 c6b4": {
+      "fen": "r3k2r/ppB1nppp/8/5b2/1nPP4/5N2/P1P3PP/R3KB1R w KQkq - 1 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5 f4c7 c6b4",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "e1d2": {
+          "master_eval_cp": 219,
+          "predicted_replies": [
+            "b4c2",
+            "a8c8"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582435.9865916
+        },
+        "a1b1": {
+          "master_eval_cp": 194,
+          "predicted_replies": [
+            "b4c2",
+            "e7c6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582436.4248497
+        },
+        "a1d1": {
+          "master_eval_cp": 168,
+          "predicted_replies": [
+            "f5c2",
+            "b4c2"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582436.89233
+        },
+        "e1f2": {
+          "master_eval_cp": 165,
+          "predicted_replies": [
+            "b4c2",
+            "a8c8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582437.3355467
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5 f4c7 f5c2": {
+      "fen": "r3k2r/ppB1nppp/2n5/8/2PP4/5N2/P1b3PP/R3KB1R w KQkq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5 f4c7 f5c2",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "d4d5": {
+          "master_eval_cp": 234,
+          "predicted_replies": [
+            "a8c8",
+            "c6b4"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582437.8399456
+        },
+        "e1d2": {
+          "master_eval_cp": 202,
+          "predicted_replies": [
+            "c2e4",
+            "a8c8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582438.2380881
+        },
+        "a1c1": {
+          "master_eval_cp": 154,
+          "predicted_replies": [
+            "c2e4",
+            "a8c8"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582438.662475
+        },
+        "e1f2": {
+          "master_eval_cp": 149,
+          "predicted_replies": [
+            "a8c8",
+            "f7f6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582439.089174
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5 d4d5 c6b4": {
+      "fen": "r3k2r/ppp1nppp/8/3P1b2/1nP2B2/5N2/P1P3PP/R3KB1R w KQkq - 1 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5 d4d5 c6b4",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "e1c1": {
+          "master_eval_cp": 175,
+          "predicted_replies": [
+            "e8c8",
+            "c7c6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582439.5966616
+        },
+        "e1d2": {
+          "master_eval_cp": 117,
+          "predicted_replies": [
+            "b4c2",
+            "e8c8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582440.0440006
+        },
+        "f3d4": {
+          "master_eval_cp": 117,
+          "predicted_replies": [
+            "e8c8",
+            "c7c5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582440.4578838
+        },
+        "a1b1": {
+          "master_eval_cp": 115,
+          "predicted_replies": [
+            "b4c2",
+            "c7c5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582440.8822715
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5 d4d5 e7g6": {
+      "fen": "r3k2r/ppp2ppp/2n3n1/3P1b2/2P2B2/5N2/P1P3PP/R3KB1R w KQkq - 1 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8f5 d4d5 e7g6",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "f4c7": {
+          "master_eval_cp": 268,
+          "predicted_replies": [
+            "c6b4",
+            "e8d7"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582441.3881633
+        },
+        "d5c6": {
+          "master_eval_cp": 136,
+          "predicted_replies": [
+            "g6f4",
+            "e8c8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582441.81008
+        },
+        "f4g3": {
+          "master_eval_cp": 135,
+          "predicted_replies": [
+            "c6b4",
+            "c6e7"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582442.2581139
+        },
+        "e1c1": {
+          "master_eval_cp": 95,
+          "predicted_replies": [
+            "g6f4",
+            "e8c8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582442.6699016
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4": {
+      "fen": "r3k2r/ppp1nppp/2n5/8/2PP1Bb1/5N2/P1P3PP/R3KB1R w KQkq - 1 13",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4",
+      "depth_from_exit": 5,
+      "candidate_moves": {
+        "d4d5": {
+          "master_eval_cp": 137,
+          "predicted_replies": [
+            "g4f3",
+            "c6b4"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582443.154655
+        },
+        "e1c1": {
+          "master_eval_cp": 101,
+          "predicted_replies": [
+            "e8c8",
+            "a8d8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582443.5832746
+        },
+        "c2c3": {
+          "master_eval_cp": 99,
+          "predicted_replies": [
+            "e8c8",
+            "e8d7"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582444.0332055
+        },
+        "a1b1": {
+          "master_eval_cp": 71,
+          "predicted_replies": [
+            "e8c8",
+            "g4f3"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582444.4497662
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4 d4d5 g4f3": {
+      "fen": "r3k2r/ppp1nppp/2n5/3P4/2P2B2/5b2/P1P3PP/R3KB1R w KQkq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4 d4d5 g4f3",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "g2f3": {
+          "master_eval_cp": 222,
+          "predicted_replies": [
+            "c6d4",
+            "e7g6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582444.9316797
+        },
+        "e1d2": {
+          "master_eval_cp": 17,
+          "predicted_replies": [
+            "f3e4",
+            "f3h5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582445.3454363
+        },
+        "e1f2": {
+          "master_eval_cp": 9,
+          "predicted_replies": [
+            "f3d5",
+            "f3e4"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582445.7753613
+        },
+        "d5c6": {
+          "master_eval_cp": 8,
+          "predicted_replies": [
+            "f3c6",
+            "f3e4"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582446.1839712
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4 d4d5 c6b4": {
+      "fen": "r3k2r/ppp1nppp/8/3P4/1nP2Bb1/5N2/P1P3PP/R3KB1R w KQkq - 1 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4 d4d5 c6b4",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "a1b1": {
+          "master_eval_cp": 224,
+          "predicted_replies": [
+            "c7c5",
+            "b4c2"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582446.6749356
+        },
+        "e1c1": {
+          "master_eval_cp": 187,
+          "predicted_replies": [
+            "e8c8",
+            "b4a6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582447.0882854
+        },
+        "e1f2": {
+          "master_eval_cp": 156,
+          "predicted_replies": [
+            "e8c8",
+            "f7f6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582447.5330348
+        },
+        "f3e5": {
+          "master_eval_cp": 148,
+          "predicted_replies": [
+            "g4f5",
+            "g4h5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582447.9903877
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4 e1c1 e8c8": {
+      "fen": "2kr3r/ppp1nppp/2n5/8/2PP1Bb1/5N2/P1P3PP/2KR1B1R w - - 3 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4 e1c1 e8c8",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "d4d5": {
+          "master_eval_cp": 89,
+          "predicted_replies": [
+            "e7g6",
+            "c6b8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582448.4450283
+        },
+        "c2c3": {
+          "master_eval_cp": 58,
+          "predicted_replies": [
+            "h8e8",
+            "d8e8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582448.8783317
+        },
+        "f4e3": {
+          "master_eval_cp": 35,
+          "predicted_replies": [
+            "e7f5",
+            "h8e8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582449.2842174
+        },
+        "h1g1": {
+          "master_eval_cp": 23,
+          "predicted_replies": [
+            "e7f5",
+            "h8e8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582449.6996253
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4 e1c1 a8d8": {
+      "fen": "3rk2r/ppp1nppp/2n5/8/2PP1Bb1/5N2/P1P3PP/2KR1B1R w k - 3 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 g8e7 c3c4 c8g4 e1c1 a8d8",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "d4d5": {
+          "master_eval_cp": 191,
+          "predicted_replies": [
+            "c6b4",
+            "g4f3"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582450.2146904
+        },
+        "c2c3": {
+          "master_eval_cp": 127,
+          "predicted_replies": [
+            "e8g8",
+            "e8d7"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582450.6139522
+        },
+        "f4c7": {
+          "master_eval_cp": 112,
+          "predicted_replies": [
+            "g4f3",
+            "d8d7"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582451.0098255
+        },
+        "f1e2": {
+          "master_eval_cp": 81,
+          "predicted_replies": [
+            "g4f3",
+            "d8d7"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582451.407333
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7": {
+      "fen": "r1b1k1nr/ppp1nppp/8/8/3P1B2/2P2N2/P1P3PP/R3KB1R w KQkq - 0 12",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7",
+      "depth_from_exit": 3,
+      "candidate_moves": {
+        "e1d2": {
+          "master_eval_cp": 168,
+          "predicted_replies": [
+            "g8f6",
+            "e7d5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582451.9166398
+        },
+        "a1b1": {
+          "master_eval_cp": 146,
+          "predicted_replies": [
+            "e7d5",
+            "c7c6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582452.3966699
+        },
+        "a2a4": {
+          "master_eval_cp": 139,
+          "predicted_replies": [
+            "e7d5",
+            "g8f6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582452.8472896
+        },
+        "f1d3": {
+          "master_eval_cp": 119,
+          "predicted_replies": [
+            "e7d5",
+            "c8f5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582453.2792523
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6": {
+      "fen": "r1b1k2r/ppp1nppp/5n2/8/3P1B2/2P2N2/P1PK2PP/R4B1R w kq - 2 13",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6",
+      "depth_from_exit": 5,
+      "candidate_moves": {
+        "f4c7": {
+          "master_eval_cp": 158,
+          "predicted_replies": [
+            "f6e4",
+            "e8g8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582453.7803135
+        },
+        "f1d3": {
+          "master_eval_cp": 140,
+          "predicted_replies": [
+            "f6d5",
+            "c8f5"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582454.2497337
+        },
+        "a1e1": {
+          "master_eval_cp": 126,
+          "predicted_replies": [
+            "c7c6",
+            "c8f5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582454.6782587
+        },
+        "a2a4": {
+          "master_eval_cp": 126,
+          "predicted_replies": [
+            "f6e4",
+            "e8g8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582455.1171753
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6 f4c7 f6e4": {
+      "fen": "r1b1k2r/ppB1nppp/8/8/3Pn3/2P2N2/P1PK2PP/R4B1R w kq - 1 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6 f4c7 f6e4",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "d2c1": {
+          "master_eval_cp": 118,
+          "predicted_replies": [
+            "e8g8",
+            "e7d5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582455.5980601
+        },
+        "d2e1": {
+          "master_eval_cp": 76,
+          "predicted_replies": [
+            "e4c3",
+            "e7d5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582456.0109026
+        },
+        "d2e3": {
+          "master_eval_cp": 65,
+          "predicted_replies": [
+            "e4c3",
+            "c8f5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582456.4519272
+        },
+        "d2d1": {
+          "master_eval_cp": 31,
+          "predicted_replies": [
+            "e4f2",
+            "e4c3"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582456.8496454
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6 f4c7 e8g8": {
+      "fen": "r1b2rk1/ppB1nppp/5n2/8/3P4/2P2N2/P1PK2PP/R4B1R w - - 1 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6 f4c7 e8g8",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "f1d3": {
+          "master_eval_cp": 262,
+          "predicted_replies": [
+            "c8e6",
+            "c8f5"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582457.3139617
+        },
+        "a1e1": {
+          "master_eval_cp": 153,
+          "predicted_replies": [
+            "e7d5",
+            "e7c6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582457.7696607
+        },
+        "c3c4": {
+          "master_eval_cp": 128,
+          "predicted_replies": [
+            "f6e4",
+            "b7b5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582458.1944394
+        },
+        "f3g5": {
+          "master_eval_cp": 116,
+          "predicted_replies": [
+            "e7d5",
+            "h7h6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582458.628051
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6 f1d3 f6d5": {
+      "fen": "r1b1k2r/ppp1nppp/8/3n4/3P1B2/2PB1N2/P1PK2PP/R6R w kq - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6 f1d3 f6d5",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "f4e5": {
+          "master_eval_cp": 146,
+          "predicted_replies": [
+            "f7f6",
+            "e8g8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582459.1139367
+        },
+        "f4g3": {
+          "master_eval_cp": 128,
+          "predicted_replies": [
+            "e8g8",
+            "h7h6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582459.5565681
+        },
+        "f4g5": {
+          "master_eval_cp": 120,
+          "predicted_replies": [
+            "f7f6",
+            "h7h6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582459.9899826
+        },
+        "g2g3": {
+          "master_eval_cp": 22,
+          "predicted_replies": [
+            "f7f6",
+            "d5f4"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582460.4489098
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6 f1d3 c8f5": {
+      "fen": "r3k2r/ppp1nppp/5n2/5b2/3P1B2/2PB1N2/P1PK2PP/R6R w kq - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 g8f6 f1d3 c8f5",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "h1e1": {
+          "master_eval_cp": 219,
+          "predicted_replies": [
+            "f6d5",
+            "f5d3"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582460.9382865
+        },
+        "f4c7": {
+          "master_eval_cp": 202,
+          "predicted_replies": [
+            "f6e4",
+            "a8c8"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582461.3461268
+        },
+        "a1e1": {
+          "master_eval_cp": 177,
+          "predicted_replies": [
+            "f6d5",
+            "e8d7"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582461.7771647
+        },
+        "c3c4": {
+          "master_eval_cp": 150,
+          "predicted_replies": [
+            "e8c8",
+            "f5d3"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582462.206104
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5": {
+      "fen": "r1b1k1nr/ppp2ppp/8/3n4/3P1B2/2P2N2/P1PK2PP/R4B1R w kq - 2 13",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5",
+      "depth_from_exit": 5,
+      "candidate_moves": {
+        "f4g3": {
+          "master_eval_cp": 189,
+          "predicted_replies": [
+            "c8f5",
+            "g8e7"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582462.7404077
+        },
+        "f4e5": {
+          "master_eval_cp": 180,
+          "predicted_replies": [
+            "f7f6",
+            "g8e7"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582463.1882417
+        },
+        "a1e1": {
+          "master_eval_cp": 164,
+          "predicted_replies": [
+            "e8d8",
+            "c8e6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582463.6411827
+        },
+        "f1b5": {
+          "master_eval_cp": 158,
+          "predicted_replies": [
+            "c7c6",
+            "e8d8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582464.0593479
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f4g3 c8f5": {
+      "fen": "r3k1nr/ppp2ppp/8/3n1b2/3P4/2P2NB1/P1PK2PP/R4B1R w kq - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f4g3 c8f5",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "a1e1": {
+          "master_eval_cp": 212,
+          "predicted_replies": [
+            "g8e7",
+            "e8d8"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582464.5746734
+        },
+        "f1d3": {
+          "master_eval_cp": 206,
+          "predicted_replies": [
+            "f5d3",
+            "f5g6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582465.000452
+        },
+        "a2a4": {
+          "master_eval_cp": 194,
+          "predicted_replies": [
+            "e8c8",
+            "g8f6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582465.4163563
+        },
+        "c3c4": {
+          "master_eval_cp": 192,
+          "predicted_replies": [
+            "d5f6",
+            "d5e7"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582465.8297882
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f4g3 g8e7": {
+      "fen": "r1b1k2r/ppp1nppp/8/3n4/3P4/2P2NB1/P1PK2PP/R4B1R w kq - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f4g3 g8e7",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "c3c4": {
+          "master_eval_cp": 263,
+          "predicted_replies": [
+            "d5f6",
+            "d5b6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582466.3373616
+        },
+        "f1d3": {
+          "master_eval_cp": 252,
+          "predicted_replies": [
+            "e7f5",
+            "c8e6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582466.780415
+        },
+        "a1e1": {
+          "master_eval_cp": 207,
+          "predicted_replies": [
+            "h7h5",
+            "c7c6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582467.234403
+        },
+        "a1b1": {
+          "master_eval_cp": 195,
+          "predicted_replies": [
+            "e7f5",
+            "c7c6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582467.661473
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f4e5 f7f6": {
+      "fen": "r1b1k1nr/ppp3pp/5p2/3nB3/3P4/2P2N2/P1PK2PP/R4B1R w kq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f4e5 f7f6",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "c3c4": {
+          "master_eval_cp": 153,
+          "predicted_replies": [
+            "f6e5",
+            "g8e7"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582468.1601958
+        },
+        "e5g3": {
+          "master_eval_cp": 101,
+          "predicted_replies": [
+            "e8d8",
+            "h7h5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582468.5990412
+        },
+        "f1c4": {
+          "master_eval_cp": 91,
+          "predicted_replies": [
+            "d5b6",
+            "c8e6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582469.0575678
+        },
+        "a1e1": {
+          "master_eval_cp": 42,
+          "predicted_replies": [
+            "f6e5",
+            "g8e7"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582469.4796188
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f4e5 g8e7": {
+      "fen": "r1b1k2r/ppp1nppp/8/3nB3/3P4/2P2N2/P1PK2PP/R4B1R w kq - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f4e5 g8e7",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "c3c4": {
+          "master_eval_cp": 275,
+          "predicted_replies": [
+            "f7f6",
+            "d5f6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582469.9744854
+        },
+        "e5g7": {
+          "master_eval_cp": 245,
+          "predicted_replies": [
+            "h8g8",
+            "h8f8"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582470.395971
+        },
+        "a1b1": {
+          "master_eval_cp": 195,
+          "predicted_replies": [
+            "f7f6",
+            "e8g8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582470.8384874
+        },
+        "a2a3": {
+          "master_eval_cp": 194,
+          "predicted_replies": [
+            "f7f6",
+            "e8g8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582471.2723157
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 a1e1 e8d8": {
+      "fen": "r1bk2nr/ppp2ppp/8/3n4/3P1B2/2P2N2/P1PK2PP/4RB1R w - - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 a1e1 e8d8",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "f3e5": {
+          "master_eval_cp": 223,
+          "predicted_replies": [
+            "c8e6",
+            "f7f6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582471.735547
+        },
+        "f4e5": {
+          "master_eval_cp": 222,
+          "predicted_replies": [
+            "f7f6",
+            "g8f6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582472.163394
+        },
+        "f4g3": {
+          "master_eval_cp": 217,
+          "predicted_replies": [
+            "g8h6",
+            "c8d7"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582472.605414
+        },
+        "f3g5": {
+          "master_eval_cp": 210,
+          "predicted_replies": [
+            "g8h6",
+            "c8e6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582473.0474956
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 a1e1 c8e6": {
+      "fen": "r3k1nr/ppp2ppp/4b3/3n4/3P1B2/2P2N2/P1PK2PP/4RB1R w kq - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 a1e1 c8e6",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "f4e5": {
+          "master_eval_cp": 246,
+          "predicted_replies": [
+            "f7f6",
+            "g8e7"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582473.5324376
+        },
+        "f4g3": {
+          "master_eval_cp": 211,
+          "predicted_replies": [
+            "e8c8",
+            "d5b6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582473.9876761
+        },
+        "f4g5": {
+          "master_eval_cp": 137,
+          "predicted_replies": [
+            "h7h6",
+            "d5e7"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582474.4825091
+        },
+        "f1b5": {
+          "master_eval_cp": 108,
+          "predicted_replies": [
+            "c7c6",
+            "e8d8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582474.933817
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f1b5 c7c6": {
+      "fen": "r1b1k1nr/pp3ppp/2p5/1B1n4/3P1B2/2P2N2/P1PK2PP/R6R w kq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f1b5 c7c6",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "a1e1": {
+          "master_eval_cp": 195,
+          "predicted_replies": [
+            "g8e7",
+            "e8d8"
+          ],
+          "empirical_score": 25.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 0,
+          "draws": 1,
+          "losses": 1,
+          "last_verified_ts": 1774582475.440482
+        },
+        "f4e5": {
+          "master_eval_cp": -39,
+          "predicted_replies": [
+            "f7f6",
+            "g8e7"
+          ],
+          "empirical_score": 25.0,
+          "wdl_score": 40.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 0,
+          "draws": 1,
+          "losses": 1,
+          "last_verified_ts": 1774582475.849904
+        },
+        "h1e1": {
+          "master_eval_cp": -193,
+          "predicted_replies": [
+            "c8e6",
+            "g8e7"
+          ],
+          "empirical_score": 25.0,
+          "wdl_score": 40.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 0,
+          "draws": 1,
+          "losses": 1,
+          "last_verified_ts": 1774582476.2640636
+        },
+        "b5c4": {
+          "master_eval_cp": -213,
+          "predicted_replies": [
+            "d5f4",
+            "g8f6"
+          ],
+          "empirical_score": 25.0,
+          "wdl_score": 40.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 0,
+          "draws": 1,
+          "losses": 1,
+          "last_verified_ts": 1774582476.6860855
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f1b5 e8d8": {
+      "fen": "r1bk2nr/ppp2ppp/8/1B1n4/3P1B2/2P2N2/P1PK2PP/R6R w - - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 e1d2 e7d5 f1b5 e8d8",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "f4g5": {
+          "master_eval_cp": 182,
+          "predicted_replies": [
+            "f7f6",
+            "d5e7"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582477.1867173
+        },
+        "f4g3": {
+          "master_eval_cp": 174,
+          "predicted_replies": [
+            "f7f6",
+            "c8e6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582477.6144319
+        },
+        "a1e1": {
+          "master_eval_cp": 161,
+          "predicted_replies": [
+            "d5f4",
+            "c7c6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582477.8568091
+        },
+        "f4e5": {
+          "master_eval_cp": 120,
+          "predicted_replies": [
+            "f7f6",
+            "g8f6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582478.2914302
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5": {
+      "fen": "r1b1k1nr/ppp2ppp/8/3n4/3P1B2/2PB1N2/P1P3PP/R3K2R w KQkq - 2 13",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5",
+      "depth_from_exit": 5,
+      "candidate_moves": {
+        "f4g3": {
+          "master_eval_cp": 215,
+          "predicted_replies": [
+            "d5c3",
+            "g8h6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582478.8029363
+        },
+        "f4c1": {
+          "master_eval_cp": 121,
+          "predicted_replies": [
+            "g8e7",
+            "d5c3"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582479.2401745
+        },
+        "f4d2": {
+          "master_eval_cp": 111,
+          "predicted_replies": [
+            "g8e7",
+            "d5e7"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582479.6992006
+        },
+        "f4e5": {
+          "master_eval_cp": 93,
+          "predicted_replies": [
+            "f7f6",
+            "g8e7"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582480.1370053
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4g3 d5c3": {
+      "fen": "r1b1k1nr/ppp2ppp/8/8/3P4/2nB1NB1/P1P3PP/R3K2R w KQkq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4g3 d5c3",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "e1d2": {
+          "master_eval_cp": 213,
+          "predicted_replies": [
+            "c3d5",
+            "c3a4"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582480.6399791
+        },
+        "a2a4": {
+          "master_eval_cp": 155,
+          "predicted_replies": [
+            "g8f6",
+            "c3d5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582481.0718997
+        },
+        "e1g1": {
+          "master_eval_cp": 154,
+          "predicted_replies": [
+            "g8f6",
+            "c8e6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582481.5166051
+        },
+        "f3g5": {
+          "master_eval_cp": 154,
+          "predicted_replies": [
+            "g8f6",
+            "h7h6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582481.9282818
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4g3 g8h6": {
+      "fen": "r1b1k2r/ppp2ppp/7n/3n4/3P4/2PB1NB1/P1P3PP/R3K2R w KQkq - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4g3 g8h6",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "c3c4": {
+          "master_eval_cp": 263,
+          "predicted_replies": [
+            "d5b4",
+            "d5e3"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582482.413483
+        },
+        "e1d2": {
+          "master_eval_cp": 199,
+          "predicted_replies": [
+            "h6f5",
+            "c8f5"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582482.825594
+        },
+        "e1c1": {
+          "master_eval_cp": 165,
+          "predicted_replies": [
+            "e8g8",
+            "d5c3"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582483.2571366
+        },
+        "e1d1": {
+          "master_eval_cp": 157,
+          "predicted_replies": [
+            "d5c3",
+            "e8d8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582483.689355
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4c1 g8e7": {
+      "fen": "r1b1k2r/ppp1nppp/8/3n4/3P4/2PB1N2/P1P3PP/R1B1K2R w KQkq - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4c1 g8e7",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "e1g1": {
+          "master_eval_cp": 145,
+          "predicted_replies": [
+            "c8f5",
+            "e8g8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582484.1619282
+        },
+        "c3c4": {
+          "master_eval_cp": 131,
+          "predicted_replies": [
+            "d5b4",
+            "d5f6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582484.5569782
+        },
+        "a1b1": {
+          "master_eval_cp": 127,
+          "predicted_replies": [
+            "d5c3",
+            "e8g8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582484.9896283
+        },
+        "c1a3": {
+          "master_eval_cp": 123,
+          "predicted_replies": [
+            "f7f6",
+            "e7f5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582485.458958
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4c1 d5c3": {
+      "fen": "r1b1k1nr/ppp2ppp/8/8/3P4/2nB1N2/P1P3PP/R1B1K2R w KQkq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4c1 d5c3",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "e1f2": {
+          "master_eval_cp": 103,
+          "predicted_replies": [
+            "g8f6",
+            "h7h6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582485.97195
+        },
+        "e1d2": {
+          "master_eval_cp": 96,
+          "predicted_replies": [
+            "c3d5",
+            "c3a4"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582486.3546023
+        },
+        "e1g1": {
+          "master_eval_cp": 89,
+          "predicted_replies": [
+            "c8e6",
+            "g8f6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582486.8056488
+        },
+        "c1b2": {
+          "master_eval_cp": 88,
+          "predicted_replies": [
+            "c3a4",
+            "c3d5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582487.2223303
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4d2 g8e7": {
+      "fen": "r1b1k2r/ppp1nppp/8/3n4/3P4/2PB1N2/P1PB2PP/R3K2R w KQkq - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4d2 g8e7",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "c3c4": {
+          "master_eval_cp": 244,
+          "predicted_replies": [
+            "d5f6",
+            "d5b6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582487.7339032
+        },
+        "e1g1": {
+          "master_eval_cp": 232,
+          "predicted_replies": [
+            "c8f5",
+            "d5f6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582488.1820529
+        },
+        "a2a4": {
+          "master_eval_cp": 170,
+          "predicted_replies": [
+            "c8f5",
+            "e8g8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582488.6172693
+        },
+        "e1c1": {
+          "master_eval_cp": 168,
+          "predicted_replies": [
+            "e8g8",
+            "c8f5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582489.0520499
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4d2 d5e7": {
+      "fen": "r1b1k1nr/ppp1nppp/8/8/3P4/2PB1N2/P1PB2PP/R3K2R w KQkq - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4d2 d5e7",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "e1g1": {
+          "master_eval_cp": 198,
+          "predicted_replies": [
+            "c8f5",
+            "g8f6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582489.578912
+        },
+        "c3c4": {
+          "master_eval_cp": 198,
+          "predicted_replies": [
+            "g8f6",
+            "c8d7"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582490.0037038
+        },
+        "a1b1": {
+          "master_eval_cp": 192,
+          "predicted_replies": [
+            "b7b6",
+            "g8f6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582490.4698093
+        },
+        "e1c1": {
+          "master_eval_cp": 191,
+          "predicted_replies": [
+            "c8f5",
+            "g8f6"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582490.9138181
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4e5 f7f6": {
+      "fen": "r1b1k1nr/ppp3pp/5p2/3nB3/3P4/2PB1N2/P1P3PP/R3K2R w KQkq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4e5 f7f6",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "c3c4": {
+          "master_eval_cp": 154,
+          "predicted_replies": [
+            "f6e5",
+            "g8e7"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582491.3947935
+        },
+        "e5g3": {
+          "master_eval_cp": 69,
+          "predicted_replies": [
+            "d5c3",
+            "c8d7"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582491.8414931
+        },
+        "e1d2": {
+          "master_eval_cp": -28,
+          "predicted_replies": [
+            "f6e5",
+            "g8e7"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 40.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582492.2585034
+        },
+        "d3c4": {
+          "master_eval_cp": -39,
+          "predicted_replies": [
+            "d5b6",
+            "c8e6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 40.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582492.66695
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4e5 g8e7": {
+      "fen": "r1b1k2r/ppp1nppp/8/3nB3/3P4/2PB1N2/P1P3PP/R3K2R w KQkq - 4 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 e7d5 f4e5 g8e7",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "e5g7": {
+          "master_eval_cp": 164,
+          "predicted_replies": [
+            "h8g8",
+            "h8f8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582493.131877
+        },
+        "c3c4": {
+          "master_eval_cp": 159,
+          "predicted_replies": [
+            "d5b4",
+            "f7f6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582493.5545614
+        },
+        "e1d2": {
+          "master_eval_cp": 154,
+          "predicted_replies": [
+            "f7f6",
+            "e8g8"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582493.9912522
+        },
+        "e5g3": {
+          "master_eval_cp": 144,
+          "predicted_replies": [
+            "d5c3",
+            "e7f5"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582494.449933
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 c8f5": {
+      "fen": "r3k1nr/ppp1nppp/8/5b2/3P1B2/2PB1N2/P1P3PP/R3K2R w KQkq - 2 13",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 c8f5",
+      "depth_from_exit": 5,
+      "candidate_moves": {
+        "f4c7": {
+          "master_eval_cp": 167,
+          "predicted_replies": [
+            "f5d3",
+            "a8c8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582494.924379
+        },
+        "e1d2": {
+          "master_eval_cp": 129,
+          "predicted_replies": [
+            "e8c8",
+            "f5d3"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582495.3400445
+        },
+        "d3f5": {
+          "master_eval_cp": 125,
+          "predicted_replies": [
+            "e7f5",
+            "c7c5"
+          ],
+          "empirical_score": 75.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.5,
+          "visits": 2,
+          "wins": 1,
+          "draws": 1,
+          "losses": 0,
+          "last_verified_ts": 1774582495.7621696
+        },
+        "e1g1": {
+          "master_eval_cp": 108,
+          "predicted_replies": [
+            "f7f6",
+            "e8c8"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 75.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582496.1828463
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 c8f5 d3f5 e7f5": {
+      "fen": "r3k1nr/ppp2ppp/8/5n2/3P1B2/2P2N2/P1P3PP/R3K2R w KQkq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 c8f5 d3f5 e7f5",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "e1g1": {
+          "master_eval_cp": 85,
+          "predicted_replies": [
+            "e8c8",
+            "g8e7"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582496.6263359
+        },
+        "f4c7": {
+          "master_eval_cp": 58,
+          "predicted_replies": [
+            "a8c8",
+            "g8f6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582497.038118
+        },
+        "e1c1": {
+          "master_eval_cp": 53,
+          "predicted_replies": [
+            "e8c8",
+            "f7f6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 60.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582497.4344776
+        },
+        "g2g4": {
+          "master_eval_cp": 44,
+          "predicted_replies": [
+            "f5e7",
+            "f5d6"
+          ],
+          "empirical_score": 50.0,
+          "wdl_score": 55.0,
+          "decisive_rate": 0.0,
+          "visits": 2,
+          "wins": 0,
+          "draws": 2,
+          "losses": 0,
+          "last_verified_ts": 1774582497.8499575
+        }
+      }
+    },
+    "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 c8f5 d3f5 c7c5": {
+      "fen": "r3k1nr/pp2nppp/8/2p2B2/3P1B2/2P2N2/P1P3PP/R3K2R w KQkq - 0 14",
+      "move_history": "e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8 g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7 c1f4 b4c3 b2c3 b8c6 e5e7 c6e7 f1d3 c8f5 d3f5 c7c5",
+      "depth_from_exit": 7,
+      "candidate_moves": {
+        "f5d3": {
+          "master_eval_cp": 588,
+          "predicted_replies": [
+            "e7d5",
+            "g8f6"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582498.2752743
+        },
+        "f3h4": {
+          "master_eval_cp": 474,
+          "predicted_replies": [
+            "e7d5",
+            "c5c4"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582498.6645691
+        },
+        "f5h3": {
+          "master_eval_cp": 437,
+          "predicted_replies": [
+            "e7d5",
+            "c5c4"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582499.0357175
+        },
+        "g2g4": {
+          "master_eval_cp": 278,
+          "predicted_replies": [
+            "h7h5",
+            "c5c4"
+          ],
+          "empirical_score": 100.0,
+          "wdl_score": 90.0,
+          "decisive_rate": 1.0,
+          "visits": 2,
+          "wins": 2,
+          "draws": 0,
+          "losses": 0,
+          "last_verified_ts": 1774582499.4061449
+        }
+      }
+    }
+  }
+}

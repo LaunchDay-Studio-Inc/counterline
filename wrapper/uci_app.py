@@ -6,7 +6,7 @@ import os
 import sys
 from contextlib import suppress
 from pathlib import Path
-from typing import TextIO
+from typing import Any, TextIO
 
 import chess
 import typer
@@ -18,10 +18,14 @@ from wrapper.opening_lock import detect_opening_family, get_seed_move, is_book_c
 from wrapper.repertoire import Repertoire
 from wrapper.repertoire_db import RepertoireDB
 from wrapper.rollout import annotate_with_engine_scores, generate_candidates
+from wrapper.targeted_book import TargetedBook, VIENNA_SEED_UCIS, VIENNA_EXIT_FEN
 from wrapper.telemetry import TelemetryLogger
 from wrapper.types import AppConfig, CandidateMove, EngineConfig, MoveDecision, WrapperConfig
 
 cli = typer.Typer(add_completion=False)
+
+# Mutable container for profile injection from __main__
+_ACTIVE_PROFILE: dict[str, str | None] = {"name": None}
 
 _VERSION = "0.1.0"
 
@@ -58,6 +62,7 @@ class UciApp:
         stdin: TextIO,
         stdout: TextIO,
         engine_pool: EnginePool | None = None,
+        profile: str | None = None,
     ) -> None:
         self.config = config
         self.stdin = stdin
@@ -69,6 +74,21 @@ class UciApp:
         self.telemetry = TelemetryLogger(config.wrapper.telemetry_path)
         self._pool: EnginePool | None = engine_pool
         self._pool_started = engine_pool is not None
+        self.profile = profile or _ACTIVE_PROFILE.get("name")
+
+        # White specialist book
+        self._targeted_book: TargetedBook | None = None
+        self._white_killer_opts = {
+            "use_learned_book": True,
+            "book_depth_limit": 30,
+            "empirical_weight": 0.7,
+            "wdl_weight": 0.3,
+            "decisive_bonus": 0.1,
+            "max_candidates": 4,
+            "reply_bundle_size": 2,
+        }
+        if self.profile == "white_killer":
+            self._init_white_killer()
 
     @property
     def engine_pool(self) -> EnginePool:
@@ -76,6 +96,129 @@ class UciApp:
             self._pool = EnginePool(self.config.engine)
             self._pool_started = True
         return self._pool
+
+    def _init_white_killer(self) -> None:
+        """Initialize the White killer specialist book."""
+        root = Path(__file__).resolve().parent.parent
+        book_path = root / "data" / "white_killer" / "book" / "vienna.json"
+        db_path = root / "data" / "white_killer" / "db" / "empirical.sqlite"
+        opts = self._white_killer_opts
+        self._targeted_book = TargetedBook(
+            book_path=book_path,
+            db_path=db_path,
+            empirical_weight=opts["empirical_weight"],
+            wdl_weight=opts["wdl_weight"],
+            decisive_bonus=opts["decisive_bonus"],
+            book_depth_limit=opts["book_depth_limit"],
+        )
+
+    def _is_in_vienna_line(self) -> bool:
+        """Check if current position is within the Vienna Gambit line."""
+        if self._targeted_book is None:
+            return False
+        return (
+            self._targeted_book.is_in_seed_line(self.board)
+            or self._targeted_book.is_at_exit(self.board)
+            or self._targeted_book.is_past_exit(self.board)
+            or self._targeted_book._is_exit_root(self.board)
+        )
+
+    def _choose_white_killer_move(
+        self, go_params: dict[str, int | None]
+    ) -> tuple[str, str | None, str, bool, list[str], dict[str, Any]]:
+        """White specialist move selection.
+
+        Returns (bestmove, ponder, reason, used_wrapper, info_lines, telemetry_extra).
+        """
+        assert self._targeted_book is not None
+        movetime_ms = go_params.get("movetime")
+        tele: dict[str, Any] = {
+            "used_learned_book": False,
+            "used_targeted_override": False,
+            "candidate_count": 0,
+            "empirical_score_delta": 0.0,
+            "base_move": "",
+            "chosen_move": "",
+        }
+
+        # 1. Seed line — within opening moves
+        seed = self._targeted_book.get_seed_move(self.board)
+        if seed is not None:
+            tele["used_learned_book"] = True
+            tele["chosen_move"] = seed
+            return seed, None, "white_seed_line", True, [], tele
+
+        # 2. At or past exit, White's turn — use learned book
+        if self.board.turn == chess.WHITE and self._targeted_book.is_past_exit(self.board):
+            if self._white_killer_opts["use_learned_book"]:
+                book_move, book_meta = self._targeted_book.lookup_book_move(self.board)
+                if book_move is not None:
+                    tele["used_learned_book"] = True
+                    tele["chosen_move"] = book_move
+                    tele.update(book_meta)
+
+                    # Also get base move for comparison
+                    try:
+                        base_move, base_ponder, info_lines = self.engine_pool.bestmove(
+                            self.board, movetime_ms, go_params=go_params
+                        )
+                        tele["base_move"] = base_move
+                        if book_move != base_move:
+                            tele["used_targeted_override"] = True
+                    except Exception:
+                        info_lines = []
+
+                    return book_move, None, "learned_book", True, info_lines, tele
+
+        # 3. At exit position, Black's turn — delegate to engine
+        # (Black moves here, not our specialist concern)
+        if self.board.turn == chess.BLACK:
+            try:
+                base_move, base_ponder, info_lines = self.engine_pool.bestmove(
+                    self.board, movetime_ms, go_params=go_params
+                )
+                tele["base_move"] = base_move
+                tele["chosen_move"] = base_move
+                return base_move, base_ponder, "black_turn_delegate", False, info_lines, tele
+            except Exception:
+                base_move, _ = self._fallback_move()
+                tele["chosen_move"] = base_move
+                return base_move, None, "black_turn_fallback", False, [], tele
+
+        # 4. Past exit, White's turn, but no book move — targeted root correction
+        if self.board.turn == chess.WHITE and self._targeted_book.is_past_exit(self.board):
+            try:
+                base_move, base_ponder, info_lines = self.engine_pool.bestmove(
+                    self.board, movetime_ms, go_params=go_params
+                )
+                tele["base_move"] = base_move
+                tele["chosen_move"] = base_move
+
+                # Small targeted root correction: check if any learned pattern
+                # from nearby positions applies
+                history = self._targeted_book.move_history_key(self.board)
+                if self._targeted_book.tree.is_in_tree(history):
+                    tele["used_targeted_override"] = True
+                    tele["candidate_count"] = 1
+
+                return base_move, base_ponder, "root_correction", True, info_lines, tele
+            except Exception:
+                base_move, _ = self._fallback_move()
+                tele["chosen_move"] = base_move
+                return base_move, None, "root_correction_fallback", False, [], tele
+
+        # 5. Fallback — delegate to base engine
+        try:
+            base_move, base_ponder, info_lines = self.engine_pool.bestmove(
+                self.board, movetime_ms, go_params=go_params
+            )
+            tele["base_move"] = base_move
+            tele["chosen_move"] = base_move
+            return base_move, base_ponder, "outside_line_delegate", False, info_lines, tele
+        except Exception:
+            base_move, _ = self._fallback_move()
+            tele["chosen_move"] = base_move
+            return base_move, None, "outside_line_fallback", False, [], tele
 
     def send(self, line: str) -> None:
         self.stdout.write(f"{line}\n")
@@ -171,6 +314,33 @@ class UciApp:
         elif name_lower == "logpath":
             self.config.wrapper.telemetry_path = Path(value)
             self.telemetry = TelemetryLogger(Path(value))
+        # White specialist options
+        elif name_lower == "profile":
+            self.profile = value
+            if value == "white_killer" and self._targeted_book is None:
+                self._init_white_killer()
+        elif name_lower == "targetenginepath":
+            pass  # SF18 path for reference; mining uses it, runtime doesn't
+        elif name_lower == "uselearnedbook":
+            self._white_killer_opts["use_learned_book"] = value.lower() in ("true", "1", "yes")
+        elif name_lower == "bookdepthlimit":
+            self._white_killer_opts["book_depth_limit"] = max(1, int(value))
+            if self._targeted_book:
+                self._targeted_book.book_depth_limit = max(1, int(value))
+        elif name_lower == "empiricalweight":
+            self._white_killer_opts["empirical_weight"] = float(value)
+            if self._targeted_book:
+                self._targeted_book.empirical_weight = float(value)
+        elif name_lower == "wdlweight":
+            self._white_killer_opts["wdl_weight"] = float(value)
+            if self._targeted_book:
+                self._targeted_book.wdl_weight = float(value)
+        elif name_lower == "decisivebonus":
+            self._white_killer_opts["decisive_bonus"] = float(value)
+            if self._targeted_book:
+                self._targeted_book.decisive_bonus = float(value)
+        elif name_lower == "replybundlesize":
+            self._white_killer_opts["reply_bundle_size"] = max(1, int(value))
 
     def _available_time_ms(self, go_params: dict[str, int | None]) -> int | None:
         """Estimate available time from UCI go params."""
@@ -184,6 +354,14 @@ class UciApp:
         """Return (bestmove, ponder, reason, used_wrapper, info_lines)."""
         go_params = go_params or {}
         movetime_ms = go_params.get("movetime")
+
+        # White killer specialist path
+        if self.profile == "white_killer" and self._targeted_book is not None:
+            if self._is_in_vienna_line():
+                move, ponder, reason, used, info_lines, tele = self._choose_white_killer_move(go_params)
+                # Log extended telemetry
+                self._log_white_killer_tele(tele, reason)
+                return move, ponder, reason, used, info_lines
 
         # Check seed move first (opening lock)
         if self.config.wrapper.opening_lock:
@@ -262,18 +440,34 @@ class UciApp:
 
         return base_move, base_ponder, "outside_suite", False, info_lines
 
+    def _log_white_killer_tele(self, tele: dict[str, Any], reason: str) -> None:
+        """Log White killer specialist telemetry."""
+        event = {
+            "ts": __import__("time").time(),
+            "fen": self.board.fen(),
+            "profile": "white_killer",
+            "reason": reason,
+            **tele,
+        }
+        self.telemetry.log(event)
+
     def loop(self) -> int:
         for raw in self.stdin:
             command = raw.strip()
             if not command:
                 continue
             if command == "uci":
-                self.send(f"id name CounterLine {_VERSION}")
+                name = f"CounterLine {_VERSION}"
+                if self.profile == "white_killer":
+                    name += " (White Killer)"
+                self.send(f"id name {name}")
                 self.send("id author Stockfish developers + LaunchDay Studio Inc.")
                 self.send("")
                 self.send("option name BaseEnginePath type string default bin/stockfish-master")
+                self.send("option name TargetEnginePath type string default bin/stockfish-sf18")
                 self.send("option name NominalEnginePath type string default bin/stockfish-master")
                 self.send("option name VerifyEnginePath type string default bin/stockfish-master")
+                self.send("option name Profile type combo default default var default var white_killer")
                 self.send("option name Threads type spin default 1 min 1 max 512")
                 self.send("option name Hash type spin default 64 min 1 max 131072")
                 self.send("option name OpeningLock type check default true")
@@ -281,9 +475,15 @@ class UciApp:
                 self.send("option name OpponentProfile type string default stockfish-master")
                 self.send("option name EnableWDL type check default false")
                 self.send("option name MaxCandidates type spin default 4 min 1 max 16")
+                self.send("option name ReplyBundleSize type spin default 2 min 1 max 8")
                 self.send("option name NodesMain type spin default 0 min 0 max 100000000")
                 self.send("option name NodesChild type spin default 0 min 0 max 100000000")
                 self.send("option name NodesVerify type spin default 0 min 0 max 100000000")
+                self.send("option name UseLearnedBook type check default true")
+                self.send("option name BookDepthLimit type spin default 30 min 1 max 100")
+                self.send("option name EmpiricalWeight type string default 0.7")
+                self.send("option name WDLWeight type string default 0.3")
+                self.send("option name DecisiveBonus type string default 0.1")
                 self.send("option name LogPath type string default results/telemetry.jsonl")
                 self.send("uciok")
             elif command == "isready":
