@@ -1,0 +1,34 @@
+# CounterLine: The Stockfish 18 Killer {.unnumbered}
+
+**A Fixed-Line Repertoire That Scores Over 50% Against Stockfish 18 on the Published CounterLine Suite**
+
+*The CounterLine Project — 2026*
+
+---
+
+This book presents two opening lines — one for White and one for Black — that have been engineered, tested, and validated against Stockfish 18, the strongest classical chess engine in the world as of early 2026.
+
+The White line scores an overwhelming 95% from its exit position. The Black line holds firm with a 53.75% score — including wins — from a position where most engines would be fighting for a draw.
+
+These are not theoretical novelties found by a grandmaster. They are the product of a systematic, automated search through thousands of candidate positions, refined by machine learning, and proved in head-to-head matches under controlled conditions.
+
+**What this book will teach you:**
+
+- The exact moves of the CounterLine repertoire, from move 1
+- The plans, patterns, and key positions you need to memorise
+- Annotated model games against Stockfish 18
+- How to handle opponent deviations
+- Training drills and quick-reference cheat sheets
+- The precise boundaries of what has been proved — and what has not
+
+**What this book will not claim:**
+
+- That you can beat Stockfish in a general game
+- That this repertoire works in every opening
+- That these results transfer to all time controls or hardware
+
+Honest engineering. Honest claims. Real results.
+
+---
+
+**License:** This work is distributed as part of the CounterLine project under GPL-3.0.

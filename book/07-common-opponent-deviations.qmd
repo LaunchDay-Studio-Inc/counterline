@@ -1,0 +1,121 @@
+# Common Opponent Deviations {#sec-opponent-deviations}
+
+## Introduction
+
+The CounterLine repertoire assumes specific opponent responses to reach the exit positions. But what if your opponent plays something different?
+
+This chapter covers the most important deviations — moves that a human or engine opponent might play instead of the "main line" — and explains what to do.
+
+::: {.callout-important}
+## Key Practical Point
+If the opponent deviates from the expected line, CounterLine's specialist has no opinion about the resulting position. The engine falls through to standard Stockfish, which is the strongest chess engine in the world. You are not "punished" for the deviation — you just lose the repertoire advantage and play a normal game.
+:::
+
+## White Repertoire Deviations
+
+### Deviation 1: Black Declines the Gambit — 3...d6 (instead of 3...exf4)
+
+After 1. e4 e5 2. Nc3 Nf6 3. f4, Black can play 3...d6 instead of taking the pawn.
+
+**What happens:** Black keeps a solid centre but gives White a free hand. White can play 4. fxe5 dxe5 5. Nf3 with a comfortable position, or 4. Nf3 with a standard King's Pawn game.
+
+**What to do:** This is not in the CounterLine seed line. The wrapper falls through to Stockfish, which handles this position well. You simply play normal chess with White and a slight initiative.
+
+### Deviation 2: 3...d5 (Counter-Gambit)
+
+1. e4 e5 2. Nc3 Nf6 3. f4 d5 — the Falkbeer Counter-Gambit idea.
+
+**What happens:** Black fights for the centre immediately. After 4. fxe5 Nxe4 5. Nf3, the position is sharp but well-studied.
+
+**What to do:** The wrapper falls through to Stockfish. This position is fine for White.
+
+### Deviation 3: 2...Nc6 (instead of 2...Nf6)
+
+1. e4 e5 2. Nc3 Nc6 — Black develops the queen's knight first.
+
+**What happens:** This avoids the Vienna Gambit Accepted entirely. After 3. f4 exf4, the position transposes to a King's Gambit with different flavour. Or Black can play 3...d6 or 3...Nf6 transposing.
+
+**What to do:** If 2...Nc6 3. f4 exf4, you are in a King's Gambit positions but with Nc3 instead of the usual plans. The wrapper falls through to Stockfish.
+
+### Deviation 4: 4...Nd5 (instead of 4...Ng8)
+
+After 1. e4 e5 2. Nc3 Nf6 3. f4 exf4 4. e5, Black can try 4...Nd5 instead of retreating to g8.
+
+**What happens:** 5. Nxd5 and White has exchanged knights, maintaining the e5 pawn. White is better — the evaluation is around +1.2 — but the position is different from the main line.
+
+**What to do:** This is handleable. If the game continues 5. Nxd5 and Black recaptures, you play standard development. The advantage is still with White. The wrapper falls through to Stockfish.
+
+### Summary of White Deviations
+
+| Deviation | Move | Effect | Your Response |
+|-----------|------|--------|---------------|
+| Declined gambit | 3...d6 | Solid but passive | Fall through to Stockfish |
+| Counter-gambit | 3...d5 | Sharp | Fall through to Stockfish |
+| 2...Nc6 | 2...Nc6 | Different move order | Fall through to Stockfish |
+| 4...Nd5 | 4...Nd5 | Knight exchange | Fall through to Stockfish |
+| Any other | varies | Off-script | Fall through to Stockfish |
+
+: White repertoire deviations {#tbl-white-deviations}
+
+## Black Repertoire Deviations
+
+### Deviation 5: White Avoids the Classical — 3. e5 (Advance Caro-Kann)
+
+After 1. e4 c6 2. d4 d5, White can play 3. e5 instead of 3. Nc3.
+
+**What happens:** This is the Advance Caro-Kann, a completely different opening. Black plays ...Bf5, ...e6, and aims for a French-like structure.
+
+**What to do:** The CounterLine seed line does not cover this variation. The wrapper falls through to Stockfish. The Advance Caro-Kann is a solid opening for both sides — you play a normal game.
+
+### Deviation 6: White Plays 3. Nd2 (instead of 3. Nc3)
+
+1. e4 c6 2. d4 d5 3. Nd2 — the Short (or Modern) variation.
+
+**What happens:** After 3...dxe4 4. Nxe4, the game often transposes to the Classical after 4...Bf5. But White has options like 4...Nd7 lines that differ.
+
+**What to do:** If the game reaches 4. Nxe4 Bf5, you are transposing back into the main line and the seed continues. If White plays differently, the wrapper falls through.
+
+### Deviation 7: White Plays 4. Bd3 (instead of 4. Nxe4)
+
+1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Bd3 — a sideline.
+
+**What happens:** White aims for different piece placement. This is rare and not considered strongest.
+
+**What to do:** The wrapper falls through. Black plays standard development with ...Nf6, ...e6, ...Be7, ...O-O.
+
+### Deviation 8: White Plays 5. Nxf6+ (instead of 5. Ng3)
+
+1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Nxf6+.
+
+**What happens:** The Tal Variation. After 5...exf6 (or 5...gxf6), the position is different from the Classical. Black gets doubled pawns but active play.
+
+**What to do:** The wrapper falls through. These positions are well-studied and relatively equal.
+
+### Deviation 9: White Doesn't Push h4
+
+1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6, and now instead of 6. h4, White plays something else (6. Nf3, 6. Bc4, etc.).
+
+**What happens:** White avoids the h4-h5 pawn push. The game enters a different flavour of the Classical where both sides develop normally.
+
+**What to do:** If White does not play h4-h5, Black's bishop stays on g6 (better than h7) and Black has a comfortable position. Play ...Nd7, ...Ngf6, ...e6, ...Be7, ...O-O. The wrapper falls through, and Black is fine.
+
+### Summary of Black Deviations
+
+| Deviation | Move | Effect | Your Response |
+|-----------|------|--------|---------------|
+| Advance variation | 3. e5 | Different structure | Fall through to Stockfish |
+| Short variation | 3. Nd2 | May transpose | Fall through (or transpose) |
+| 4. Bd3 sideline | 4. Bd3 | Rare, harmless | Fall through to Stockfish |
+| Tal variation | 5. Nxf6+ | Doubled pawns, active play | Fall through to Stockfish |
+| No h4 push | 6. other | Bishop stays on g6 | Fall through to Stockfish |
+
+: Black repertoire deviations {#tbl-black-deviations}
+
+## The General Principle
+
+::: {.callout-note}
+## What to Remember
+CounterLine is built on top of Stockfish. Any time the opponent leaves the expected line, you are simply playing with the strongest chess engine in the world, unmodified. The specialist repertoire is a *bonus* that applies in one specific line. Deviations do not hurt you — they just remove the bonus.
+:::
+
+This design is intentional. The CounterLine wrapper was built to be **zero-risk**: it can only help, never hurt. If the specialist's position is not reached, nothing changes. If it is reached, you get the specialist's empirically-tested advantage.

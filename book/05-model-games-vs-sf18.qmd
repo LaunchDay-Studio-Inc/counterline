@@ -1,0 +1,112 @@
+# Model Games vs Stockfish 18 {#sec-model-games}
+
+## Introduction
+
+The games in this chapter are taken directly from the CounterLine proof-matrix matches — 40-game matches played at TC 1+0.1, 1 thread, 64 MB hash. Every move and evaluation is authentic. All PGN files are published in the repository.
+
+We present two games: one showing the White repertoire in action, and one showing the Black repertoire holding firm.
+
+## Game 1: White Crushes — CounterLine vs SF18 (Round 1)
+
+**Opening:** Vienna Gambit Accepted
+**Result:** 1-0 in 69 moves
+**Key theme:** White's development advantage snowballs into a mating attack
+
+### The Opening Phase
+
+The game begins from the exit position after 10. bxc3:
+
+*1...Nc6* — SF18 develops the knight to c6, attempting to challenge White's queen.
+
+*2. Qxe7+ Ncxe7* — The queen exchange. White is now up in development and structure.
+
+*3. Kd2* — White centralises the king. With queens off the board, the king is safe in the centre and helps connect the rooks.
+
+*3...Kd8* — Black's king unfortunately cannot castle (the knight went back to g8 in the opening and the f8-bishop was exchanged on c3). The king steps to d8 to avoid central pins.
+
+### The Middlegame — Piece by Piece Domination
+
+*4. Ng5 Nh6 5. Bc4 f6* — White's knight leaps to g5, creating threats against f7. SF18 responds with ...Nh6 and ...f6, but this weakens the e6 square.
+
+*6. Ne6+ Bxe6 7. Bxe6* — White sacrifices the knight for the bishop, landing the bishop on e6 — a dominant outpost deep in Black's position. The evaluation climbs to +1.85.
+
+*7...Nhf5 8. Rhf1 Nd6 9. Rab1 b6* — White develops the rooks to the open files while Black tries to activate pieces. The position is miserable for Black: White has two active rooks, a bishop on e6, and the better pawn structure.
+
+::: {.callout-note}
+## Why SF18 Struggles Here
+Note SF18's evaluations: by move 10, it already gives White +1.9 or higher. The engine *knows* the position is bad from Black's side but cannot avoid it — the exit position was reached by design, and there is no escape.
+:::
+
+### The Endgame — Technique
+
+*10. c4 Ng6 11. c5 Nxf4 12. Rxf4 g5 13. Rf3 bxc5 14. Bd5 c6 15. Bxc6* — White pushes pawns, exchanges pieces, and wins material. The b-file opens for the rook, and Black's pawns start falling.
+
+From move 20 onwards, White's advantage steadily increases: +2.28 → +2.88 → +3.11. SF18 desperately creates counterplay with rook invasions (...Rf2+, ...Rcxc2), but White's pieces are too active.
+
+### The Finale
+
+*59. Kf6 Rb8 60. Be6 — evaluation: Mate in 21!*
+
+White promotes the g-pawn and forces mate:
+
+*61. g8=Q Rxg8 62. Bxg8 Kb4 63. g5 Ka3 64. Rb7 Ka4 65. Bc4 Ka3 66. g6 Ka4 67. g7 Ka3 68. g8=Q Ka4 69. Qa8#*
+
+**Checkmate.**
+
+::: {.callout-important}
+## Key Practical Point
+This game illustrates the typical winning pattern from the Vienna exit: queen exchange, development advantage, space advantage, pawn promotion. White did not need to find brilliant tactics — the advantage was structural from move 10 onwards.
+:::
+
+## Game 2: Black Holds Firm — CL vs SF18 (Round 2, Caro-Kann)
+
+**Opening:** Caro-Kann Classical 4...Bf5
+**Result:** 1/2-1/2 in 112 moves (fifty-move rule)
+**Key theme:** Black's fortress holds under sustained pressure
+
+### The Opening Phase
+
+From the Caro-Kann exit position (after 10...e6):
+
+*1. Bf4 Qa5+ 2. Bd2 Bb4 3. c3 Be7 4. c4 Qb6 5. O-O Ngf6* — CounterLine develops naturally: knight to f6, prepares castling. Note the queen sortie ...Qa5+ with tempo, driving the bishop to the passive d2 square.
+
+*6. Rfe1 O-O* — Black castles safely on move 6 of the middlegame. The fortress is taking shape.
+
+### The Middlegame — Strategic Manoeuvring
+
+*7. Nf5 exf5 8. Rxe7 Rae8 9. Rxe8 Rxe8 10. Qxf5 Qxb2* — White sacrifices a knight on f5, winning the bishop pair temporarily, but Black recaptures material with ...Qxb2, winning the b-pawn. The evaluation hovers around +0.3 to +0.5 — essentially equal.
+
+*11. Rb1 Qxa2 12. Rxb7 Re6 13. c5 a5* — An intense tactical sequence. Black wins both queenside pawns (a2 and b2) while White activates the rook on the seventh rank. The material is balanced, and the evaluation stays near equality.
+
+### The Endgame — Drawing Technique
+
+From move 30 onwards, the game is a drawn rook endgame. Black's knight and pawns coordinate perfectly. The evaluation drops to 0.00:
+
+*37. Kf3 h5 38. g3 Kf6 — evaluation: 0.00*
+
+White tries every possible winning attempt — rook lifts, king marches, pawn advances — but Black's pieces are perfectly placed to hold. The game finally ends by the fifty-move rule at move 112.
+
+::: {.callout-note}
+## Why SF18 Struggles Here
+SF18 played White in this game and could not break through Black's Caro-Kann fortress. The solid c6-e6 pawn chain, the active knight, and the exchanged bishops left White with no weaknesses to target. This is exactly the kind of game the Caro-Kann specialist was designed to produce: boring for the spectator, invaluable for the score sheet.
+:::
+
+## Game 3: Black Wins — CL vs SF18 (Black Specialist Match)
+
+From the Black specialist validation matches, CounterLine as Black won 3 games and lost zero.
+
+In one illustrative game, SF18 overextended with an early knight sacrifice on d6, which looked aggressive but was rebuffed precisely. Black emerged with a slight material advantage in the endgame and converted it cleanly. The key: Black's position after the Caro-Kann exit was so solid that White's aggressive attempts backfired.
+
+These three Black wins — from a theoretically "equal" position against the strongest engine in the world — are the statistical core of CounterLine's edge.
+
+## Key Takeaways from the Games
+
+| Lesson | White Repertoire | Black Repertoire |
+|--------|-----------------|-----------------|
+| **Opening goal** | Reach +1.7 advantage | Reach ~0.0 equality |
+| **Winning method** | Structural domination, pawn promotion | Hold, simplify, win endgames |
+| **Time to decision** | ~40-60 moves | ~80-112 moves |
+| **Typical result** | Win (95%) | Draw (mostly), win (15%) |
+| **Risk level** | Very low for White | Very low for Black |
+
+: Comparing the two repertoires in practice {#tbl-game-comparison}

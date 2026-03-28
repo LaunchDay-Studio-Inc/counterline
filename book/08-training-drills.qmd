@@ -1,0 +1,223 @@
+# Training Drills {#sec-training-drills}
+
+## Introduction
+
+This chapter contains exercises to help you memorise the CounterLine repertoire and understand the key patterns. Work through them at your own pace. Answers are at the end of each section.
+
+## Drill 1: White Repertoire — Move Order
+
+Complete the White seed line from memory. Fill in the blanks.
+
+1. e4 e5
+2. \_\_\_ Nf6
+3. f4 \_\_\_
+4. \_\_\_ Ng8
+5. Nf3 \_\_\_
+6. d4 dxe5
+7. \_\_\_ Bb4
+8. Qxe5+ \_\_\_
+9. Bxf4 \_\_\_
+10. bxc3
+
+::: {.callout-tip collapse="true"}
+## Answer — White Seed Line
+
+1. e4 e5
+2. **Nc3** Nf6
+3. f4 **exf4**
+4. **e5** Ng8
+5. Nf3 **d6**
+6. d4 dxe5
+7. **Qe2** Bb4
+8. Qxe5+ **Qe7**
+9. Bxf4 **Bxc3+**
+10. bxc3
+:::
+
+## Drill 2: Black Repertoire — Move Order
+
+Complete the Black seed line from memory. Black's moves only:
+
+1. e4 **\_\_\_**
+2. d4 **\_\_\_**
+3. Nc3 **\_\_\_**
+4. Nxe4 **\_\_\_**
+5. Ng3 **\_\_\_**
+6. h4 **\_\_\_**
+7. Nf3 **\_\_\_**
+8. h5 **\_\_\_**
+9. Bd3 **\_\_\_**
+10. Qxd3 **\_\_\_**
+
+::: {.callout-tip collapse="true"}
+## Answer — Black Seed Line
+
+1. e4 **c6**
+2. d4 **d5**
+3. Nc3 **dxe4**
+4. Nxe4 **Bf5**
+5. Ng3 **Bg6**
+6. h4 **h6**
+7. Nf3 **Nd7**
+8. h5 **Bh7**
+9. Bd3 **Bxd3**
+10. Qxd3 **e6**
+:::
+
+## Drill 3: "Choose the Move" — White After the Exit
+
+You have reached the Vienna exit position. It is Black's move, and Black plays **1...Nc6**. What do you play?
+
+**Position:** White Qe5, Bf4, Nf3, pawns on c3, d4, c2, a2, g2, h2. Black Qe7, Nc6, pawns on a7, b7, c7, f7, g7, h7.
+
+Options:
+a) Qxc7
+b) Qxe7+
+c) O-O-O
+d) d5
+
+::: {.callout-tip collapse="true"}
+## Answer
+**(b) Qxe7+** — The queen exchange is almost always correct from the exit position. After Qxe7+ Ncxe7 (or Nxe7), White has a lasting structural advantage with +1.8 evaluation. Rushing with Qxc7 leaves the queen offside. O-O-O and d5 are reasonable but miss the best opportunity.
+:::
+
+## Drill 4: "Choose the Move" — Black After the Exit
+
+You have reached the Caro-Kann exit position. White plays **1. Bf4**. What do you play?
+
+Options:
+a) ...Ngf6
+b) ...Qa5+
+c) ...Be7
+d) ...Nb6
+
+::: {.callout-tip collapse="true"}
+## Answer
+**(b) ...Qa5+** — The queen check gains a tempo! After 1...Qa5+ 2. Bd2 (forced) Bb4, Black develops with pressure. This idea was seen in the model games and gives Black active counterplay while disrupting White's development.
+:::
+
+## Drill 5: "Spot the Danger" — White
+
+White has just played Ng5. Black plays **...Be6**. Should White play Ne6+ (forking)?
+
+**Position:** White's pieces: Bf4, Ng5, pawns on c3, d4. Black's pieces: Kd8, Nd6, Ne7, Be6, pawns.
+
+::: {.callout-tip collapse="true"}
+## Answer
+**Yes! Ne6+ is excellent.** After Ne6+, the knight forks the king and the f8 square (or the rook on a8 if Black plays ...Kd7). If Black captures (Bxe6), White recaptures with the bishop or pawn, maintaining a huge advantage. This is the key tactical motif in the Vienna.
+:::
+
+## Drill 6: "Spot the Danger" — Black
+
+It is Black's move in the Caro-Kann. White has just played Nf5, sacrificing the knight on f5. Should Black capture?
+
+**Position:** Caro-Kann middlegame. White knight has landed on f5, attacking e7 and g7.
+
+::: {.callout-tip collapse="true"}
+## Answer
+**It depends on the position.** If ...exf5 opens the e-file dangerously for Black's king, it might be better to play a defensive move first (...Kh8 or ...Rfe8). If Black's king is safely castled and the position is stable, capturing is usually fine because the extra pawn will matter in the endgame. The key principle: calculate first, capture second.
+:::
+
+## Drill 7: FEN Recognition
+
+Look at each position and identify which repertoire it belongs to.
+
+**Position A:**
+
+```
+rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq - 0 10
+```
+
+**Position B:**
+
+```
+r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq - 0 11
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+**Position A** is the **Vienna Gambit exit** (White repertoire). White has Qe5, Bf4, Nf3 — the classic post-gambit position.
+
+**Position B** is the **Caro-Kann Classical exit** (Black repertoire). Black has played ...e6, bishops are exchanged, and both knights are on the third rank.
+:::
+
+## Drill 8: Plans Quiz
+
+Match each plan to the correct repertoire.
+
+| Plan | White or Black? |
+|------|----------------|
+| Centralise the king via Kd2 | \_\_\_ |
+| Play ...c5 to challenge the centre | \_\_\_ |
+| Invade with Ng5-e6+ | \_\_\_ |
+| Castle kingside and play ...Nd5 | \_\_\_ |
+| Push connected passed pawns on the kingside | \_\_\_ |
+| Use ...Qa5+ for tempo | \_\_\_ |
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+| Plan | Repertoire |
+|------|-----------|
+| Centralise the king via Kd2 | **White** (Vienna) |
+| Play ...c5 to challenge the centre | **Black** (Caro-Kann) |
+| Invade with Ng5-e6+ | **White** (Vienna) |
+| Castle kingside and play ...Nd5 | **Black** (Caro-Kann) |
+| Push connected passed pawns on the kingside | **White** (Vienna) |
+| Use ...Qa5+ for tempo | **Black** (Caro-Kann) |
+:::
+
+## Drill 9: Memory Flashcards
+
+Read each prompt and try to answer from memory before checking.
+
+**Card 1:** What is the Vienna Gambit's evaluation at the exit?
+
+::: {.callout-tip collapse="true"}
+## Answer
+Approximately **+1.7 to +2.0** (depending on the engine depth). White is winning.
+:::
+
+**Card 2:** What is the Caro-Kann exit's evaluation?
+
+::: {.callout-tip collapse="true"}
+## Answer
+Approximately **+0.3 to +0.5**. Slightly better for White but practically equal.
+:::
+
+**Card 3:** How many candidates were screened to find these lines?
+
+::: {.callout-tip collapse="true"}
+## Answer
+**28** candidates — 14 for White, 14 for Black.
+:::
+
+**Card 4:** What is Black's first three-move plan after the Caro-Kann exit?
+
+::: {.callout-tip collapse="true"}
+## Answer
+**...Ngf6, ...Be7, ...O-O** — develop, develop, castle.
+:::
+
+**Card 5:** Why does CounterLine "fall through" to Stockfish when the opponent deviates?
+
+::: {.callout-tip collapse="true"}
+## Answer
+Because CounterLine is a **wrapper** — a thin layer on top of Stockfish. When the specialist does not recognise the position, the wrapper simply forwards everything to the underlying Stockfish engine. You are still playing with the strongest engine in the world.
+:::
+
+## Drill 10: Self-Test
+
+Without looking at the book, write out:
+
+1. The complete White seed line (10 moves)
+2. The complete Black seed line (10 moves)
+3. Three plans for White after the exit
+4. Three plans for Black after the exit
+
+Check your answers against @sec-white-repertoire and @sec-black-repertoire.
+
+::: {.callout-note}
+## What to Remember
+Repetition is the key to opening preparation. Review the seed lines daily until they are automatic. Focus on the plans — once you understand *why* each move is played, the moves themselves become easier to remember.
+:::

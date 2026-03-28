@@ -1,0 +1,104 @@
+# Full Lines {#sec-appendix-lines}
+
+## White Repertoire: Vienna Gambit Accepted
+
+### Seed Line (Compact)
+
+```
+1. e4 e5 2. Nc3 Nf6 3. f4 exf4 4. e5 Ng8 5. Nf3 d6
+6. d4 dxe5 7. Qe2 Bb4 8. Qxe5+ Qe7 9. Bxf4 Bxc3+ 10. bxc3
+```
+
+### UCI Notation
+
+```
+e2e4 e7e5 b1c3 g8f6 f2f4 e5f4 e4e5 f6g8
+g1f3 d7d6 d2d4 d6e5 d1e2 f8b4 e2e5 d8e7
+c1f4 b4c3 b2c3
+```
+
+### Exit FEN
+
+```
+rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq - 0 10
+```
+
+### Exit EPD (for suite testing)
+
+```
+rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq -
+```
+
+### Typical Continuation After Exit
+
+```
+10...Nc6 11. Qxe7+ Ncxe7 12. Kd2 Kd8 13. Ng5 Nh6
+14. Bc4 f6 15. Ne6+ Bxe6 16. Bxe6
+```
+
+---
+
+## Black Repertoire: Caro-Kann Classical 4...Bf5
+
+### Seed Line (Compact)
+
+```
+1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6
+6. h4 h6 7. Nf3 Nd7 8. h5 Bh7 9. Bd3 Bxd3 10. Qxd3 e6
+```
+
+### UCI Notation
+
+```
+e2e4 c7c6 d2d4 d7d5 b1c3 d5e4 c3e4 c8f5
+e4g3 f5g6 h2h4 h7h6 g1f3 b8d7 h4h5 g6h7
+f1d3 h7d3 d1d3 e7e6
+```
+
+### Exit FEN
+
+```
+r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq - 0 11
+```
+
+### Exit EPD (for suite testing)
+
+```
+r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq -
+```
+
+### Typical Continuation After Exit
+
+```
+11. Bf4 Qa5+ 12. Bd2 Bb4 13. c3 Be7 14. c4 Qc7
+15. O-O-O Ngf6 16. Ne4 O-O
+```
+
+---
+
+## PolicyTree White Specialist — Key Branch Points
+
+The White specialist's learned book contains 61 nodes. Key decision points:
+
+| Move | Position Trigger | Specialist Choice | Rationale |
+|------|-----------------|-------------------|-----------|
+| 2 | After 1...e5 | Nc3 | Vienna Game |
+| 3 | After 2...Nf6 | f4 | Vienna Gambit |
+| 4 | After 3...exf4 | e5 | Chase the knight |
+| 7 | After 6...dxe5 | Qe2 | Pin and threaten |
+| 8 | After 7...Bb4 | Qxe5+ | Capture with check |
+| 9 | After 8...Qe7 | Bxf4 | Recapture gambit pawn |
+| 10 | After 9...Bxc3+ | bxc3 | Reach the exit |
+
+: Key PolicyTree branch points {#tbl-policy-tree}
+
+## EmpiricalDB Black Specialist — Coverage
+
+The Black specialist's database contains:
+
+- **7,893 unique positions**
+- **39,133 move evaluations**
+- Mined from **100,000 Caro-Kann games**
+- Covering moves from the exit position through approximately **move 25**
+
+The database assigns empirical weights to each candidate move based on observed win/draw/loss rates in the training games. When the specialist encounters a position in its database, it selects the move with the highest weighted score, blending engine evaluation (40%) with empirical performance (60%).

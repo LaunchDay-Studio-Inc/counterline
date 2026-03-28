@@ -1,0 +1,55 @@
+project:
+  type: book
+  output-dir: dist
+
+book:
+  title: "CounterLine: The Stockfish 18 Killer"
+  subtitle: "A Fixed-Line Repertoire That Scores Over 50% Against Stockfish 18 on the Published CounterLine Suite"
+  author: "The CounterLine Project"
+  date: "2026-03-28"
+  chapters:
+    - index.qmd
+    - 01-what-this-book-is.qmd
+    - 02-how-counterline-was-built.qmd
+    - 03-white-repertoire.qmd
+    - 04-black-repertoire.qmd
+    - 05-model-games-vs-sf18.qmd
+    - 06-key-plans-and-patterns.qmd
+    - 07-common-opponent-deviations.qmd
+    - 08-training-drills.qmd
+    - 09-quick-start-repertoire.qmd
+    - 10-claim-boundaries-and-reproducibility.qmd
+  appendices:
+    - appendix-a-full-lines.qmd
+    - appendix-b-match-results.qmd
+    - appendix-c-how-to-use-the-engine.qmd
+  references: references.bib
+
+format:
+  pdf:
+    documentclass: book
+    pdf-engine: tectonic
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    colorlinks: true
+    linkcolor: "NavyBlue"
+    urlcolor: "NavyBlue"
+    geometry:
+      - top=25mm
+      - bottom=25mm
+      - left=30mm
+      - right=25mm
+    fontsize: 11pt
+    include-in-header:
+      text: |
+        \usepackage{awesomebox}
+        \usepackage{longtable}
+        \usepackage{booktabs}
+    output-file: "CounterLine-The-Stockfish-18-Killer"
+
+  epub:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    output-file: "CounterLine-The-Stockfish-18-Killer"

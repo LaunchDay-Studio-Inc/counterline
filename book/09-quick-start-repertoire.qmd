@@ -1,0 +1,134 @@
+# Quick-Start Repertoire {#sec-quick-start}
+
+## Introduction
+
+This chapter is your cheat sheet. Print it, bookmark it, or keep it on your phone. It contains everything you need to play the CounterLine repertoire without reading the full book.
+
+## White Cheat Sheet: Vienna Gambit Accepted
+
+### The Moves
+
+```
+1. e4    e5
+2. Nc3   Nf6
+3. f4    exf4
+4. e5    Ng8
+5. Nf3   d6
+6. d4    dxe5
+7. Qe2   Bb4
+8. Qxe5+ Qe7
+9. Bxf4  Bxc3+
+10. bxc3
+```
+
+### Memory Hook
+
+**"E-N-F · E-N-D · Q-Q-B-B"**
+
+- Moves 1-3: **E**4, **N**c3, **F**4 (set up the gambit)
+- Moves 4-6: **E**5, **N**f3, **D**4 (seize the centre)
+- Moves 7-10: **Q**e2, **Q**xe5+, **B**xf4, **b**xc3 (harvest the advantage)
+
+### After the Exit — Three Things to Do
+
+1. **Exchange queens**: Play Qxe7+ at the first opportunity
+2. **Centralise the king**: Kd2 (yes, king to d2)
+3. **Attack with Ng5**: Aim for Ne6+ if possible
+
+### The One Thing Not to Do
+
+Do not castle queenside or kingside. With queens off, the king belongs in the centre.
+
+### Result You Should Expect
+
+**White wins 95% of games** from this position. Even a draw is rare.
+
+---
+
+## Black Cheat Sheet: Caro-Kann Classical
+
+### The Moves
+
+```
+1. e4    c6
+2. d4    d5
+3. Nc3   dxe4
+4. Nxe4  Bf5
+5. Ng3   Bg6
+6. h4    h6
+7. Nf3   Nd7
+8. h5    Bh7
+9. Bd3   Bxd3
+10. Qxd3 e6
+```
+
+### Memory Hook
+
+**"C-D-D · B-B-H · N-B-B-E"**
+
+- Moves 1-3: **C**6, **D**5, **D**xe4 (enter the Caro-Kann)
+- Moves 4-6: **B**f5, **B**g6, **H**6 (develop and protect the bishop)
+- Moves 7-10: **N**d7, **B**h7, **B**xd3, **E**6 (exchange and solidify)
+
+### After the Exit — Three Things to Do
+
+1. **Develop**: ...Ngf6, ...Be7, ...O-O (in that order)
+2. **Play ...Qa5+** if White plays Bf4 — free tempo
+3. **Aim for ...c5** once fully developed
+
+### The One Thing Not to Do
+
+Do not play ...c5 before you are fully developed. Premature pawn breaks are the main way to lose.
+
+### Result You Should Expect
+
+**Black scores 53.75%** from this position — mostly draws, with occasional wins. **Zero losses** in the proof matches.
+
+---
+
+## Combined Quick Reference
+
+| | White (Vienna) | Black (Caro-Kann) |
+|---|---|---|
+| **Opening** | 1. e4 e5 2. Nc3 Nf6 3. f4 | 1. e4 c6 2. d4 d5 3. Nc3 |
+| **Key sacrifice** | Pawn on f4 | None (solid) |
+| **Exit move** | 10. bxc3 | 10...e6 |
+| **Evaluation at exit** | +1.7 | +0.3 |
+| **Primary plan** | Queens off, squeeze | Develop, hold fortress |
+| **Win rate** | 95% | 53.75% |
+| **Moves to memorise** | 10 | 10 |
+
+: Quick comparison of both repertoires {#tbl-quick-comparison}
+
+---
+
+## Critical Positions to Know
+
+### Tabiya 1: Vienna After Queens Exchange
+**FEN:**
+
+```
+rnb1k1nr/ppp2ppp/8/8/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq - 0 11
+```
+
+The queen exchange has happened (Qxe7+ Nxe7). White is winning. Play Kd2 next.
+
+### Tabiya 2: Caro-Kann Fortress
+**FEN:**
+
+```
+r4rk1/pp1nbpp1/2p1pn1p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQ - 4 13
+```
+
+Black has completed development (...Ngf6, ...Be7, ...O-O). The fortress is built. Now play for ...c5.
+
+### Tabiya 3: Vienna Knight Invasion
+**FEN:** After Ng5 in the Vienna — always check if Ne6+ is possible. This is the most common tactical motif.
+
+---
+
+## If the Opponent Deviates
+
+**Short answer:** You are still playing Stockfish. Deviations just mean you are in a normal game instead of your prepared line. There is no risk.
+
+See @sec-opponent-deviations for specific responses to common deviations.

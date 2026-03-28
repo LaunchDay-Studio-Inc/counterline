@@ -1,0 +1,69 @@
+# What This Book Is {#sec-what-this-book-is}
+
+## The Short Version
+
+This book presents a **fixed-line repertoire** — a specific sequence of chess moves for White and for Black — that has been tested against Stockfish 18 under controlled conditions and shown to score above 50%.
+
+That is a narrow claim, and it is meant to be.
+
+## What "Fixed-Line" Means
+
+A *fixed-line repertoire* is a prepared sequence of moves that you play the same way every time. You are not choosing between multiple plans. You are not adjusting to the opponent's style. You are playing a memorised sequence of moves that leads to a specific position — an **exit position** — where you then play chess.
+
+::: {.callout-note}
+## What to Remember
+A fixed-line repertoire is like a scripted opening. You follow the script until you reach a known position. Then you play.
+:::
+
+This is different from a traditional repertoire book, which might give you options ("you can also try 7...Be7 here"). CounterLine gives you one path. The power comes from the fact that *this specific path* was chosen because it tested best against the target engine.
+
+## What "Scores Above 50%" Means
+
+In engine testing, a 50% score means draws and equal wins/losses — parity. Scoring above 50% means winning more than you lose. Against the strongest chess engine on Earth, even 52% is meaningful.
+
+Here are the actual results:
+
+| Match | Score | Win% | Elo Estimate |
+|-------|-------|------|-------------|
+| CL Combined vs SF18 (Combined Suite) | 21.0/40 | 52.50% | +17 |
+| CL Combined vs SF18 (Caro-Kann Exit) | 21.5/40 | 53.75% | +26 |
+| CL Combined vs SF18 (Vienna Exit) | 19.5/40 | 48.75% | Inconclusive |
+
+: CounterLine v2 proof-matrix results at TC 1+0.1 {#tbl-headline-results}
+
+These scores come from 40-game matches (20 rounds × 2 games per round) at time control 1 second + 0.1 second increment, 1 CPU thread, 64 MB hash. Every game is reproducible from the published PGN files.
+
+## What This Book Is Not
+
+This book does **not** claim:
+
+- **"Stockfish can always be beaten."** CounterLine works on a specific, published opening suite. Outside that suite, it is simply Stockfish with no modifications.
+
+- **"Humans will automatically beat Stockfish with this."** The repertoire was validated engine-vs-engine. A human using these lines would still need to play the middlegame and endgame at or near engine level to replicate the results.
+
+- **"These results are statistically proven beyond doubt."** The 40-game matches yield approximately ±23 Elo error bars. The LOS (Likelihood of Superiority) is 92-93%, which is close to but below the 95% threshold usually demanded in statistics. We are transparent about this.
+
+::: {.callout-important}
+## Honesty Box
+CounterLine's edge is real but narrow. The 52.50% combined score comes from 40 games — enough to see a trend, not enough for academic-journal-level proof. Treat these results as a strong signal, not a guaranteed outcome.
+:::
+
+## How to Read This Book
+
+If you are a **beginner** who wants to learn a concrete opening repertoire:
+
+1. Start with @sec-quick-start for the cheat sheets
+2. Read @sec-white-repertoire and @sec-black-repertoire for the full lines with explanations
+3. Work through @sec-training-drills
+
+If you are a **strong player or coach** evaluating the repertoire:
+
+1. Start with @sec-claim-boundaries for the precise scope of claims
+2. Read @sec-how-counterline-was-built for the methodology
+3. Examine the model games in @sec-model-games
+
+If you are an **engine tester** who wants to reproduce the results:
+
+1. Start with @sec-appendix-engine for setup instructions
+2. Check @sec-appendix-results for the full match data
+3. Read @sec-claim-boundaries for the reproduction commands

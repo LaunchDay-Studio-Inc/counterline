@@ -1,0 +1,182 @@
+# How to Use the Engine {#sec-appendix-engine}
+
+## Overview
+
+CounterLine is not a standalone chess engine. It is a **UCI wrapper** — a Python program that sits between your chess GUI and Stockfish. It intercepts the opening phase, plays the specialist moves, and then hands off to the underlying Stockfish engine for the rest of the game.
+
+This appendix explains how to set up and use CounterLine locally.
+
+## Prerequisites
+
+- **Git** — to clone the repository
+- **Python 3.10+** — for the wrapper
+- **A C++ compiler** — to build Stockfish from source (GCC or Clang)
+- **Make** — for the build system
+
+## Quick Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/official-stockfish/Stockfish.git counterline
+cd counterline
+git checkout exp/black-sf18-killer
+```
+
+### 2. Run the Bootstrap Script
+
+```bash
+scripts/bootstrap_codespace.sh
+```
+
+This script:
+
+- Creates a Python virtual environment
+- Installs dependencies
+- Builds Stockfish master and SF18 from source
+- Builds the CounterLine wrapper
+- Fetches the fastchess tournament manager
+
+### 3. Verify the Installation
+
+```bash
+scripts/smoke_uci.sh
+```
+
+This sends a few UCI commands to each engine binary and verifies they respond correctly.
+
+## Engine Binaries
+
+After building, you will find these binaries in the `bin/` directory:
+
+| Binary | Description |
+|--------|-------------|
+| `counterline-uci` | Base CounterLine wrapper |
+| `counterline-white` | White specialist only |
+| `counterline-black` | Black specialist only |
+| `counterline-combined` | Both specialists (recommended) |
+| `stockfish-master` | Unmodified Stockfish master |
+| `stockfish-sf18` | Stockfish 18 build |
+| `null-wrapper` | Wrapper with no specialists (control) |
+
+: Available engine binaries {#tbl-engine-binaries}
+
+## Using CounterLine in a Chess GUI
+
+### Arena
+
+1. Open Arena → Engines → Install New Engine
+2. Browse to `bin/counterline-combined`
+3. Set the engine type to UCI
+4. Done — the engine is ready to play
+
+### Cutechess
+
+1. Open Cutechess → Engines → Add
+2. Set the command to the full path of `bin/counterline-combined`
+3. Set the protocol to UCI
+4. Click OK
+
+### Lichess (via lichess-bot)
+
+CounterLine can be used with the lichess-bot project. Set the engine command to `bin/counterline-combined` in the bot's configuration file. Note: Lichess bot games are typically at rapid or classical time controls, which have not been validated.
+
+## Running Matches
+
+### Quick Match: CL vs SF18
+
+```{.bash .wrap}
+tools/fastchess/fastchess \
+  -engine cmd=bin/counterline-combined \
+    name=CLCombined \
+  -engine cmd=bin/stockfish-sf18 \
+    name=StockfishSF18 \
+  -each tc=1+0.1 threads=1 hash=64 \
+  -openings \
+    file=opening_suites/final/combined.epd \
+    format=epd order=sequential \
+  -rounds 20 -repeat -recover \
+  -concurrency 1 \
+  -pgnout my_match.pgn
+```
+
+### Analysing Results
+
+```bash
+python3 scripts/summarize_matches.py my_match.pgn
+```
+
+This will print the win/draw/loss counts, score percentages, and Elo estimates.
+
+## Configuration Files
+
+CounterLine's behaviour is controlled by YAML configuration files in `configs/`:
+
+| File | Controls |
+|------|----------|
+| `white-killer.yml` | White specialist parameters |
+| `black-killer.yml` | Black specialist parameters |
+| `engines.yml` | Engine binary paths and settings |
+| `thresholds.yml` | Evaluation thresholds for overrides |
+| `timebudgets.yml` | Time allocation settings |
+
+: Configuration files {#tbl-config-files}
+
+### Key Configuration Parameters
+
+```yaml
+# white-killer.yml
+use_learned_book: true
+empirical_weight: 0.7    # 70% empirical, 30% engine eval
+nodes_analysis: 50000    # 50k nodes per override check
+```
+
+```yaml
+# black-killer.yml
+use_learned_book: true
+empirical_weight: 0.6    # 60% empirical, 40% engine eval
+nodes_analysis: 80000    # 80k nodes per override check
+fallback_aggressiveness: 0.8
+```
+
+## Troubleshooting
+
+### "Engine not responding"
+
+The wrapper requires Python 3.10+ and the dependencies listed in `pyproject.toml`. Ensure you have activated the virtual environment:
+
+```bash
+source .venv/bin/activate
+```
+
+### "No specialist overrides firing"
+
+Check that the game is reaching the seed line. The specialist only activates when the game position matches the seed line or a known position in the specialist's database. If the opponent deviates early, the wrapper falls through to standard Stockfish (which is correct behaviour).
+
+### "Build fails"
+
+Ensure you have a C++ compiler that supports C++17:
+
+```bash
+g++ --version    # should be 10+
+```
+
+If using Clang:
+
+```bash
+clang++ --version    # should be 14+
+```
+
+## Data Files
+
+The specialist databases are stored in `data/`:
+
+| File | Size | Description |
+|------|------|-------------|
+| `vienna.json` | ~15 KB | White book (61 nodes) |
+| `empirical.sqlite` | ~2 MB | Black DB (7,893 pos.) |
+| `counterline.sqlite` | ~10 KB | Combined (63 entries) |
+
+: Specialist database files {#tbl-data-files}
+
+These files are included in the repository and do not need to be regenerated unless you want to mine new positions.

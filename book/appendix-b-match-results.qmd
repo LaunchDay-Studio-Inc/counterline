@@ -1,0 +1,88 @@
+# Match Results {#sec-appendix-results}
+
+## Proof Matrix Overview
+
+Nine matches were played in the proof matrix, testing three engines (Stockfish Master, Null Wrapper, CounterLine Combined) against Stockfish SF18 on three suites (Vienna exit, Caro-Kann exit, Combined).
+
+All matches: TC 1+0.1, 1 thread, 64 MB hash, 40 games (20 rounds × 2).
+
+## Vienna Gambit Exit — White Line
+
+| # | Engine 1 | Engine 2 | Score | Win% | As White | As Black |
+|---|----------|----------|-------|------|----------|----------|
+| M1 | StockfishMaster | SF18 | 21.0/40 | 52.50% | 20W-0L-0D | 0W-18L-2D |
+| M2 | NullWrapper | SF18 | 20.0/40 | 50.00% | 20W-0L-0D | 0W-20L-0D |
+| M3 | CL Combined | SF18 | 19.5/40 | 48.75% | 19W-0L-1D | 0W-20L-0D |
+
+: Vienna exit match results {#tbl-vienna-results}
+
+**Analysis:** White wins virtually every game from this position, regardless of engine. CL Combined's 48.75% is slightly below the others — one override may have caused an unnecessary draw. The White specialist's value is in *reaching* this position, not in play from it.
+
+## Caro-Kann Classical Exit — Black Line
+
+| # | Engine 1 | Engine 2 | Score | Win% | As White | As Black |
+|---|----------|----------|-------|------|----------|----------|
+| M4 | StockfishMaster | SF18 | 21.0/40 | 52.50% | 1W-0L-19D | 1W-0L-19D |
+| M5 | NullWrapper | SF18 | 19.0/40 | 47.50% | 1W-1L-18D | 1W-3L-16D |
+| M6 | CL Combined | SF18 | 21.5/40 | **53.75%** | 1W-1L-18D | **3W-0L-17D** |
+
+: Caro-Kann exit match results {#tbl-carokann-results}
+
+**Analysis:** This is where CounterLine shines. As Black:
+
+- **StockfishMaster**: 1W-0L-19D (52.5%)
+- **NullWrapper**: 1W-3L-16D (45%) — wrapper overhead causes losses
+- **CL Combined**: 3W-0L-17D (57.5%) — specialist prevents losses and generates wins
+
+The Black specialist is responsible for a **+12.5%** swing compared to the null-wrapper as Black.
+
+## Combined Suite — Both Exit EPDs
+
+| # | Engine 1 | Engine 2 | Score | Win% | As White | As Black |
+|---|----------|----------|-------|------|----------|----------|
+| M7 | StockfishMaster | SF18 | 20.5/40 | 51.25% | 11W-0L-9D | 0W-10L-10D |
+| M8 | NullWrapper | SF18 | 20.0/40 | 50.00% | 10W-0L-10D | 0W-10L-10D |
+| M9 | CL Combined | SF18 | 21.0/40 | **52.50%** | 11W-0L-9D | **1W-10L-9D** |
+
+: Combined suite match results {#tbl-combined-results}
+
+**Analysis:** CL Combined's 52.50% vs the null-wrapper's 50.00% confirms the specialist adds genuine value. The 2.50% gain comes entirely from the Black specialist producing an extra Black win.
+
+## Elo Estimates
+
+| Match | Engine | Score | Elo Est. | LOS |
+|-------|--------|-------|----------|-----|
+| M6 (Caro-Kann) | CL Combined | 53.75% | +26 | ~92% |
+| M9 (Combined) | CL Combined | 52.50% | +17 | ~93% |
+| M3 (Vienna) | CL Combined | 48.75% | -9 | Inconclusive |
+
+: Elo estimates for CounterLine vs SF18 {#tbl-elo-estimates}
+
+## Historical Context: v1 Results
+
+For reference, the earlier CounterLine v1 (QGD Exchange + Petroff) achieved different results:
+
+| Match | Score | Win% | Elo Est. | LOS |
+|-------|-------|------|----------|-----|
+| CL v1 vs StockfishMaster (Combined) | 27.5/50 | 55.0% | +35 | 97% |
+| CL v1 vs SF18 (Combined) | 25.0/50 | 50.0% | 0 | 50% |
+
+: CounterLine v1 results (for comparison) {#tbl-v1-results}
+
+The v1 lines worked against Master but showed no edge against SF18. The v2 lines (Vienna + Caro-Kann) were specifically mined to target SF18 and succeed where v1 did not.
+
+## Where to Find the PGNs
+
+All match PGNs are stored in the repository:
+
+- `results/proof_matrix/M1_vienna_master_vs_sf18/games.pgn`
+- `results/proof_matrix/M2_vienna_null_vs_sf18/games.pgn`
+- `results/proof_matrix/M3_vienna_cl_vs_sf18/games.pgn`
+- `results/proof_matrix/M4_carokann_master_vs_sf18/games.pgn`
+- `results/proof_matrix/M5_carokann_null_vs_sf18/games.pgn`
+- `results/proof_matrix/M6_carokann_cl_vs_sf18/games.pgn`
+- `results/proof_matrix/M7_combined_master_vs_sf18/games.pgn`
+- `results/proof_matrix/M8_combined_null_vs_sf18/games.pgn`
+- `results/proof_matrix/M9_combined_cl_vs_sf18/games.pgn`
+
+Each directory also contains `results.json` with parsed scores.

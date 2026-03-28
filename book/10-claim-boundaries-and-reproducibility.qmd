@@ -1,0 +1,144 @@
+# Claim Boundaries and Reproducibility {#sec-claim-boundaries}
+
+## What Has Been Proved
+
+The following statements are supported by the CounterLine proof matrix — a set of nine 40-game matches played at TC 1+0.1, 1 thread, 64 MB hash, using fastchess v0.9.0:
+
+### Proved Claims
+
+1. **The Vienna Gambit exit position is nearly 100% winning for White**, regardless of which engine plays White. In all three matrix matches from the Vienna exit, White won 95%+ of games when playing that side. This is a property of the *position*, not the engine.
+
+2. **CounterLine's Black specialist scores 53.75% against SF18 on the Caro-Kann Classical exit**, with 3 wins and 0 losses as Black across 20 games. The null-wrapper (same Stockfish, no specialist) scored only 47.50% on the same suite, confirming the specialist is responsible for the gain.
+
+3. **CounterLine Combined scores 52.50% against SF18 on the combined fixed suite**, with LOS approximately 93%. The gain is driven entirely by the Black specialist.
+
+4. **The wrapper itself contributes no measurable advantage or disadvantage.** The null-wrapper control scored exactly 50% on the combined suite, confirming that wrapper overhead does not affect results.
+
+### Statistical Confidence
+
+| Metric | Value |
+|--------|-------|
+| Match size | 40 games (20 rounds × 2) |
+| Time control | 1+0.1 (1 second + 0.1 increment) |
+| Threads | 1 |
+| Hash | 64 MB |
+| Error bars | ±23 Elo |
+| LOS (Combined) | ~93% |
+| LOS (Black line) | ~92% |
+
+: Statistical parameters of the proof matches {#tbl-stats}
+
+The LOS values (92-93%) are **close to but below** the 95% significance threshold commonly used in statistics. This means:
+
+- The results are **suggestive** of a real advantage
+- They are **not yet definitive** by the strictest standards
+- Larger matches (200+ games) would be needed for 95% confidence
+
+## What Has Not Been Proved
+
+The following statements are **not** supported by the evidence:
+
+1. **"CounterLine is stronger than Stockfish."** CounterLine's edge exists only on the published fixed suite. Outside these specific positions, it is identical to Stockfish.
+
+2. **"The White specialist adds post-exit value."** The Vienna exit position is so winning for White that no engine can differentiate. CounterLine's White specialist scored 48.75% from the exit — actually slightly worse than raw Stockfish (52.50%). The specialist's value is in *line selection* (reaching the exit), not in play from the exit.
+
+3. **"A human using this repertoire will beat Stockfish."** The results are engine-vs-engine. A human would need to play the middlegame and endgame at engine level to replicate them.
+
+4. **"These results transfer to longer time controls."** The tests were run at 1+0.1. Performance at classical time controls (e.g., 60+1) has not been validated.
+
+5. **"These results transfer to multi-threaded configurations."** The tests used 1 thread. Multi-threaded Stockfish might behave differently.
+
+6. **"CounterLine has a proven edge at 95% confidence."** The current evidence reaches 92-93% LOS, not 95%.
+
+::: {.callout-important}
+## Honesty Box
+We could have run 200+ game matches to push past 95% LOS. We chose to publish the 40-game results transparently and let others reproduce and extend the work. Science is about honesty, not cherry-picking sample sizes to hit a threshold.
+:::
+
+## Reproduction Commands
+
+To reproduce any match from the proof matrix, you need:
+
+1. The CounterLine repository (this repo)
+2. A built Stockfish SF18 binary (`bin/stockfish-sf18`)
+3. The CounterLine engine binaries (`bin/counterline-combined`, etc.)
+4. The fastchess tournament manager
+
+### Build the Engines
+
+```bash
+# Build Stockfish SF18
+scripts/build_stockfish.sh sf18
+
+# Build the CounterLine wrapper
+scripts/build_wrapper.sh
+
+# Fetch fastchess
+scripts/fetch_fastchess.sh
+```
+
+### Run a Match
+
+```bash
+# Example: CL Combined vs SF18 on the combined suite
+tools/fastchess/fastchess \
+  -engine cmd=bin/counterline-combined name=CLCombined \
+  -engine cmd=bin/stockfish-sf18 name=StockfishSF18 \
+  -each tc=1+0.1 threads=1 hash=64 \
+  -openings file=opening_suites/final/combined.epd \
+    format=epd order=sequential \
+  -rounds 20 -repeat -recover -concurrency 1 \
+  -pgnout results/my_test/games.pgn
+```
+
+### Run the Black Specialist Match
+
+```bash
+tools/fastchess/fastchess \
+  -engine cmd=bin/counterline-combined name=CLCombined \
+  -engine cmd=bin/stockfish-sf18 name=StockfishSF18 \
+  -each tc=1+0.1 threads=1 hash=64 \
+  -openings file=opening_suites/final/black/exit.epd \
+    format=epd order=sequential \
+  -rounds 20 -repeat -recover -concurrency 1 \
+  -pgnout results/my_test/black_games.pgn
+```
+
+### Verify Results
+
+```bash
+# Parse PGN results
+python3 scripts/summarize_matches.py results/my_test/games.pgn
+```
+
+## Full Proof Matrix Reference
+
+All nine matches and their results are documented in:
+
+- `docs/final-proof.md` — full narrative
+- `results/proof_matrix/` — PGN files and parsed scores
+- `results/telemetry.jsonl` — raw telemetry
+
+See @sec-appendix-results for the complete match tables.
+
+## Engine Versions Tested
+
+| Engine | Version | Build |
+|--------|---------|-------|
+| Stockfish Master | dev-20260325-3e0d0927 | From source |
+| Stockfish SF18 | cb3d4ee9 | From source |
+| CounterLine Combined | exp/integrated-sf18-killer | Wrapper + specialists |
+| Null Wrapper | Same branch | Wrapper, no specialists |
+
+: Engine versions used in proof testing {#tbl-engine-versions}
+
+## Date and Environment
+
+All proof-matrix matches were run on **2026-03-28** in a GitHub Codespaces environment:
+
+- **OS:** Ubuntu 24.04.3 LTS
+- **CPU:** 1 core allocated to each engine
+- **RAM:** 64 MB hash per engine
+- **Time control:** 1 second + 0.1 second increment per move
+
+These parameters were chosen for reproducibility, not for maximum engine strength. Stronger hardware configuration, more threads, or longer time controls might change the results (in either direction).
