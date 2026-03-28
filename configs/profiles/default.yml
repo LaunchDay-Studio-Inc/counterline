@@ -1,0 +1,15 @@
+# Default Profile — standard Stockfish master passthrough
+# No specialist overrides; used when position doesn't match any killer line.
+
+profile: default
+version: "0.1.0"
+
+engine:
+  base_path: bin/stockfish-master
+  threads: 1
+  hash_mb: 64
+
+wrapper:
+  use_learned_book: false
+  opening_lock: false
+  wrapper_mode: "off"

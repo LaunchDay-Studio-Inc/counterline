@@ -88,7 +88,7 @@ class UciApp:
             "max_candidates": 4,
             "reply_bundle_size": 2,
         }
-        if self.profile == "white_killer":
+        if self.profile in ("white_killer", "combined"):
             self._init_white_killer()
 
         # Black specialist book
@@ -102,7 +102,7 @@ class UciApp:
             "max_candidates": 5,
             "reply_bundle_size": 3,
         }
-        if self.profile == "black_killer":
+        if self.profile in ("black_killer", "combined"):
             self._init_black_killer()
 
     @property
@@ -451,9 +451,9 @@ class UciApp:
         # White/Black specialist options
         elif name_lower == "profile":
             self.profile = value
-            if value == "white_killer" and self._targeted_book is None:
+            if value in ("white_killer", "combined") and self._targeted_book is None:
                 self._init_white_killer()
-            elif value == "black_killer" and self._black_targeted_book is None:
+            if value in ("black_killer", "combined") and self._black_targeted_book is None:
                 self._init_black_killer()
         elif name_lower == "targetenginepath":
             pass  # SF18 path for reference; mining uses it, runtime doesn't
@@ -492,7 +492,7 @@ class UciApp:
         movetime_ms = go_params.get("movetime")
 
         # White killer specialist path
-        if self.profile == "white_killer" and self._targeted_book is not None:
+        if self.profile in ("white_killer", "combined") and self._targeted_book is not None:
             if self._is_in_vienna_line():
                 move, ponder, reason, used, info_lines, tele = self._choose_white_killer_move(go_params)
                 # Log extended telemetry
@@ -500,7 +500,7 @@ class UciApp:
                 return move, ponder, reason, used, info_lines
 
         # Black killer specialist path
-        if self.profile == "black_killer" and self._black_targeted_book is not None:
+        if self.profile in ("black_killer", "combined") and self._black_targeted_book is not None:
             if self._is_in_carokann_line():
                 move, ponder, reason, used, info_lines, tele = self._choose_black_killer_move(go_params)
                 self._log_black_killer_tele(tele, reason)
@@ -616,6 +616,8 @@ class UciApp:
                     name += " (White Killer)"
                 elif self.profile == "black_killer":
                     name += " (Black Killer)"
+                elif self.profile == "combined":
+                    name += " (Combined SF18 Killer)"
                 self.send(f"id name {name}")
                 self.send("id author Stockfish developers + LaunchDay Studio Inc.")
                 self.send("")
@@ -623,7 +625,7 @@ class UciApp:
                 self.send("option name TargetEnginePath type string default bin/stockfish-sf18")
                 self.send("option name NominalEnginePath type string default bin/stockfish-master")
                 self.send("option name VerifyEnginePath type string default bin/stockfish-master")
-                self.send("option name Profile type combo default default var default var white_killer var black_killer")
+                self.send("option name Profile type combo default default var default var white_killer var black_killer var combined")
                 self.send("option name Threads type spin default 1 min 1 max 512")
                 self.send("option name Hash type spin default 64 min 1 max 131072")
                 self.send("option name OpeningLock type check default true")

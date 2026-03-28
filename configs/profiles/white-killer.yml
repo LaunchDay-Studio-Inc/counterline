@@ -1,0 +1,32 @@
+# White Killer Profile — Vienna Gambit Accepted vs SF18
+# Used by: bin/counterline-white, bin/counterline-combined
+
+profile: white_killer
+version: "0.1.0"
+
+opening:
+  name: "Vienna Gambit Accepted (W06)"
+  seed_pgn: >-
+    1. e4 e5 2. Nc3 Nf6 3. f4 exf4 4. e5 Ng8
+    5. Nf3 d6 6. d4 dxe5 7. Qe2 Bb4
+    8. Qxe5+ Qe7 9. Bxf4 Bxc3+ 10. bxc3
+  exit_epd: "rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq -"
+
+engine:
+  base_path: bin/stockfish-master
+  target_path: bin/stockfish-sf18
+  threads: 1
+  hash_mb: 64
+
+wrapper:
+  use_learned_book: true
+  book_depth_limit: 30
+  empirical_weight: 0.7
+  wdl_weight: 0.3
+  decisive_bonus: 0.1
+  max_candidates: 4
+  reply_bundle_size: 2
+
+book:
+  path: data/white_killer/book/vienna.json
+  db_path: data/white_killer/db/empirical.sqlite

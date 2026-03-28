@@ -1,0 +1,32 @@
+# Black Killer Profile — Caro-Kann Classical 4...Bf5 vs SF18
+# Used by: bin/counterline-black, bin/counterline-combined
+
+profile: black_killer
+version: "0.2.0"
+
+opening:
+  name: "Caro-Kann Classical 4...Bf5 (B09)"
+  seed_pgn: >-
+    1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5
+    5. Ng3 Bg6 6. h4 h6 7. Nf3 Nd7
+    8. h5 Bh7 9. Bd3 Bxd3 10. Qxd3 e6
+  exit_epd: "r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq -"
+
+engine:
+  base_path: bin/stockfish-master
+  target_path: bin/stockfish-sf18
+  threads: 1
+  hash_mb: 64
+
+wrapper:
+  use_learned_book: true
+  book_depth_limit: 40
+  empirical_weight: 0.6
+  wdl_weight: 0.25
+  decisive_bonus: 0.15
+  max_candidates: 5
+  reply_bundle_size: 3
+
+book:
+  path: data/black_killer/book/carokann.json
+  db_path: data/black_killer/db/empirical.sqlite
