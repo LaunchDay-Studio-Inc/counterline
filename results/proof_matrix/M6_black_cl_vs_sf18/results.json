@@ -1,0 +1,12 @@
+{
+  "engine1": "CounterLineCombined",
+  "engine2": "StockfishSF18",
+  "games": 40,
+  "e1_wins": 4,
+  "e1_losses": 1,
+  "e1_draws": 35,
+  "e1_score": 21.5,
+  "e1_pct": 53.75,
+  "e1_as_white": "1W-1L-18D",
+  "e1_as_black": "3W-0L-17D"
+}

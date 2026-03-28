@@ -1,0 +1,12 @@
+{
+  "engine1": "NullWrapper",
+  "engine2": "StockfishSF18",
+  "games": 40,
+  "e1_wins": 10,
+  "e1_losses": 10,
+  "e1_draws": 20,
+  "e1_score": 20.0,
+  "e1_pct": 50.0,
+  "e1_as_white": "10W-0L-10D",
+  "e1_as_black": "0W-10L-10D"
+}

@@ -1,0 +1,12 @@
+{
+  "engine1": "StockfishMaster",
+  "engine2": "StockfishSF18",
+  "games": 40,
+  "e1_wins": 2,
+  "e1_losses": 0,
+  "e1_draws": 38,
+  "e1_score": 21.0,
+  "e1_pct": 52.5,
+  "e1_as_white": "1W-0L-19D",
+  "e1_as_black": "1W-0L-19D"
+}
