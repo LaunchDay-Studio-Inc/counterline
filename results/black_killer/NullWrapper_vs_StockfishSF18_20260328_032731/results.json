@@ -1,0 +1,14 @@
+{
+  "engine1": "NullWrapper",
+  "engine2": "StockfishSF18",
+  "tc": "10+0.1",
+  "games": 40,
+  "rounds": 20,
+  "threads": 1,
+  "hash": 64,
+  "suite": "opening_suites/black/carokann_classical/exits.epd",
+  "white_wins": 2,
+  "black_wins": 0,
+  "draws": 38,
+  "unfinished": 0
+}

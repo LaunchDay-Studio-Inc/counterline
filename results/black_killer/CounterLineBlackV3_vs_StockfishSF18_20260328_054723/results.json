@@ -1,0 +1,14 @@
+{
+  "engine1": "CounterLineBlackV3",
+  "engine2": "StockfishSF18",
+  "tc": "10+0.1",
+  "games": 60,
+  "rounds": 30,
+  "threads": 1,
+  "hash": 64,
+  "suite": "opening_suites/black/carokann_classical/exits.epd",
+  "white_wins": 6,
+  "black_wins": 0,
+  "draws": 54,
+  "unfinished": 0
+}
