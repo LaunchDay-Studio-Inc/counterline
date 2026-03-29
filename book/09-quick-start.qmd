@@ -131,4 +131,4 @@ Black has completed development (...Ngf6, ...Be7, ...O-O). The fortress is built
 
 **Short answer:** You are still playing Stockfish. Deviations just mean you are in a normal game instead of your prepared line. There is no risk.
 
-See @sec-opponent-deviations for specific responses to common deviations.
+See @sec-common-deviations for specific responses to common deviations.

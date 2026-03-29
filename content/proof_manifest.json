@@ -1,0 +1,147 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-03-28",
+  "branch": "exp/integrated-sf18-killer",
+  "source_file": "results/proof_matrix/proof_matrix.json",
+
+  "test_conditions": {
+    "time_control": "1+0.1",
+    "threads": 1,
+    "hash_mb": 64,
+    "games_per_match": 40,
+    "rounds": 20,
+    "games_per_round": 2,
+    "tool": "fastchess v0.9.0-sha.82f07a5",
+    "sf18_commit": "cb3d4ee9b47d0c5aae855b12379378ea1439675c",
+    "master_commit": "d173a0655d04b95497eefb75b400baa3eff56f93",
+    "error_bars_elo": 23
+  },
+
+  "matches": [
+    {
+      "id": "M1",
+      "label": "Master vs SF18 — White line",
+      "suite": "vienna_gambit_exit",
+      "engine1": "StockfishMaster",
+      "engine2": "StockfishSF18",
+      "w": 20, "l": 18, "d": 2,
+      "score": 21.0, "pct": 52.50,
+      "as_white": "20W-0L-0D",
+      "as_black": "0W-18L-2D",
+      "pgn": "results/proof_matrix/M1_white_master_vs_sf18/games.pgn"
+    },
+    {
+      "id": "M2",
+      "label": "NullWrapper vs SF18 — White line",
+      "suite": "vienna_gambit_exit",
+      "engine1": "NullWrapper",
+      "engine2": "StockfishSF18",
+      "w": 20, "l": 20, "d": 0,
+      "score": 20.0, "pct": 50.00,
+      "as_white": "20W-0L-0D",
+      "as_black": "0W-20L-0D",
+      "pgn": "results/proof_matrix/M2_white_null_vs_sf18/games.pgn"
+    },
+    {
+      "id": "M3",
+      "label": "CL Combined vs SF18 — White line",
+      "suite": "vienna_gambit_exit",
+      "engine1": "CounterLineCombined",
+      "engine2": "StockfishSF18",
+      "w": 19, "l": 20, "d": 1,
+      "score": 19.5, "pct": 48.75,
+      "as_white": "19W-0L-1D",
+      "as_black": "0W-20L-0D",
+      "pgn": "results/proof_matrix/M3_white_cl_vs_sf18/games.pgn",
+      "finding": "Inconclusive — exit position is ~100% White-winning regardless of engine"
+    },
+    {
+      "id": "M4",
+      "label": "Master vs SF18 — Black line",
+      "suite": "carokann_classical_exit",
+      "engine1": "StockfishMaster",
+      "engine2": "StockfishSF18",
+      "w": 2, "l": 0, "d": 38,
+      "score": 21.0, "pct": 52.50,
+      "as_white": "1W-0L-19D",
+      "as_black": "1W-0L-19D",
+      "pgn": "results/proof_matrix/M4_black_master_vs_sf18/games.pgn"
+    },
+    {
+      "id": "M5",
+      "label": "NullWrapper vs SF18 — Black line",
+      "suite": "carokann_classical_exit",
+      "engine1": "NullWrapper",
+      "engine2": "StockfishSF18",
+      "w": 2, "l": 4, "d": 34,
+      "score": 19.0, "pct": 47.50,
+      "as_white": "1W-1L-18D",
+      "as_black": "1W-3L-16D",
+      "pgn": "results/proof_matrix/M5_black_null_vs_sf18/games.pgn",
+      "finding": "Wrapper overhead causes losses as Black"
+    },
+    {
+      "id": "M6",
+      "label": "CL Combined vs SF18 — Black line",
+      "suite": "carokann_classical_exit",
+      "engine1": "CounterLineCombined",
+      "engine2": "StockfishSF18",
+      "w": 4, "l": 1, "d": 35,
+      "score": 21.5, "pct": 53.75,
+      "as_white": "1W-1L-18D",
+      "as_black": "3W-0L-17D",
+      "pgn": "results/proof_matrix/M6_black_cl_vs_sf18/games.pgn",
+      "finding": "Black specialist is the primary differentiator: 3 wins as Black with 0 losses",
+      "elo_estimate": "+26",
+      "los_pct": 92
+    },
+    {
+      "id": "M7",
+      "label": "Master vs SF18 — Combined suite",
+      "suite": "combined",
+      "engine1": "StockfishMaster",
+      "engine2": "StockfishSF18",
+      "w": 11, "l": 10, "d": 19,
+      "score": 20.5, "pct": 51.25,
+      "as_white": "11W-0L-9D",
+      "as_black": "0W-10L-10D",
+      "pgn": "results/proof_matrix/M7_combined_master_vs_sf18/games.pgn"
+    },
+    {
+      "id": "M8",
+      "label": "NullWrapper vs SF18 — Combined suite",
+      "suite": "combined",
+      "engine1": "NullWrapper",
+      "engine2": "StockfishSF18",
+      "w": 10, "l": 10, "d": 20,
+      "score": 20.0, "pct": 50.00,
+      "as_white": "10W-0L-10D",
+      "as_black": "0W-10L-10D",
+      "pgn": "results/proof_matrix/M8_combined_null_vs_sf18/games.pgn"
+    },
+    {
+      "id": "M9",
+      "label": "CL Combined vs SF18 — Combined suite",
+      "suite": "combined",
+      "engine1": "CounterLineCombined",
+      "engine2": "StockfishSF18",
+      "w": 12, "l": 10, "d": 18,
+      "score": 21.0, "pct": 52.50,
+      "as_white": "11W-0L-9D",
+      "as_black": "1W-10L-9D",
+      "pgn": "results/proof_matrix/M9_combined_cl_vs_sf18/games.pgn",
+      "finding": "CL Combined is net-positive on combined suite, driven by Black specialist",
+      "elo_estimate": "+17",
+      "los_pct": 93
+    }
+  ],
+
+  "summary": {
+    "headline_result": "CounterLine Combined scored 52.50% against Stockfish 18 on the published fixed suite (+17 Elo est., LOS ~93%)",
+    "black_specialist_result": "53.75% on Caro-Kann exit, 3 Black wins / 0 losses (+26 Elo est., LOS ~92%)",
+    "white_specialist_result": "48.75% on Vienna exit — inconclusive (position is inherently ~100% White-winning)",
+    "null_wrapper_control": "50.00% on combined suite — confirms gains come from specialist, not wrapper",
+    "statistical_status": "Positive trend; LOS 92-93% is below the 95% threshold for statistical proof",
+    "games_needed": "200+ game matches needed for 95% confidence"
+  }
+}

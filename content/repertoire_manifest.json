@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-03-28",
+
+  "current_repertoire": {
+    "white": {
+      "name": "Vienna Gambit Accepted",
+      "family": "vienna_gambit",
+      "eco": "C29",
+      "seed_line": "1.e4 e5 2.Nc3 Nf6 3.f4 exf4 4.e5 Ng8 5.Nf3 d6 6.d4 dxe5 7.Qe2 Bb4 8.Qxe5+ Qe7 9.Bxf4 Bxc3+ 10.bxc3",
+      "exit_fen": "rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq - 0 10",
+      "exit_epd": "rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq -",
+      "exit_move_number": 10,
+      "specialist_type": "PolicyTree",
+      "specialist_size": "61 nodes",
+      "suite_file": "opening_suites/final/white/exit.epd",
+      "seed_file": "opening_suites/final/white/seed.pgn",
+      "screening_rank": 1,
+      "screening_score_pct": 95.0,
+      "evaluation_at_exit": "+1.7 to +2.0"
+    },
+    "black": {
+      "name": "Caro-Kann Classical 4...Bf5",
+      "family": "carokann_classical",
+      "eco": "B18",
+      "seed_line": "1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Bf5 5.Ng3 Bg6 6.h4 h6 7.Nf3 Nd7 8.h5 Bh7 9.Bd3 Bxd3 10.Qxd3 e6",
+      "exit_fen": "r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq - 0 11",
+      "exit_epd": "r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq -",
+      "exit_move_number": 10,
+      "specialist_type": "EmpiricalDB",
+      "specialist_size": "7,893 positions",
+      "suite_file": "opening_suites/final/black/exit.epd",
+      "seed_file": "opening_suites/final/black/seed.pgn",
+      "screening_rank": 1,
+      "screening_score_pct": 52.3,
+      "evaluation_at_exit": "+0.3"
+    }
+  },
+
+  "legacy_repertoire": {
+    "note": "v1 lines — no longer actively tested against SF18",
+    "white": {
+      "name": "QGD Exchange / Carlsbad",
+      "family": "qgd_exchange",
+      "seed_line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.cxd5 exd5 5.Bg5 c6 6.e3 Be7 7.Bd3 Nbd7 8.Qc2 O-O 9.Nge2 Re8 10.O-O Nf8",
+      "exit_fen": "r1bqrnk1/pp2bppp/2p2n2/3p2B1/3P4/2NBP3/PPQ1NPPP/R4RK1 w - - 9 11",
+      "suite_file": "opening_suites/white/qgd_exchange_carlsbad/exits.epd"
+    },
+    "black": {
+      "name": "Petroff Main Line",
+      "family": "petroff_mainline",
+      "seed_line": "1.e4 e5 2.Nf3 Nf6 3.Nxe5 d6 4.Nf3 Nxe4 5.d4 d5 6.Bd3 Be7 7.O-O O-O 8.c4 c6 9.Nc3 Nxc3 10.bxc3",
+      "exit_fen": "rnbq1rk1/pp2bppp/2p5/3p4/2PP4/2PB1N2/P4PPP/R1BQ1RK1 b - - 0 10",
+      "suite_file": "opening_suites/black/petroff_mainline/exits.epd"
+    }
+  },
+
+  "swap_instructions": "To add a new repertoire line: 1) Add a new entry under current_repertoire with all fields populated. 2) Move the displaced entry to legacy_repertoire. 3) Update the specialist code in wrapper/. 4) Run the screening and proof matrix. 5) Update claims_manifest.json proof_status."
+}

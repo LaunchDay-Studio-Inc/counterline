@@ -1,4 +1,4 @@
-# Match Results {#sec-appendix-results}
+# Results {#sec-appendix-results}
 
 ## Proof Matrix Overview
 

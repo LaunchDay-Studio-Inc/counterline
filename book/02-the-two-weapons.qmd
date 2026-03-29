@@ -1,4 +1,4 @@
-# How CounterLine Was Built {#sec-how-counterline-was-built}
+# The Two Weapons {#sec-the-two-weapons}
 
 ## The Problem
 

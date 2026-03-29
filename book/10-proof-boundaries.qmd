@@ -1,4 +1,4 @@
-# Claim Boundaries and Reproducibility {#sec-claim-boundaries}
+# Proof Boundaries {#sec-proof-boundaries}
 
 ## What Has Been Proved
 

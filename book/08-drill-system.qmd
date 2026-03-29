@@ -1,4 +1,4 @@
-# Training Drills {#sec-training-drills}
+# Drill System {#sec-drill-system}
 
 ## Introduction
 

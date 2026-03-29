@@ -1,4 +1,4 @@
-# What This Book Is {#sec-what-this-book-is}
+# What CounterLine Is {#sec-what-counterline-is}
 
 ## The Short Version
 
@@ -54,16 +54,16 @@ If you are a **beginner** who wants to learn a concrete opening repertoire:
 
 1. Start with @sec-quick-start for the cheat sheets
 2. Read @sec-white-repertoire and @sec-black-repertoire for the full lines with explanations
-3. Work through @sec-training-drills
+3. Work through @sec-drill-system
 
 If you are a **strong player or coach** evaluating the repertoire:
 
-1. Start with @sec-claim-boundaries for the precise scope of claims
-2. Read @sec-how-counterline-was-built for the methodology
+1. Start with @sec-proof-boundaries for the precise scope of claims
+2. Read @sec-the-two-weapons for the methodology
 3. Examine the model games in @sec-model-games
 
 If you are an **engine tester** who wants to reproduce the results:
 
-1. Start with @sec-appendix-engine for setup instructions
+1. Start with @sec-appendix-app for setup instructions
 2. Check @sec-appendix-results for the full match data
-3. Read @sec-claim-boundaries for the reproduction commands
+3. Read @sec-proof-boundaries for the reproduction commands

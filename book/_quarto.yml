@@ -3,26 +3,26 @@ project:
   output-dir: dist
 
 book:
-  title: "CounterLine: The Stockfish 18 Killer"
-  subtitle: "A Fixed-Line Repertoire That Scores Over 50% Against Stockfish 18 on the Published CounterLine Suite"
+  title: "CounterLine: An Engine-Tested Opening Repertoire"
+  subtitle: "Two precise opening lines — validated against Stockfish 18 on a published fixed suite"
   author: "The CounterLine Project"
   date: "2026-03-28"
   chapters:
     - index.qmd
-    - 01-what-this-book-is.qmd
-    - 02-how-counterline-was-built.qmd
+    - 01-what-counterline-is.qmd
+    - 02-the-two-weapons.qmd
     - 03-white-repertoire.qmd
     - 04-black-repertoire.qmd
-    - 05-model-games-vs-sf18.qmd
+    - 05-model-games.qmd
     - 06-key-plans-and-patterns.qmd
-    - 07-common-opponent-deviations.qmd
-    - 08-training-drills.qmd
-    - 09-quick-start-repertoire.qmd
-    - 10-claim-boundaries-and-reproducibility.qmd
+    - 07-common-deviations.qmd
+    - 08-drill-system.qmd
+    - 09-quick-start.qmd
+    - 10-proof-boundaries.qmd
   appendices:
-    - appendix-a-full-lines.qmd
-    - appendix-b-match-results.qmd
-    - appendix-c-how-to-use-the-engine.qmd
+    - appendix-a-lines.qmd
+    - appendix-b-results.qmd
+    - appendix-c-how-to-use-the-app.qmd
   references: references.bib
 
 format:
@@ -46,10 +46,10 @@ format:
         \usepackage{awesomebox}
         \usepackage{longtable}
         \usepackage{booktabs}
-    output-file: "CounterLine-The-Stockfish-18-Killer"
+    output-file: "CounterLine"
 
   epub:
     toc: true
     toc-depth: 3
     number-sections: true
-    output-file: "CounterLine-The-Stockfish-18-Killer"
+    output-file: "CounterLine"

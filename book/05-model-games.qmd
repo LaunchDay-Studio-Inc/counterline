@@ -1,4 +1,4 @@
-# Model Games vs Stockfish 18 {#sec-model-games}
+# Model Games {#sec-model-games}
 
 ## Introduction
 

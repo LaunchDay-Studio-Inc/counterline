@@ -1,4 +1,4 @@
-# How to Use the Engine {#sec-appendix-engine}
+# How to Use the App {#sec-appendix-app}
 
 ## Overview
 

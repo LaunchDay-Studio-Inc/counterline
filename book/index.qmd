@@ -1,34 +1,40 @@
-# CounterLine: The Stockfish 18 Killer {.unnumbered}
+# CounterLine: An Engine-Tested Opening Repertoire {.unnumbered}
 
-**A Fixed-Line Repertoire That Scores Over 50% Against Stockfish 18 on the Published CounterLine Suite**
+**Two precise opening lines — validated against Stockfish 18 on a published fixed suite**
 
 *The CounterLine Project — 2026*
 
 ---
 
-This book presents two opening lines — one for White and one for Black — that have been engineered, tested, and validated against Stockfish 18, the strongest classical chess engine in the world as of early 2026.
+This book presents two opening lines — one for White and one for Black — that have been tested against Stockfish 18 under controlled, reproducible conditions on a published fixed opening suite.
 
-The White line scores an overwhelming 95% from its exit position. The Black line holds firm with a 53.75% score — including wins — from a position where most engines would be fighting for a draw.
+The White line (Vienna Gambit Accepted) reaches a position that is nearly 100% winning for White. The Black line (Caro-Kann Classical 4...Bf5) scored 53.75% in testing — including wins as Black — from a position where most engines settle for a draw.
 
-These are not theoretical novelties found by a grandmaster. They are the product of a systematic, automated search through thousands of candidate positions, refined by machine learning, and proved in head-to-head matches under controlled conditions.
+These are not theoretical novelties found by a grandmaster. They are the product of a systematic, automated search through 28 candidate openings, refined by empirical testing, and validated in a 9-match proof matrix with full PGN records.
 
 **What this book will teach you:**
 
 - The exact moves of the CounterLine repertoire, from move 1
 - The plans, patterns, and key positions you need to memorise
-- Annotated model games against Stockfish 18
+- Annotated model games from engine-vs-engine matches
 - How to handle opponent deviations
 - Training drills and quick-reference cheat sheets
-- The precise boundaries of what has been proved — and what has not
+- The precise boundaries of what has been tested — and what has not
 
 **What this book will not claim:**
 
-- That you can beat Stockfish in a general game
-- That this repertoire works in every opening
-- That these results transfer to all time controls or hardware
+- That CounterLine "beats" Stockfish in general play
+- That this repertoire works outside the published fixed suite
+- That these results transfer to all time controls, hardware, or human play
+- That 40-game matches constitute proof at 95% statistical confidence
 
-Honest engineering. Honest claims. Real results.
+Honest engineering. Transparent boundaries. Real, reproducible results.
 
 ---
+
+::: {.callout-note}
+## Evidence Status
+All claims in this book are sourced from the project's claims manifest. CounterLine Combined scored 52.50% against Stockfish 18 on the published fixed suite (+17 Elo estimate, LOS ~93%). This is a positive trend from 40-game matches with ±23 Elo error bars — meaningful but below the 95% confidence threshold. See @sec-proof-boundaries for full details.
+:::
 
 **License:** This work is distributed as part of the CounterLine project under GPL-3.0.

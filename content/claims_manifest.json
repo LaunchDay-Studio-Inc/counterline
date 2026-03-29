@@ -1,0 +1,84 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-03-28",
+  "branch": "exp/integrated-sf18-killer",
+
+  "approved_headline": "CounterLine: An Engine-Tested Opening Repertoire",
+  "approved_subtitle": "Two precise opening lines — validated against Stockfish 18 on a published fixed suite",
+
+  "approved_badges": [
+    "Engine-Tested Repertoire",
+    "Two Complete Weapons (White + Black)",
+    "Full PGN Proof Files Included",
+    "Open Source (GPL-3.0)",
+    "Reproducible Results"
+  ],
+
+  "approved_promises": [
+    "Learn two concrete opening lines — one for White, one for Black — with every move explained",
+    "Study annotated model games from real engine-vs-engine matches against Stockfish 18",
+    "Understand the strategic plans and patterns that make each line work",
+    "Drill the common deviations opponents actually play",
+    "Carry the complete system offline in book + app form",
+    "Verify every claim yourself with the published PGN files and reproduction commands",
+    "Stop forgetting key move orders with the built-in drill system",
+    "Know exactly where the repertoire's tested boundaries end"
+  ],
+
+  "forbidden_phrases": [
+    "beats Stockfish",
+    "kills Stockfish",
+    "Stockfish killer",
+    "stronger than Stockfish",
+    "proven edge over Stockfish 18",
+    "defeats Stockfish",
+    "crushes Stockfish",
+    "dominates Stockfish",
+    "outplays Stockfish",
+    "superior to Stockfish",
+    "better than Stockfish",
+    "guaranteed wins",
+    "unbeatable",
+    "never lose",
+    "always win",
+    "revolutionary",
+    "breakthrough"
+  ],
+
+  "proof_status": {
+    "level": "positive_trend",
+    "confidence": "LOS 92-93%, below 95% significance threshold",
+    "combined_score": "52.50% (21.0/40)",
+    "combined_elo_estimate": "+17",
+    "black_specialist_score": "53.75% (21.5/40)",
+    "black_specialist_elo_estimate": "+26",
+    "white_specialist_score": "48.75% (19.5/40) — inconclusive",
+    "match_size": "40 games per match (20 rounds × 2)",
+    "time_control": "1+0.1",
+    "threads": 1,
+    "hash_mb": 64,
+    "error_bars": "±23 Elo",
+    "games_needed_for_95pct": "200+",
+    "assessment": "Real, reproducible positive trend. Not yet statistically proven at 95% confidence."
+  },
+
+  "scope_statement": "All results apply only to the published CounterLine fixed opening suite (Vienna Gambit Accepted as White, Caro-Kann Classical 4...Bf5 as Black) at the tested time control (1+0.1), thread count (1), and hash size (64 MB). No claims are made about general engine strength, other openings, other time controls, multi-threaded configurations, or human play.",
+
+  "narrow_claim_if_proof_exists": "Validated on the published CounterLine fixed suite against Stockfish 18 at TC 1+0.1, 1 thread, 64 MB hash",
+
+  "allowed_performance_statements": [
+    "CounterLine Combined scored 52.50% against Stockfish 18 on the published fixed suite (LOS ~93%)",
+    "The Black specialist scored 53.75% on the Caro-Kann Classical exit, with 3 wins and 0 losses as Black in 20 games",
+    "The Vienna Gambit exit position is nearly 100% winning for White regardless of engine",
+    "Results are from 40-game matches with ±23 Elo error bars",
+    "The null-wrapper control scored exactly 50%, confirming gains come from the specialist",
+    "LOS values of 92-93% indicate a positive trend, not yet proven at the conventional 95% threshold"
+  ],
+
+  "required_disclaimers": [
+    "CounterLine is derived from Stockfish and distributed under GPL-3.0",
+    "Results are specific to the published fixed suite and tested conditions",
+    "Engine-vs-engine results do not automatically transfer to human play",
+    "40-game matches have statistical error bars of approximately ±23 Elo"
+  ]
+}

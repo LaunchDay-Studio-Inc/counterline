@@ -1,4 +1,4 @@
-# Common Opponent Deviations {#sec-opponent-deviations}
+# Common Deviations {#sec-common-deviations}
 
 ## Introduction
 
