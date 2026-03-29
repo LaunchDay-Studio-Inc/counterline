@@ -16,12 +16,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import dev.counterline.MainViewModel
 import dev.counterline.feature.deviations.DeviationsScreen
 import dev.counterline.feature.drill.DrillScreen
 import dev.counterline.feature.exam.ExamScreen
@@ -35,6 +38,7 @@ import dev.counterline.feature.practice.PracticeScreen
 import dev.counterline.feature.quick5.Quick5Screen
 import dev.counterline.feature.repertoire.RepertoireScreen
 import dev.counterline.feature.settings.SettingsScreen
+import dev.counterline.feature.onboarding.OnboardingScreen
 
 enum class TopLevelRoute(
     val route: String,
@@ -49,6 +53,7 @@ enum class TopLevelRoute(
 }
 
 object NestedRoutes {
+    const val ONBOARDING = "onboarding"
     const val PLANS = "plans"
     const val DEVIATIONS = "deviations"
     const val MODEL_GAMES = "model_games"
@@ -60,13 +65,18 @@ object NestedRoutes {
 }
 
 @Composable
-fun CounterLineApp() {
+fun CounterLineApp(
+    mainViewModel: MainViewModel = hiltViewModel(),
+) {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
+    val onboardingComplete by mainViewModel.onboardingComplete.collectAsStateWithLifecycle()
 
     val topLevelRoutes = TopLevelRoute.entries.toList()
     val showBottomBar = currentDestination?.route in topLevelRoutes.map { it.route }
+
+    val startDestination = if (onboardingComplete) TopLevelRoute.HOME.route else NestedRoutes.ONBOARDING
 
     Scaffold(
         bottomBar = {
@@ -94,9 +104,19 @@ fun CounterLineApp() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = TopLevelRoute.HOME.route,
+            startDestination = startDestination,
             modifier = Modifier.padding(innerPadding),
         ) {
+            composable(NestedRoutes.ONBOARDING) {
+                OnboardingScreen(
+                    onComplete = {
+                        mainViewModel.onOnboardingComplete()
+                        navController.navigate(TopLevelRoute.HOME.route) {
+                            popUpTo(NestedRoutes.ONBOARDING) { inclusive = true }
+                        }
+                    },
+                )
+            }
             composable(TopLevelRoute.HOME.route) {
                 HomeScreen(
                     onNavigateToRepertoire = { navController.navigate(TopLevelRoute.REPERTOIRE.route) },

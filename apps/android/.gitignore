@@ -1,0 +1,20 @@
+# Gradle
+.gradle/
+build/
+local.properties
+
+# IDE
+.idea/
+*.iml
+
+# Signing
+*.jks
+*.keystore
+keystore.properties
+
+# Generated content (rebuild with scripts/extract_content.py)
+app/src/main/assets/content/
+
+# OS
+.DS_Store
+Thumbs.db

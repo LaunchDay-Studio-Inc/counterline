@@ -30,6 +30,7 @@ class SettingsRepository @Inject constructor(
         val NOTIFICATIONS_ENABLED = booleanPreferencesKey("notifications_enabled")
         val NOTIFICATION_HOUR = intPreferencesKey("notification_hour")
         val SKILL_LEVEL = stringPreferencesKey("skill_level")
+        val ONBOARDING_COMPLETE = booleanPreferencesKey("onboarding_complete")
     }
 
     val settings: Flow<UserSettings> = context.dataStore.data.map { prefs ->
@@ -65,5 +66,13 @@ class SettingsRepository @Inject constructor(
 
     suspend fun updateSkillLevel(level: SkillLevel) {
         context.dataStore.edit { it[Keys.SKILL_LEVEL] = level.name }
+    }
+
+    val isOnboardingComplete: Flow<Boolean> = context.dataStore.data.map { prefs ->
+        prefs[Keys.ONBOARDING_COMPLETE] ?: false
+    }
+
+    suspend fun setOnboardingComplete(complete: Boolean) {
+        context.dataStore.edit { it[Keys.ONBOARDING_COMPLETE] = complete }
     }
 }

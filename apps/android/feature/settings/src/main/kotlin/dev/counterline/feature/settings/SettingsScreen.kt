@@ -26,6 +26,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -210,6 +212,46 @@ fun SettingsScreen(
                     )
                     Text(
                         text = "An engine-tested opening repertoire trainer",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+        }
+
+        // Legal notices
+        item {
+            Spacer(modifier = Modifier.height(12.dp))
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .semantics { contentDescription = "Legal notices and licenses" },
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text("Legal", style = MaterialTheme.typography.titleSmall)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "CounterLine is derived from Stockfish and distributed under the GNU General Public License v3.0 (GPL-3.0).",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Open-Source Licenses",
+                        style = MaterialTheme.typography.labelMedium,
+                    )
+                    Text(
+                        text = "• Stockfish — GPL-3.0\n• Jetpack Compose — Apache 2.0\n• Dagger/Hilt — Apache 2.0\n• Room — Apache 2.0\n• Kotlin — Apache 2.0\n• Material Design 3 — Apache 2.0",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Disclaimers",
+                        style = MaterialTheme.typography.labelMedium,
+                    )
+                    Text(
+                        text = "Results are specific to the published fixed suite and tested conditions. Engine-vs-engine results do not automatically transfer to human play.",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )

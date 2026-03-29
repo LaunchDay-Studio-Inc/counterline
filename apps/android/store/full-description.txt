@@ -1,0 +1,38 @@
+CounterLine: An Engine-Tested Opening Repertoire
+
+Two precise opening lines — validated against Stockfish 18 on a published fixed suite.
+
+▸ One weapon for White (Vienna Gambit Accepted, C29)
+▸ One weapon for Black (Caro-Kann Classical 4…Bf5, B18)
+
+Learn two concrete opening lines — one for White, one for Black — with every move explained. Study annotated model games from real engine-vs-engine matches against Stockfish 18. Understand the strategic plans and patterns that make each line work. Drill the common deviations opponents actually play.
+
+HOW IT WORKS
+CounterLine gives you exactly two openings to master. No bloated database. No cramming 40 variations. You learn one White line and one Black line, with built-in spaced-repetition drilling so you actually retain the moves.
+
+The entire repertoire is engine-tested and reproducible. The published PGN files let you verify every claim yourself with the reproduction commands included in the open-source repository.
+
+WHAT YOU GET
+• Complete move-by-move walkthrough with explanations
+• Memory hooks to remember each line's key ideas
+• Spaced-repetition drills — fill-in-the-blank, choose-the-move, flash cards
+• Common deviation handling — what to do when opponents go off-book
+• Post-opening plans and strategic patterns
+• Annotated model games from real engine matches
+• Exam mode to certify your mastery
+• Practice mode with adjustable engine strength
+• Full offline operation — no internet required
+
+ENGINE-TEST RESULTS
+CounterLine Combined scored 52.50% against Stockfish 18 on the published fixed suite (LOS ~93%). The Black specialist scored 53.75% on the Caro-Kann Classical exit, with 3 wins and 0 losses as Black in 20 games. Results are from 40-game matches with ±23 Elo error bars. LOS values of 92–93% indicate a positive trend, not yet proven at the conventional 95% threshold.
+
+The null-wrapper control scored exactly 50%, confirming gains come from the specialist.
+
+IMPORTANT DISCLAIMERS
+• CounterLine is derived from Stockfish and distributed under GPL-3.0.
+• Results are specific to the published fixed suite and tested conditions (TC 1+0.1, 1 thread, 64 MB hash).
+• Engine-vs-engine results do not automatically transfer to human play.
+• 40-game matches have statistical error bars of approximately ±23 Elo.
+
+OPEN SOURCE
+CounterLine is free and open source. The full source code, proof files, and reproduction commands are available on GitHub under GPL-3.0.

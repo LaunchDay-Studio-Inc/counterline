@@ -3,10 +3,10 @@ name: Android CI
 on:
   push:
     branches: [ main, 'exp/**' ]
-    paths: [ 'apps/android/**' ]
+    paths: [ 'apps/android/**', 'content/**' ]
   pull_request:
     branches: [ main ]
-    paths: [ 'apps/android/**' ]
+    paths: [ 'apps/android/**', 'content/**' ]
 
 defaults:
   run:

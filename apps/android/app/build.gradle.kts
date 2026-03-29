@@ -88,6 +88,7 @@ dependencies {
     implementation(project(":feature:mistakereview"))
     implementation(project(":feature:quick5"))
     implementation(project(":feature:practice"))
+    implementation(project(":feature:onboarding"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
