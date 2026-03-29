@@ -58,6 +58,7 @@ fun HomeScreen(
     onNavigateToLearn: () -> Unit = {},
     onNavigateToMistakeReview: () -> Unit = {},
     onNavigateToQuick5: () -> Unit = {},
+    onNavigateToPractice: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -180,6 +181,11 @@ fun HomeScreen(
                     icon = Icons.Default.RocketLaunch,
                     label = "Quick 5",
                     onClick = onNavigateToQuick5,
+                )
+                QuickActionRow(
+                    icon = Icons.Default.SportsEsports,
+                    label = "Play Against CounterLine",
+                    onClick = onNavigateToPractice,
                 )
             }
         }

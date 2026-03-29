@@ -31,6 +31,7 @@ import dev.counterline.feature.mistakereview.MistakeReviewScreen
 import dev.counterline.feature.modelgames.ModelGamesScreen
 import dev.counterline.feature.plans.PlansScreen
 import dev.counterline.feature.progress.ProgressScreen
+import dev.counterline.feature.practice.PracticeScreen
 import dev.counterline.feature.quick5.Quick5Screen
 import dev.counterline.feature.repertoire.RepertoireScreen
 import dev.counterline.feature.settings.SettingsScreen
@@ -55,6 +56,7 @@ object NestedRoutes {
     const val LEARN = "learn"
     const val MISTAKE_REVIEW = "mistake_review"
     const val QUICK_5 = "quick_5"
+    const val PRACTICE = "practice"
 }
 
 @Composable
@@ -106,6 +108,7 @@ fun CounterLineApp() {
                     onNavigateToLearn = { navController.navigate(NestedRoutes.LEARN) },
                     onNavigateToMistakeReview = { navController.navigate(NestedRoutes.MISTAKE_REVIEW) },
                     onNavigateToQuick5 = { navController.navigate(NestedRoutes.QUICK_5) },
+                    onNavigateToPractice = { navController.navigate(NestedRoutes.PRACTICE) },
                 )
             }
             composable(TopLevelRoute.REPERTOIRE.route) {
@@ -140,6 +143,9 @@ fun CounterLineApp() {
             }
             composable(NestedRoutes.QUICK_5) {
                 Quick5Screen(onBack = { navController.popBackStack() })
+            }
+            composable(NestedRoutes.PRACTICE) {
+                PracticeScreen(onBack = { navController.popBackStack() })
             }
         }
     }
