@@ -1,0 +1,30 @@
+[
+  {
+    "id": "w_theme_1",
+    "side": "WHITE",
+    "title": "Knight trap with e5",
+    "description": "The key tactical motif: 4.e5 attacks the Nf6, forcing it to retreat to g8 and losing tempo.",
+    "occurrenceRate": "Every game in this line"
+  },
+  {
+    "id": "w_theme_2",
+    "side": "WHITE",
+    "title": "Queen centralization",
+    "description": "Qe2 followed by Qxe5+ puts the queen on a dominant central square with check.",
+    "occurrenceRate": "Main line"
+  },
+  {
+    "id": "b_theme_1",
+    "side": "BLACK",
+    "title": "Light-square bishop exchange",
+    "description": "The Bf5-g6-h7-d3 maneuver exchanges the potentially bad bishop for White's good bishop.",
+    "occurrenceRate": "Every game in this line"
+  },
+  {
+    "id": "b_theme_2",
+    "side": "BLACK",
+    "title": "Pawn structure solidity",
+    "description": "The c6-e6 structure with no weaknesses gives Black a reliable, draw-rich position.",
+    "occurrenceRate": "Main line"
+  }
+]

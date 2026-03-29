@@ -1,0 +1,91 @@
+[
+  {
+    "id": "game_m6_1",
+    "title": "CL Black Specialist Win #1 (M6)",
+    "side": "BLACK",
+    "opening": "Caro-Kann Classical",
+    "result": "0-1",
+    "moveCount": 67,
+    "keyTheme": "Endgame conversion from solid Caro-Kann structure",
+    "annotations": [
+      {
+        "moveNumber": 10,
+        "comment": "Exit position reached — Caro-Kann Classical fortress established",
+        "evaluation": "+0.3"
+      },
+      {
+        "moveNumber": 20,
+        "comment": "Black has equalized with the solid c6-e6 structure"
+      },
+      {
+        "moveNumber": 40,
+        "comment": "Black specialist creates imbalance in the endgame",
+        "evaluation": "-0.5"
+      },
+      {
+        "moveNumber": 60,
+        "comment": "Winning technique demonstrated — Black converts",
+        "evaluation": "-2.0"
+      }
+    ],
+    "evaluationProgression": "+0.3 → 0.0 → -0.5 → -2.0"
+  },
+  {
+    "id": "game_m6_2",
+    "title": "CL Black Specialist Win #2 (M6)",
+    "side": "BLACK",
+    "opening": "Caro-Kann Classical",
+    "result": "0-1",
+    "moveCount": 55,
+    "keyTheme": "Central counter-play with c5 break",
+    "annotations": [
+      {
+        "moveNumber": 10,
+        "comment": "Standard Caro-Kann exit",
+        "evaluation": "+0.3"
+      },
+      {
+        "moveNumber": 25,
+        "comment": "c5 break creates central tension"
+      },
+      {
+        "moveNumber": 35,
+        "comment": "Black seizes initiative",
+        "evaluation": "-0.8"
+      },
+      {
+        "moveNumber": 50,
+        "comment": "Conversion phase",
+        "evaluation": "-3.0"
+      }
+    ],
+    "evaluationProgression": "+0.3 → 0.0 → -0.8 → -3.0"
+  },
+  {
+    "id": "game_m1_1",
+    "title": "Vienna Gambit Crushing Win (M1)",
+    "side": "WHITE",
+    "opening": "Vienna Gambit Accepted",
+    "result": "1-0",
+    "moveCount": 30,
+    "keyTheme": "Rapid development and material advantage from gambit",
+    "annotations": [
+      {
+        "moveNumber": 4,
+        "comment": "4.e5! — the key move, trapping the knight",
+        "evaluation": "+1.7"
+      },
+      {
+        "moveNumber": 10,
+        "comment": "All exchanges favor White — material advantage secured",
+        "evaluation": "+2.0"
+      },
+      {
+        "moveNumber": 20,
+        "comment": "White converts the advantage in the endgame",
+        "evaluation": "+4.0"
+      }
+    ],
+    "evaluationProgression": "+1.7 → +2.0 → +4.0 → 1-0"
+  }
+]

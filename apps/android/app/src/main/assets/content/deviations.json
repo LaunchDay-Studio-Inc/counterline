@@ -1,0 +1,34 @@
+[
+  {
+    "id": "w_dev_1",
+    "side": "WHITE",
+    "deviationName": "3...d6 instead of 3...exf4",
+    "move": "3...d6",
+    "description": "Black declines the gambit with a solid move.",
+    "response": "Play 4.Nf3 and transition to a King's Indian Attack setup. White keeps a pleasant game."
+  },
+  {
+    "id": "w_dev_2",
+    "side": "WHITE",
+    "deviationName": "2...Nc6 instead of 2...Nf6",
+    "move": "2...Nc6",
+    "description": "Black develops the other knight first.",
+    "response": "Continue with 3.f4 as planned. The Vienna Gambit works against both knight moves."
+  },
+  {
+    "id": "b_dev_1",
+    "side": "BLACK",
+    "deviationName": "4.Nf3 instead of 4.Nxe4",
+    "move": "4.Nf3",
+    "description": "White plays the Two Knights variation instead of the main classical.",
+    "response": "Continue with 4...Nf6 and develop naturally. The Caro-Kann structure remains solid."
+  },
+  {
+    "id": "b_dev_2",
+    "side": "BLACK",
+    "deviationName": "5.Nc5 instead of 5.Ng3",
+    "move": "5.Nc5",
+    "description": "White tries the aggressive knight jump to c5.",
+    "response": "Play 5...e6 6.Nxb7 Qb6, winning the knight back with a tempo on the queen."
+  }
+]

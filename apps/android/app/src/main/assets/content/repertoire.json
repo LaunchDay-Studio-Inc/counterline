@@ -1,0 +1,288 @@
+[
+  {
+    "id": "white_vienna_gambit",
+    "name": "Vienna Gambit Accepted",
+    "family": "vienna_gambit",
+    "eco": "C29",
+    "side": "WHITE",
+    "seedLine": "1.e4 e5 2.Nc3 Nf6 3.f4 exf4 4.e5 Ng8 5.Nf3 d6 6.d4 dxe5 7.Qe2 Bb4 8.Qxe5+ Qe7 9.Bxf4 Bxc3+ 10.bxc3",
+    "exitFen": "rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq - 0 10",
+    "exitEpd": "rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq -",
+    "exitMoveNumber": 10,
+    "specialistType": "PolicyTree",
+    "specialistSize": "61 nodes",
+    "screeningRank": 1,
+    "screeningScorePct": 95.0,
+    "evaluationAtExit": "+1.7 to +2.0",
+    "moves": [
+      {
+        "moveNumber": 1,
+        "san": "e4",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 1,
+        "san": "e5",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 2,
+        "san": "Nc3",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 2,
+        "san": "Nf6",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 3,
+        "san": "f4",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 3,
+        "san": "exf4",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 4,
+        "san": "e5",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 4,
+        "san": "Ng8",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 5,
+        "san": "Nf3",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 5,
+        "san": "d6",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 6,
+        "san": "d4",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 6,
+        "san": "dxe5",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 7,
+        "san": "Qe2",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 7,
+        "san": "Bb4",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 8,
+        "san": "Qxe5+",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 8,
+        "san": "Qe7",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 9,
+        "san": "Bxf4",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 9,
+        "san": "Bxc3+",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 10,
+        "san": "bxc3",
+        "purpose": "",
+        "isWhiteMove": true
+      }
+    ],
+    "memoryHook": "Knight-Fork Freeway: Nc3 opens the f-file, f4 gambit, e5 knight-trap",
+    "memoryHookBreakdown": [
+      "1.e4 e5 — Open game",
+      "2.Nc3 — Vienna: develop knight before f4",
+      "3.f4 exf4 — Gambit accepted, open f-file",
+      "4.e5 — Push! Trap the knight",
+      "5-10 — Clean up: Qe2, Bxf4, exchange to a winning endgame"
+    ]
+  },
+  {
+    "id": "black_carokann_classical",
+    "name": "Caro-Kann Classical 4...Bf5",
+    "family": "carokann_classical",
+    "eco": "B18",
+    "side": "BLACK",
+    "seedLine": "1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Bf5 5.Ng3 Bg6 6.h4 h6 7.Nf3 Nd7 8.h5 Bh7 9.Bd3 Bxd3 10.Qxd3 e6",
+    "exitFen": "r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq - 0 11",
+    "exitEpd": "r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq -",
+    "exitMoveNumber": 10,
+    "specialistType": "EmpiricalDB",
+    "specialistSize": "7,893 positions",
+    "screeningRank": 1,
+    "screeningScorePct": 52.3,
+    "evaluationAtExit": "+0.3",
+    "moves": [
+      {
+        "moveNumber": 1,
+        "san": "e4",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 1,
+        "san": "c6",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 2,
+        "san": "d4",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 2,
+        "san": "d5",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 3,
+        "san": "Nc3",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 3,
+        "san": "dxe4",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 4,
+        "san": "Nxe4",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 4,
+        "san": "Bf5",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 5,
+        "san": "Ng3",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 5,
+        "san": "Bg6",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 6,
+        "san": "h4",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 6,
+        "san": "h6",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 7,
+        "san": "Nf3",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 7,
+        "san": "Nd7",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 8,
+        "san": "h5",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 8,
+        "san": "Bh7",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 9,
+        "san": "Bd3",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 9,
+        "san": "Bxd3",
+        "purpose": "",
+        "isWhiteMove": false
+      },
+      {
+        "moveNumber": 10,
+        "san": "Qxd3",
+        "purpose": "",
+        "isWhiteMove": true
+      },
+      {
+        "moveNumber": 10,
+        "san": "e6",
+        "purpose": "",
+        "isWhiteMove": false
+      }
+    ],
+    "memoryHook": "Bishop Trip: Bf5-g6-h7-d3 exchange, solid Caro fortress",
+    "memoryHookBreakdown": [
+      "1.e4 c6 — Caro-Kann: solid, reliable",
+      "2.d4 d5 3.Nc3 dxe4 4.Nxe4 Bf5 — Classical: bishop out before e6",
+      "5.Ng3 Bg6 6.h4 h6 — The bishop trip begins",
+      "7.Nf3 Nd7 8.h5 Bh7 — Bishop retreats to safety",
+      "9.Bd3 Bxd3 10.Qxd3 e6 — Exchange complete, solid position"
+    ]
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "w_plan_1",
+    "side": "WHITE",
+    "title": "Convert material advantage",
+    "description": "After the Vienna Gambit sequence, White often reaches an endgame with an extra pawn or decisive positional advantage. Convert by trading pieces and pushing passed pawns.",
+    "priority": 1
+  },
+  {
+    "id": "w_plan_2",
+    "side": "WHITE",
+    "title": "Control the center with d4",
+    "description": "After e5 pushes the knight away, establish d4 and control the central squares. The Bf4 supports this structure.",
+    "priority": 2
+  },
+  {
+    "id": "w_plan_3",
+    "side": "WHITE",
+    "title": "Develop rapidly after gambit",
+    "description": "After the pawn sacrifice, complete development quickly with Nf3, Bd3/Be2, and castle. Tempo is the compensation for the pawn.",
+    "priority": 3
+  },
+  {
+    "id": "b_plan_1",
+    "side": "BLACK",
+    "title": "Solid fortress structure",
+    "description": "The Caro-Kann pawn structure (c6-d5-e6) creates a solid fortress. Avoid weakening the kingside pawns.",
+    "priority": 1
+  },
+  {
+    "id": "b_plan_2",
+    "side": "BLACK",
+    "title": "Develop Ngf6 and Be7",
+    "description": "After the bishop exchange on d3, complete development with Ngf6 and Be7, followed by O-O. The position is solid and equal.",
+    "priority": 2
+  },
+  {
+    "id": "b_plan_3",
+    "side": "BLACK",
+    "title": "Counter in the center with c5",
+    "description": "Once fully developed, look for c6-c5 to challenge White's d4 pawn and create counterplay.",
+    "priority": 3
+  }
+]

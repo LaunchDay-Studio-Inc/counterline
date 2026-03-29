@@ -1,0 +1,44 @@
+[
+  {
+    "side": "WHITE",
+    "lineName": "Vienna Gambit Accepted (C29)",
+    "seedLine": "1.e4 e5 2.Nc3 Nf6 3.f4 exf4 4.e5 Ng8 5.Nf3 d6 6.d4 dxe5 7.Qe2 Bb4 8.Qxe5+ Qe7 9.Bxf4 Bxc3+ 10.bxc3",
+    "memoryHook": "Knight-Fork Freeway: Nc3 opens the f-file, f4 gambit, e5 knight-trap",
+    "memoryHookBreakdown": [
+      "1.e4 e5 — Open game",
+      "2.Nc3 — Vienna: develop knight before f4",
+      "3.f4 exf4 — Gambit accepted, open f-file",
+      "4.e5 — Push! Trap the knight",
+      "5-10 — Clean up: Qe2, Bxf4, exchange to winning endgame"
+    ],
+    "threeKeyActions": [
+      "Play e5 to trap the knight (move 4)",
+      "Centralize queen with Qe2 then Qxe5+ (moves 7-8)",
+      "Convert the +2.0 advantage in the endgame"
+    ],
+    "exitFen": "rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq - 0 10",
+    "exitEvaluation": "+1.7 to +2.0",
+    "typicalResult": "95% screening score (virtually winning)"
+  },
+  {
+    "side": "BLACK",
+    "lineName": "Caro-Kann Classical 4...Bf5 (B18)",
+    "seedLine": "1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Bf5 5.Ng3 Bg6 6.h4 h6 7.Nf3 Nd7 8.h5 Bh7 9.Bd3 Bxd3 10.Qxd3 e6",
+    "memoryHook": "Bishop Trip: Bf5-g6-h7-d3 exchange, solid Caro fortress",
+    "memoryHookBreakdown": [
+      "1.e4 c6 — Caro-Kann: solid, reliable",
+      "2.d4 d5 3.Nc3 dxe4 4.Nxe4 Bf5 — Classical: bishop out before e6",
+      "5.Ng3 Bg6 6.h4 h6 — The bishop trip begins",
+      "7.Nf3 Nd7 8.h5 Bh7 — Bishop retreats to safety",
+      "9.Bd3 Bxd3 10.Qxd3 e6 — Exchange complete, solid position"
+    ],
+    "threeKeyActions": [
+      "Develop bishop to f5 BEFORE playing e6 (move 4)",
+      "Follow the bishop trip: Bf5 → g6 → h7 → exchange on d3",
+      "Complete development with Ngf6, Be7, O-O then look for c5"
+    ],
+    "exitFen": "r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq - 0 11",
+    "exitEvaluation": "+0.3",
+    "typicalResult": "53.75% as Black specialist (+26 Elo)"
+  }
+]

@@ -1,0 +1,76 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ main, 'exp/**' ]
+    paths: [ 'apps/android/**' ]
+  pull_request:
+    branches: [ main ]
+    paths: [ 'apps/android/**' ]
+
+defaults:
+  run:
+    working-directory: apps/android
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Generate content assets
+        run: python3 scripts/extract_content.py
+
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: Run unit tests
+        run: ./gradlew testDebugUnitTest --no-daemon
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: counterline-debug
+          path: apps/android/app/build/outputs/apk/debug/*.apk
+          retention-days: 14
+
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Generate content assets
+        run: python3 scripts/extract_content.py
+
+      - name: Run Android Lint
+        run: ./gradlew lintDebug --no-daemon
+
+      - name: Upload lint results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-results
+          path: apps/android/app/build/reports/lint-results-debug.html
+          retention-days: 7

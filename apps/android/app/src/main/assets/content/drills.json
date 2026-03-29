@@ -1,0 +1,136 @@
+[
+  {
+    "id": "d_w_1",
+    "type": "FILL_IN_BLANK",
+    "title": "Vienna Gambit Key Move",
+    "question": "In the Vienna Gambit after 1.e4 e5 2.Nc3 Nf6 3.f4 exf4, what is White's key fourth move?",
+    "options": [
+      "4.e5",
+      "4.Nf3",
+      "4.d4",
+      "4.Bc4"
+    ],
+    "correctAnswer": "4.e5",
+    "explanation": "4.e5 attacks the knight on f6, forcing it to retreat to g8. This is the key tactical idea of the Vienna Gambit — White gains tempo and opens the position.",
+    "side": "WHITE",
+    "fen": null
+  },
+  {
+    "id": "d_w_2",
+    "type": "CHOOSE_MOVE",
+    "title": "Queen Centralization",
+    "question": "After 7...Bb4 8.Qxe5+ Qe7, what should White play?",
+    "options": [
+      "9.Bxf4",
+      "9.O-O-O",
+      "9.Qxe7+",
+      "9.Bg5"
+    ],
+    "correctAnswer": "9.Bxf4",
+    "explanation": "9.Bxf4 develops the bishop with tempo, recapturing the gambit pawn and maintaining central control. The queen exchange can wait.",
+    "side": "WHITE",
+    "fen": "rnb1k1nr/ppp1qppp/8/4Q3/1b1P1p2/2N2N2/PPP3PP/R1B1KB1R w KQkq - 0 9"
+  },
+  {
+    "id": "d_w_3",
+    "type": "PLANS_QUIZ",
+    "title": "Post-Opening Plan (White)",
+    "question": "After reaching the Vienna Gambit exit position, what is White's primary plan?",
+    "options": [
+      "Attack the kingside immediately",
+      "Convert the material/positional advantage",
+      "Sacrifice more pawns",
+      "Trade queens at all costs"
+    ],
+    "correctAnswer": "Convert the material/positional advantage",
+    "explanation": "The exit position is nearly +2.0 for White. The plan is to convert this advantage by completing development, trading pieces when favorable, and pushing passed pawns.",
+    "side": "WHITE",
+    "fen": "rnb1k1nr/ppp1qppp/8/4Q3/3P1B2/2P2N2/P1P3PP/R3KB1R b KQkq - 0 10"
+  },
+  {
+    "id": "d_b_1",
+    "type": "FILL_IN_BLANK",
+    "title": "Caro-Kann Bishop Development",
+    "question": "In the Caro-Kann Classical, after 3.Nc3 dxe4 4.Nxe4, where does Black develop the light-squared bishop?",
+    "options": [
+      "Bf5",
+      "Bg4",
+      "Be6",
+      "Bd7"
+    ],
+    "correctAnswer": "Bf5",
+    "explanation": "4...Bf5 is the Classical variation. The bishop goes outside the pawn chain before playing e6. This is the key strategic idea — don't lock the bishop in!",
+    "side": "BLACK",
+    "fen": null
+  },
+  {
+    "id": "d_b_2",
+    "type": "CHOOSE_MOVE",
+    "title": "Bishop Retreat",
+    "question": "After 7.Nf3 Nd7 8.h5, where does the bishop go?",
+    "options": [
+      "Bh7",
+      "Bf5",
+      "Be4",
+      "Bxd3"
+    ],
+    "correctAnswer": "Bh7",
+    "explanation": "8...Bh7 completes the bishop trip (Bf5-g6-h7). The bishop retreats to h7 where it is safe, waiting for the Bd3 exchange.",
+    "side": "BLACK",
+    "fen": "r2qkbnr/pp1n1pp1/2p1p1bp/7P/3P4/5NN1/PPP2PP1/R1BQKB1R b KQkq - 0 8"
+  },
+  {
+    "id": "d_b_3",
+    "type": "FEN_RECOGNITION",
+    "title": "Recognize the Exit Position (Black)",
+    "question": "What is the evaluation of the Caro-Kann Classical exit position after 10...e6?",
+    "options": [
+      "+0.3 (slight White edge)",
+      "Equal (0.0)",
+      "-0.5 (slight Black edge)",
+      "+1.0 (clear White advantage)"
+    ],
+    "correctAnswer": "+0.3 (slight White edge)",
+    "explanation": "The exit position is approximately +0.3, a slight edge for White that is well within drawing range. Black's solid structure makes this very playable.",
+    "side": "BLACK",
+    "fen": "r2qkbnr/pp1n1pp1/2p1p2p/7P/3P4/3Q1NN1/PPP2PP1/R1B1K2R w KQkq - 0 11"
+  },
+  {
+    "id": "d_g_1",
+    "type": "FLASHCARD",
+    "title": "Memory Hook — White",
+    "question": "What is the memory hook for the White Vienna Gambit line?",
+    "options": null,
+    "correctAnswer": "Knight-Fork Freeway: Nc3 opens the f-file, f4 gambit, e5 knight-trap",
+    "explanation": "The hook captures the three key ideas: 1) Nc3 before f4, 2) the f4 gambit opens the f-file, 3) e5 traps/displaces the enemy knight.",
+    "side": "WHITE",
+    "fen": null
+  },
+  {
+    "id": "d_g_2",
+    "type": "FLASHCARD",
+    "title": "Memory Hook — Black",
+    "question": "What is the memory hook for the Black Caro-Kann Classical line?",
+    "options": null,
+    "correctAnswer": "Bishop Trip: Bf5-g6-h7-d3 exchange, solid Caro fortress",
+    "explanation": "The hook captures the bishop maneuver (Bf5→g6→h7, then exchanging on d3) and the resulting solid pawn structure.",
+    "side": "BLACK",
+    "fen": null
+  },
+  {
+    "id": "d_g_3",
+    "type": "PLANS_QUIZ",
+    "title": "Counter-play Timing (Black)",
+    "question": "When should Black play c6-c5 in the Caro-Kann Classical?",
+    "options": [
+      "Immediately after the opening",
+      "Only after full development and castling",
+      "Never — keep the pawn on c6",
+      "Before developing the knight"
+    ],
+    "correctAnswer": "Only after full development and castling",
+    "explanation": "c5 is Black's main source of counterplay, but it should wait until development is complete (Ngf6, Be7, O-O). Playing it too early weakens the d5 square.",
+    "side": "BLACK",
+    "fen": null
+  }
+]
