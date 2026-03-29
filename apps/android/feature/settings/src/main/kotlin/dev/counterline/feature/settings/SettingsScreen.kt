@@ -31,6 +31,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.counterline.core.designsystem.component.SectionHeader
 import dev.counterline.core.model.DarkMode
+import dev.counterline.core.model.SkillLevel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,6 +48,53 @@ fun SettingsScreen(
         item {
             Spacer(modifier = Modifier.height(16.dp))
             SectionHeader(title = "Settings")
+        }
+
+        // Skill Level
+        item {
+            Card(modifier = Modifier.fillMaxWidth()) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text("Skill Level", style = MaterialTheme.typography.titleSmall)
+                    Text(
+                        "Controls which content is visible. You can change this at any time.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    var skillExpanded by remember { mutableStateOf(false) }
+                    ExposedDropdownMenuBox(
+                        expanded = skillExpanded,
+                        onExpandedChange = { skillExpanded = it },
+                    ) {
+                        TextField(
+                            value = state.settings.skillLevel.name.replace('_', ' ').lowercase()
+                                .replaceFirstChar { it.uppercase() },
+                            onValueChange = {},
+                            readOnly = true,
+                            label = { Text("Level") },
+                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(skillExpanded) },
+                            modifier = Modifier
+                                .menuAnchor(MenuAnchorType.PrimaryEditable)
+                                .fillMaxWidth(),
+                        )
+                        ExposedDropdownMenu(expanded = skillExpanded, onDismissRequest = { skillExpanded = false }) {
+                            SkillLevel.entries.forEach { level ->
+                                DropdownMenuItem(
+                                    text = {
+                                        Text(level.name.replace('_', ' ').lowercase()
+                                            .replaceFirstChar { it.uppercase() })
+                                    },
+                                    onClick = {
+                                        viewModel.setSkillLevel(level)
+                                        skillExpanded = false
+                                    },
+                                )
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         // Appearance

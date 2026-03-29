@@ -2,23 +2,33 @@ package dev.counterline.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import dev.counterline.core.database.dao.BadgeDao
 import dev.counterline.core.database.dao.DeviationDao
 import dev.counterline.core.database.dao.DrillDao
+import dev.counterline.core.database.dao.ExamResultDao
+import dev.counterline.core.database.dao.MistakeItemDao
 import dev.counterline.core.database.dao.ModelGameDao
+import dev.counterline.core.database.dao.NodeReviewStateDao
 import dev.counterline.core.database.dao.PiecePlacementDao
 import dev.counterline.core.database.dao.PlanDao
 import dev.counterline.core.database.dao.QuickStartDao
 import dev.counterline.core.database.dao.RepertoireDao
+import dev.counterline.core.database.dao.StudySessionDao
 import dev.counterline.core.database.dao.ThemeDao
 import dev.counterline.core.database.dao.UserProgressDao
+import dev.counterline.core.database.entity.BadgeEntity
 import dev.counterline.core.database.entity.DeviationEntity
 import dev.counterline.core.database.entity.DrillEntity
+import dev.counterline.core.database.entity.ExamResultEntity
+import dev.counterline.core.database.entity.MistakeItemEntity
 import dev.counterline.core.database.entity.ModelGameEntity
+import dev.counterline.core.database.entity.NodeReviewStateEntity
 import dev.counterline.core.database.entity.PiecePlacementEntity
 import dev.counterline.core.database.entity.PlanEntity
 import dev.counterline.core.database.entity.QuickStartEntity
 import dev.counterline.core.database.entity.RepertoireLineEntity
 import dev.counterline.core.database.entity.RepertoireMoveEntity
+import dev.counterline.core.database.entity.StudySessionEntity
 import dev.counterline.core.database.entity.ThemeEntity
 import dev.counterline.core.database.entity.UserProgressEntity
 
@@ -34,8 +44,13 @@ import dev.counterline.core.database.entity.UserProgressEntity
         DrillEntity::class,
         UserProgressEntity::class,
         QuickStartEntity::class,
+        NodeReviewStateEntity::class,
+        MistakeItemEntity::class,
+        ExamResultEntity::class,
+        StudySessionEntity::class,
+        BadgeEntity::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 abstract class CounterLineDatabase : RoomDatabase() {
@@ -48,4 +63,9 @@ abstract class CounterLineDatabase : RoomDatabase() {
     abstract fun drillDao(): DrillDao
     abstract fun userProgressDao(): UserProgressDao
     abstract fun quickStartDao(): QuickStartDao
+    abstract fun nodeReviewStateDao(): NodeReviewStateDao
+    abstract fun mistakeItemDao(): MistakeItemDao
+    abstract fun examResultDao(): ExamResultDao
+    abstract fun studySessionDao(): StudySessionDao
+    abstract fun badgeDao(): BadgeDao
 }

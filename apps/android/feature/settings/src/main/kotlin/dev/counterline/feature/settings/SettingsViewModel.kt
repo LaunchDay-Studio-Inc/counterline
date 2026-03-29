@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.counterline.core.domain.GetSettingsUseCase
 import dev.counterline.core.domain.UpdateSettingsUseCase
 import dev.counterline.core.model.DarkMode
+import dev.counterline.core.model.SkillLevel
 import dev.counterline.core.model.UserSettings
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -48,5 +49,9 @@ class SettingsViewModel @Inject constructor(
 
     fun setNotifications(enabled: Boolean) {
         viewModelScope.launch { updateSettings.notifications(enabled) }
+    }
+
+    fun setSkillLevel(level: SkillLevel) {
+        viewModelScope.launch { updateSettings.skillLevel(level) }
     }
 }

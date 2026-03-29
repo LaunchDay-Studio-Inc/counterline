@@ -3,8 +3,18 @@ package dev.counterline.feature.progress
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.counterline.core.domain.GetBadgesUseCase
+import dev.counterline.core.domain.GetExamResultsUseCase
+import dev.counterline.core.domain.GetMasteryUseCase
+import dev.counterline.core.domain.GetMistakesUseCase
 import dev.counterline.core.domain.GetProgressUseCase
+import dev.counterline.core.domain.GetStudySessionsUseCase
+import dev.counterline.core.model.Badge
+import dev.counterline.core.model.ExamResult
+import dev.counterline.core.model.NodeReviewState
 import dev.counterline.core.model.ProgressStats
+import dev.counterline.core.model.Side
+import dev.counterline.core.model.StudyMode
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -24,11 +34,25 @@ data class ProgressUiState(
         drillsCompletedToday = 0,
         dueForReview = 0,
     ),
+    val whiteMastery: Float = 0f,
+    val blackMastery: Float = 0f,
+    val badges: List<Badge> = emptyList(),
+    val weakestNodes: List<NodeReviewState> = emptyList(),
+    val unresolvedMistakes: Int = 0,
+    val whiteExamBest: ExamResult? = null,
+    val blackExamBest: ExamResult? = null,
+    val currentStreak: Int = 0,
+    val totalStudyTimeMs: Long = 0,
 )
 
 @HiltViewModel
 class ProgressViewModel @Inject constructor(
     private val getProgress: GetProgressUseCase,
+    private val getMastery: GetMasteryUseCase,
+    private val getBadges: GetBadgesUseCase,
+    private val getMistakes: GetMistakesUseCase,
+    private val getExamResults: GetExamResultsUseCase,
+    private val getStudySessions: GetStudySessionsUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ProgressUiState())
@@ -69,12 +93,59 @@ class ProgressViewModel @Inject constructor(
                     blackLineAccuracy = blackAcc,
                     currentStreak = allProgress.maxOfOrNull { it.streakDays } ?: 0,
                     longestStreak = maxStreak,
-                    totalStudyTimeMinutes = allProgress.size * 2, // rough estimate
+                    totalStudyTimeMinutes = allProgress.size * 2,
                     drillsCompletedToday = completedToday,
                     dueForReview = dueItems.size,
                 )
             }.collect { stats ->
                 _uiState.update { it.copy(stats = stats) }
+            }
+        }
+
+        viewModelScope.launch {
+            getMastery.forSide(Side.WHITE).collect { mastery ->
+                _uiState.update { it.copy(whiteMastery = mastery) }
+            }
+        }
+
+        viewModelScope.launch {
+            getMastery.forSide(Side.BLACK).collect { mastery ->
+                _uiState.update { it.copy(blackMastery = mastery) }
+            }
+        }
+
+        viewModelScope.launch {
+            getBadges.earned().collect { badges ->
+                _uiState.update { it.copy(badges = badges) }
+            }
+        }
+
+        viewModelScope.launch {
+            getMastery.weakestNodes(5).collect { nodes ->
+                _uiState.update { it.copy(weakestNodes = nodes) }
+            }
+        }
+
+        viewModelScope.launch {
+            getMistakes.unresolvedCount().collect { count ->
+                _uiState.update { it.copy(unresolvedMistakes = count) }
+            }
+        }
+
+        viewModelScope.launch {
+            val whiteBest = getExamResults.bestBySide(Side.WHITE)
+            val blackBest = getExamResults.bestBySide(Side.BLACK)
+            _uiState.update { it.copy(whiteExamBest = whiteBest, blackExamBest = blackBest) }
+        }
+
+        viewModelScope.launch {
+            val streak = getStudySessions.currentStreak()
+            _uiState.update { it.copy(currentStreak = streak) }
+        }
+
+        viewModelScope.launch {
+            getStudySessions.totalStudyTimeMs().collect { time ->
+                _uiState.update { it.copy(totalStudyTimeMs = time ?: 0L) }
             }
         }
     }

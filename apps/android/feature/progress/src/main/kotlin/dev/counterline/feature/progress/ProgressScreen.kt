@@ -2,6 +2,8 @@ package dev.counterline.feature.progress
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.LinearProgressIndicator
@@ -21,9 +24,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import dev.counterline.core.designsystem.component.BadgeType
 import dev.counterline.core.designsystem.component.SectionHeader
-import dev.counterline.core.model.ProgressStats
+import dev.counterline.core.designsystem.component.StatusBadge
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ProgressScreen(
     viewModel: ProgressViewModel = hiltViewModel(),
@@ -51,7 +56,7 @@ fun ProgressScreen(
             ) {
                 StatCard(
                     label = "Streak",
-                    value = "${state.stats.currentStreak} days",
+                    value = "${state.currentStreak} days",
                     modifier = Modifier.weight(1f),
                 )
                 StatCard(
@@ -67,6 +72,42 @@ fun ProgressScreen(
             }
         }
 
+        // Total study time
+        item {
+            val hours = state.totalStudyTimeMs / 3_600_000
+            val minutes = (state.totalStudyTimeMs / 60_000) % 60
+            Card(modifier = Modifier.fillMaxWidth()) {
+                Row(
+                    modifier = Modifier.padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(text = "Total study time", style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = "${hours}h ${minutes}m",
+                        style = MaterialTheme.typography.titleSmall,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                }
+            }
+        }
+
+        // Mastery
+        item {
+            Card(modifier = Modifier.fillMaxWidth()) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = "Repertoire Mastery",
+                        style = MaterialTheme.typography.titleSmall,
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    MasteryBar("White repertoire", state.whiteMastery)
+                    MasteryBar("Black repertoire", state.blackMastery)
+                }
+            }
+        }
+
+        // Accuracy by side
         item {
             Card(modifier = Modifier.fillMaxWidth()) {
                 Column(modifier = Modifier.padding(16.dp)) {
@@ -81,6 +122,87 @@ fun ProgressScreen(
             }
         }
 
+        // Badges
+        if (state.badges.isNotEmpty()) {
+            item {
+                SectionHeader(title = "Earned Badges")
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    state.badges.forEach { badge ->
+                        StatusBadge(text = badge.title, type = BadgeType.SUCCESS)
+                    }
+                }
+            }
+        }
+
+        // Exam certificates
+        item {
+            Card(modifier = Modifier.fillMaxWidth()) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = "Exam Certificates",
+                        style = MaterialTheme.typography.titleSmall,
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    state.whiteExamBest?.let { exam ->
+                        Text(text = "White: ${(exam.accuracy * 100).toInt()}% accuracy, ${if (exam.passed) "PASSED" else "not passed"}")
+                    } ?: Text(text = "White: No exam taken yet", style = MaterialTheme.typography.bodySmall)
+                    state.blackExamBest?.let { exam ->
+                        Text(text = "Black: ${(exam.accuracy * 100).toInt()}% accuracy, ${if (exam.passed) "PASSED" else "not passed"}")
+                    } ?: Text(text = "Black: No exam taken yet", style = MaterialTheme.typography.bodySmall)
+                }
+            }
+        }
+
+        // Weakest nodes
+        if (state.weakestNodes.isNotEmpty()) {
+            item {
+                SectionHeader(title = "Weakest Areas")
+            }
+            items(state.weakestNodes) { node ->
+                Card(modifier = Modifier.fillMaxWidth()) {
+                    Row(
+                        modifier = Modifier.padding(12.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                    ) {
+                        Text(
+                            text = node.nodeId,
+                            style = MaterialTheme.typography.bodySmall,
+                            modifier = Modifier.weight(1f),
+                        )
+                        Text(
+                            text = "${node.lapseCount} lapses",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.error,
+                        )
+                    }
+                }
+            }
+        }
+
+        // Mistakes
+        if (state.unresolvedMistakes > 0) {
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.errorContainer,
+                    ),
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text(
+                            text = "${state.unresolvedMistakes} unresolved mistakes",
+                            style = MaterialTheme.typography.titleSmall,
+                        )
+                        Text(
+                            text = "Review them in Mistake Review mode",
+                            style = MaterialTheme.typography.bodySmall,
+                        )
+                    }
+                }
+            }
+        }
+
+        // Summary
         item {
             Card(modifier = Modifier.fillMaxWidth()) {
                 Column(modifier = Modifier.padding(16.dp)) {
@@ -139,6 +261,36 @@ private fun AccuracyBar(label: String, accuracy: Float) {
         LinearProgressIndicator(
             progress = { accuracy.coerceIn(0f, 1f) },
             modifier = Modifier.fillMaxWidth(),
+        )
+    }
+}
+
+@Composable
+private fun MasteryBar(label: String, mastery: Float) {
+    Column(modifier = Modifier.padding(vertical = 4.dp)) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            Text(text = label, style = MaterialTheme.typography.bodySmall)
+            Text(
+                text = "${(mastery * 100).toInt()}%",
+                style = MaterialTheme.typography.labelSmall,
+                color = when {
+                    mastery >= 0.8f -> MaterialTheme.colorScheme.secondary
+                    mastery >= 0.5f -> MaterialTheme.colorScheme.primary
+                    else -> MaterialTheme.colorScheme.error
+                },
+            )
+        }
+        LinearProgressIndicator(
+            progress = { mastery.coerceIn(0f, 1f) },
+            modifier = Modifier.fillMaxWidth(),
+            color = when {
+                mastery >= 0.8f -> MaterialTheme.colorScheme.secondary
+                mastery >= 0.5f -> MaterialTheme.colorScheme.primary
+                else -> MaterialTheme.colorScheme.error
+            },
         )
     }
 }

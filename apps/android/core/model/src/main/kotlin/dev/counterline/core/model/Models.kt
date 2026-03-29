@@ -9,6 +9,8 @@ data class RepertoireMove(
     val san: String,
     val purpose: String,
     val isWhiteMove: Boolean,
+    val whyThisMove: String = "",
+    val keyPlanCallout: String = "",
 )
 
 /** A complete opening line (seed line through exit) */
@@ -31,10 +33,42 @@ data class RepertoireLine(
     val moves: List<RepertoireMove>,
     val memoryHook: String,
     val memoryHookBreakdown: List<String>,
+    val skillLevel: SkillLevel = SkillLevel.INTERMEDIATE,
 )
 
 @Serializable
 enum class Side { WHITE, BLACK }
+
+/** Skill layer controlling content depth visibility */
+@Serializable
+enum class SkillLevel {
+    INTERMEDIATE,
+    ADVANCED_CLUB,
+    EXPERT_MASTER,
+    ELITE_LAB,
+}
+
+/** Study mode selection */
+@Serializable
+enum class StudyMode {
+    LEARN,
+    RECALL,
+    DEVIATION_DRILL,
+    PLANS_PATTERNS,
+    MODEL_GAME_REPLAY,
+    MISTAKE_REVIEW,
+    EXAM,
+    QUICK_5,
+}
+
+/** Confidence grading after a recall attempt */
+@Serializable
+enum class ReviewGrade {
+    FAIL,
+    HARD,
+    GOOD,
+    EASY,
+}
 
 /** A plan to execute after reaching the exit position */
 @Serializable
@@ -44,6 +78,7 @@ data class Plan(
     val title: String,
     val description: String,
     val priority: Int,
+    val skillLevel: SkillLevel = SkillLevel.INTERMEDIATE,
 )
 
 /** A tactical or strategic theme */
@@ -54,6 +89,7 @@ data class Theme(
     val title: String,
     val description: String,
     val occurrenceRate: String? = null,
+    val skillLevel: SkillLevel = SkillLevel.INTERMEDIATE,
 )
 
 /** Ideal piece placement for a given position */
@@ -74,6 +110,8 @@ data class Deviation(
     val move: String,
     val description: String,
     val response: String,
+    val strategicIdea: String = "",
+    val skillLevel: SkillLevel = SkillLevel.INTERMEDIATE,
 )
 
 /** An annotated model game */
@@ -109,6 +147,8 @@ data class Drill(
     val explanation: String,
     val side: Side? = null,
     val fen: String? = null,
+    val skillLevel: SkillLevel = SkillLevel.INTERMEDIATE,
+    val lineId: String? = null,
 )
 
 @Serializable
@@ -118,6 +158,11 @@ enum class DrillType {
     FEN_RECOGNITION,
     PLANS_QUIZ,
     FLASHCARD,
+    TACTICAL_MOTIF,
+    STRUCTURE_FLASHCARD,
+    TRANSITION_QUIZ,
+    COMPARE_POSITION,
+    DEVIATION_RESPONSE,
 }
 
 /** Claims manifest — loaded from content/claims_manifest.json */

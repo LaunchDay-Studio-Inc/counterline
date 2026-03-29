@@ -5,14 +5,20 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
+import dev.counterline.core.database.entity.BadgeEntity
 import dev.counterline.core.database.entity.DeviationEntity
 import dev.counterline.core.database.entity.DrillEntity
+import dev.counterline.core.database.entity.ExamResultEntity
+import dev.counterline.core.database.entity.MistakeItemEntity
 import dev.counterline.core.database.entity.ModelGameEntity
+import dev.counterline.core.database.entity.NodeReviewStateEntity
 import dev.counterline.core.database.entity.PiecePlacementEntity
 import dev.counterline.core.database.entity.PlanEntity
 import dev.counterline.core.database.entity.QuickStartEntity
 import dev.counterline.core.database.entity.RepertoireLineEntity
 import dev.counterline.core.database.entity.RepertoireMoveEntity
+import dev.counterline.core.database.entity.StudySessionEntity
 import dev.counterline.core.database.entity.ThemeEntity
 import dev.counterline.core.database.entity.UserProgressEntity
 import kotlinx.coroutines.flow.Flow
@@ -147,6 +153,119 @@ interface UserProgressDao {
 
     @Query("SELECT MAX(streakDays) FROM user_progress")
     suspend fun getLongestStreak(): Int?
+}
+
+// --- New DAOs for training system ---
+
+@Dao
+interface NodeReviewStateDao {
+    @Query("SELECT * FROM node_review_states WHERE nodeId = :nodeId")
+    suspend fun getByNodeId(nodeId: String): NodeReviewStateEntity?
+
+    @Query("SELECT * FROM node_review_states WHERE lineId = :lineId")
+    fun getByLineId(lineId: String): Flow<List<NodeReviewStateEntity>>
+
+    @Query("SELECT * FROM node_review_states WHERE side = :side")
+    fun getBySide(side: String): Flow<List<NodeReviewStateEntity>>
+
+    @Query("SELECT * FROM node_review_states WHERE nextReviewEpochMs <= :now ORDER BY nextReviewEpochMs ASC")
+    fun getDueForReview(now: Long): Flow<List<NodeReviewStateEntity>>
+
+    @Query("SELECT COUNT(*) FROM node_review_states WHERE nextReviewEpochMs <= :now")
+    fun getDueCount(now: Long): Flow<Int>
+
+    @Query("SELECT * FROM node_review_states ORDER BY easeFactor ASC, lapseCount DESC LIMIT :limit")
+    fun getWeakestNodes(limit: Int): Flow<List<NodeReviewStateEntity>>
+
+    @Query("SELECT * FROM node_review_states")
+    fun getAll(): Flow<List<NodeReviewStateEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(state: NodeReviewStateEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsertAll(states: List<NodeReviewStateEntity>)
+}
+
+@Dao
+interface MistakeItemDao {
+    @Query("SELECT * FROM mistake_items WHERE resolved = 0 ORDER BY nextReviewEpochMs ASC")
+    fun getUnresolved(): Flow<List<MistakeItemEntity>>
+
+    @Query("SELECT * FROM mistake_items WHERE nextReviewEpochMs <= :now AND resolved = 0")
+    fun getDueForReview(now: Long): Flow<List<MistakeItemEntity>>
+
+    @Query("SELECT * FROM mistake_items WHERE lineId = :lineId AND resolved = 0")
+    fun getByLineId(lineId: String): Flow<List<MistakeItemEntity>>
+
+    @Query("SELECT * FROM mistake_items ORDER BY createdEpochMs DESC LIMIT :limit")
+    fun getRecent(limit: Int): Flow<List<MistakeItemEntity>>
+
+    @Query("SELECT COUNT(*) FROM mistake_items WHERE resolved = 0")
+    fun getUnresolvedCount(): Flow<Int>
+
+    @Insert
+    suspend fun insert(item: MistakeItemEntity): Long
+
+    @Update
+    suspend fun update(item: MistakeItemEntity)
+
+    @Query("UPDATE mistake_items SET resolved = 1 WHERE id = :id")
+    suspend fun markResolved(id: Long)
+}
+
+@Dao
+interface ExamResultDao {
+    @Query("SELECT * FROM exam_results ORDER BY finishedEpochMs DESC")
+    fun getAll(): Flow<List<ExamResultEntity>>
+
+    @Query("SELECT * FROM exam_results WHERE side = :side ORDER BY finishedEpochMs DESC")
+    fun getBySide(side: String): Flow<List<ExamResultEntity>>
+
+    @Query("SELECT * FROM exam_results WHERE side = :side ORDER BY accuracy DESC LIMIT 1")
+    suspend fun getBestBySide(side: String): ExamResultEntity?
+
+    @Insert
+    suspend fun insert(result: ExamResultEntity): Long
+}
+
+@Dao
+interface StudySessionDao {
+    @Query("SELECT * FROM study_sessions ORDER BY startedEpochMs DESC")
+    fun getAll(): Flow<List<StudySessionEntity>>
+
+    @Query("SELECT * FROM study_sessions WHERE startedEpochMs >= :since")
+    fun getSince(since: Long): Flow<List<StudySessionEntity>>
+
+    @Query("SELECT SUM(endedEpochMs - startedEpochMs) FROM study_sessions WHERE endedEpochMs > 0")
+    fun getTotalStudyTimeMs(): Flow<Long?>
+
+    @Query("SELECT SUM(endedEpochMs - startedEpochMs) FROM study_sessions WHERE mode = :mode AND endedEpochMs > 0")
+    fun getStudyTimeMsByMode(mode: String): Flow<Long?>
+
+    @Query("SELECT DISTINCT(startedEpochMs / 86400000) as studyDay FROM study_sessions ORDER BY studyDay DESC")
+    suspend fun getDistinctStudyDays(): List<Long>
+
+    @Insert
+    suspend fun insert(session: StudySessionEntity): Long
+
+    @Update
+    suspend fun update(session: StudySessionEntity)
+}
+
+@Dao
+interface BadgeDao {
+    @Query("SELECT * FROM badges")
+    fun getAll(): Flow<List<BadgeEntity>>
+
+    @Query("SELECT * FROM badges WHERE earnedEpochMs IS NOT NULL")
+    fun getEarned(): Flow<List<BadgeEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(badge: BadgeEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsertAll(badges: List<BadgeEntity>)
 }
 
 @Dao

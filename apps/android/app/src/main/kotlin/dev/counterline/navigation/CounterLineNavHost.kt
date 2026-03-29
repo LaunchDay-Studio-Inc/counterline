@@ -26,9 +26,12 @@ import dev.counterline.feature.deviations.DeviationsScreen
 import dev.counterline.feature.drill.DrillScreen
 import dev.counterline.feature.exam.ExamScreen
 import dev.counterline.feature.home.HomeScreen
+import dev.counterline.feature.learn.LearnScreen
+import dev.counterline.feature.mistakereview.MistakeReviewScreen
 import dev.counterline.feature.modelgames.ModelGamesScreen
 import dev.counterline.feature.plans.PlansScreen
 import dev.counterline.feature.progress.ProgressScreen
+import dev.counterline.feature.quick5.Quick5Screen
 import dev.counterline.feature.repertoire.RepertoireScreen
 import dev.counterline.feature.settings.SettingsScreen
 
@@ -49,6 +52,9 @@ object NestedRoutes {
     const val DEVIATIONS = "deviations"
     const val MODEL_GAMES = "model_games"
     const val EXAM = "exam"
+    const val LEARN = "learn"
+    const val MISTAKE_REVIEW = "mistake_review"
+    const val QUICK_5 = "quick_5"
 }
 
 @Composable
@@ -97,6 +103,9 @@ fun CounterLineApp() {
                     onNavigateToDeviations = { navController.navigate(NestedRoutes.DEVIATIONS) },
                     onNavigateToModelGames = { navController.navigate(NestedRoutes.MODEL_GAMES) },
                     onNavigateToExam = { navController.navigate(NestedRoutes.EXAM) },
+                    onNavigateToLearn = { navController.navigate(NestedRoutes.LEARN) },
+                    onNavigateToMistakeReview = { navController.navigate(NestedRoutes.MISTAKE_REVIEW) },
+                    onNavigateToQuick5 = { navController.navigate(NestedRoutes.QUICK_5) },
                 )
             }
             composable(TopLevelRoute.REPERTOIRE.route) {
@@ -122,6 +131,15 @@ fun CounterLineApp() {
             }
             composable(NestedRoutes.EXAM) {
                 ExamScreen(onBack = { navController.popBackStack() })
+            }
+            composable(NestedRoutes.LEARN) {
+                LearnScreen(onBack = { navController.popBackStack() })
+            }
+            composable(NestedRoutes.MISTAKE_REVIEW) {
+                MistakeReviewScreen(onBack = { navController.popBackStack() })
+            }
+            composable(NestedRoutes.QUICK_5) {
+                Quick5Screen(onBack = { navController.popBackStack() })
             }
         }
     }

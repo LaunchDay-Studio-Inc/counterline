@@ -16,8 +16,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.FitnessCenter
+import androidx.compose.material.icons.filled.Lightbulb
 import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.Quiz
+import androidx.compose.material.icons.filled.Replay
+import androidx.compose.material.icons.filled.RocketLaunch
 import androidx.compose.material.icons.filled.ShuffleOn
 import androidx.compose.material.icons.filled.SportsEsports
 import androidx.compose.material3.Card
@@ -52,6 +55,9 @@ fun HomeScreen(
     onNavigateToDeviations: () -> Unit = {},
     onNavigateToModelGames: () -> Unit = {},
     onNavigateToExam: () -> Unit = {},
+    onNavigateToLearn: () -> Unit = {},
+    onNavigateToMistakeReview: () -> Unit = {},
+    onNavigateToQuick5: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -159,6 +165,21 @@ fun HomeScreen(
                     icon = Icons.Default.Quiz,
                     label = "Exam Mode",
                     onClick = onNavigateToExam,
+                )
+                QuickActionRow(
+                    icon = Icons.Default.Lightbulb,
+                    label = "Learn Mode",
+                    onClick = onNavigateToLearn,
+                )
+                QuickActionRow(
+                    icon = Icons.Default.Replay,
+                    label = "Mistake Review",
+                    onClick = onNavigateToMistakeReview,
+                )
+                QuickActionRow(
+                    icon = Icons.Default.RocketLaunch,
+                    label = "Quick 5",
+                    onClick = onNavigateToQuick5,
                 )
             }
         }

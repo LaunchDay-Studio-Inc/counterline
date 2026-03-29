@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import dev.counterline.core.model.DarkMode
+import dev.counterline.core.model.SkillLevel
 import dev.counterline.core.model.UserSettings
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
@@ -28,6 +29,7 @@ class SettingsRepository @Inject constructor(
         val DAILY_DRILL_GOAL = intPreferencesKey("daily_drill_goal")
         val NOTIFICATIONS_ENABLED = booleanPreferencesKey("notifications_enabled")
         val NOTIFICATION_HOUR = intPreferencesKey("notification_hour")
+        val SKILL_LEVEL = stringPreferencesKey("skill_level")
     }
 
     val settings: Flow<UserSettings> = context.dataStore.data.map { prefs ->
@@ -37,6 +39,7 @@ class SettingsRepository @Inject constructor(
             dailyDrillGoal = prefs[Keys.DAILY_DRILL_GOAL] ?: 10,
             notificationsEnabled = prefs[Keys.NOTIFICATIONS_ENABLED] ?: true,
             notificationHour = prefs[Keys.NOTIFICATION_HOUR] ?: 9,
+            skillLevel = prefs[Keys.SKILL_LEVEL]?.let { SkillLevel.valueOf(it) } ?: SkillLevel.INTERMEDIATE,
         )
     }
 
@@ -58,5 +61,9 @@ class SettingsRepository @Inject constructor(
 
     suspend fun updateNotificationHour(hour: Int) {
         context.dataStore.edit { it[Keys.NOTIFICATION_HOUR] = hour }
+    }
+
+    suspend fun updateSkillLevel(level: SkillLevel) {
+        context.dataStore.edit { it[Keys.SKILL_LEVEL] = level.name }
     }
 }

@@ -22,7 +22,8 @@ data class RepertoireLineEntity(
     val screeningScorePct: Double,
     val evaluationAtExit: String,
     val memoryHook: String,
-    val memoryHookBreakdownJson: String, // serialized List<String>
+    val memoryHookBreakdownJson: String,
+    val skillLevel: String = "INTERMEDIATE",
 )
 
 @Entity(
@@ -42,6 +43,8 @@ data class RepertoireMoveEntity(
     val san: String,
     val purpose: String,
     val isWhiteMove: Boolean,
+    val whyThisMove: String = "",
+    val keyPlanCallout: String = "",
 )
 
 @Entity(tableName = "plans")
@@ -51,6 +54,7 @@ data class PlanEntity(
     val title: String,
     val description: String,
     val priority: Int,
+    val skillLevel: String = "INTERMEDIATE",
 )
 
 @Entity(tableName = "themes")
@@ -60,6 +64,7 @@ data class ThemeEntity(
     val title: String,
     val description: String,
     val occurrenceRate: String?,
+    val skillLevel: String = "INTERMEDIATE",
 )
 
 @Entity(tableName = "piece_placements")
@@ -79,6 +84,8 @@ data class DeviationEntity(
     val move: String,
     val description: String,
     val response: String,
+    val strategicIdea: String = "",
+    val skillLevel: String = "INTERMEDIATE",
 )
 
 @Entity(tableName = "model_games")
@@ -90,7 +97,7 @@ data class ModelGameEntity(
     val result: String,
     val moveCount: Int,
     val keyTheme: String,
-    val annotationsJson: String, // serialized List<GameAnnotation>
+    val annotationsJson: String,
     val evaluationProgression: String,
 )
 
@@ -100,11 +107,13 @@ data class DrillEntity(
     val type: String,
     val title: String,
     val question: String,
-    val optionsJson: String?, // serialized List<String>?
+    val optionsJson: String?,
     val correctAnswer: String,
     val explanation: String,
     val side: String?,
     val fen: String?,
+    val skillLevel: String = "INTERMEDIATE",
+    val lineId: String? = null,
 )
 
 @Entity(tableName = "user_progress", indices = [Index("lineId"), Index("drillId")])
@@ -117,6 +126,71 @@ data class UserProgressEntity(
     val lastReviewedEpochMs: Long,
     val nextReviewEpochMs: Long,
     val streakDays: Int,
+)
+
+@Entity(tableName = "node_review_states", indices = [Index("lineId"), Index("side")])
+data class NodeReviewStateEntity(
+    @PrimaryKey val nodeId: String,
+    val side: String,
+    val lineId: String,
+    val easeFactor: Float = 2.5f,
+    val intervalDays: Float = 0f,
+    val repetitions: Int = 0,
+    val lastReviewEpochMs: Long = 0,
+    val nextReviewEpochMs: Long = 0,
+    val lapseCount: Int = 0,
+    val lastGrade: String = "GOOD",
+)
+
+@Entity(tableName = "mistake_items", indices = [Index("lineId"), Index("nodeId")])
+data class MistakeItemEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val nodeId: String,
+    val lineId: String,
+    val side: String,
+    val fen: String,
+    val expectedMove: String,
+    val userMove: String,
+    val explanation: String,
+    val createdEpochMs: Long,
+    val nextReviewEpochMs: Long,
+    val reviewCount: Int = 0,
+    val resolved: Boolean = false,
+)
+
+@Entity(tableName = "exam_results", indices = [Index("side")])
+data class ExamResultEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val side: String,
+    val startedEpochMs: Long,
+    val finishedEpochMs: Long,
+    val totalQuestions: Int,
+    val correctAnswers: Int,
+    val accuracy: Float,
+    val avgResponseTimeMs: Long,
+    val branchCoverage: Float,
+    val passed: Boolean,
+)
+
+@Entity(tableName = "study_sessions")
+data class StudySessionEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val mode: String,
+    val side: String?,
+    val startedEpochMs: Long,
+    val endedEpochMs: Long = 0,
+    val itemsCompleted: Int = 0,
+    val correctCount: Int = 0,
+)
+
+@Entity(tableName = "badges")
+data class BadgeEntity(
+    @PrimaryKey val id: String,
+    val title: String,
+    val description: String,
+    val side: String?,
+    val earnedEpochMs: Long?,
+    val iconName: String = "star",
 )
 
 @Entity(tableName = "quick_starts")

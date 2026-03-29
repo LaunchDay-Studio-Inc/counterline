@@ -84,6 +84,9 @@ dependencies {
     implementation(project(":feature:exam"))
     implementation(project(":feature:progress"))
     implementation(project(":feature:settings"))
+    implementation(project(":feature:learn"))
+    implementation(project(":feature:mistakereview"))
+    implementation(project(":feature:quick5"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

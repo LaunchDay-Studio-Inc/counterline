@@ -8,9 +8,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -25,6 +28,7 @@ import dev.counterline.core.designsystem.component.ChessBoard
 import dev.counterline.core.designsystem.component.SectionHeader
 import dev.counterline.core.model.Drill
 import dev.counterline.core.model.DrillType
+import dev.counterline.core.model.ReviewGrade
 
 @Composable
 fun DrillScreen(
@@ -45,6 +49,34 @@ fun DrillScreen(
                 "${state.currentIndex + 1} / ${state.drills.size}"
             },
         )
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        // Skill level indicator
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                text = "Level: ${state.skillLevel.name.replace('_', ' ')}",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.primary,
+            )
+            FilterChip(
+                selected = state.woodpeckerMode,
+                onClick = { viewModel.toggleWoodpecker() },
+                label = { Text("Woodpecker") },
+            )
+        }
+
+        if (state.woodpeckerMode && state.woodpeckerRound > 1) {
+            Text(
+                text = "Woodpecker Round ${state.woodpeckerRound} • ${state.woodpeckerMissed} items to review",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.tertiary,
+            )
+        }
 
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -83,7 +115,9 @@ fun DrillScreen(
                     drill = drill,
                     selectedAnswer = state.selectedAnswer,
                     showResult = state.showResult,
+                    showGrading = state.showGrading,
                     onSelectAnswer = { viewModel.selectAnswer(it) },
+                    onGrade = { viewModel.gradeAndNext(it) },
                     onNext = { viewModel.next() },
                 )
             }
@@ -96,7 +130,9 @@ private fun DrillCard(
     drill: Drill,
     selectedAnswer: String?,
     showResult: Boolean,
+    showGrading: Boolean,
     onSelectAnswer: (String) -> Unit,
+    onGrade: (ReviewGrade) -> Unit,
     onNext: () -> Unit,
 ) {
     Card(
@@ -116,7 +152,6 @@ private fun DrillCard(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Show board for FEN-based drills
             if (drill.fen != null) {
                 ChessBoard(
                     fen = drill.fen,
@@ -134,7 +169,6 @@ private fun DrillCard(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Answer options
             if (drill.options != null) {
                 drill.options.forEach { option ->
                     val isSelected = option == selectedAnswer
@@ -162,7 +196,6 @@ private fun DrillCard(
                     }
                 }
             } else {
-                // Free-text: show correct answer on reveal
                 if (!showResult) {
                     Button(
                         onClick = { onSelectAnswer(drill.correctAnswer) },
@@ -173,7 +206,6 @@ private fun DrillCard(
                 }
             }
 
-            // Show explanation after answering
             if (showResult) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Card(
@@ -194,14 +226,49 @@ private fun DrillCard(
                     }
                 }
                 Spacer(modifier = Modifier.height(12.dp))
-                Button(
-                    onClick = onNext,
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Text("Next")
+
+                if (showGrading) {
+                    Text(
+                        text = "How confident were you?",
+                        style = MaterialTheme.typography.labelMedium,
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    ) {
+                        GradeButton("Again", ReviewGrade.FAIL, MaterialTheme.colorScheme.error, Modifier.weight(1f), onGrade)
+                        GradeButton("Hard", ReviewGrade.HARD, MaterialTheme.colorScheme.tertiary, Modifier.weight(1f), onGrade)
+                        GradeButton("Good", ReviewGrade.GOOD, MaterialTheme.colorScheme.primary, Modifier.weight(1f), onGrade)
+                        GradeButton("Easy", ReviewGrade.EASY, MaterialTheme.colorScheme.secondary, Modifier.weight(1f), onGrade)
+                    }
+                } else {
+                    Button(
+                        onClick = onNext,
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Text("Next")
+                    }
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun GradeButton(
+    label: String,
+    grade: ReviewGrade,
+    color: androidx.compose.ui.graphics.Color,
+    modifier: Modifier = Modifier,
+    onGrade: (ReviewGrade) -> Unit,
+) {
+    Button(
+        onClick = { onGrade(grade) },
+        modifier = modifier,
+        colors = ButtonDefaults.buttonColors(containerColor = color),
+    ) {
+        Text(label, style = MaterialTheme.typography.labelSmall)
     }
 }
 
