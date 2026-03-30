@@ -3,6 +3,7 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
 # ── system packages ──────────────────────────────────────────────────────────
 RUN apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    openssh-server \
     build-essential \
     clang \
     g++ \
