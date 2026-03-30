@@ -12,9 +12,6 @@ import androidx.compose.material.icons.filled.QueryStats
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,6 +28,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.counterline.MainViewModel
+import dev.counterline.core.designsystem.adaptive.AdaptiveNavigationLayout
+import dev.counterline.core.designsystem.adaptive.NavigationItem
+import dev.counterline.core.designsystem.theme.Spacing
 import dev.counterline.feature.deviations.DeviationsScreen
 import dev.counterline.feature.drill.DrillScreen
 import dev.counterline.feature.exam.ExamScreen
@@ -83,7 +83,7 @@ fun CounterLineApp(
     // Show error screen if content assets are missing/corrupt
     if (contentError != null) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(32.dp),
+            modifier = Modifier.fillMaxSize().padding(Spacing.xl),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
@@ -95,50 +95,46 @@ fun CounterLineApp(
             Text(
                 contentError ?: "",
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(top = 16.dp),
+                modifier = Modifier.padding(top = Spacing.md),
             )
             Text(
                 "Please reinstall the app or contact support.",
                 style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.padding(top = 8.dp),
+                modifier = Modifier.padding(top = Spacing.xs),
             )
         }
         return
     }
 
     val topLevelRoutes = TopLevelRoute.entries.toList()
-    val showBottomBar = currentDestination?.route in topLevelRoutes.map { it.route }
+    val showNav = currentDestination?.route in topLevelRoutes.map { it.route }
 
     val startDestination = if (onboardingComplete) TopLevelRoute.HOME.route else NestedRoutes.ONBOARDING
 
-    Scaffold(
-        bottomBar = {
-            if (showBottomBar) {
-                NavigationBar {
-                    topLevelRoutes.forEach { dest ->
-                        NavigationBarItem(
-                            icon = { Icon(dest.icon, contentDescription = dest.label) },
-                            label = { Text(dest.label) },
-                            selected = currentDestination?.hierarchy?.any { it.route == dest.route } == true,
-                            onClick = {
-                                navController.navigate(dest.route) {
-                                    popUpTo(navController.graph.findStartDestination().id) {
-                                        saveState = true
-                                    }
-                                    launchSingleTop = true
-                                    restoreState = true
-                                }
-                            },
-                        )
+    val navigationItems = topLevelRoutes.map { dest ->
+        NavigationItem(
+            icon = dest.icon,
+            label = dest.label,
+            selected = currentDestination?.hierarchy?.any { it.route == dest.route } == true,
+            onClick = {
+                navController.navigate(dest.route) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        saveState = true
                     }
+                    launchSingleTop = true
+                    restoreState = true
                 }
-            }
-        },
-    ) { innerPadding ->
+            },
+        )
+    }
+
+    AdaptiveNavigationLayout(
+        items = navigationItems,
+        showNavigation = showNav,
+    ) {
         NavHost(
             navController = navController,
             startDestination = startDestination,
-            modifier = Modifier.padding(innerPadding),
         ) {
             composable(NestedRoutes.ONBOARDING) {
                 OnboardingScreen(

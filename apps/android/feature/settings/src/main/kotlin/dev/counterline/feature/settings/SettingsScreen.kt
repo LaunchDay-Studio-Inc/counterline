@@ -27,11 +27,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.counterline.core.designsystem.component.SectionHeader
+import dev.counterline.core.designsystem.theme.Spacing
 import dev.counterline.core.model.DarkMode
 import dev.counterline.core.model.SkillLevel
 
@@ -45,24 +47,31 @@ fun SettingsScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = Spacing.md),
     ) {
         item {
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(Spacing.md))
             SectionHeader(title = "Settings")
         }
 
         // Skill Level
         item {
-            Card(modifier = Modifier.fillMaxWidth()) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text("Skill Level", style = MaterialTheme.typography.titleSmall)
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.medium,
+            ) {
+                Column(modifier = Modifier.padding(Spacing.md)) {
+                    Text(
+                        "Skill Level",
+                        style = MaterialTheme.typography.titleSmall,
+                        modifier = Modifier.semantics { heading() },
+                    )
                     Text(
                         "Controls which content is visible. You can change this at any time.",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(Spacing.xs))
 
                     var skillExpanded by remember { mutableStateOf(false) }
                     ExposedDropdownMenuBox(
@@ -101,10 +110,17 @@ fun SettingsScreen(
 
         // Appearance
         item {
-            Card(modifier = Modifier.fillMaxWidth()) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text("Appearance", style = MaterialTheme.typography.titleSmall)
-                    Spacer(modifier = Modifier.height(8.dp))
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.medium,
+            ) {
+                Column(modifier = Modifier.padding(Spacing.md)) {
+                    Text(
+                        "Appearance",
+                        style = MaterialTheme.typography.titleSmall,
+                        modifier = Modifier.semantics { heading() },
+                    )
+                    Spacer(modifier = Modifier.height(Spacing.xs))
 
                     // Dark mode
                     var expanded by remember { mutableStateOf(false) }
@@ -138,7 +154,7 @@ fun SettingsScreen(
                         }
                     }
 
-                    Spacer(modifier = Modifier.height(12.dp))
+                    Spacer(modifier = Modifier.height(Spacing.sm))
 
                     // Board flip
                     Row(
@@ -160,11 +176,18 @@ fun SettingsScreen(
 
         // Training
         item {
-            Spacer(modifier = Modifier.height(12.dp))
-            Card(modifier = Modifier.fillMaxWidth()) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text("Training", style = MaterialTheme.typography.titleSmall)
-                    Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(Spacing.sm))
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.medium,
+            ) {
+                Column(modifier = Modifier.padding(Spacing.md)) {
+                    Text(
+                        "Training",
+                        style = MaterialTheme.typography.titleSmall,
+                        modifier = Modifier.semantics { heading() },
+                    )
+                    Spacer(modifier = Modifier.height(Spacing.xs))
 
                     Text("Daily drill goal: ${state.settings.dailyDrillGoal}")
                     Slider(
@@ -179,11 +202,18 @@ fun SettingsScreen(
 
         // Notifications
         item {
-            Spacer(modifier = Modifier.height(12.dp))
-            Card(modifier = Modifier.fillMaxWidth()) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text("Notifications", style = MaterialTheme.typography.titleSmall)
-                    Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(Spacing.sm))
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.medium,
+            ) {
+                Column(modifier = Modifier.padding(Spacing.md)) {
+                    Text(
+                        "Notifications",
+                        style = MaterialTheme.typography.titleSmall,
+                        modifier = Modifier.semantics { heading() },
+                    )
+                    Spacer(modifier = Modifier.height(Spacing.xs))
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -201,11 +231,18 @@ fun SettingsScreen(
 
         // About
         item {
-            Spacer(modifier = Modifier.height(12.dp))
-            Card(modifier = Modifier.fillMaxWidth()) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text("About", style = MaterialTheme.typography.titleSmall)
-                    Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(Spacing.sm))
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.medium,
+            ) {
+                Column(modifier = Modifier.padding(Spacing.md)) {
+                    Text(
+                        "About",
+                        style = MaterialTheme.typography.titleSmall,
+                        modifier = Modifier.semantics { heading() },
+                    )
+                    Spacer(modifier = Modifier.height(Spacing.xxs))
                     Text(
                         text = "CounterLine v1.0.0",
                         style = MaterialTheme.typography.bodySmall,
@@ -221,21 +258,26 @@ fun SettingsScreen(
 
         // Legal notices
         item {
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(Spacing.sm))
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .semantics { contentDescription = "Legal notices and licenses" },
+                shape = MaterialTheme.shapes.medium,
             ) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text("Legal", style = MaterialTheme.typography.titleSmall)
-                    Spacer(modifier = Modifier.height(8.dp))
+                Column(modifier = Modifier.padding(Spacing.md)) {
+                    Text(
+                        "Legal",
+                        style = MaterialTheme.typography.titleSmall,
+                        modifier = Modifier.semantics { heading() },
+                    )
+                    Spacer(modifier = Modifier.height(Spacing.xs))
                     Text(
                         text = "CounterLine is derived from Stockfish and distributed under the GNU General Public License v3.0 (GPL-3.0).",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(Spacing.xs))
                     Text(
                         text = "Open-Source Licenses",
                         style = MaterialTheme.typography.labelMedium,
@@ -245,7 +287,7 @@ fun SettingsScreen(
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(Spacing.xs))
                     Text(
                         text = "Disclaimers",
                         style = MaterialTheme.typography.labelMedium,
@@ -257,7 +299,7 @@ fun SettingsScreen(
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(Spacing.lg))
         }
     }
 }

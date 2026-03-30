@@ -47,6 +47,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.counterline.core.designsystem.component.ChessBoard
+import dev.counterline.core.designsystem.interaction.FadeSlideUp
+import dev.counterline.core.designsystem.theme.CounterLineTheme
+import dev.counterline.core.designsystem.theme.Spacing
 import dev.counterline.core.model.SkillLevel
 
 @Composable
@@ -63,20 +66,20 @@ fun OnboardingScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
+            .padding(Spacing.lg),
     ) {
         // Page indicator
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 16.dp)
+                .padding(vertical = Spacing.md)
                 .semantics { contentDescription = "Page ${state.currentPage + 1} of ${state.totalPages}" },
             horizontalArrangement = Arrangement.Center,
         ) {
             repeat(state.totalPages) { index ->
                 Box(
                     modifier = Modifier
-                        .padding(horizontal = 4.dp)
+                        .padding(horizontal = Spacing.xxs)
                         .size(if (index == state.currentPage) 12.dp else 8.dp)
                         .clip(CircleShape)
                         .background(
@@ -122,7 +125,7 @@ fun OnboardingScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 16.dp),
+                .padding(top = Spacing.md),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -137,13 +140,13 @@ fun OnboardingScreen(
             if (state.currentPage < state.totalPages - 1) {
                 Button(onClick = viewModel::nextPage) {
                     Text("Next")
-                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(Spacing.xs))
                     Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = null)
                 }
             } else {
                 Button(onClick = viewModel::completeOnboarding) {
                     Text("Get Started")
-                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(Spacing.xs))
                     Icon(Icons.Default.Check, contentDescription = null)
                 }
             }
@@ -153,7 +156,7 @@ fun OnboardingScreen(
 
 @Composable
 private fun WelcomePage(headline: String, subtitle: String) {
-    Spacer(modifier = Modifier.height(48.dp))
+    Spacer(modifier = Modifier.height(Spacing.xxxl))
 
     Icon(
         imageVector = Icons.Default.School,
@@ -162,7 +165,7 @@ private fun WelcomePage(headline: String, subtitle: String) {
         tint = MaterialTheme.colorScheme.primary,
     )
 
-    Spacer(modifier = Modifier.height(24.dp))
+    Spacer(modifier = Modifier.height(Spacing.lg))
 
     Text(
         text = headline,
@@ -171,7 +174,7 @@ private fun WelcomePage(headline: String, subtitle: String) {
         fontWeight = FontWeight.Bold,
     )
 
-    Spacer(modifier = Modifier.height(12.dp))
+    Spacer(modifier = Modifier.height(Spacing.sm))
 
     Text(
         text = subtitle,
@@ -180,7 +183,7 @@ private fun WelcomePage(headline: String, subtitle: String) {
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
 
-    Spacer(modifier = Modifier.height(32.dp))
+    Spacer(modifier = Modifier.height(Spacing.xl))
 
     Text(
         text = "Welcome to a focused way to learn chess openings.",
@@ -191,7 +194,7 @@ private fun WelcomePage(headline: String, subtitle: String) {
 
 @Composable
 private fun WhatIsCounterLinePage() {
-    Spacer(modifier = Modifier.height(24.dp))
+    Spacer(modifier = Modifier.height(Spacing.lg))
 
     Text(
         text = "How CounterLine Works",
@@ -199,7 +202,7 @@ private fun WhatIsCounterLinePage() {
         fontWeight = FontWeight.Bold,
     )
 
-    Spacer(modifier = Modifier.height(16.dp))
+    Spacer(modifier = Modifier.height(Spacing.md))
 
     val explanations = listOf(
         Triple(Icons.Default.LibraryBooks, "Two Precise Weapons",
@@ -214,19 +217,20 @@ private fun WhatIsCounterLinePage() {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 6.dp),
+                .padding(vertical = Spacing.xxs),
+            shape = MaterialTheme.shapes.medium,
         ) {
-            Row(modifier = Modifier.padding(16.dp)) {
+            Row(modifier = Modifier.padding(Spacing.md)) {
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
                     modifier = Modifier.size(32.dp),
                     tint = MaterialTheme.colorScheme.primary,
                 )
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(Spacing.md))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(text = title, style = MaterialTheme.typography.titleSmall)
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(Spacing.xxs))
                     Text(
                         text = description,
                         style = MaterialTheme.typography.bodySmall,
@@ -237,7 +241,7 @@ private fun WhatIsCounterLinePage() {
         }
     }
 
-    Spacer(modifier = Modifier.height(16.dp))
+    Spacer(modifier = Modifier.height(Spacing.md))
 
     // Show the two exit positions
     Row(
@@ -266,7 +270,7 @@ private fun SkillLevelPage(
     selected: SkillLevel,
     onSelect: (SkillLevel) -> Unit,
 ) {
-    Spacer(modifier = Modifier.height(24.dp))
+    Spacer(modifier = Modifier.height(Spacing.lg))
 
     Text(
         text = "Choose Your Level",
@@ -274,7 +278,7 @@ private fun SkillLevelPage(
         fontWeight = FontWeight.Bold,
     )
 
-    Spacer(modifier = Modifier.height(8.dp))
+    Spacer(modifier = Modifier.height(Spacing.xs))
 
     Text(
         text = "This controls how much content is visible. You can change it later in Settings.",
@@ -283,7 +287,7 @@ private fun SkillLevelPage(
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
 
-    Spacer(modifier = Modifier.height(20.dp))
+    Spacer(modifier = Modifier.height(Spacing.md))
 
     val levels = listOf(
         SkillLevel.INTERMEDIATE to "Core moves and basic plans. Recommended for most players.",
@@ -297,7 +301,7 @@ private fun SkillLevelPage(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 4.dp),
+                .padding(vertical = Spacing.xxs),
             colors = CardDefaults.cardColors(
                 containerColor = if (isSelected)
                     MaterialTheme.colorScheme.primaryContainer
@@ -305,9 +309,10 @@ private fun SkillLevelPage(
                     MaterialTheme.colorScheme.surfaceVariant,
             ),
             onClick = { onSelect(level) },
+            shape = MaterialTheme.shapes.medium,
         ) {
             Row(
-                modifier = Modifier.padding(16.dp),
+                modifier = Modifier.padding(Spacing.md),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Column(modifier = Modifier.weight(1f)) {
@@ -340,7 +345,7 @@ private fun StudyFocusPage(
     selected: StudyFocus,
     onSelect: (StudyFocus) -> Unit,
 ) {
-    Spacer(modifier = Modifier.height(24.dp))
+    Spacer(modifier = Modifier.height(Spacing.lg))
 
     Text(
         text = "What Do You Want to Study First?",
@@ -348,7 +353,7 @@ private fun StudyFocusPage(
         fontWeight = FontWeight.Bold,
     )
 
-    Spacer(modifier = Modifier.height(8.dp))
+    Spacer(modifier = Modifier.height(Spacing.xs))
 
     Text(
         text = "Both lines are always available. This just sets your starting focus.",
@@ -357,7 +362,7 @@ private fun StudyFocusPage(
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
 
-    Spacer(modifier = Modifier.height(24.dp))
+    Spacer(modifier = Modifier.height(Spacing.lg))
 
     val options = listOf(
         Triple(StudyFocus.WHITE, "White Repertoire",
@@ -373,7 +378,7 @@ private fun StudyFocusPage(
             selected = selected == focus,
             onClick = { onSelect(focus) },
             label = {
-                Column(modifier = Modifier.padding(vertical = 8.dp)) {
+                Column(modifier = Modifier.padding(vertical = Spacing.xs)) {
                     Text(text = title, style = MaterialTheme.typography.titleSmall)
                     Text(
                         text = description,
@@ -387,7 +392,7 @@ private fun StudyFocusPage(
             } else null,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 4.dp),
+                .padding(vertical = Spacing.xxs),
         )
     }
 }
@@ -397,7 +402,7 @@ private fun DailyGoalPage(
     goal: Int,
     onGoalChange: (Int) -> Unit,
 ) {
-    Spacer(modifier = Modifier.height(24.dp))
+    Spacer(modifier = Modifier.height(Spacing.lg))
 
     Text(
         text = "Set a Daily Goal",
@@ -405,7 +410,7 @@ private fun DailyGoalPage(
         fontWeight = FontWeight.Bold,
     )
 
-    Spacer(modifier = Modifier.height(8.dp))
+    Spacer(modifier = Modifier.height(Spacing.xs))
 
     Text(
         text = "How many drill items do you want to complete each day? You can always change this in Settings.",
@@ -414,16 +419,16 @@ private fun DailyGoalPage(
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
 
-    Spacer(modifier = Modifier.height(32.dp))
+    Spacer(modifier = Modifier.height(Spacing.xl))
 
     Text(
         text = "$goal drills/day",
-        style = MaterialTheme.typography.headlineLarge,
+        style = CounterLineTheme.chessTypography.statHero,
         fontWeight = FontWeight.Bold,
         color = MaterialTheme.colorScheme.primary,
     )
 
-    Spacer(modifier = Modifier.height(16.dp))
+    Spacer(modifier = Modifier.height(Spacing.md))
 
     Slider(
         value = goal.toFloat(),
@@ -435,7 +440,7 @@ private fun DailyGoalPage(
             .semantics { contentDescription = "Daily drill goal: $goal" },
     )
 
-    Spacer(modifier = Modifier.height(8.dp))
+    Spacer(modifier = Modifier.height(Spacing.xs))
 
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -445,12 +450,15 @@ private fun DailyGoalPage(
         Text("50 (intense)", style = MaterialTheme.typography.bodySmall)
     }
 
-    Spacer(modifier = Modifier.height(24.dp))
+    Spacer(modifier = Modifier.height(Spacing.lg))
 
-    Card(modifier = Modifier.fillMaxWidth()) {
-        Column(modifier = Modifier.padding(16.dp)) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = MaterialTheme.shapes.medium,
+    ) {
+        Column(modifier = Modifier.padding(Spacing.md)) {
             Text("You're all set!", style = MaterialTheme.typography.titleSmall)
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(Spacing.xxs))
             Text(
                 text = "Tap \"Get Started\" to begin learning your repertoire. " +
                     "You can always adjust your settings later.",

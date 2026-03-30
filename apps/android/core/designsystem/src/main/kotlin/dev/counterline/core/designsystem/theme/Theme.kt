@@ -8,6 +8,8 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.platform.LocalContext
 
 private val LightColorScheme = lightColorScheme(
@@ -34,6 +36,14 @@ private val LightColorScheme = lightColorScheme(
     surfaceVariant = SurfaceVariantLight,
     onSurfaceVariant = OnSurfaceVariantLight,
     outline = OutlineLight,
+    outlineVariant = OutlineVariantLight,
+    surfaceDim = SurfaceDimLight,
+    surfaceBright = SurfaceBrightLight,
+    surfaceContainerLowest = SurfaceContainerLowestLight,
+    surfaceContainerLow = SurfaceContainerLowLight,
+    surfaceContainer = SurfaceContainerLight,
+    surfaceContainerHigh = SurfaceContainerHighLight,
+    surfaceContainerHighest = SurfaceContainerHighestLight,
 )
 
 private val DarkColorScheme = darkColorScheme(
@@ -60,6 +70,14 @@ private val DarkColorScheme = darkColorScheme(
     surfaceVariant = SurfaceVariantDark,
     onSurfaceVariant = OnSurfaceVariantDark,
     outline = OutlineDark,
+    outlineVariant = OutlineVariantDark,
+    surfaceDim = SurfaceDimDark,
+    surfaceBright = SurfaceBrightDark,
+    surfaceContainerLowest = SurfaceContainerLowestDark,
+    surfaceContainerLow = SurfaceContainerLowDark,
+    surfaceContainer = SurfaceContainerDark,
+    surfaceContainerHigh = SurfaceContainerHighDark,
+    surfaceContainerHighest = SurfaceContainerHighestDark,
 )
 
 @Composable
@@ -77,9 +95,41 @@ fun CounterLineTheme(
         else -> LightColorScheme
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = CounterLineTypography,
-        content = content,
-    )
+    val chessColors = if (darkTheme) DarkChessColors else LightChessColors
+    val chessTypography = ChessTypography()
+
+    CompositionLocalProvider(
+        LocalChessColors provides chessColors,
+        LocalChessTypography provides chessTypography,
+        LocalSpacing provides Spacing,
+    ) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = CounterLineTypography,
+            shapes = CounterLineShapes,
+            content = content,
+        )
+    }
+}
+
+/**
+ * Convenience accessor for chess-specific design tokens.
+ *
+ * Usage: `CounterLineTheme.chessColors.boardLight`
+ */
+object CounterLineTheme {
+    val chessColors: ChessColors
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalChessColors.current
+
+    val chessTypography: ChessTypography
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalChessTypography.current
+
+    val spacing: Spacing
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalSpacing.current
 }

@@ -33,11 +33,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.counterline.core.designsystem.component.ChessBoard
+import dev.counterline.core.designsystem.component.ProgressRing
 import dev.counterline.core.designsystem.component.SectionHeader
+import dev.counterline.core.designsystem.interaction.CelebrationPop
+import dev.counterline.core.designsystem.interaction.FadeSlideUp
+import dev.counterline.core.designsystem.interaction.rememberHapticFeedback
+import dev.counterline.core.designsystem.theme.CounterLineTheme
+import dev.counterline.core.designsystem.theme.Spacing
 import dev.counterline.core.engine.EngineStrengthProfile
 import dev.counterline.core.model.RepertoireLine
 
@@ -99,19 +107,19 @@ private fun LineSelector(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
+            .padding(Spacing.md),
+        verticalArrangement = Arrangement.spacedBy(Spacing.xs),
     ) {
         item {
             SectionHeader(title = "Choose a Line")
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(Spacing.xs))
         }
 
         // Practice mode toggle
         item {
             Text("Practice Mode", style = MaterialTheme.typography.titleSmall)
-            Spacer(modifier = Modifier.height(4.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Spacer(modifier = Modifier.height(Spacing.xxs))
+            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.xs)) {
                 FilterChip(
                     selected = mode == PracticeMode.LINE_LOCK,
                     onClick = { onSetMode(PracticeMode.LINE_LOCK) },
@@ -125,14 +133,14 @@ private fun LineSelector(
                     leadingIcon = { Icon(Icons.Default.LockOpen, contentDescription = null) },
                 )
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(Spacing.xs))
         }
 
         // Strength selector
         item {
             Text("Engine Strength", style = MaterialTheme.typography.titleSmall)
-            Spacer(modifier = Modifier.height(4.dp))
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            Spacer(modifier = Modifier.height(Spacing.xxs))
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.xxs)) {
                 EngineStrengthProfile.entries
                     .filter { it != EngineStrengthProfile.ANALYSIS && it != EngineStrengthProfile.DEEP_ANALYSIS }
                     .forEach { profile ->
@@ -143,7 +151,7 @@ private fun LineSelector(
                         )
                     }
             }
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(Spacing.sm))
         }
 
         // Line cards
@@ -151,9 +159,10 @@ private fun LineSelector(
             Card(
                 onClick = { onSelectLine(line) },
                 modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.medium,
                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
             ) {
-                Column(modifier = Modifier.padding(16.dp)) {
+                Column(modifier = Modifier.padding(Spacing.md)) {
                     Text(
                         text = line.name,
                         style = MaterialTheme.typography.titleMedium,
@@ -164,7 +173,7 @@ private fun LineSelector(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                     if (line.memoryHook.isNotEmpty()) {
-                        Spacer(modifier = Modifier.height(4.dp))
+                        Spacer(modifier = Modifier.height(Spacing.xxs))
                         Text(
                             text = line.memoryHook,
                             style = MaterialTheme.typography.bodySmall,
@@ -185,7 +194,7 @@ private fun ActivePractice(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(Spacing.md),
     ) {
         // Status bar
         Row(
@@ -201,18 +210,18 @@ private fun ActivePractice(
                 Text(
                     text = "In repertoire",
                     style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.primary,
+                    color = CounterLineTheme.chessColors.correctMove,
                 )
             } else {
                 Text(
                     text = "Deviation",
                     style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.error,
+                    color = CounterLineTheme.chessColors.incorrectMove,
                 )
             }
         }
 
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(Spacing.xxs))
 
         // Mode badge
         Text(
@@ -221,7 +230,7 @@ private fun ActivePractice(
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(Spacing.sm))
 
         // Board
         ChessBoard(
@@ -231,7 +240,7 @@ private fun ActivePractice(
                 .align(Alignment.CenterHorizontally),
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(Spacing.sm))
 
         // Score
         Row(
@@ -248,7 +257,7 @@ private fun ActivePractice(
             )
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(Spacing.xs))
 
         // Move history
         if (state.moveHistorySan.isNotEmpty()) {
@@ -256,10 +265,10 @@ private fun ActivePractice(
                 text = state.moveHistorySan.chunked(2).mapIndexed { i, pair ->
                     "${i + 1}. ${pair.joinToString(" ")}"
                 }.joinToString("  "),
-                style = MaterialTheme.typography.bodySmall,
+                style = CounterLineTheme.chessTypography.moveInline,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(Spacing.xs))
         }
 
         // Engine thinking indicator
@@ -269,39 +278,40 @@ private fun ActivePractice(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                CircularProgressIndicator(modifier = Modifier.padding(end = 8.dp))
+                CircularProgressIndicator(modifier = Modifier.padding(end = Spacing.xs))
                 Text("Engine is thinking...")
             }
         }
 
         // Feedback card
         state.lastFeedback?.let { feedback ->
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(Spacing.xs))
             FeedbackCard(feedback = feedback, onDismiss = onDismissFeedback)
         }
 
         // Deviation explanation
         state.deviationExplanation?.let { explanation ->
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(Spacing.xs))
             Card(
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.tertiaryContainer,
                 ),
                 modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.medium,
             ) {
-                Column(modifier = Modifier.padding(12.dp)) {
+                Column(modifier = Modifier.padding(Spacing.sm)) {
                     Text(
                         text = "Deviation",
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.onTertiaryContainer,
                     )
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(Spacing.xxs))
                     Text(
                         text = explanation,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onTertiaryContainer,
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(Spacing.xs))
                     OutlinedButton(onClick = onDismissFeedback) {
                         Text("Continue")
                     }
@@ -316,28 +326,30 @@ private fun FeedbackCard(
     feedback: dev.counterline.core.engine.MoveFeedback,
     onDismiss: () -> Unit,
 ) {
+    val haptics = rememberHapticFeedback()
     val containerColor = if (feedback.isCorrect) {
-        MaterialTheme.colorScheme.secondaryContainer
+        CounterLineTheme.chessColors.correctMove.copy(alpha = 0.15f)
     } else {
-        MaterialTheme.colorScheme.errorContainer
+        CounterLineTheme.chessColors.incorrectMove.copy(alpha = 0.15f)
     }
 
     Card(
         colors = CardDefaults.cardColors(containerColor = containerColor),
         modifier = Modifier.fillMaxWidth(),
+        shape = MaterialTheme.shapes.medium,
     ) {
-        Column(modifier = Modifier.padding(12.dp)) {
+        Column(modifier = Modifier.padding(Spacing.sm)) {
             Text(
                 text = if (feedback.isCorrect) "Correct!" else "Incorrect",
                 style = MaterialTheme.typography.titleSmall,
             )
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(Spacing.xxs))
             Text(
                 text = feedback.explanation,
                 style = MaterialTheme.typography.bodySmall,
             )
             feedback.engineNote?.let { note ->
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(Spacing.xxs))
                 Text(
                     text = note,
                     style = MaterialTheme.typography.bodySmall,
@@ -345,14 +357,14 @@ private fun FeedbackCard(
                 )
             }
             feedback.whyNot?.let { whyNot ->
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(Spacing.xxs))
                 Text(
                     text = whyNot,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.tertiary,
                 )
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(Spacing.xs))
             OutlinedButton(onClick = onDismiss) {
                 Text(if (feedback.isCorrect) "Continue" else "Try Again")
             }
@@ -366,32 +378,37 @@ private fun SessionResult(
     correctMoves: Int,
     onBack: () -> Unit,
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        Text(
-            text = "Session Complete",
-            style = MaterialTheme.typography.headlineSmall,
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = "$correctMoves / $movesPlayed correct",
-            style = MaterialTheme.typography.titleLarge,
-        )
-        if (movesPlayed > 0) {
-            val pct = (correctMoves * 100) / movesPlayed
+    CelebrationPop {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(Spacing.lg),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
             Text(
-                text = "$pct% accuracy",
-                style = MaterialTheme.typography.bodyLarge,
+                text = "Session Complete",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.semantics { heading() },
             )
-        }
-        Spacer(modifier = Modifier.height(24.dp))
-        Button(onClick = onBack) {
-            Text("Back to Home")
+            Spacer(modifier = Modifier.height(Spacing.md))
+            val pct = if (movesPlayed > 0) (correctMoves * 100) / movesPlayed else 0
+            ProgressRing(
+                progress = if (movesPlayed > 0) correctMoves.toFloat() / movesPlayed else 0f,
+                size = 120.dp,
+                strokeWidth = 10.dp,
+                label = "$pct%",
+                sublabel = "$correctMoves / $movesPlayed",
+                progressColor = when {
+                    pct >= 80 -> CounterLineTheme.chessColors.masteryMastered
+                    pct >= 50 -> CounterLineTheme.chessColors.masteryLearning
+                    else -> CounterLineTheme.chessColors.incorrectMove
+                },
+            )
+            Spacer(modifier = Modifier.height(Spacing.lg))
+            Button(onClick = onBack) {
+                Text("Back to Home")
+            }
         }
     }
 }

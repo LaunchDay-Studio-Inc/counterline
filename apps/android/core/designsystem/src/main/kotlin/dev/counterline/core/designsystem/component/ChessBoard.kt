@@ -5,19 +5,30 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextMeasurer
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dev.counterline.core.designsystem.accessibility.describeFenForAccessibility
 import dev.counterline.core.designsystem.theme.BoardDark
 import dev.counterline.core.designsystem.theme.BoardHighlight
+import dev.counterline.core.designsystem.theme.BoardLastMove
 import dev.counterline.core.designsystem.theme.BoardLight
+import dev.counterline.core.designsystem.theme.ChessShapes
+import dev.counterline.core.designsystem.theme.CounterLineTheme
+import dev.counterline.core.designsystem.theme.Elevation
 
 private val PIECE_SYMBOLS = mapOf(
     'K' to "\u2654", 'Q' to "\u2655", 'R' to "\u2656",
@@ -29,6 +40,12 @@ private val PIECE_SYMBOLS = mapOf(
 /**
  * Renders a chess board from a FEN string using Compose Canvas.
  * Uses Unicode chess symbols for pieces.
+ *
+ * Features:
+ * - Rounded corners with subtle shadow for premium feel
+ * - Last-move highlighting
+ * - Accessible FEN description for TalkBack
+ * - Respects chess color tokens from theme
  */
 @Composable
 fun ChessBoard(
@@ -36,14 +53,20 @@ fun ChessBoard(
     modifier: Modifier = Modifier,
     flipped: Boolean = false,
     highlightSquares: Set<Int> = emptySet(),
+    lastMoveSquares: Set<Int> = emptySet(),
 ) {
     val textMeasurer = rememberTextMeasurer()
     val board = parseFen(fen)
+    val chessColors = CounterLineTheme.chessColors
+    val accessibilityDescription = describeFenForAccessibility(fen)
 
     Canvas(
         modifier = modifier
             .fillMaxWidth()
-            .aspectRatio(1f),
+            .aspectRatio(1f)
+            .shadow(Elevation.medium, ChessShapes.board)
+            .clip(ChessShapes.board)
+            .semantics { contentDescription = accessibilityDescription },
     ) {
         val squareSize = size.width / 8f
 
@@ -59,15 +82,24 @@ fun ChessBoard(
                 // Draw square
                 val isLight = (rank + file) % 2 == 0
                 drawRect(
-                    color = if (isLight) BoardLight else BoardDark,
+                    color = if (isLight) chessColors.boardLight else chessColors.boardDark,
                     topLeft = Offset(x, y),
                     size = Size(squareSize, squareSize),
                 )
 
-                // Draw highlight
+                // Draw last-move indicator (subtle yellow tint)
+                if (index in lastMoveSquares) {
+                    drawRect(
+                        color = chessColors.lastMove,
+                        topLeft = Offset(x, y),
+                        size = Size(squareSize, squareSize),
+                    )
+                }
+
+                // Draw highlight (green for legal moves / selected)
                 if (index in highlightSquares) {
                     drawRect(
-                        color = BoardHighlight,
+                        color = chessColors.highlight,
                         topLeft = Offset(x, y),
                         size = Size(squareSize, squareSize),
                     )

@@ -4,11 +4,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -18,14 +21,30 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.counterline.core.designsystem.component.ChessBoard
+import dev.counterline.core.designsystem.component.MiniProgressRing
+import dev.counterline.core.designsystem.component.ProgressRing
 import dev.counterline.core.designsystem.component.SectionHeader
+import dev.counterline.core.designsystem.interaction.AnimatedEntrance
+import dev.counterline.core.designsystem.interaction.CelebrationPop
+import dev.counterline.core.designsystem.interaction.ShakeOnError
+import dev.counterline.core.designsystem.interaction.rememberHapticFeedback
+import dev.counterline.core.designsystem.theme.ChessShapes
+import dev.counterline.core.designsystem.theme.CounterLineTheme
+import dev.counterline.core.designsystem.theme.Elevation
+import dev.counterline.core.designsystem.theme.Spacing
 import dev.counterline.core.model.Drill
 import dev.counterline.core.model.DrillType
 import dev.counterline.core.model.ReviewGrade
@@ -35,11 +54,12 @@ fun DrillScreen(
     viewModel: DrillViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val haptics = rememberHapticFeedback()
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(Spacing.md),
     ) {
         SectionHeader(
             title = "Drill Session",
@@ -50,9 +70,9 @@ fun DrillScreen(
             },
         )
 
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(Spacing.xxs))
 
-        // Skill level indicator
+        // Skill level + Woodpecker toggle
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -78,48 +98,81 @@ fun DrillScreen(
             )
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(Spacing.xs))
 
-        // Score bar
+        // Score with mini progress ring
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .semantics {
+                    liveRegion = LiveRegionMode.Polite
+                    contentDescription = "Score: ${state.correctCount} of ${state.totalAnswered} correct"
+                },
             horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                text = "Score: ${state.correctCount}/${state.totalAnswered}",
-                style = MaterialTheme.typography.titleSmall,
-            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                if (state.totalAnswered > 0) {
+                    MiniProgressRing(
+                        progress = state.correctCount.toFloat() / state.totalAnswered,
+                        size = 32.dp,
+                        strokeWidth = 3.dp,
+                        color = if (state.correctCount * 100 / state.totalAnswered >= 70)
+                            CounterLineTheme.chessColors.correctMove
+                        else CounterLineTheme.chessColors.incorrectMove,
+                    )
+                    Spacer(modifier = Modifier.width(Spacing.xs))
+                }
+                Text(
+                    text = "Score: ${state.correctCount}/${state.totalAnswered}",
+                    style = MaterialTheme.typography.titleSmall,
+                )
+            }
             if (state.totalAnswered > 0) {
                 val pct = (state.correctCount * 100) / state.totalAnswered
                 Text(
                     text = "$pct%",
-                    style = MaterialTheme.typography.titleSmall,
-                    color = if (pct >= 70) MaterialTheme.colorScheme.secondary
-                    else MaterialTheme.colorScheme.error,
+                    style = CounterLineTheme.chessTypography.statCompact,
+                    color = if (pct >= 70) CounterLineTheme.chessColors.correctMove
+                    else CounterLineTheme.chessColors.incorrectMove,
                 )
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(Spacing.md))
 
         if (state.sessionComplete) {
-            SessionCompleteCard(
-                correct = state.correctCount,
-                total = state.totalAnswered,
-                onRestart = { viewModel.restart() },
-            )
+            CelebrationPop(trigger = true) {
+                SessionCompleteCard(
+                    correct = state.correctCount,
+                    total = state.totalAnswered,
+                    onRestart = { viewModel.restart() },
+                )
+            }
         } else {
             val drill = state.drills.getOrNull(state.currentIndex)
             if (drill != null) {
-                DrillCard(
-                    drill = drill,
-                    selectedAnswer = state.selectedAnswer,
-                    showResult = state.showResult,
-                    showGrading = state.showGrading,
-                    onSelectAnswer = { viewModel.selectAnswer(it) },
-                    onGrade = { viewModel.gradeAndNext(it) },
-                    onNext = { viewModel.next() },
-                )
+                AnimatedEntrance(visible = true) {
+                    DrillCard(
+                        drill = drill,
+                        selectedAnswer = state.selectedAnswer,
+                        showResult = state.showResult,
+                        showGrading = state.showGrading,
+                        onSelectAnswer = { answer ->
+                            viewModel.selectAnswer(answer)
+                            if (answer == drill.correctAnswer) {
+                                haptics.performConfirm()
+                            } else {
+                                haptics.performReject()
+                            }
+                        },
+                        onGrade = { grade ->
+                            haptics.performClick()
+                            viewModel.gradeAndNext(grade)
+                        },
+                        onNext = { viewModel.next() },
+                    )
+                }
             }
         }
     }
@@ -135,14 +188,22 @@ private fun DrillCard(
     onGrade: (ReviewGrade) -> Unit,
     onNext: () -> Unit,
 ) {
+    val isIncorrect = showResult && selectedAnswer != null && selectedAnswer != drill.correctAnswer
+
     Card(
         modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        shape = MaterialTheme.shapes.large,
+        elevation = CardDefaults.cardElevation(defaultElevation = Elevation.high),
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(
+            modifier = Modifier
+                .padding(Spacing.md)
+                .verticalScroll(rememberScrollState()),
+        ) {
             Text(
                 text = drill.title,
                 style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.semantics { heading() },
             )
             Text(
                 text = drill.type.name.replace('_', ' '),
@@ -150,17 +211,17 @@ private fun DrillCard(
                 color = MaterialTheme.colorScheme.primary,
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(Spacing.sm))
 
             val drillFen = drill.fen
             if (drillFen != null) {
                 ChessBoard(
                     fen = drillFen,
                     modifier = Modifier
-                        .fillMaxWidth(0.7f)
+                        .fillMaxWidth(0.85f)
                         .align(Alignment.CenterHorizontally),
                 )
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(Spacing.sm))
             }
 
             Text(
@@ -168,40 +229,47 @@ private fun DrillCard(
                 style = MaterialTheme.typography.bodyLarge,
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(Spacing.sm))
 
             val drillOptions = drill.options
             if (drillOptions != null) {
-                drillOptions.forEach { option ->
-                    val isSelected = option == selectedAnswer
-                    val isCorrect = option == drill.correctAnswer
+                ShakeOnError(trigger = isIncorrect) {
+                    Column(verticalArrangement = Arrangement.spacedBy(Spacing.xs)) {
+                        drillOptions.forEach { option ->
+                            val isSelected = option == selectedAnswer
+                            val isCorrect = option == drill.correctAnswer
 
-                    val containerColor = when {
-                        showResult && isCorrect -> MaterialTheme.colorScheme.secondaryContainer
-                        showResult && isSelected && !isCorrect -> MaterialTheme.colorScheme.errorContainer
-                        isSelected -> MaterialTheme.colorScheme.primaryContainer
-                        else -> MaterialTheme.colorScheme.surface
-                    }
+                            val containerColor = when {
+                                showResult && isCorrect -> MaterialTheme.colorScheme.secondaryContainer
+                                showResult && isSelected && !isCorrect -> MaterialTheme.colorScheme.errorContainer
+                                isSelected -> MaterialTheme.colorScheme.primaryContainer
+                                else -> MaterialTheme.colorScheme.surfaceContainerLow
+                            }
 
-                    Card(
-                        onClick = { onSelectAnswer(option) },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 4.dp),
-                        colors = CardDefaults.cardColors(containerColor = containerColor),
-                    ) {
-                        Text(
-                            text = option,
-                            style = MaterialTheme.typography.bodyMedium,
-                            modifier = Modifier.padding(12.dp),
-                        )
+                            Card(
+                                onClick = { if (!showResult) onSelectAnswer(option) },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .defaultMinSize(minHeight = 48.dp),
+                                shape = ChessShapes.drillOption,
+                                colors = CardDefaults.cardColors(containerColor = containerColor),
+                            ) {
+                                Text(
+                                    text = option,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    modifier = Modifier.padding(Spacing.sm),
+                                )
+                            }
+                        }
                     }
                 }
             } else {
                 if (!showResult) {
                     Button(
                         onClick = { onSelectAnswer(drill.correctAnswer) },
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .defaultMinSize(minHeight = 48.dp),
                     ) {
                         Text("Reveal Answer")
                     }
@@ -209,45 +277,48 @@ private fun DrillCard(
             }
 
             if (showResult) {
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(Spacing.sm))
                 Card(
                     colors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.surfaceVariant,
                     ),
+                    shape = MaterialTheme.shapes.medium,
                 ) {
-                    Column(modifier = Modifier.padding(12.dp)) {
+                    Column(modifier = Modifier.padding(Spacing.sm)) {
                         Text(
                             text = "Answer: ${drill.correctAnswer}",
                             style = MaterialTheme.typography.titleSmall,
                         )
-                        Spacer(modifier = Modifier.height(4.dp))
+                        Spacer(modifier = Modifier.height(Spacing.xxs))
                         Text(
                             text = drill.explanation,
                             style = MaterialTheme.typography.bodySmall,
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(Spacing.sm))
 
                 if (showGrading) {
                     Text(
                         text = "How confident were you?",
                         style = MaterialTheme.typography.labelMedium,
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(Spacing.xs))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        horizontalArrangement = Arrangement.spacedBy(Spacing.xxs),
                     ) {
-                        GradeButton("Again", ReviewGrade.FAIL, MaterialTheme.colorScheme.error, Modifier.weight(1f), onGrade)
+                        GradeButton("Again", ReviewGrade.FAIL, CounterLineTheme.chessColors.incorrectMove, Modifier.weight(1f), onGrade)
                         GradeButton("Hard", ReviewGrade.HARD, MaterialTheme.colorScheme.tertiary, Modifier.weight(1f), onGrade)
                         GradeButton("Good", ReviewGrade.GOOD, MaterialTheme.colorScheme.primary, Modifier.weight(1f), onGrade)
-                        GradeButton("Easy", ReviewGrade.EASY, MaterialTheme.colorScheme.secondary, Modifier.weight(1f), onGrade)
+                        GradeButton("Easy", ReviewGrade.EASY, CounterLineTheme.chessColors.correctMove, Modifier.weight(1f), onGrade)
                     }
                 } else {
                     Button(
                         onClick = onNext,
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .defaultMinSize(minHeight = 48.dp),
                     ) {
                         Text("Next")
                     }
@@ -267,10 +338,11 @@ private fun GradeButton(
 ) {
     Button(
         onClick = { onGrade(grade) },
-        modifier = modifier,
+        modifier = modifier.defaultMinSize(minHeight = 48.dp),
         colors = ButtonDefaults.buttonColors(containerColor = color),
+        shape = MaterialTheme.shapes.small,
     ) {
-        Text(label, style = MaterialTheme.typography.labelSmall)
+        Text(label, style = MaterialTheme.typography.labelLarge)
     }
 }
 
@@ -282,32 +354,44 @@ private fun SessionCompleteCard(
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
+        shape = ChessShapes.weaponCard,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
         ),
     ) {
         Column(
-            modifier = Modifier.padding(24.dp),
+            modifier = Modifier.padding(Spacing.xl),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
                 text = "Session Complete!",
                 style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.semantics { heading() },
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(Spacing.md))
+            if (total > 0) {
+                val pct = (correct * 100) / total
+                ProgressRing(
+                    progress = correct.toFloat() / total,
+                    size = 100.dp,
+                    strokeWidth = 10.dp,
+                    label = "$pct%",
+                    sublabel = "accuracy",
+                    progressColor = if (pct >= 70)
+                        CounterLineTheme.chessColors.correctMove
+                    else CounterLineTheme.chessColors.incorrectMove,
+                )
+                Spacer(modifier = Modifier.height(Spacing.sm))
+            }
             Text(
                 text = "$correct / $total correct",
                 style = MaterialTheme.typography.titleLarge,
             )
-            if (total > 0) {
-                val pct = (correct * 100) / total
-                Text(
-                    text = "$pct% accuracy",
-                    style = MaterialTheme.typography.bodyLarge,
-                )
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            OutlinedButton(onClick = onRestart) {
+            Spacer(modifier = Modifier.height(Spacing.md))
+            OutlinedButton(
+                onClick = onRestart,
+                modifier = Modifier.defaultMinSize(minHeight = 48.dp),
+            ) {
                 Text("Start New Session")
             }
         }

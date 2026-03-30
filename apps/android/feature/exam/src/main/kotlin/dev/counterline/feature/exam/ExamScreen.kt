@@ -26,10 +26,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.counterline.core.designsystem.component.ChessBoard
+import dev.counterline.core.designsystem.component.ProgressRing
+import dev.counterline.core.designsystem.interaction.CelebrationPop
+import dev.counterline.core.designsystem.interaction.FadeSlideUp
+import dev.counterline.core.designsystem.interaction.rememberHapticFeedback
+import dev.counterline.core.designsystem.theme.ChessShapes
+import dev.counterline.core.designsystem.theme.CounterLineTheme
+import dev.counterline.core.designsystem.theme.Spacing
 import dev.counterline.core.model.Drill
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -138,16 +147,19 @@ private fun ExamQuestion(
     onSelect: (String) -> Unit,
     onNext: () -> Unit,
 ) {
+    val haptics = rememberHapticFeedback()
+
     Card(
         modifier = Modifier.fillMaxWidth(),
+        shape = MaterialTheme.shapes.medium,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(Spacing.md)) {
             Text(
                 text = drill.title,
                 style = MaterialTheme.typography.titleMedium,
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(Spacing.xs))
 
             val drillFen = drill.fen
             if (drillFen != null) {
@@ -157,47 +169,54 @@ private fun ExamQuestion(
                         .fillMaxWidth(0.65f)
                         .align(Alignment.CenterHorizontally),
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(Spacing.xs))
             }
 
             Text(
                 text = drill.question,
                 style = MaterialTheme.typography.bodyLarge,
             )
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(Spacing.sm))
 
             drill.options.orEmpty().forEach { option ->
                 val isCorrect = option == drill.correctAnswer
                 val isSelected = option == selectedAnswer
                 val color = when {
-                    showResult && isCorrect -> MaterialTheme.colorScheme.secondaryContainer
-                    showResult && isSelected -> MaterialTheme.colorScheme.errorContainer
+                    showResult && isCorrect -> CounterLineTheme.chessColors.correctMove.copy(alpha = 0.15f)
+                    showResult && isSelected -> CounterLineTheme.chessColors.incorrectMove.copy(alpha = 0.15f)
                     isSelected -> MaterialTheme.colorScheme.primaryContainer
                     else -> MaterialTheme.colorScheme.surface
                 }
                 Card(
-                    onClick = { if (!showResult) onSelect(option) },
+                    onClick = {
+                        if (!showResult) {
+                            haptics.click()
+                            onSelect(option)
+                        }
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 3.dp),
+                        .padding(vertical = Spacing.xxs)
+                        .height(48.dp),
+                    shape = ChessShapes.drillOption,
                     colors = CardDefaults.cardColors(containerColor = color),
                 ) {
                     Text(
                         text = option,
-                        modifier = Modifier.padding(12.dp),
+                        modifier = Modifier.padding(Spacing.sm),
                         style = MaterialTheme.typography.bodyMedium,
                     )
                 }
             }
 
             if (showResult) {
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(Spacing.sm))
                 Text(
                     text = drill.explanation,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(Spacing.sm))
                 Button(onClick = onNext, modifier = Modifier.fillMaxWidth()) {
                     Text("Next")
                 }
