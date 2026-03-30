@@ -1,0 +1,113 @@
+You are Claude Opus 4.6 inside GitHub Codespaces in the CounterLine repository.
+
+Read first:
+- Full counterline app report
+- docs/*
+- apps/android/*
+- content/*
+- scripts/*
+- book/*
+
+Mission:
+Turn the current Android app and book from “architecture complete but not shipped” into a genuinely buildable, testable, release-capable product without weakening the existing claims-governance discipline.
+
+Hard rules:
+1. Do not broaden the chess scope.
+2. Keep the current active CounterLine repertoire and claims model intact unless repo evidence requires an update.
+3. Do not hand-wave blockers; close them.
+4. Do not make broader marketing claims than the repo can prove.
+
+Phase 0 — audit and branch
+1. Print:
+   - git status
+   - active branch
+   - current Android Gradle config
+   - targetSdk / compileSdk / minSdk
+   - current content asset paths
+   - current native engine files
+   - current book build files
+2. Create a working branch:
+   release/close-critical-blockers
+
+Phase 1 — Play compliance and Android baseline
+1. Raise the Android project to a Play-compliant target:
+   - targetSdk = 35 or higher
+   - compileSdk aligned appropriately
+2. Verify AGP / Kotlin / Compose compatibility.
+3. Update any broken dependencies.
+4. Document all version decisions in:
+   apps/android/docs/platform-baseline.md
+
+Phase 2 — native engine completion
+1. Implement the missing Android native engine pipeline.
+2. Build Stockfish from the repo’s `src/` into an Android-ready native library.
+3. Add:
+   - CMakeLists.txt
+   - JNI bridge C++ sources
+   - Gradle externalNativeBuild wiring
+   - ABI support at minimum:
+     - arm64-v8a
+     - x86_64
+4. Make sure the Kotlin bridge can:
+   - initialize engine
+   - set position
+   - get best move
+   - evaluate FEN
+   - analyze top moves
+5. Add a native smoke test path.
+
+Phase 3 — content extraction and first-run integrity
+1. Run and/or fix the content extraction pipeline so these exist:
+   - apps/android/app/src/main/assets/content/repertoire.json
+   - plans.json
+   - drills.json
+   - model_games.json
+   - deviations.json
+   - claims.json
+2. Wire content generation into a reproducible script or Gradle task.
+3. Add startup validation:
+   - detect missing/corrupt assets
+   - fail gracefully with a useful error screen
+   - log which asset failed
+4. Create:
+   apps/android/docs/content-pipeline.md
+
+Phase 4 — compile, run, and test
+1. Produce:
+   - debug APK
+   - release APK
+   - release AAB
+2. Run:
+   - unit tests
+   - lint
+   - at least one emulator/instrumented smoke test
+3. Add minimal but real Android tests for:
+   - content seeding
+   - app startup
+   - one drill flow
+   - one practice-vs-engine flow
+4. Save outputs and logs under:
+   results/android_validation/
+
+Phase 5 — book output
+1. Verify Quarto and rendering toolchain.
+2. Render:
+   - PDF
+   - EPUB
+3. Fix obvious render issues.
+4. Save final outputs under:
+   dist/
+
+Phase 6 — cleanup
+1. Remove or clearly mark deprecated opening configs and dead v1 remnants.
+2. Align version numbers across Android app, Python package, and book where appropriate.
+
+Phase 7 — final output
+Print:
+1. blockers found
+2. blockers closed
+3. exact artifact paths
+4. exact build commands
+5. exact remaining blockers, if any
+
+Do the work now.
