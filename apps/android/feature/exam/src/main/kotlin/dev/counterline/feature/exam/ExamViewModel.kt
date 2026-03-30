@@ -51,7 +51,7 @@ class ExamViewModel @Inject constructor(
                 allDrills
             }
             val drills = filtered
-                .filter { it.options != null && it.options.isNotEmpty() }
+                .filter { !it.options.isNullOrEmpty() }
                 .shuffled()
                 .take(20)
             val now = System.currentTimeMillis()

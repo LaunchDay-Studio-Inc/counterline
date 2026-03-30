@@ -1,5 +1,6 @@
 package dev.counterline.core.engine
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /** Raw result from a single engine search */
@@ -8,8 +9,8 @@ data class EngineSearchResult(
     val bestmove: String = "",
     val ponder: String = "",
     val depth: Int = 0,
-    val scoreCp: Int = 0,
-    val mateIn: Int = 0,
+    @SerialName("score_cp") val scoreCp: Int = 0,
+    @SerialName("mate_in") val mateIn: Int = 0,
 )
 
 /** A single PV line from MultiPV analysis */

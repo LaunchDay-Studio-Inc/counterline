@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "dev.counterline"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "dev.counterline"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -113,4 +113,10 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+}
+
+tasks.register<Exec>("extractContent") {
+    description = "Regenerate content JSON assets from repo manifests"
+    workingDir = rootProject.projectDir
+    commandLine("python3", "scripts/extract_content.py")
 }

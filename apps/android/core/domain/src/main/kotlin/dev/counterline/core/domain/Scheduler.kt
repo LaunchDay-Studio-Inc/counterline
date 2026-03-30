@@ -154,8 +154,8 @@ class ReviewScheduler(
         val result = mutableListOf<NodeReviewState>()
 
         while (result.size < maxItems && (white.isNotEmpty() || black.isNotEmpty())) {
-            if (white.isNotEmpty()) result.add(white.removeFirst())
-            if (result.size < maxItems && black.isNotEmpty()) result.add(black.removeFirst())
+            if (white.isNotEmpty()) result.add(white.removeAt(0))
+            if (result.size < maxItems && black.isNotEmpty()) result.add(black.removeAt(0))
         }
         return result
     }

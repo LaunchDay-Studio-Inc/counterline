@@ -9,6 +9,7 @@
 
 #include "engine.h"
 #include "position.h"
+#include "score.h"
 #include "search.h"
 #include "types.h"
 #include "uci.h"
@@ -111,7 +112,8 @@ Java_dev_counterline_core_engine_StockfishBridge_nativeSetOption(
     try {
         auto& options = g_engine->get_options();
         if (options.count(opt_name)) {
-            options[opt_name] = opt_value;
+            std::istringstream is("name " + opt_name + " value " + opt_value);
+            options.setoption(is);
             LOGI("Set option %s = %s", opt_name.c_str(), opt_value.c_str());
 
             if (opt_name == "Threads") {
@@ -159,12 +161,11 @@ Java_dev_counterline_core_engine_StockfishBridge_nativeGo(
 
     // Set MultiPV if requested
     if (multi_pv > 1) {
-        try {
-            auto& options = g_engine->get_options();
-            if (options.count("MultiPV")) {
-                options["MultiPV"] = std::to_string(multi_pv);
-            }
-        } catch (...) {}
+        auto& options = g_engine->get_options();
+        if (options.count("MultiPV")) {
+            std::istringstream is("name MultiPV value " + std::to_string(multi_pv));
+            options.setoption(is);
+        }
     }
 
     // Build search limits
@@ -187,19 +188,37 @@ Java_dev_counterline_core_engine_StockfishBridge_nativeGo(
         g_searching.store(false);
     });
 
-    g_engine->set_on_update_full([multi_pv](const Stockfish::Engine::InfoFull& info, bool) {
+    g_engine->set_on_update_full([multi_pv](const Stockfish::Engine::InfoFull& info) {
         std::lock_guard<std::mutex> rlock(g_result_mutex);
+
+        // Extract score from the Score variant
+        int cp = 0;
+        int mate = 0;
+        info.score.visit([&](auto&& val) {
+            using T = std::decay_t<decltype(val)>;
+            if constexpr (std::is_same_v<T, Stockfish::Score::InternalUnits>) {
+                cp = val.value;
+            } else if constexpr (std::is_same_v<T, Stockfish::Score::Mate>) {
+                mate = (val.plies + 1) / 2;  // plies to moves
+                if (val.plies < 0) mate = -mate;
+            } else if constexpr (std::is_same_v<T, Stockfish::Score::Tablebase>) {
+                cp = val.win ? 10000 : -10000;
+            }
+        });
+
         // For MultiPV, accumulate lines
         if (multi_pv > 1) {
             SearchResult::PvLine line;
             line.depth = info.depth;
-            // Extract score and PV from info
-            // The score is in the info structure
+            line.score_cp = cp;
+            line.mate_in = mate;
             if (g_last_result.multi_pv.size() < static_cast<size_t>(multi_pv)) {
                 g_last_result.multi_pv.push_back(line);
             }
         }
         g_last_result.depth = info.depth;
+        g_last_result.score_cp = cp;
+        g_last_result.mate_in = mate;
     });
 
     // Start search
@@ -210,12 +229,11 @@ Java_dev_counterline_core_engine_StockfishBridge_nativeGo(
 
     // Reset MultiPV to 1
     if (multi_pv > 1) {
-        try {
-            auto& options = g_engine->get_options();
-            if (options.count("MultiPV")) {
-                options["MultiPV"] = "1";
-            }
-        } catch (...) {}
+        auto& options = g_engine->get_options();
+        if (options.count("MultiPV")) {
+            std::istringstream is("name MultiPV value 1");
+            options.setoption(is);
+        }
     }
 
     // Build result JSON

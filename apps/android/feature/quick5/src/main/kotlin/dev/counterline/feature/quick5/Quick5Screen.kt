@@ -130,9 +130,10 @@ private fun QuickDrillCard(
             Text(text = drill.title, style = MaterialTheme.typography.titleMedium)
             Spacer(modifier = Modifier.height(8.dp))
 
-            if (drill.fen != null) {
+            val drillFen = drill.fen
+            if (drillFen != null) {
                 ChessBoard(
-                    fen = drill.fen,
+                    fen = drillFen,
                     modifier = Modifier
                         .fillMaxWidth(0.65f)
                         .align(Alignment.CenterHorizontally),
@@ -143,8 +144,9 @@ private fun QuickDrillCard(
             Text(text = drill.question, style = MaterialTheme.typography.bodyLarge)
             Spacer(modifier = Modifier.height(12.dp))
 
-            if (drill.options != null) {
-                drill.options.forEach { option ->
+            val drillOptions = drill.options
+            if (drillOptions != null) {
+                drillOptions.forEach { option ->
                     val isCorrect = option == drill.correctAnswer
                     val isSelected = option == selectedAnswer
                     val color = when {

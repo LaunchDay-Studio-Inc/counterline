@@ -149,9 +149,10 @@ private fun ExamQuestion(
             )
             Spacer(modifier = Modifier.height(8.dp))
 
-            if (drill.fen != null) {
+            val drillFen = drill.fen
+            if (drillFen != null) {
                 ChessBoard(
-                    fen = drill.fen,
+                    fen = drillFen,
                     modifier = Modifier
                         .fillMaxWidth(0.65f)
                         .align(Alignment.CenterHorizontally),
@@ -165,7 +166,7 @@ private fun ExamQuestion(
             )
             Spacer(modifier = Modifier.height(12.dp))
 
-            drill.options?.forEach { option ->
+            drill.options.orEmpty().forEach { option ->
                 val isCorrect = option == drill.correctAnswer
                 val isSelected = option == selectedAnswer
                 val color = when {

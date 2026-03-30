@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "dev.counterline.core.content"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig { minSdk = 26 }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -19,12 +19,14 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
+    implementation(project(":core:database"))
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.androidx.room.runtime)
 
     testImplementation(libs.junit)
 }

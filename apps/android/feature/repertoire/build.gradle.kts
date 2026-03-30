@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "dev.counterline.feature.repertoire"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig { minSdk = 26 }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

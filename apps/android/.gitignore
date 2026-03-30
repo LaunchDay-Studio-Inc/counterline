@@ -7,6 +7,10 @@ local.properties
 .idea/
 *.iml
 
+# NDK/CMake build cache
+.cxx/
+**/core/engine/.cxx/
+
 # Signing
 *.jks
 *.keystore

@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Path to Stockfish source (relative to this CMakeLists.txt)
-set(SF_SRC "${CMAKE_CURRENT_SOURCE_DIR}/../../../../../../src")
+set(SF_SRC "${CMAKE_CURRENT_SOURCE_DIR}/../../../../../../../src")
 
 # Stockfish core sources (excluding main.cpp — we provide our own entry via JNI)
 set(SF_SOURCES
@@ -62,7 +62,6 @@ endif()
 # Optimization flags
 target_compile_options(stockfish_bridge PRIVATE
     -O3
-    -fno-exceptions
     -DNDEBUG
     -flto
 )
