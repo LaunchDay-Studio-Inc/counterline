@@ -27,6 +27,12 @@ data class LearnUiState(
     val lineComplete: Boolean = false,
     val choosingLine: Boolean = true,
     val selectedSide: Side? = null,
+    // Phase 2: plan-before-move
+    val planPromptActive: Boolean = false,
+    val userPlanInput: String = "",
+    val planRevealed: Boolean = false,
+    // Phase 2: "what changes if you forget" callout
+    val showForgetConsequence: Boolean = false,
 )
 
 @HiltViewModel
@@ -67,6 +73,10 @@ class LearnViewModel @Inject constructor(
                 showExplanation = false,
                 lineComplete = false,
                 choosingLine = false,
+                planPromptActive = true,
+                userPlanInput = "",
+                planRevealed = false,
+                showForgetConsequence = false,
             )
         }
         viewModelScope.launch {
@@ -76,6 +86,22 @@ class LearnViewModel @Inject constructor(
 
     fun showExplanation() {
         _uiState.update { it.copy(showExplanation = true) }
+    }
+
+    fun updatePlanInput(text: String) {
+        _uiState.update { it.copy(userPlanInput = text) }
+    }
+
+    fun submitPlan() {
+        _uiState.update { it.copy(planRevealed = true, planPromptActive = false) }
+    }
+
+    fun skipPlan() {
+        _uiState.update { it.copy(planPromptActive = false, planRevealed = false) }
+    }
+
+    fun toggleForgetConsequence() {
+        _uiState.update { it.copy(showForgetConsequence = !it.showForgetConsequence) }
     }
 
     fun nextMove() {
@@ -105,6 +131,10 @@ class LearnViewModel @Inject constructor(
                 it.copy(
                     currentMoveIndex = nextIdx,
                     showExplanation = false,
+                    planPromptActive = true,
+                    userPlanInput = "",
+                    planRevealed = false,
+                    showForgetConsequence = false,
                 )
             }
         }

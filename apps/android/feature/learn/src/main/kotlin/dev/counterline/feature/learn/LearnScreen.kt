@@ -21,7 +21,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -70,6 +72,17 @@ fun LearnScreen(
                 line = state.selectedLine!!,
                 onBackToLines = { viewModel.backToLines() },
             )
+        } else if (state.planPromptActive) {
+            val line = state.selectedLine!!
+            val move = line.moves[state.currentMoveIndex]
+            PlanBeforeMoveCard(
+                line = line,
+                moveIndex = state.currentMoveIndex,
+                userPlan = state.userPlanInput,
+                onPlanChange = { viewModel.updatePlanInput(it) },
+                onSubmitPlan = { viewModel.submitPlan() },
+                onSkipPlan = { viewModel.skipPlan() },
+            )
         } else {
             val line = state.selectedLine!!
             val move = line.moves[state.currentMoveIndex]
@@ -79,7 +92,11 @@ fun LearnScreen(
                 moveIndex = state.currentMoveIndex,
                 totalMoves = line.moves.size,
                 showExplanation = state.showExplanation,
+                planRevealed = state.planRevealed,
+                userPlan = state.userPlanInput,
+                showForgetConsequence = state.showForgetConsequence,
                 onShowExplanation = { viewModel.showExplanation() },
+                onToggleForgetConsequence = { viewModel.toggleForgetConsequence() },
                 onNext = { viewModel.nextMove() },
             )
         }
@@ -158,13 +175,86 @@ private fun LineChooser(
 }
 
 @Composable
+private fun PlanBeforeMoveCard(
+    line: RepertoireLine,
+    moveIndex: Int,
+    userPlan: String,
+    onPlanChange: (String) -> Unit,
+    onSubmitPlan: () -> Unit,
+    onSkipPlan: () -> Unit,
+) {
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text(
+            text = line.name,
+            style = MaterialTheme.typography.titleMedium,
+        )
+        Text(
+            text = "Move ${moveIndex + 1} of ${line.moves.size}",
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.primary,
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+            ),
+        ) {
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text(
+                    text = "Before seeing the move...",
+                    style = MaterialTheme.typography.titleSmall,
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "What do you think the plan is in this position?",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+                OutlinedTextField(
+                    value = userPlan,
+                    onValueChange = onPlanChange,
+                    modifier = Modifier.fillMaxWidth(),
+                    label = { Text("Your plan") },
+                    placeholder = { Text("e.g. Develop pieces, control center...") },
+                    maxLines = 3,
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    OutlinedButton(
+                        onClick = onSkipPlan,
+                        modifier = Modifier.weight(1f),
+                    ) {
+                        Text("Skip")
+                    }
+                    Button(
+                        onClick = onSubmitPlan,
+                        modifier = Modifier.weight(1f),
+                    ) {
+                        Text("Show Move")
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
 private fun MoveLearnCard(
     line: RepertoireLine,
     move: RepertoireMove,
     moveIndex: Int,
     totalMoves: Int,
     showExplanation: Boolean,
+    planRevealed: Boolean,
+    userPlan: String,
+    showForgetConsequence: Boolean,
     onShowExplanation: () -> Unit,
+    onToggleForgetConsequence: () -> Unit,
     onNext: () -> Unit,
 ) {
     Column(modifier = Modifier.padding(16.dp)) {
@@ -251,6 +341,59 @@ private fun MoveLearnCard(
                             }
                         }
                     }
+
+                    // Plan comparison (if user submitted a plan)
+                    if (planRevealed && userPlan.isNotBlank()) {
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Card(
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                            ),
+                        ) {
+                            Column(modifier = Modifier.padding(12.dp)) {
+                                Text(
+                                    text = "Your plan:",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.primary,
+                                )
+                                Text(
+                                    text = userPlan,
+                                    style = MaterialTheme.typography.bodySmall,
+                                )
+                            }
+                        }
+                    }
+
+                    // "What changes if you forget" toggle
+                    Spacer(modifier = Modifier.height(8.dp))
+                    TextButton(onClick = onToggleForgetConsequence) {
+                        Text(
+                            if (showForgetConsequence) "Hide consequence" else "What if I forget this move?",
+                        )
+                    }
+                    if (showForgetConsequence) {
+                        Card(
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.errorContainer,
+                            ),
+                        ) {
+                            Column(modifier = Modifier.padding(12.dp)) {
+                                Text(
+                                    text = "If you forget this move:",
+                                    style = MaterialTheme.typography.labelSmall,
+                                )
+                                Text(
+                                    text = if (move.whyThisMove.isNotEmpty()) {
+                                        "Without ${move.san}, the opponent can exploit the position. ${move.whyThisMove}"
+                                    } else {
+                                        "Missing this move weakens your position and may transpose into an inferior line."
+                                    },
+                                    style = MaterialTheme.typography.bodySmall,
+                                )
+                            }
+                        }
+                    }
+
                     Spacer(modifier = Modifier.height(12.dp))
                     Button(
                         onClick = onNext,

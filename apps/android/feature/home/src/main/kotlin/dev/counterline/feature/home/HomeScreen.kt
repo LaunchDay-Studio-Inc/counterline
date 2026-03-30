@@ -70,6 +70,13 @@ fun HomeScreen(
     onNavigateToMistakeReview: () -> Unit = {},
     onNavigateToQuick5: () -> Unit = {},
     onNavigateToPractice: () -> Unit = {},
+    onNavigateToTacticalMotifs: () -> Unit = {},
+    onNavigateToTransitionTrainer: () -> Unit = {},
+    onNavigateToBlindFold: () -> Unit = {},
+    onNavigateToCoach: () -> Unit = {},
+    onNavigateToNotebook: () -> Unit = {},
+    onNavigateToPgnImport: () -> Unit = {},
+    onNavigateToPrepPack: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -254,8 +261,61 @@ fun HomeScreen(
                             onClick = onNavigateToMistakeReview,
                             modifier = Modifier.weight(1f),
                         )
-                        // Empty spacer to keep grid alignment
-                        Spacer(modifier = Modifier.weight(1f))
+                        QuickActionChip(
+                            icon = Icons.Default.Extension,
+                            label = "Tactics",
+                            onClick = onNavigateToTacticalMotifs,
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
+                    ) {
+                        QuickActionChip(
+                            icon = Icons.Default.SwapHoriz,
+                            label = "Transitions",
+                            onClick = onNavigateToTransitionTrainer,
+                            modifier = Modifier.weight(1f),
+                        )
+                        QuickActionChip(
+                            icon = Icons.Default.VisibilityOff,
+                            label = "Blindfold",
+                            onClick = onNavigateToBlindFold,
+                            modifier = Modifier.weight(1f),
+                        )
+                        QuickActionChip(
+                            icon = Icons.Default.Psychology,
+                            label = "Coach",
+                            onClick = onNavigateToCoach,
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
+
+                    // Lifetime weapon tools
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(Spacing.xs),
+                    ) {
+                        QuickActionChip(
+                            icon = Icons.Default.EditNote,
+                            label = "Notebook",
+                            onClick = onNavigateToNotebook,
+                            modifier = Modifier.weight(1f),
+                        )
+                        QuickActionChip(
+                            icon = Icons.Default.UploadFile,
+                            label = "Import PGN",
+                            onClick = onNavigateToPgnImport,
+                            modifier = Modifier.weight(1f),
+                        )
+                        QuickActionChip(
+                            icon = Icons.Default.Backpack,
+                            label = "Prep Pack",
+                            onClick = onNavigateToPrepPack,
+                            modifier = Modifier.weight(1f),
+                        )
                     }
                 }
             }

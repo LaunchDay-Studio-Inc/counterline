@@ -90,10 +90,33 @@ private fun DeviationCard(deviation: Deviation) {
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(
-                text = deviation.deviationName,
-                style = MaterialTheme.typography.titleSmall,
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+                Text(
+                    text = deviation.deviationName,
+                    style = MaterialTheme.typography.titleSmall,
+                    modifier = Modifier.weight(1f),
+                )
+                // Danger level indicator
+                val dangerLabel = when (deviation.dangerLevel) {
+                    3 -> "⚠ HIGH"
+                    2 -> "⚡ MED"
+                    else -> "○ LOW"
+                }
+                val dangerColor = when (deviation.dangerLevel) {
+                    3 -> MaterialTheme.colorScheme.error
+                    2 -> MaterialTheme.colorScheme.tertiary
+                    else -> MaterialTheme.colorScheme.onSurfaceVariant
+                }
+                Text(
+                    text = dangerLabel,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = dangerColor,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
             Text(
                 text = deviation.move,
                 style = MaterialTheme.typography.bodySmall.copy(
@@ -102,6 +125,13 @@ private fun DeviationCard(deviation: Deviation) {
                 ),
                 color = MaterialTheme.colorScheme.error,
             )
+            if (deviation.frequencyPercent > 0) {
+                Text(
+                    text = "Seen in ${String.format("%.1f", deviation.frequencyPercent)}% of games",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = deviation.description,
@@ -123,6 +153,26 @@ private fun DeviationCard(deviation: Deviation) {
                         text = deviation.response,
                         style = MaterialTheme.typography.bodySmall,
                     )
+                }
+            }
+            if (deviation.strategicIdea.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Card(
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                    ),
+                ) {
+                    Column(modifier = Modifier.padding(12.dp)) {
+                        Text(
+                            text = "Strategic idea:",
+                            style = MaterialTheme.typography.labelSmall,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            text = deviation.strategicIdea,
+                            style = MaterialTheme.typography.bodySmall,
+                        )
+                    }
                 }
             }
         }

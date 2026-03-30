@@ -45,6 +45,13 @@ import dev.counterline.feature.quick5.Quick5Screen
 import dev.counterline.feature.repertoire.RepertoireScreen
 import dev.counterline.feature.settings.SettingsScreen
 import dev.counterline.feature.onboarding.OnboardingScreen
+import dev.counterline.feature.blindfold.BlindFoldScreen
+import dev.counterline.feature.coach.CoachScreen
+import dev.counterline.feature.notebook.NotebookScreen
+import dev.counterline.feature.pgnimport.PgnImportScreen
+import dev.counterline.feature.preppack.PrepPackScreen
+import dev.counterline.feature.tacticalmotifs.TacticalMotifScreen
+import dev.counterline.feature.transitiontrainer.TransitionTrainerScreen
 
 enum class TopLevelRoute(
     val route: String,
@@ -68,6 +75,13 @@ object NestedRoutes {
     const val MISTAKE_REVIEW = "mistake_review"
     const val QUICK_5 = "quick_5"
     const val PRACTICE = "practice"
+    const val TACTICAL_MOTIFS = "tactical_motifs"
+    const val TRANSITION_TRAINER = "transition_trainer"
+    const val BLINDFOLD = "blindfold"
+    const val COACH = "coach"
+    const val NOTEBOOK = "notebook"
+    const val PGN_IMPORT = "pgn_import"
+    const val PREP_PACK = "prep_pack"
 }
 
 @Composable
@@ -158,6 +172,13 @@ fun CounterLineApp(
                     onNavigateToMistakeReview = { navController.navigate(NestedRoutes.MISTAKE_REVIEW) },
                     onNavigateToQuick5 = { navController.navigate(NestedRoutes.QUICK_5) },
                     onNavigateToPractice = { navController.navigate(NestedRoutes.PRACTICE) },
+                    onNavigateToTacticalMotifs = { navController.navigate(NestedRoutes.TACTICAL_MOTIFS) },
+                    onNavigateToTransitionTrainer = { navController.navigate(NestedRoutes.TRANSITION_TRAINER) },
+                    onNavigateToBlindFold = { navController.navigate(NestedRoutes.BLINDFOLD) },
+                    onNavigateToCoach = { navController.navigate(NestedRoutes.COACH) },
+                    onNavigateToNotebook = { navController.navigate(NestedRoutes.NOTEBOOK) },
+                    onNavigateToPgnImport = { navController.navigate(NestedRoutes.PGN_IMPORT) },
+                    onNavigateToPrepPack = { navController.navigate(NestedRoutes.PREP_PACK) },
                 )
             }
             composable(TopLevelRoute.REPERTOIRE.route) {
@@ -195,6 +216,27 @@ fun CounterLineApp(
             }
             composable(NestedRoutes.PRACTICE) {
                 PracticeScreen(onBack = { navController.popBackStack() })
+            }
+            composable(NestedRoutes.TACTICAL_MOTIFS) {
+                TacticalMotifScreen(onBack = { navController.popBackStack() })
+            }
+            composable(NestedRoutes.TRANSITION_TRAINER) {
+                TransitionTrainerScreen(onBack = { navController.popBackStack() })
+            }
+            composable(NestedRoutes.BLINDFOLD) {
+                BlindFoldScreen(onBack = { navController.popBackStack() })
+            }
+            composable(NestedRoutes.COACH) {
+                CoachScreen(onBack = { navController.popBackStack() })
+            }
+            composable(NestedRoutes.NOTEBOOK) {
+                NotebookScreen(onBack = { navController.popBackStack() })
+            }
+            composable(NestedRoutes.PGN_IMPORT) {
+                PgnImportScreen(onBack = { navController.popBackStack() })
+            }
+            composable(NestedRoutes.PREP_PACK) {
+                PrepPackScreen(onBack = { navController.popBackStack() })
             }
         }
     }

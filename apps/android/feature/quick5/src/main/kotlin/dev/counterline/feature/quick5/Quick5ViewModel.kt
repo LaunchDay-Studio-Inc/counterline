@@ -59,8 +59,32 @@ class Quick5ViewModel @Inject constructor(
             val settings = getSettings().first()
             val allDrills = getDrills.forSkillLevel(settings.skillLevel).first()
 
-            // Mix: prioritize due reviews, then random drills
-            val drills = allDrills.shuffled().take(QUICK_5_COUNT)
+            // High-value prioritization: mix overdue mistakes with random drills
+            val unresolvedMistakes = getMistakes.unresolved().first()
+            val mistakeDrills = unresolvedMistakes
+                .take(2) // up to 2 mistake-based items
+                .map { mistake ->
+                    Drill(
+                        id = "mistake_${mistake.id}",
+                        title = "Mistake Review: ${mistake.lineId}",
+                        question = "What is the correct move here?",
+                        correctAnswer = mistake.expectedMove,
+                        explanation = mistake.explanation,
+                        options = listOf(mistake.expectedMove, mistake.userMove)
+                            .distinct()
+                            .plus(allDrills.take(2).map { it.correctAnswer })
+                            .distinct()
+                            .shuffled()
+                            .take(4),
+                        fen = mistake.fen.ifEmpty { null },
+                        side = mistake.side,
+                        lineId = mistake.lineId,
+                        type = dev.counterline.core.model.DrillType.MOVE_RECALL,
+                    )
+                }
+
+            val regularDrills = allDrills.shuffled().take(QUICK_5_COUNT - mistakeDrills.size)
+            val drills = (mistakeDrills + regularDrills).shuffled()
 
             val now = System.currentTimeMillis()
             _uiState.value = Quick5UiState(

@@ -156,6 +156,9 @@ data class MistakeItemEntity(
     val nextReviewEpochMs: Long,
     val reviewCount: Int = 0,
     val resolved: Boolean = false,
+    val mistakeTheme: String = "MOVE_ORDER",
+    val severity: String = "MINOR",
+    val consecutiveCorrect: Int = 0,
 )
 
 @Entity(tableName = "exam_results", indices = [Index("side")])
@@ -205,4 +208,105 @@ data class QuickStartEntity(
     val exitFen: String,
     val exitEvaluation: String,
     val typicalResult: String,
+)
+
+// --- Phase 2: Tactical Motifs ---
+
+@Entity(tableName = "tactical_motifs", indices = [Index("lineId"), Index("side")])
+data class TacticalMotifEntity(
+    @PrimaryKey val id: String,
+    val lineId: String,
+    val side: String,
+    val fen: String,
+    val solutionSanJson: String,
+    val motifType: String,
+    val difficulty: String = "INTERMEDIATE",
+    val explanation: String,
+    val repetitionCycle: Int = 0,
+    val lastAttemptCorrect: Boolean? = null,
+)
+
+// --- Phase 2: Transition Plans ---
+
+@Entity(tableName = "transition_plans", indices = [Index("lineId")])
+data class TransitionPlanEntity(
+    @PrimaryKey val id: String,
+    val lineId: String,
+    val side: String,
+    val tabiyaFen: String,
+    val pawnBreaksJson: String,
+    val strategicGoalsJson: String,
+    val endgameTendency: String = "",
+    val skillLevel: String = "INTERMEDIATE",
+)
+
+// --- Phase 4: User Notes ---
+
+@Entity(tableName = "user_notes", indices = [Index("lineId"), Index("nodeId")])
+data class UserNoteEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val nodeId: String,
+    val lineId: String,
+    val side: String,
+    val content: String,
+    val createdEpochMs: Long,
+    val updatedEpochMs: Long,
+)
+
+// --- Phase 4: Bookmarks ---
+
+@Entity(tableName = "bookmarks", indices = [Index("lineId")])
+data class BookmarkEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val lineId: String,
+    val nodeId: String?,
+    val side: String,
+    val label: String,
+    val fen: String,
+    val createdEpochMs: Long,
+    val isFavorite: Boolean = false,
+    val isTabiya: Boolean = false,
+)
+
+// --- Phase 4: Imported Games ---
+
+@Entity(tableName = "imported_games")
+data class ImportedGameEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val pgn: String,
+    val white: String,
+    val black: String,
+    val result: String,
+    val date: String,
+    val opening: String = "",
+    val importedEpochMs: Long,
+    val deviationMoveNumber: Int? = null,
+    val deviationSide: String? = null,
+    val matchedLineId: String? = null,
+)
+
+// --- Phase 4: Repertoire Snapshots ---
+
+@Entity(tableName = "repertoire_snapshots")
+data class RepertoireSnapshotEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val version: String,
+    val createdEpochMs: Long,
+    val changesSummary: String,
+    val linesAddedJson: String = "[]",
+    val linesRemovedJson: String = "[]",
+    val linesModifiedJson: String = "[]",
+)
+
+// --- Phase 5: Achievements ---
+
+@Entity(tableName = "achievements")
+data class AchievementEntity(
+    @PrimaryKey val id: String,
+    val title: String,
+    val description: String,
+    val category: String,
+    val earnedEpochMs: Long? = null,
+    val progress: Float = 0f,
+    val target: Float = 1f,
 )

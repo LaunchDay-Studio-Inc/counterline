@@ -4,11 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.counterline.core.domain.GetDrillsUseCase
+import dev.counterline.core.domain.GetSettingsUseCase
 import dev.counterline.core.domain.RecordDrillAttemptUseCase
 import dev.counterline.core.domain.RecordExamResultUseCase
 import dev.counterline.core.model.Drill
 import dev.counterline.core.model.ExamResult
 import dev.counterline.core.model.Side
+import dev.counterline.core.model.SkillLevel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
@@ -28,11 +30,16 @@ data class ExamUiState(
     val responseTimes: List<Long> = emptyList(),
     val questionStartMs: Long = 0,
     val examSaved: Boolean = false,
+    // Phase 2: skill-level config
+    val skillLevel: SkillLevel = SkillLevel.INTERMEDIATE,
+    val passThreshold: Float = 0.7f,
+    val questionCount: Int = 20,
 )
 
 @HiltViewModel
 class ExamViewModel @Inject constructor(
     private val getDrills: GetDrillsUseCase,
+    private val getSettings: GetSettingsUseCase,
     private val recordAttempt: RecordDrillAttemptUseCase,
     private val recordExamResult: RecordExamResultUseCase,
 ) : ViewModel() {
@@ -42,9 +49,19 @@ class ExamViewModel @Inject constructor(
 
     init { loadExam(null) }
 
+    private fun examConfig(skillLevel: SkillLevel): Pair<Int, Float> = when (skillLevel) {
+        SkillLevel.INTERMEDIATE -> 15 to 0.60f
+        SkillLevel.ADVANCED_CLUB -> 20 to 0.70f
+        SkillLevel.EXPERT_MASTER -> 30 to 0.80f
+        SkillLevel.ELITE_LAB -> 40 to 0.85f
+    }
+
     fun loadExam(side: Side?) {
         viewModelScope.launch {
-            val allDrills = getDrills().first()
+            val settings = getSettings().first()
+            val (questionCount, passThreshold) = examConfig(settings.skillLevel)
+
+            val allDrills = getDrills.forSkillLevel(settings.skillLevel).first()
             val filtered = if (side != null) {
                 allDrills.filter { it.side == side }
             } else {
@@ -53,13 +70,16 @@ class ExamViewModel @Inject constructor(
             val drills = filtered
                 .filter { !it.options.isNullOrEmpty() }
                 .shuffled()
-                .take(20)
+                .take(questionCount)
             val now = System.currentTimeMillis()
             _uiState.value = ExamUiState(
                 questions = drills,
                 side = side,
                 startedEpochMs = now,
                 questionStartMs = now,
+                skillLevel = settings.skillLevel,
+                passThreshold = passThreshold,
+                questionCount = questionCount,
             )
         }
     }
@@ -127,7 +147,7 @@ class ExamViewModel @Inject constructor(
                     accuracy = accuracy,
                     avgResponseTimeMs = avgResponseTime,
                     branchCoverage = correct.toFloat() / total,
-                    passed = accuracy >= 0.7f,
+                    passed = accuracy >= state.passThreshold,
                 ),
             )
             _uiState.update { it.copy(examSaved = true) }

@@ -59,6 +59,9 @@ enum class StudyMode {
     MISTAKE_REVIEW,
     EXAM,
     QUICK_5,
+    TACTICAL_MOTIF,
+    TRANSITION_TRAINER,
+    BLINDFOLD_RECALL,
 }
 
 /** Confidence grading after a recall attempt */
@@ -112,6 +115,8 @@ data class Deviation(
     val response: String,
     val strategicIdea: String = "",
     val skillLevel: SkillLevel = SkillLevel.INTERMEDIATE,
+    val dangerLevel: Int = 1, // 1=low, 2=medium, 3=high
+    val frequencyPercent: Float = 0f, // how often seen in practice
 )
 
 /** An annotated model game */
@@ -241,3 +246,186 @@ data class QuickStart(
     val exitEvaluation: String,
     val typicalResult: String,
 )
+
+// --- Tactical Motif Packs ---
+
+/** A tactical puzzle derived from a repertoire position */
+@Serializable
+data class TacticalMotif(
+    val id: String,
+    val lineId: String,
+    val side: Side,
+    val fen: String,
+    val solutionSan: List<String>,
+    val motifType: String,
+    val difficulty: SkillLevel = SkillLevel.INTERMEDIATE,
+    val explanation: String,
+    val repetitionCycle: Int = 0,
+    val lastAttemptCorrect: Boolean? = null,
+)
+
+// --- Transition Trainer ---
+
+/** Opening-to-middlegame transition plan */
+@Serializable
+data class TransitionPlan(
+    val id: String,
+    val lineId: String,
+    val side: Side,
+    val tabiyaFen: String,
+    val typicalPiecePlacements: List<PiecePlacement>,
+    val pawnBreaks: List<String>,
+    val strategicGoals: List<String>,
+    val endgameTendency: String = "",
+    val skillLevel: SkillLevel = SkillLevel.INTERMEDIATE,
+)
+
+// --- User Notes & Bookmarks (Phase 4) ---
+
+/** User-created note attached to a repertoire node */
+data class UserNote(
+    val id: Long = 0,
+    val nodeId: String,
+    val lineId: String,
+    val side: Side,
+    val content: String,
+    val createdEpochMs: Long,
+    val updatedEpochMs: Long,
+)
+
+/** Bookmarked line or position */
+data class Bookmark(
+    val id: Long = 0,
+    val lineId: String,
+    val nodeId: String? = null,
+    val side: Side,
+    val label: String,
+    val fen: String,
+    val createdEpochMs: Long,
+    val isFavorite: Boolean = false,
+    val isTabiya: Boolean = false,
+)
+
+/** Preparation pack for tournament or opponent prep */
+@Serializable
+data class PreparationPack(
+    val id: String,
+    val name: String,
+    val description: String,
+    val lineIds: List<String>,
+    val deviationIds: List<String>,
+    val side: Side? = null,
+    val createdEpochMs: Long,
+)
+
+/** Repertoire version snapshot for diff tracking */
+@Serializable
+data class RepertoireSnapshot(
+    val id: Long = 0,
+    val version: String,
+    val createdEpochMs: Long,
+    val changesSummary: String,
+    val linesAdded: List<String> = emptyList(),
+    val linesRemoved: List<String> = emptyList(),
+    val linesModified: List<String> = emptyList(),
+)
+
+/** PGN game import for comparison against repertoire */
+data class ImportedGame(
+    val id: Long = 0,
+    val pgn: String,
+    val white: String,
+    val black: String,
+    val result: String,
+    val date: String,
+    val opening: String = "",
+    val importedEpochMs: Long,
+    val deviationMoveNumber: Int? = null,
+    val deviationSide: Side? = null,
+    val matchedLineId: String? = null,
+)
+
+// --- Mastery & Motivation (Phase 5) ---
+
+/** Per-node mastery state for heatmap rendering */
+data class NodeMasteryEntry(
+    val nodeId: String,
+    val lineId: String,
+    val side: Side,
+    val masteryScore: Float,
+    val intervalDays: Float,
+    val lapseCount: Int,
+    val lastReviewEpochMs: Long,
+)
+
+/** Weekly training arc summary */
+data class WeeklyArc(
+    val weekStartEpochMs: Long,
+    val itemsLearned: Int,
+    val itemsReviewed: Int,
+    val mistakesResolved: Int,
+    val accuracyPct: Float,
+    val totalStudyMinutes: Int,
+    val whiteMastery: Float,
+    val blackMastery: Float,
+)
+
+/** Achievement (non-manipulative) */
+data class Achievement(
+    val id: String,
+    val title: String,
+    val description: String,
+    val category: AchievementCategory,
+    val earnedEpochMs: Long? = null,
+    val progress: Float = 0f,
+    val target: Float = 1f,
+)
+
+@Serializable
+enum class AchievementCategory {
+    CONSISTENCY,
+    MASTERY,
+    RESILIENCE,
+    DEPTH,
+    BREADTH,
+}
+
+/** Preparation readiness assessment */
+data class ReadinessScore(
+    val side: Side,
+    val overallScore: Float,
+    val mainlineCoverage: Float,
+    val deviationCoverage: Float,
+    val recentAccuracy: Float,
+    val unresolvedMistakes: Int,
+    val overdueItems: Int,
+    val assessedEpochMs: Long,
+)
+
+/** Coaching recommendation for daily workout */
+data class DailyWorkout(
+    val date: Long,
+    val recommendedMode: StudyMode,
+    val sideFocus: Side?,
+    val items: List<WorkoutItem>,
+    val coachMessage: String,
+    val estimatedMinutes: Int,
+)
+
+data class WorkoutItem(
+    val nodeId: String,
+    val lineId: String,
+    val side: Side,
+    val reason: WorkoutReason,
+    val priority: Int,
+)
+
+@Serializable
+enum class WorkoutReason {
+    OVERDUE_REVIEW,
+    MISTAKE_REMEDIATION,
+    NEW_MATERIAL,
+    SIDE_BALANCE,
+    WEAKNESS_TARGET,
+    EXAM_PREP,
+}

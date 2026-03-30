@@ -39,7 +39,26 @@ data class MistakeItem(
     val nextReviewEpochMs: Long,
     val reviewCount: Int = 0,
     val resolved: Boolean = false,
+    val mistakeTheme: MistakeTheme = MistakeTheme.MOVE_ORDER,
+    val severity: MistakeSeverity = MistakeSeverity.MINOR,
+    val consecutiveCorrect: Int = 0,
 )
+
+/** Classification of mistake type for grouped review */
+enum class MistakeTheme {
+    MOVE_ORDER,
+    TACTICAL_MISS,
+    STRATEGIC_MISUNDERSTANDING,
+    DEVIATION_UNFAMILIARITY,
+    TRANSPOSITION_ERROR,
+}
+
+/** Severity level affecting remediation priority */
+enum class MistakeSeverity {
+    MINOR,
+    MODERATE,
+    CRITICAL,
+}
 
 /** Exam result record */
 data class ExamResult(
@@ -82,6 +101,11 @@ data class ProgressStats(
     val mostMissedDeviations: List<String> = emptyList(),
     val accuracyTrend: List<Float> = emptyList(),
     val timeByMode: Map<StudyMode, Int> = emptyMap(),
+    val whiteReadiness: Float = 0f,
+    val blackReadiness: Float = 0f,
+    val unresolvedMistakeCount: Int = 0,
+    val mistakesByTheme: Map<MistakeTheme, Int> = emptyMap(),
+    val weeklyArcs: List<WeeklyArc> = emptyList(),
 )
 
 /** Per-opening mastery map entry */
@@ -114,6 +138,10 @@ data class UserSettings(
     val notificationsEnabled: Boolean = true,
     val notificationHour: Int = 9,
     val skillLevel: SkillLevel = SkillLevel.INTERMEDIATE,
+    val tournamentDate: Long? = null,
+    val preferredSessionMinutes: Int = 15,
+    val blindfoldModeEnabled: Boolean = false,
+    val autoInterleave: Boolean = true,
 )
 
 enum class DarkMode { LIGHT, DARK, SYSTEM }

@@ -16,6 +16,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -56,7 +57,69 @@ fun MistakeReviewScreen(
                 .fillMaxSize()
                 .padding(16.dp),
         ) {
-            if (state.mistakes.isEmpty()) {
+            // Theme grouping toggle
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                FilterChip(
+                    selected = !state.groupByTheme,
+                    onClick = { if (state.groupByTheme) viewModel.toggleGroupByTheme() },
+                    label = { Text("All") },
+                )
+                FilterChip(
+                    selected = state.groupByTheme,
+                    onClick = { if (!state.groupByTheme) viewModel.toggleGroupByTheme() },
+                    label = { Text("By Theme") },
+                )
+            }
+            if (state.selectedTheme != null) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                ) {
+                    Text(
+                        text = "Theme: ${state.selectedTheme}",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                    OutlinedButton(onClick = { viewModel.clearThemeFilter() }) {
+                        Text("Clear", style = MaterialTheme.typography.labelSmall)
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Theme group selector
+            if (state.groupByTheme && state.selectedTheme == null) {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    state.themeGroups.forEach { (theme, mistakes) ->
+                        Card(
+                            onClick = { viewModel.selectTheme(theme) },
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(16.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                            ) {
+                                Text(
+                                    text = theme.replace('_', ' '),
+                                    style = MaterialTheme.typography.titleSmall,
+                                )
+                                Text(
+                                    text = "${mistakes.size} mistakes",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                        }
+                    }
+                }
+            } else if (state.mistakes.isEmpty()) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     colors = CardDefaults.cardColors(
@@ -144,10 +207,48 @@ private fun MistakeCard(
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.primary,
             )
-            Text(
-                text = "${mistake.side.name} repertoire",
-                style = MaterialTheme.typography.labelSmall,
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+                Text(
+                    text = "${mistake.side.name} repertoire",
+                    style = MaterialTheme.typography.labelSmall,
+                )
+                Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                    mistake.mistakeTheme?.let { theme ->
+                        Card(
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                            ),
+                        ) {
+                            Text(
+                                text = theme.name.replace('_', ' '),
+                                style = MaterialTheme.typography.labelSmall,
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                            )
+                        }
+                    }
+                    mistake.severity?.let { sev ->
+                        val sevColor = when (sev.name) {
+                            "CRITICAL" -> MaterialTheme.colorScheme.error
+                            "MAJOR" -> MaterialTheme.colorScheme.tertiary
+                            else -> MaterialTheme.colorScheme.secondary
+                        }
+                        Card(
+                            colors = CardDefaults.cardColors(
+                                containerColor = sevColor.copy(alpha = 0.15f),
+                            ),
+                        ) {
+                            Text(
+                                text = sev.name,
+                                style = MaterialTheme.typography.labelSmall,
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                            )
+                        }
+                    }
+                }
+            }
             Spacer(modifier = Modifier.height(12.dp))
 
             if (mistake.fen.isNotEmpty()) {

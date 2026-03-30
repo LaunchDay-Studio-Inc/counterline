@@ -6,10 +6,13 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
+import dev.counterline.core.database.entity.AchievementEntity
 import dev.counterline.core.database.entity.BadgeEntity
+import dev.counterline.core.database.entity.BookmarkEntity
 import dev.counterline.core.database.entity.DeviationEntity
 import dev.counterline.core.database.entity.DrillEntity
 import dev.counterline.core.database.entity.ExamResultEntity
+import dev.counterline.core.database.entity.ImportedGameEntity
 import dev.counterline.core.database.entity.MistakeItemEntity
 import dev.counterline.core.database.entity.ModelGameEntity
 import dev.counterline.core.database.entity.NodeReviewStateEntity
@@ -18,8 +21,12 @@ import dev.counterline.core.database.entity.PlanEntity
 import dev.counterline.core.database.entity.QuickStartEntity
 import dev.counterline.core.database.entity.RepertoireLineEntity
 import dev.counterline.core.database.entity.RepertoireMoveEntity
+import dev.counterline.core.database.entity.RepertoireSnapshotEntity
 import dev.counterline.core.database.entity.StudySessionEntity
+import dev.counterline.core.database.entity.TacticalMotifEntity
 import dev.counterline.core.database.entity.ThemeEntity
+import dev.counterline.core.database.entity.TransitionPlanEntity
+import dev.counterline.core.database.entity.UserNoteEntity
 import dev.counterline.core.database.entity.UserProgressEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -275,4 +282,141 @@ interface QuickStartDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(items: List<QuickStartEntity>)
+}
+
+// --- Phase 2: Tactical Motifs ---
+
+@Dao
+interface TacticalMotifDao {
+    @Query("SELECT * FROM tactical_motifs WHERE side = :side ORDER BY difficulty ASC")
+    fun getBySide(side: String): Flow<List<TacticalMotifEntity>>
+
+    @Query("SELECT * FROM tactical_motifs WHERE lineId = :lineId")
+    fun getByLineId(lineId: String): Flow<List<TacticalMotifEntity>>
+
+    @Query("SELECT * FROM tactical_motifs WHERE difficulty = :difficulty")
+    fun getByDifficulty(difficulty: String): Flow<List<TacticalMotifEntity>>
+
+    @Query("SELECT * FROM tactical_motifs ORDER BY RANDOM() LIMIT :count")
+    suspend fun getRandomMotifs(count: Int): List<TacticalMotifEntity>
+
+    @Query("SELECT * FROM tactical_motifs WHERE lastAttemptCorrect = 0 OR lastAttemptCorrect IS NULL ORDER BY RANDOM() LIMIT :count")
+    suspend fun getWoodpeckerCycle(count: Int): List<TacticalMotifEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(motifs: List<TacticalMotifEntity>)
+
+    @Update
+    suspend fun update(motif: TacticalMotifEntity)
+}
+
+// --- Phase 2: Transition Plans ---
+
+@Dao
+interface TransitionPlanDao {
+    @Query("SELECT * FROM transition_plans WHERE side = :side")
+    fun getBySide(side: String): Flow<List<TransitionPlanEntity>>
+
+    @Query("SELECT * FROM transition_plans WHERE lineId = :lineId")
+    fun getByLineId(lineId: String): Flow<List<TransitionPlanEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(plans: List<TransitionPlanEntity>)
+}
+
+// --- Phase 4: User Notes ---
+
+@Dao
+interface UserNoteDao {
+    @Query("SELECT * FROM user_notes WHERE lineId = :lineId ORDER BY updatedEpochMs DESC")
+    fun getByLineId(lineId: String): Flow<List<UserNoteEntity>>
+
+    @Query("SELECT * FROM user_notes WHERE nodeId = :nodeId")
+    suspend fun getByNodeId(nodeId: String): UserNoteEntity?
+
+    @Query("SELECT * FROM user_notes ORDER BY updatedEpochMs DESC")
+    fun getAll(): Flow<List<UserNoteEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(note: UserNoteEntity): Long
+
+    @Query("DELETE FROM user_notes WHERE id = :id")
+    suspend fun delete(id: Long)
+}
+
+// --- Phase 4: Bookmarks ---
+
+@Dao
+interface BookmarkDao {
+    @Query("SELECT * FROM bookmarks ORDER BY createdEpochMs DESC")
+    fun getAll(): Flow<List<BookmarkEntity>>
+
+    @Query("SELECT * FROM bookmarks WHERE isFavorite = 1")
+    fun getFavorites(): Flow<List<BookmarkEntity>>
+
+    @Query("SELECT * FROM bookmarks WHERE isTabiya = 1")
+    fun getTabiyas(): Flow<List<BookmarkEntity>>
+
+    @Query("SELECT * FROM bookmarks WHERE lineId = :lineId")
+    fun getByLineId(lineId: String): Flow<List<BookmarkEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(bookmark: BookmarkEntity): Long
+
+    @Query("DELETE FROM bookmarks WHERE id = :id")
+    suspend fun delete(id: Long)
+}
+
+// --- Phase 4: Imported Games ---
+
+@Dao
+interface ImportedGameDao {
+    @Query("SELECT * FROM imported_games ORDER BY importedEpochMs DESC")
+    fun getAll(): Flow<List<ImportedGameEntity>>
+
+    @Query("SELECT * FROM imported_games WHERE matchedLineId = :lineId")
+    fun getByLineId(lineId: String): Flow<List<ImportedGameEntity>>
+
+    @Query("SELECT * FROM imported_games WHERE deviationMoveNumber IS NOT NULL ORDER BY importedEpochMs DESC")
+    fun getWithDeviations(): Flow<List<ImportedGameEntity>>
+
+    @Insert
+    suspend fun insert(game: ImportedGameEntity): Long
+
+    @Query("DELETE FROM imported_games WHERE id = :id")
+    suspend fun delete(id: Long)
+}
+
+// --- Phase 4: Repertoire Snapshots ---
+
+@Dao
+interface RepertoireSnapshotDao {
+    @Query("SELECT * FROM repertoire_snapshots ORDER BY createdEpochMs DESC")
+    fun getAll(): Flow<List<RepertoireSnapshotEntity>>
+
+    @Query("SELECT * FROM repertoire_snapshots ORDER BY createdEpochMs DESC LIMIT 1")
+    suspend fun getLatest(): RepertoireSnapshotEntity?
+
+    @Insert
+    suspend fun insert(snapshot: RepertoireSnapshotEntity): Long
+}
+
+// --- Phase 5: Achievements ---
+
+@Dao
+interface AchievementDao {
+    @Query("SELECT * FROM achievements ORDER BY category ASC")
+    fun getAll(): Flow<List<AchievementEntity>>
+
+    @Query("SELECT * FROM achievements WHERE earnedEpochMs IS NOT NULL")
+    fun getEarned(): Flow<List<AchievementEntity>>
+
+    @Query("SELECT * FROM achievements WHERE category = :category")
+    fun getByCategory(category: String): Flow<List<AchievementEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(achievement: AchievementEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsertAll(achievements: List<AchievementEntity>)
 }

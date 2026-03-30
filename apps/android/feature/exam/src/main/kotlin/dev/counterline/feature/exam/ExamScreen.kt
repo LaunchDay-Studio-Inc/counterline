@@ -102,17 +102,31 @@ fun ExamScreen(
                         val pct = if (state.questions.isNotEmpty()) {
                             (state.score * 100) / state.questions.size
                         } else 0
+                        val passPct = (state.passThreshold * 100).toInt()
+                        val passed = pct >= passPct
                         Text(
                             text = "${state.score} / ${state.questions.size} ($pct%)",
                             style = MaterialTheme.typography.headlineMedium,
                         )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = "Level: ${state.skillLevel.name.replace('_', ' ')} • Pass: ${passPct}%",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = when {
-                                pct >= 90 -> "Excellent — repertoire mastered!"
-                                pct >= 70 -> "Good — keep practicing weak areas"
-                                pct >= 50 -> "Fair — review the plans and lines"
-                                else -> "Needs work — start with quick start cards"
+                            text = if (passed) {
+                                when {
+                                    pct >= 90 -> "Excellent — repertoire mastered!"
+                                    pct >= 80 -> "Great — strong command of the lines"
+                                    else -> "Passed — keep refining weak areas"
+                                }
+                            } else {
+                                when {
+                                    pct >= 50 -> "Not quite — review the missed positions"
+                                    else -> "Needs work — start with quick start cards"
+                                }
                             },
                             style = MaterialTheme.typography.bodyLarge,
                         )

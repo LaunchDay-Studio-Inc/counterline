@@ -24,6 +24,10 @@ data class MistakeReviewUiState(
     val sessionComplete: Boolean = false,
     val resolved: Int = 0,
     val total: Int = 0,
+    // Phase 2: theme/severity grouping
+    val groupByTheme: Boolean = false,
+    val themeGroups: Map<String, List<MistakeItem>> = emptyMap(),
+    val selectedTheme: String? = null,
 )
 
 @HiltViewModel
@@ -42,10 +46,49 @@ class MistakeReviewViewModel @Inject constructor(
         viewModelScope.launch {
             sessionId = trackSession.start(StudyMode.MISTAKE_REVIEW)
             val mistakes = getMistakes.unresolved().first()
+            val themeGroups = mistakes.groupBy { it.mistakeTheme?.name ?: "UNCATEGORIZED" }
             _uiState.value = MistakeReviewUiState(
                 mistakes = mistakes,
                 total = mistakes.size,
+                themeGroups = themeGroups,
             )
+        }
+    }
+
+    fun toggleGroupByTheme() {
+        _uiState.update { it.copy(groupByTheme = !it.groupByTheme, selectedTheme = null) }
+    }
+
+    fun selectTheme(theme: String) {
+        val state = _uiState.value
+        val themeMistakes = state.themeGroups[theme] ?: return
+        _uiState.update {
+            it.copy(
+                selectedTheme = theme,
+                mistakes = themeMistakes,
+                total = themeMistakes.size,
+                currentIndex = 0,
+                showAnswer = false,
+                sessionComplete = false,
+                resolved = 0,
+            )
+        }
+    }
+
+    fun clearThemeFilter() {
+        viewModelScope.launch {
+            val mistakes = getMistakes.unresolved().first()
+            _uiState.update {
+                it.copy(
+                    selectedTheme = null,
+                    mistakes = mistakes,
+                    total = mistakes.size,
+                    currentIndex = 0,
+                    showAnswer = false,
+                    sessionComplete = false,
+                    resolved = 0,
+                )
+            }
         }
     }
 

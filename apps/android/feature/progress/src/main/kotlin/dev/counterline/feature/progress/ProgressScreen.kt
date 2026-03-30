@@ -310,8 +310,191 @@ fun ProgressScreen(
             }
         }
 
+        // ── Phase 5: Readiness Scores ──
+        if (state.whiteReadiness != null || state.blackReadiness != null) {
+            item {
+                FadeSlideUp(delayMs = 300) {
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = MaterialTheme.shapes.large,
+                    ) {
+                        Column(modifier = Modifier.padding(Spacing.md)) {
+                            Text(
+                                text = "Tournament Readiness",
+                                style = MaterialTheme.typography.titleSmall,
+                                modifier = Modifier.semantics { heading() },
+                            )
+                            Spacer(modifier = Modifier.height(Spacing.md))
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceEvenly,
+                            ) {
+                                state.whiteReadiness?.let { r ->
+                                    ProgressRing(
+                                        progress = r.overallScore,
+                                        size = 80.dp,
+                                        strokeWidth = 7.dp,
+                                        label = "${(r.overallScore * 100).toInt()}%",
+                                        sublabel = "White",
+                                        progressColor = CounterLineTheme.chessColors.whiteWeapon,
+                                    )
+                                }
+                                state.blackReadiness?.let { r ->
+                                    ProgressRing(
+                                        progress = r.overallScore,
+                                        size = 80.dp,
+                                        strokeWidth = 7.dp,
+                                        label = "${(r.overallScore * 100).toInt()}%",
+                                        sublabel = "Black",
+                                        progressColor = CounterLineTheme.chessColors.blackWeapon,
+                                    )
+                                }
+                            }
+                            Spacer(modifier = Modifier.height(Spacing.xs))
+                            state.whiteReadiness?.let { r ->
+                                Text(
+                                    text = r.coachMessage,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // ── Phase 5: Side Imbalance ──
+        if (state.sideImbalance > 0.15f) {
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.medium,
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                    ),
+                ) {
+                    Column(modifier = Modifier.padding(Spacing.md)) {
+                        Text(
+                            text = "Side Imbalance Warning",
+                            style = MaterialTheme.typography.titleSmall,
+                        )
+                        val imbalancePct = (state.sideImbalance * 100).toInt()
+                        Text(
+                            text = "Your White and Black training differ by $imbalancePct%. Balance your sessions.",
+                            style = MaterialTheme.typography.bodySmall,
+                        )
+                    }
+                }
+            }
+        }
+
+        // ── Phase 5: Chronic Miss Nodes ──
+        if (state.chronicMissNodes.isNotEmpty()) {
+            item {
+                SectionHeader(title = "Chronic Problem Areas")
+            }
+            items(state.chronicMissNodes) { nodeId ->
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.small,
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.3f),
+                    ),
+                ) {
+                    Text(
+                        text = nodeId,
+                        modifier = Modifier.padding(Spacing.sm),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+            }
+        }
+
+        // ── Phase 5: Weekly Training Arcs ──
+        if (state.weeklyArcs.isNotEmpty()) {
+            item {
+                SectionHeader(title = "Weekly Training Arcs")
+            }
+            items(state.weeklyArcs) { arc ->
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.small,
+                ) {
+                    Column(modifier = Modifier.padding(Spacing.sm)) {
+                        Text(
+                            text = "Week of ${java.text.SimpleDateFormat("MMM dd", java.util.Locale.getDefault()).format(java.util.Date(arc.weekStartEpochMs))}",
+                            style = MaterialTheme.typography.labelMedium,
+                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                        ) {
+                            Text(
+                                text = "${arc.drillCount} drills",
+                                style = MaterialTheme.typography.bodySmall,
+                            )
+                            Text(
+                                text = "${(arc.avgAccuracy * 100).toInt()}% accuracy",
+                                style = MaterialTheme.typography.bodySmall,
+                            )
+                            Text(
+                                text = "${arc.studyMinutes}m",
+                                style = MaterialTheme.typography.bodySmall,
+                            )
+                        }
+                        MasteryBar("Progress", arc.avgAccuracy)
+                    }
+                }
+            }
+        }
+
+        // ── Phase 5: Achievements ──
+        if (state.achievements.isNotEmpty()) {
+            item {
+                SectionHeader(title = "Achievements")
+            }
+            items(state.achievements) { achievement ->
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.small,
+                    colors = CardDefaults.cardColors(
+                        containerColor = if (achievement.unlockedEpochMs != null) {
+                            MaterialTheme.colorScheme.primaryContainer
+                        } else {
+                            MaterialTheme.colorScheme.surfaceVariant
+                        },
+                    ),
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(Spacing.sm),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = "${achievement.icon} ${achievement.title}",
+                                style = MaterialTheme.typography.titleSmall,
+                            )
+                            Text(
+                                text = achievement.description,
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                        if (achievement.unlockedEpochMs != null) {
+                            StatusBadge(text = "Unlocked", type = BadgeType.SUCCESS)
+                        } else {
+                            StatusBadge(text = "Locked", type = BadgeType.WARNING)
+                        }
+                    }
+                }
+            }
+        }
+
         item { Spacer(modifier = Modifier.height(Spacing.md)) }
     }
 }
-
 
