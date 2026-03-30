@@ -64,6 +64,78 @@ android {
         compose = true
         buildConfig = true
     }
+
+    packaging {
+        resources {
+            // Strip debug metadata from release builds
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+        jniLibs {
+            // Do not strip debug symbols in debug builds for crash diagnostics
+            keepDebugSymbols += "**//*.so"
+        }
+    }
+}
+
+// ── Build-time security verification ──────────────────────────────────────────
+
+tasks.register("verifyReleaseBuildConfig") {
+    group = "verification"
+    description = "Fails if release build has insecure defaults"
+    doLast {
+        val appExtension = project.extensions.getByType<com.android.build.gradle.AppExtension>()
+        val release = appExtension.buildTypes.getByName("release")
+
+        check(release.isMinifyEnabled) {
+            "SECURITY: Release build must have minification enabled (isMinifyEnabled = true)"
+        }
+        check(release.isShrinkResources) {
+            "SECURITY: Release build must have resource shrinking enabled (isShrinkResources = true)"
+        }
+        check(!release.isDebuggable) {
+            "SECURITY: Release build must not be debuggable"
+        }
+    }
+}
+
+tasks.register("verifyNoPlaintextSecrets") {
+    group = "verification"
+    description = "Scans for accidentally committed secrets"
+    doLast {
+        val patterns = listOf(
+            Regex("""(?i)(password|secret|api[_-]?key|token)\s*=\s*["'][^"']+["']"""),
+            Regex("""-----BEGIN (RSA |EC )?PRIVATE KEY-----"""),
+            Regex("""AKIA[0-9A-Z]{16}"""), // AWS access key
+        )
+        val scanDirs = listOf(
+            file("src"),
+            file("../core"),
+            file("../feature"),
+        )
+        var violations = 0
+        scanDirs.filter { it.exists() }.forEach { dir ->
+            dir.walkTopDown()
+                .filter { it.isFile && it.extension in listOf("kt", "java", "xml", "json", "properties") }
+                .filter { !it.path.contains("build/") }
+                .forEach { file ->
+                    file.readLines().forEachIndexed { index, line ->
+                        patterns.forEach { pattern ->
+                            if (pattern.containsMatchIn(line)) {
+                                logger.error("SECURITY: Potential secret at ${file.relativeTo(rootDir)}:${index + 1}")
+                                violations++
+                            }
+                        }
+                    }
+                }
+        }
+        check(violations == 0) {
+            "SECURITY: Found $violations potential plaintext secret(s) in source files"
+        }
+    }
+}
+
+tasks.named("assembleRelease") {
+    dependsOn("verifyReleaseBuildConfig")
 }
 
 dependencies {

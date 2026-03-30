@@ -1,0 +1,193 @@
+name: Android Security Checks
+
+on:
+  push:
+    branches: [ main, 'exp/**' ]
+    paths: [ 'apps/android/**', 'content/**' ]
+  pull_request:
+    branches: [ main ]
+    paths: [ 'apps/android/**', 'content/**' ]
+  schedule:
+    # Weekly security scan every Monday at 06:00 UTC
+    - cron: '0 6 * * 1'
+
+defaults:
+  run:
+    working-directory: apps/android
+
+jobs:
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
+          deny-licenses: "GPL-2.0, AGPL-3.0"
+          comment-summary-in-pr: always
+
+  secret-scan:
+    name: Secret Scanning
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Scan for secrets
+        run: |
+          set -euo pipefail
+          echo "Scanning for plaintext secrets in Android source..."
+          VIOLATIONS=0
+
+          # Patterns that indicate hardcoded secrets
+          PATTERNS=(
+            'password\s*=\s*"[^"$]'
+            'secret\s*=\s*"[^"$]'
+            'api[_-]?key\s*=\s*"[^"$]'
+            'token\s*=\s*"[^"$]'
+            'BEGIN (RSA |EC )?PRIVATE KEY'
+            'AKIA[0-9A-Z]{16}'
+          )
+
+          for pattern in "${PATTERNS[@]}"; do
+            if grep -rniE "$pattern" \
+              --include='*.kt' --include='*.java' --include='*.xml' \
+              --include='*.json' --include='*.properties' --include='*.yml' \
+              --exclude-dir='build' --exclude-dir='.gradle' \
+              app/ core/ feature/ 2>/dev/null; then
+              echo "::error::Potential secret found matching pattern: $pattern"
+              VIOLATIONS=$((VIOLATIONS + 1))
+            fi
+          done
+
+          # Check for keystore files accidentally committed
+          if find . -name '*.jks' -o -name '*.keystore' -o -name '*.p12' | grep -q .; then
+            echo "::error::Keystore file found in repository!"
+            VIOLATIONS=$((VIOLATIONS + 1))
+          fi
+
+          if [ "$VIOLATIONS" -gt 0 ]; then
+            echo "::error::Found $VIOLATIONS potential secret violation(s)"
+            exit 1
+          fi
+
+          echo "No secrets found."
+
+  license-sbom:
+    name: License & SBOM
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Generate dependency report
+        run: ./gradlew :app:dependencies --configuration releaseRuntimeClasspath --no-daemon > dependency-report.txt
+
+      - name: Check for banned licenses
+        run: |
+          set -euo pipefail
+          echo "Checking dependency report for banned licenses..."
+          # In a Gradle project, actual license checking would use a plugin.
+          # This is a basic check for known problematic patterns.
+          if grep -iE '(AGPL|Server Side Public License|SSPL)' dependency-report.txt; then
+            echo "::error::Found dependency with banned license"
+            exit 1
+          fi
+          echo "No banned licenses detected."
+
+      - name: Upload dependency report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-report
+          path: apps/android/dependency-report.txt
+          retention-days: 30
+
+  build-config-audit:
+    name: Build Configuration Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Audit exported components
+        run: |
+          set -euo pipefail
+          echo "Auditing AndroidManifest.xml files for exported components..."
+
+          # Find all manifests
+          MANIFESTS=$(find . -name 'AndroidManifest.xml' -path '*/src/main/*' -not -path '*/build/*')
+          VIOLATIONS=0
+
+          for manifest in $MANIFESTS; do
+            echo "Checking: $manifest"
+
+            # Count exported=true components (excluding the launcher activity)
+            EXPORTED=$(grep -c 'android:exported="true"' "$manifest" 2>/dev/null || true)
+            LAUNCHER=$(grep -c 'android.intent.action.MAIN' "$manifest" 2>/dev/null || true)
+
+            # Only the launcher activity should be exported
+            if [ "$EXPORTED" -gt "$LAUNCHER" ]; then
+              echo "::error::$manifest has $EXPORTED exported components but only $LAUNCHER launcher activities"
+              VIOLATIONS=$((VIOLATIONS + 1))
+            fi
+          done
+
+          if [ "$VIOLATIONS" -gt 0 ]; then
+            echo "::error::Found $VIOLATIONS manifest(s) with unexpectedly exported components"
+            exit 1
+          fi
+
+          echo "All manifests pass exported component audit."
+
+      - name: Verify release build flags
+        run: |
+          set -euo pipefail
+          APP_BUILD="app/build.gradle.kts"
+
+          echo "Verifying release build configuration..."
+
+          # Check minification is enabled
+          if ! grep -q 'isMinifyEnabled = true' "$APP_BUILD"; then
+            echo "::error::Release build missing isMinifyEnabled = true"
+            exit 1
+          fi
+
+          # Check resource shrinking is enabled
+          if ! grep -q 'isShrinkResources = true' "$APP_BUILD"; then
+            echo "::error::Release build missing isShrinkResources = true"
+            exit 1
+          fi
+
+          # Check no hardcoded signing config
+          if grep -qE '(storePassword|keyPassword)\s*=\s*"' "$APP_BUILD"; then
+            echo "::error::Hardcoded signing credentials found in build.gradle.kts!"
+            exit 1
+          fi
+
+          echo "Release build configuration verified."
+
+      - name: Verify no cleartext traffic
+        run: |
+          set -euo pipefail
+          MANIFEST="app/src/main/AndroidManifest.xml"
+
+          if grep -q 'usesCleartextTraffic="true"' "$MANIFEST"; then
+            echo "::error::cleartext traffic is enabled in manifest!"
+            exit 1
+          fi
+
+          echo "Network security configuration verified."

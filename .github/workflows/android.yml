@@ -74,3 +74,13 @@ jobs:
           name: lint-results
           path: apps/android/app/build/reports/lint-results-debug.html
           retention-days: 7
+
+  security-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run security audit
+        run: bash scripts/security_audit.sh

@@ -1,0 +1,41 @@
+version: 2
+
+updates:
+  # Android Gradle dependencies (version catalog)
+  - package-ecosystem: "gradle"
+    directory: "/apps/android"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "android"
+    reviewers:
+      - "official-stockfish/counterline-maintainers"
+    commit-message:
+      prefix: "deps(android)"
+    groups:
+      compose:
+        patterns:
+          - "androidx.compose*"
+      hilt:
+        patterns:
+          - "com.google.dagger*"
+          - "androidx.hilt*"
+      lifecycle:
+        patterns:
+          - "androidx.lifecycle*"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "ci"
+    commit-message:
+      prefix: "ci(deps)"

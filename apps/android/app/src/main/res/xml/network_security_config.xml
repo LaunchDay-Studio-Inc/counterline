@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Network Security Configuration for CounterLine.
+  CounterLine is a fully offline app — no network traffic is expected.
+  This config denies all cleartext traffic and trusts only system CAs
+  as a defense-in-depth measure in case a future dependency attempts
+  network access.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>
