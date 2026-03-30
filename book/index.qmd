@@ -6,11 +6,18 @@
 
 ---
 
-This book presents two opening lines — one for White and one for Black — that have been tested against Stockfish 18 under controlled, reproducible conditions on a published fixed opening suite.
+CounterLine is a repertoire for serious chess players who want two reliable weapons — one for White, one for Black — that they can study deeply and trust for years of serious play.
 
 The White line (Vienna Gambit Accepted) reaches a position that is nearly 100% winning for White. The Black line (Caro-Kann Classical 4...Bf5) scored 53.75% in testing — including wins as Black — from a position where most engines settle for a draw.
 
 These are not theoretical novelties found by a grandmaster. They are the product of a systematic, automated search through 28 candidate openings, refined by empirical testing, and validated in a 9-match proof matrix with full PGN records.
+
+**Who this book is for:**
+
+- **Ambitious intermediates** ready for their first serious, cohesive opening system
+- **Competitive club players** preparing two reliable weapons for tournament play
+- **Titled grinders** who want engine-validated lines with clear post-opening plans
+- **Elite lab users** who want to see the proof data and specialist tuning details
 
 **What this book will teach you:**
 

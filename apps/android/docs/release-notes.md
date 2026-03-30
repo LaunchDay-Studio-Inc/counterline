@@ -1,6 +1,6 @@
 # Release Notes — CounterLine Android
 
-## v1.0.0 (2026-03-29)
+## v1.0.0 (2026-03-30)
 
 ### Initial Release
 
@@ -20,11 +20,26 @@ CounterLine is an engine-tested chess opening repertoire trainer with two comple
 - Exam mode with certification badges
 - Mistake review with SRS scheduling
 - Practice mode with adjustable engine strength (on-device Stockfish)
+- Line-lock sparring, deviation sparring, and play-from-tabiya mode
+- Elite analysis pane with multi-PV engine evaluation
+- Compare-your-move vs repertoire move vs engine best move
+- Explain-last-move for in-context learning
+- Prep session generator with exportable one-page cheat sheets
+- Personal coach with daily workout and readiness scores
+- Tactical motif packs, transition trainer, blindfold recall
+- PGN import for comparing your games against the repertoire
+- Personal notebook for annotating positions
 - Progress tracking with study sessions, streaks, and mastery percentages
 - Quick 5 fast review sessions
 - Settings: skill level, dark mode, daily goal, notification preferences
 - Legal notices and open-source license information
 - Full offline operation — no internet required
+
+### Who This Is For
+- Ambitious intermediates: your first serious, cohesive repertoire
+- Competitive club players: two reliable weapons for tournament play
+- Titled grinders: engine-validated lines with clear post-opening plans
+- Elite lab users: proof matrix data, specialist tuning, and deep analysis
 
 ### Engine Testing Results
 - Validated on the published fixed suite against Stockfish 18 at TC 1+0.1, 1 thread, 64 MB hash

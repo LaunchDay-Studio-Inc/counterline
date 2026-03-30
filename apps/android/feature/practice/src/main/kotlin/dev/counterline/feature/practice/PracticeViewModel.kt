@@ -10,6 +10,7 @@ import dev.counterline.core.domain.ReviewNodeUseCase
 import dev.counterline.core.domain.TrackStudySessionUseCase
 import dev.counterline.core.engine.EngineStrengthProfile
 import dev.counterline.core.engine.MoveFeedback
+import dev.counterline.core.engine.PvLine
 import dev.counterline.core.engine.StockfishEngine
 import dev.counterline.core.engine.TrainingAssistant
 import dev.counterline.core.model.RepertoireLine
@@ -32,6 +33,8 @@ enum class PracticeMode {
     LINE_LOCK,
     /** Allow deviations; explain how to re-enter or punish */
     DEVIATION,
+    /** Start from the tabiya (exit FEN) and play the middlegame */
+    PLAY_FROM_TABIYA,
 }
 
 data class PracticeUiState(
@@ -56,6 +59,36 @@ data class PracticeUiState(
     val availableLines: List<RepertoireLine> = emptyList(),
     val showLineSelector: Boolean = true,
     val engineReady: Boolean = false,
+    // Phase 0 — elite analysis pane
+    val showAnalysisPane: Boolean = false,
+    val analysisEval: String? = null,
+    val analysisBestMove: String? = null,
+    val analysisDepth: Int = 0,
+    val analysisTopMoves: List<MoveComparisonEntry> = emptyList(),
+    // Phase 0 — explain last move
+    val lastMoveExplanation: String? = null,
+    // Phase 0 — compare your move
+    val moveComparison: MoveComparisonResult? = null,
+)
+
+/** A single engine-ranked move for the analysis pane */
+data class MoveComparisonEntry(
+    val rank: Int,
+    val move: String,
+    val scoreCp: Int,
+    val isRepertoireMove: Boolean = false,
+    val isUserMove: Boolean = false,
+)
+
+/** Result of comparing user move vs repertoire move vs engine best move */
+data class MoveComparisonResult(
+    val userMove: String,
+    val userMoveCp: Int?,
+    val repertoireMove: String,
+    val repertoireMoveCp: Int?,
+    val engineBestMove: String,
+    val engineBestCp: Int?,
+    val verdict: String,
 )
 
 @HiltViewModel
@@ -96,6 +129,18 @@ class PracticeViewModel @Inject constructor(
 
             sessionId = trackSession.start(StudyMode.RECALL, line.side)
 
+            val startFen = if (_uiState.value.mode == PracticeMode.PLAY_FROM_TABIYA) {
+                line.exitFen
+            } else {
+                "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+            }
+
+            val startIndex = if (_uiState.value.mode == PracticeMode.PLAY_FROM_TABIYA) {
+                line.moves.size // skip all repertoire moves — start from the tabiya
+            } else {
+                0
+            }
+
             _uiState.update {
                 it.copy(
                     repertoireLine = line,
@@ -104,11 +149,11 @@ class PracticeViewModel @Inject constructor(
                     sessionStarted = true,
                     engineReady = true,
                     isUserTurn = line.side == Side.WHITE,
-                    currentFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+                    currentFen = startFen,
                     moveHistory = emptyList(),
                     moveHistorySan = emptyList(),
-                    currentMoveIndex = 0,
-                    isInsideRepertoire = true,
+                    currentMoveIndex = startIndex,
+                    isInsideRepertoire = _uiState.value.mode != PracticeMode.PLAY_FROM_TABIYA,
                 )
             }
 
@@ -218,6 +263,157 @@ class PracticeViewModel @Inject constructor(
     fun endPracticeSession() {
         viewModelScope.launch {
             endSession()
+        }
+    }
+
+    // ────────────────────────────────────────────────────────
+    // Phase 0 — Elite Analysis Pane
+    // ────────────────────────────────────────────────────────
+
+    /** Toggle the analysis pane and trigger a deep evaluation. */
+    fun toggleAnalysisPane() {
+        val show = !_uiState.value.showAnalysisPane
+        _uiState.update { it.copy(showAnalysisPane = show) }
+        if (show) refreshAnalysis()
+    }
+
+    /** Run a deep multi-PV analysis on the current position. */
+    fun refreshAnalysis() {
+        val state = _uiState.value
+        if (!state.engineReady) return
+        viewModelScope.launch {
+            try {
+                engine.setEngineStrengthProfile(EngineStrengthProfile.DEEP_ANALYSIS)
+                val topMoves = engine.getTopMoves(state.currentFen, n = 4, depth = 22)
+                val repertoireMove = getExpectedRepertoireMove(state)?.san
+
+                val entries = topMoves.mapIndexed { idx, pv ->
+                    MoveComparisonEntry(
+                        rank = idx + 1,
+                        move = pv.move,
+                        scoreCp = pv.scoreCp,
+                        isRepertoireMove = pv.move.equals(repertoireMove, ignoreCase = true),
+                    )
+                }
+
+                val best = topMoves.firstOrNull()
+                _uiState.update {
+                    it.copy(
+                        analysisTopMoves = entries,
+                        analysisEval = best?.let { formatCp(it.scoreCp) },
+                        analysisBestMove = best?.move,
+                        analysisDepth = best?.depth ?: 0,
+                    )
+                }
+                // restore practice strength
+                engine.setEngineStrengthProfile(state.strengthProfile)
+            } catch (_: Exception) {
+                _uiState.update {
+                    it.copy(analysisEval = "N/A", analysisTopMoves = emptyList())
+                }
+            }
+        }
+    }
+
+    // ────────────────────────────────────────────────────────
+    // Phase 0 — Compare Your Move vs Repertoire vs Engine
+    // ────────────────────────────────────────────────────────
+
+    /** After the user plays a move, compare it against both repertoire and engine best. */
+    fun compareLastMove() {
+        val state = _uiState.value
+        val userMove = state.moveHistorySan.lastOrNull() ?: return
+        val repertoireMove = getExpectedRepertoireMove(
+            state.copy(currentMoveIndex = state.currentMoveIndex - 1),
+        )?.san ?: return
+
+        viewModelScope.launch {
+            try {
+                engine.setEngineStrengthProfile(EngineStrengthProfile.ANALYSIS)
+                val eval = engine.evaluateFen(state.currentFen, depth = 18)
+
+                val result = MoveComparisonResult(
+                    userMove = userMove,
+                    userMoveCp = null, // would need pre-move position
+                    repertoireMove = repertoireMove,
+                    repertoireMoveCp = null,
+                    engineBestMove = eval.bestMove,
+                    engineBestCp = eval.scoreCp,
+                    verdict = buildCompareVerdict(userMove, repertoireMove, eval.bestMove),
+                )
+                _uiState.update { it.copy(moveComparison = result) }
+                engine.setEngineStrengthProfile(state.strengthProfile)
+            } catch (_: Exception) {
+                // silently ignore
+            }
+        }
+    }
+
+    /** Dismiss the move comparison overlay. */
+    fun dismissComparison() {
+        _uiState.update { it.copy(moveComparison = null) }
+    }
+
+    // ────────────────────────────────────────────────────────
+    // Phase 0 — Explain Last Move
+    // ────────────────────────────────────────────────────────
+
+    /** Explain the last move played (by engine or user). */
+    fun explainLastMove() {
+        val state = _uiState.value
+        val lastSan = state.moveHistorySan.lastOrNull() ?: return
+        val line = state.repertoireLine ?: return
+
+        // Look up the move in the repertoire for a purpose annotation
+        val idx = state.currentMoveIndex - 1
+        val repMove = if (idx >= 0 && idx < line.moves.size) line.moves[idx] else null
+
+        val explanation = if (repMove != null && repMove.san.equals(lastSan, ignoreCase = true)) {
+            buildString {
+                append("${repMove.san}: ")
+                if (repMove.whyThisMove.isNotEmpty()) {
+                    append(repMove.whyThisMove)
+                } else if (repMove.purpose.isNotEmpty()) {
+                    append(repMove.purpose)
+                } else {
+                    append("This is the repertoire's recommended move at this stage.")
+                }
+                if (repMove.keyPlanCallout.isNotEmpty()) {
+                    append("\n\nKey plan: ${repMove.keyPlanCallout}")
+                }
+            }
+        } else {
+            // Outside repertoire — provide generic engine context
+            "$lastSan — This move is outside the repertoire. " +
+                "Consult the analysis pane for engine evaluation."
+        }
+
+        _uiState.update { it.copy(lastMoveExplanation = explanation) }
+    }
+
+    /** Dismiss the last-move explanation. */
+    fun dismissExplanation() {
+        _uiState.update { it.copy(lastMoveExplanation = null) }
+    }
+
+    private fun buildCompareVerdict(
+        userMove: String,
+        repertoireMove: String,
+        engineBest: String,
+    ): String {
+        val userIsRepertoire = userMove.equals(repertoireMove, ignoreCase = true)
+        val userIsEngine = userMove.equals(engineBest, ignoreCase = true)
+        val repertoireIsEngine = repertoireMove.equals(engineBest, ignoreCase = true)
+
+        return when {
+            userIsRepertoire && userIsEngine ->
+                "Your move matches both the repertoire and the engine's top choice."
+            userIsRepertoire ->
+                "Your move matches the repertoire. The engine slightly prefers $engineBest at this depth."
+            userIsEngine ->
+                "Your move matches the engine's top pick, but the repertoire recommends $repertoireMove."
+            else ->
+                "Your move differs from both the repertoire ($repertoireMove) and the engine ($engineBest)."
         }
     }
 

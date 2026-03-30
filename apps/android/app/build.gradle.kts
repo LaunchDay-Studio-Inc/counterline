@@ -161,6 +161,13 @@ dependencies {
     implementation(project(":feature:quick5"))
     implementation(project(":feature:practice"))
     implementation(project(":feature:onboarding"))
+    implementation(project(":feature:blindfold"))
+    implementation(project(":feature:coach"))
+    implementation(project(":feature:notebook"))
+    implementation(project(":feature:pgnimport"))
+    implementation(project(":feature:preppack"))
+    implementation(project(":feature:tacticalmotifs"))
+    implementation(project(":feature:transitiontrainer"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

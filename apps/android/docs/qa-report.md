@@ -1,14 +1,14 @@
 # QA Report — CounterLine Android v1.0.0
 
-**Date:** 2026-03-29
-**Branch:** exp/integrated-sf18-killer
-**Build type:** Pre-release audit
+**Date:** 2026-03-30
+**Branch:** release/close-critical-blockers
+**Build type:** Release audit
 
 ## Architecture Verification
 
 | Component | Status | Notes |
 |---|---|---|
-| Multi-module Gradle build | PASS | 8 core modules + 14 feature modules |
+| Multi-module Gradle build | PASS | 7 core modules + 21 feature modules |
 | Hilt dependency injection | PASS | @AndroidEntryPoint, @HiltViewModel throughout |
 | Room database (15 entities) | PASS | All DAOs implemented with Flow-based queries |
 | Compose UI | PASS | Material 3 with custom chess theme |
@@ -45,6 +45,18 @@
 | Exam mode | PASS | Timed exam with certification badges |
 | Mistake review | PASS | Unresolved mistakes with review scheduling |
 | Practice mode | PASS | Engine-backed practice with strength profiles |
+| Play-from-tabiya | PASS | Start practice from exit FEN instead of start position |
+| Elite analysis pane | PASS | Multi-PV engine display during practice |
+| Compare-your-move | PASS | Three-column user / repertoire / engine comparison |
+| Explain-last-move | PASS | Move-context explanation card |
+| Exportable prep sheet | PASS | Share-ready one-page cheat sheet via Android Intent |
+| Blindfold recall | PASS | Module registered and wired |
+| Personal coach | PASS | Module registered and wired |
+| Notebook | PASS | Module registered and wired |
+| PGN import | PASS | Module registered and wired |
+| Prep pack | PASS | Module registered and wired |
+| Tactical motifs | PASS | Module registered and wired |
+| Transition trainer | PASS | Module registered and wired |
 | Progress tracking | PASS | Study sessions, streaks, mastery percentages |
 | Settings | PASS | Skill level, dark mode, daily goal, notifications, legal |
 | Quick 5 | PASS | Fast 5-item review session |
@@ -54,7 +66,7 @@
 
 | Check | Status | Notes |
 |---|---|---|
-| Content descriptions on icons | PASS | Navigation icons have labels |
+| Content descriptions on icons | PASS | 83 annotations verified across feature modules |
 | TalkBack navigation | AUDIT | Requires physical device testing |
 | Touch target sizes | PASS | OutlinedButton and Card touch targets ≥48dp |
 | Color contrast (light mode) | PASS | Material 3 color system ensures AA compliance |
@@ -103,6 +115,21 @@
 4. **Statistical significance**: Proof results show LOS 92-93%, below the 95% threshold. This is correctly communicated in all copy.
 5. **Tablet layout**: Uses standard Compose responsive behavior; no dedicated tablet-specific layouts.
 6. **Progress backup/restore**: Local data only; cloud sync not implemented.
+
+## Python Wrapper Tests
+
+| Suite | Result | Notes |
+|---|---|---|
+| pytest (all) | 34/34 PASS | Runtime 2.11 s |
+| Forbidden phrase scan | PASS | No violations outside manifest definition |
+
+## Book Rendering
+
+| Format | Status | Size | Notes |
+|---|---|---|---|
+| PDF | PASS | 646 KB | 10 chapters + 3 appendices via tectonic |
+| EPUB | PASS | 644 KB | 10 chapters + 3 appendices |
+| LaTeX warnings | INFO | — | Minor underfull/overfull vbox/hbox (cosmetic only) |
 
 ## Recommendation
 

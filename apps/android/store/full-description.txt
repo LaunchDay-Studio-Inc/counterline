@@ -7,12 +7,18 @@ Two precise opening lines — validated against Stockfish 18 on a published fixe
 
 Learn two concrete opening lines — one for White, one for Black — with every move explained. Study annotated model games from real engine-vs-engine matches against Stockfish 18. Understand the strategic plans and patterns that make each line work. Drill the common deviations opponents actually play.
 
+WHO THIS IS FOR
+• Ambitious intermediates who want their first serious, cohesive repertoire
+• Competitive club players preparing two reliable weapons for tournament play
+• Titled grinders looking for engine-validated lines with clear post-opening plans
+• Elite lab users who want access to proof matrix data, specialist tuning, and deep analysis
+
 HOW IT WORKS
 CounterLine gives you exactly two openings to master. No bloated database. No cramming 40 variations. You learn one White line and one Black line, with built-in spaced-repetition drilling so you actually retain the moves.
 
 The entire repertoire is engine-tested and reproducible. The published PGN files let you verify every claim yourself with the reproduction commands included in the open-source repository.
 
-WHAT YOU GET
+STUDY TOOLS
 • Complete move-by-move walkthrough with explanations
 • Memory hooks to remember each line's key ideas
 • Spaced-repetition drills — fill-in-the-blank, choose-the-move, flash cards
@@ -21,6 +27,10 @@ WHAT YOU GET
 • Annotated model games from real engine matches
 • Exam mode to certify your mastery
 • Practice mode with adjustable engine strength
+• Line-lock sparring, deviation sparring, and play-from-tabiya mode
+• Elite analysis pane with compare-your-move and explain-last-move
+• Prep session generator — export a one-page cheat sheet for events
+• Personal coach with daily workout, readiness scores, and weakness tracking
 • Full offline operation — no internet required
 
 ENGINE-TEST RESULTS

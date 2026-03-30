@@ -6,7 +6,7 @@ book:
   title: "CounterLine: An Engine-Tested Opening Repertoire"
   subtitle: "Two precise opening lines — validated against Stockfish 18 on a published fixed suite"
   author: "The CounterLine Project"
-  date: "2026-03-28"
+  date: "2026-03-30"
   chapters:
     - index.qmd
     - 01-what-counterline-is.qmd

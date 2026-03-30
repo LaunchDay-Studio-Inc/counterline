@@ -13,10 +13,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Analytics
+import androidx.compose.material.icons.filled.CompareArrows
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.LockOpen
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -27,6 +33,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -89,6 +96,11 @@ fun PracticeScreen(
             ActivePractice(
                 state = state,
                 onDismissFeedback = { viewModel.dismissFeedback() },
+                onToggleAnalysis = { viewModel.toggleAnalysisPane() },
+                onExplainLastMove = { viewModel.explainLastMove() },
+                onCompareMove = { viewModel.compareLastMove() },
+                onDismissExplanation = { viewModel.dismissExplanation() },
+                onDismissComparison = { viewModel.dismissComparison() },
             )
         }
     }
@@ -129,8 +141,14 @@ private fun LineSelector(
                 FilterChip(
                     selected = mode == PracticeMode.DEVIATION,
                     onClick = { onSetMode(PracticeMode.DEVIATION) },
-                    label = { Text("Deviation Mode") },
+                    label = { Text("Deviation") },
                     leadingIcon = { Icon(Icons.Default.LockOpen, contentDescription = null) },
+                )
+                FilterChip(
+                    selected = mode == PracticeMode.PLAY_FROM_TABIYA,
+                    onClick = { onSetMode(PracticeMode.PLAY_FROM_TABIYA) },
+                    label = { Text("From Tabiya") },
+                    leadingIcon = { Icon(Icons.Default.PlayArrow, contentDescription = null) },
                 )
             }
             Spacer(modifier = Modifier.height(Spacing.xs))
@@ -190,11 +208,17 @@ private fun LineSelector(
 private fun ActivePractice(
     state: PracticeUiState,
     onDismissFeedback: () -> Unit,
+    onToggleAnalysis: () -> Unit,
+    onExplainLastMove: () -> Unit,
+    onCompareMove: () -> Unit,
+    onDismissExplanation: () -> Unit,
+    onDismissComparison: () -> Unit,
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(Spacing.md),
+            .padding(Spacing.md)
+            .verticalScroll(rememberScrollState()),
     ) {
         // Status bar
         Row(
@@ -214,7 +238,7 @@ private fun ActivePractice(
                 )
             } else {
                 Text(
-                    text = "Deviation",
+                    text = if (state.mode == PracticeMode.PLAY_FROM_TABIYA) "Post-tabiya" else "Deviation",
                     style = MaterialTheme.typography.labelSmall,
                     color = CounterLineTheme.chessColors.incorrectMove,
                 )
@@ -240,7 +264,32 @@ private fun ActivePractice(
                 .align(Alignment.CenterHorizontally),
         )
 
-        Spacer(modifier = Modifier.height(Spacing.sm))
+        Spacer(modifier = Modifier.height(Spacing.xs))
+
+        // ── Phase 0: Action buttons (Analysis, Explain, Compare) ──
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(Spacing.xs, Alignment.CenterHorizontally),
+        ) {
+            SmallFloatingActionButton(
+                onClick = onToggleAnalysis,
+                containerColor = if (state.showAnalysisPane)
+                    MaterialTheme.colorScheme.primaryContainer
+                else MaterialTheme.colorScheme.surfaceContainerHigh,
+            ) {
+                Icon(Icons.Default.Analytics, contentDescription = "Analysis Pane")
+            }
+            SmallFloatingActionButton(onClick = onExplainLastMove) {
+                Icon(Icons.Default.Info, contentDescription = "Explain Last Move")
+            }
+            if (state.moveHistorySan.isNotEmpty()) {
+                SmallFloatingActionButton(onClick = onCompareMove) {
+                    Icon(Icons.Default.CompareArrows, contentDescription = "Compare Move")
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(Spacing.xs))
 
         // Score
         Row(
@@ -268,6 +317,43 @@ private fun ActivePractice(
                 style = CounterLineTheme.chessTypography.moveInline,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+            Spacer(modifier = Modifier.height(Spacing.xs))
+        }
+
+        // ── Phase 0: Elite Analysis Pane ──
+        if (state.showAnalysisPane) {
+            AnalysisPane(
+                eval = state.analysisEval,
+                bestMove = state.analysisBestMove,
+                depth = state.analysisDepth,
+                topMoves = state.analysisTopMoves,
+            )
+            Spacer(modifier = Modifier.height(Spacing.xs))
+        }
+
+        // ── Phase 0: Move Comparison Result ──
+        state.moveComparison?.let { comparison ->
+            MoveComparisonCard(comparison = comparison, onDismiss = onDismissComparison)
+            Spacer(modifier = Modifier.height(Spacing.xs))
+        }
+
+        // ── Phase 0: Explain Last Move ──
+        state.lastMoveExplanation?.let { explanation ->
+            Card(
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                ),
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.medium,
+            ) {
+                Column(modifier = Modifier.padding(Spacing.sm)) {
+                    Text("Move Explanation", style = MaterialTheme.typography.titleSmall)
+                    Spacer(modifier = Modifier.height(Spacing.xxs))
+                    Text(explanation, style = MaterialTheme.typography.bodySmall)
+                    Spacer(modifier = Modifier.height(Spacing.xs))
+                    OutlinedButton(onClick = onDismissExplanation) { Text("Dismiss") }
+                }
+            }
             Spacer(modifier = Modifier.height(Spacing.xs))
         }
 
@@ -317,6 +403,121 @@ private fun ActivePractice(
                     }
                 }
             }
+        }
+    }
+}
+
+// ── Phase 0: Elite Analysis Pane Composable ──
+
+@Composable
+private fun AnalysisPane(
+    eval: String?,
+    bestMove: String?,
+    depth: Int,
+    topMoves: List<MoveComparisonEntry>,
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+        ),
+        shape = MaterialTheme.shapes.medium,
+    ) {
+        Column(modifier = Modifier.padding(Spacing.sm)) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+                Text("Engine Analysis", style = MaterialTheme.typography.titleSmall)
+                Text(
+                    text = "depth $depth",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            Spacer(modifier = Modifier.height(Spacing.xxs))
+            Row {
+                Text(
+                    text = eval ?: "...",
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+                Spacer(modifier = Modifier.width(Spacing.sm))
+                Text(
+                    text = "Best: ${bestMove ?: "..."}",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
+            if (topMoves.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(Spacing.xs))
+                topMoves.forEach { entry ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 2.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                    ) {
+                        val label = buildString {
+                            append("#${entry.rank} ${entry.move}")
+                            if (entry.isRepertoireMove) append(" (repertoire)")
+                            if (entry.isUserMove) append(" (yours)")
+                        }
+                        Text(label, style = MaterialTheme.typography.bodySmall)
+                        val cpStr = if (entry.scoreCp >= 0) "+${entry.scoreCp / 100.0}" else "${entry.scoreCp / 100.0}"
+                        Text(
+                            cpStr,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.primary,
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ── Phase 0: Move Comparison Card ──
+
+@Composable
+private fun MoveComparisonCard(
+    comparison: MoveComparisonResult,
+    onDismiss: () -> Unit,
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+        ),
+        shape = MaterialTheme.shapes.medium,
+    ) {
+        Column(modifier = Modifier.padding(Spacing.sm)) {
+            Text("Move Comparison", style = MaterialTheme.typography.titleSmall)
+            Spacer(modifier = Modifier.height(Spacing.xs))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+            ) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text("You", style = MaterialTheme.typography.labelSmall)
+                    Text(comparison.userMove, style = MaterialTheme.typography.titleMedium)
+                }
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text("Repertoire", style = MaterialTheme.typography.labelSmall)
+                    Text(comparison.repertoireMove, style = MaterialTheme.typography.titleMedium)
+                }
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text("Engine", style = MaterialTheme.typography.labelSmall)
+                    Text(comparison.engineBestMove, style = MaterialTheme.typography.titleMedium)
+                }
+            }
+            Spacer(modifier = Modifier.height(Spacing.xs))
+            Text(
+                comparison.verdict,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onTertiaryContainer,
+            )
+            Spacer(modifier = Modifier.height(Spacing.xs))
+            OutlinedButton(onClick = onDismiss) { Text("Dismiss") }
         }
     }
 }
